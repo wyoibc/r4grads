@@ -1,19 +1,32 @@
-# r4grads
-## Modules for MOLB5700: Fundamental Skills for Biomedical Researchers
+---
+title: r4grads - Data Analysis & Publishing in R
+---
 
+### Part of MOLB5700 - Fundamental Skills for Biomedical Researchers
 
+### [Vikram E. Chhatre](https://vc.popgen.org), Braveen Joseph & Samuel Fay
+
+## Schedule
 - Module 1: February 17
 - Module 2: February 24
 - Module 3: March 3
 
 
-## How to Prepare 
+## 1. How do I prepare for the modules?
 
-1. Get a free GitHub account at [GitHub.com](https://github.com)
+0. **Make sure you fill out [this quick survey](https://forms.gle/upHN4EvrWpVQmX7F7). It will help us tailor the
+contents to suit your needs.**
+
+1. Get a free [GitHub account](https://github.com). Once you
+login to your account, navigate to [this
+repository](https://github.com/wyoibc/r4grads) and click on ``Watch`` button in
+the top right corner. This will help you keep track of changes being made
+upstream. I will update the repository periodically.
 
 2. Install Git, the version control system on your computer
 
-	- Mac OSX has a git client built into it
+	- Mac OSX has a git client built into it. So no installation is
+	  necessary.
 	
 	- If you use a Windows computer, install [Git for Windows](https://gitforwindows.org/)
 
@@ -24,11 +37,20 @@
 	- RStudio can be obtained from [rstudio.com/products/rstudio/](https://rstudio.com/products/rstudio/)
 
 
+4. Make sure your ``git`` installation works.
 
-**This page is currently under construction.**
+	- Mac OSX: Open Terminal.app, and type ``git --version``. This should
+	  print git version to the screen. If you get an error message, contact
+me (vchhatre at uwyo.edu).
+
+	- Git for Windows: Right click on desktop and choose ``Git Bash``,
+	  which should open up a terminal window. If you run into issues, make
+sure you followed instructions on their website (see above).
 
 
-
+5. Request access to the [class Slack
+account](https://join.slack.com/t/r4grads/shared_invite/zt-licfgnic-caJdAqZHi~kVHD5dPGCiag).
+When the class is in session, we will provide live help on this Slack channel.  
 
 
 
