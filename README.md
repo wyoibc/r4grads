@@ -14,9 +14,6 @@ title: r4grads - Data Analysis & Publishing in R
 
 ## 1. How do I prepare for the modules?
 
-0. **Make sure you fill out [this quick survey](https://forms.gle/upHN4EvrWpVQmX7F7). It will help us tailor the
-contents to suit your needs.**
-
 1. Get a free [GitHub account](https://github.com). Once you
 login to your account, navigate to [this
 repository](https://github.com/wyoibc/r4grads) and click on ``Watch`` button in
