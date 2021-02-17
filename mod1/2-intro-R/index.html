@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Braveen B. Joseph and Vikram Chhatre" />
+  <meta name="dcterms.date" content="2021-02-17" />
+  <title>1. Introduction to R Environment</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="avenir-white.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">1. Introduction to R Environment</h1>
+<p class="author">Braveen B. Joseph and Vikram Chhatre</p>
+<p class="date">February 17, 2021</p>
+</header>
+<p><br></p>
+<h1 id="what-is-r">1. What is R?</h1>
+<p>R is an open source, statistical data analysis and visualization program. It is also a computer programming language. There are many proprietary software programs that can be used for statistical data analysis, such as, <code>Minitab</code>,<code>SPSS</code>, <code>SAS</code> and <code>MATLAB</code>. Most such programs cost money, even though it may or may not go out of your own pocket. These programs are also closed-source meaning that the computer code that is needed to make these programs work is usually a closely held secret and the end users are not privy to it. This stifles innovation.</p>
+<p>In contrast, the entire R programming language is open source. Scientists and programmers believe that this allows for and encourages further innovation. Because the code is freely available to anyone, it is constantly being modified and improved. Examples include adding new functionality and removing bugs. You may not do the same with closed source programs.</p>
+<p>When you install the R distribution on your computer, it comes with a range of basic functions, enough to perform basic but wide ranging statistical analyses (think ANOVA, T-test etc.) and then visualize the results (think histograms, scatterplots, barplots etc.). This suite of functions is together called the base-R distribution. The latest version of R is 4.0.4. Each version also gets a name. Version 4.0.4 is named <code>Lost Library Book</code>. <code>R</code> was developed by the <code>R Foundation for Statistical Computing</code> located at <a href="https://r-project.org">https://r-project.org</a>, which provides a great deal of information related to R.</p>
+<hr>
+<h1 id="what-is-r-studio">2. What is R-Studio?</h1>
+<p>In it’s most simplistic form, R can be run through a terminal which provides the command line interface. Simply type <code>r</code> on either Linux, Macintosh or Windows inside a terminal (<code>CMD</code> program in Windows) and R will launch.</p>
+<br>
+<center>
+<img src="rterminal.png" alt="R inside Terminal" width="600"/>
+</center>
+<p><br></p>
+<p>However, not everyone is fond of command line interfaces. R-Studio exists as a interface bridge between R and you. But that’s not the only thing it does. It is an extremely feature rich GUI program that brings you enhanced functionality to use R.</p>
+<p>If you think of R as the backbone then R-Studio provides a graphical user interface to interact with that backbone. When you launch R-Studio, it automatically detects the R software installed on your computer and interfaces with it. Let’s take a look at the R interface to become familiar with it.</p>
+<br>
+<center>
+<img src="rstudio.png" alt="R Studio Interface" width="800"/>
+</center>
+<p><br></p>
+<p>Much of the work you will do will do will happen in the two left panes of R-Studio. These are</p>
+<ul>
+<li><p><code>SOURCE</code> which is where you will write your R commands before executing them and</p></li>
+<li><p><code>CONSOLE</code> where the execution happens. The console is the same thing as running R in terminal.</p></li>
+</ul>
+<p>Right panes also can be useful at certain situations.</p>
+<ul>
+<li><p><code>Environment/History</code> shows objects created and commands used in the current R session.</p></li>
+<li><p><code>Files/Plots/Packages/Help</code> displays plots, packages installed, contains file and help systems</p></li>
+</ul>
+<p>You can always type commands directly in the console without writing them in the source first. This allows you to test commands out. When your workflow begins to get more complex, the source comes in handy.</p>
+<p>You will get the hang of R-Studio once we start working through it. The author will explain more features as they become relevant for the task at hand.</p>
+<hr>
+<h1 id="getting-started">3. Getting Started</h1>
+<p>We will start with very simple tasks and build on that so that by the end of the day you will have a better idea of what R is capable of.</p>
+<p><br></p>
+<h3 id="use-r-as-a-calculator">3.1 Use R as a Calculator</h3>
+<p>At a very basic level, R can be used as a calculator, both simple and scientific. When performing calculations, basic rules of Maths apply i.e. PEMDAS</p>
+<ul>
+<li>Products before Exponents</li>
+<li>Then Exponents</li>
+<li>Multiply and divide before you add or subtract</li>
+</ul>
+<p>Let’s try some exercises:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="dv">9965</span><span class="op">/</span><span class="fl">5.33</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>pi<span class="op">*</span><span class="dv">3</span><span class="op">^</span><span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>(<span class="dv">32</span><span class="op">*</span><span class="dv">8</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1000</span><span class="op">/</span><span class="fl">5.2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">log2</span>(<span class="dv">7</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="kw">exp</span>(<span class="kw">log10</span>(<span class="dv">2</span>))</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="kw">sqrt</span>(<span class="dv">302500</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="kw">sqrt</span>(<span class="dv">36</span>)<span class="op">*</span>((<span class="dv">51-6</span>)<span class="op">/</span><span class="dv">9</span>)</span></code></pre></div>
+<p>The outcomes are as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>[<span class="dv">1</span>] <span class="dv">4</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="dv">9965</span><span class="op">/</span><span class="fl">5.33</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>[<span class="dv">1</span>] <span class="fl">1869.606</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>pi<span class="op">*</span><span class="dv">3</span><span class="op">^</span><span class="dv">2</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>[<span class="dv">1</span>] <span class="fl">28.27433</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>(<span class="dv">32</span><span class="op">*</span><span class="dv">8</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1000</span><span class="op">/</span><span class="fl">5.2</span>)</span>
+<span id="cb2-11"><a href="#cb2-11"></a>[<span class="dv">1</span>] <span class="fl">448.3077</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="kw">log2</span>(<span class="dv">7</span>)</span>
+<span id="cb2-14"><a href="#cb2-14"></a>[<span class="dv">1</span>] <span class="fl">2.807355</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="kw">exp</span>(<span class="kw">log10</span>(<span class="dv">2</span>))</span>
+<span id="cb2-17"><a href="#cb2-17"></a>[<span class="dv">1</span>] <span class="fl">1.35125</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="kw">sqrt</span>(<span class="dv">302500</span>)</span>
+<span id="cb2-20"><a href="#cb2-20"></a>[<span class="dv">1</span>] <span class="dv">550</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="kw">sqrt</span>(<span class="dv">36</span>)<span class="op">*</span>((<span class="dv">51-6</span>)<span class="op">/</span><span class="dv">9</span>)</span>
+<span id="cb2-23"><a href="#cb2-23"></a>[<span class="dv">1</span>] <span class="dv">30</span></span></code></pre></div>
+<ul>
+<li>Try out any other combinations you would like.</li>
+</ul>
+<p><br></p>
+<h3 id="objects-in-r">3.2 Objects in R</h3>
+<p>Much of the work in this environment is done by manipulating Objects that are stored in R’s memory. You could create you own objects in the R environment or import into the environment from outside. There are many different types of objects that you can store in R’s memory.</p>
+<p>There are many different types of objects that you can store in R’s memory. The objects can be either singular storing a single number (numeric, or character) or vectors (multiple numbers and/or characters) or large matrices consisting of multiple rows and columns. Here are some simple examples.</p>
+<p><strong>1.Variables</strong></p>
+<p><strong>2.Vectors</strong></p>
+<p>3.Matrices</p>
+<p>There are also some sophisticated data structures, which can make data representation, manipulation and analysis easy.</p>
+<p>1.Factors</p>
+<p><strong>2.Data Frames</strong></p>
+<p>3.Lists</p>
+<p>4.Array</p>
+<p>In this class, we will only focus on objects that are <strong>BOLD</strong>. These are the objects used predominantly in Bio-medical research.</p>
+<p><br></p>
+<h4 id="variables">3.2.1 Variables</h4>
+<p>To create a variable you use the assignment operator <code>&lt;-</code> or <code>=</code>. Both are interchangeable. By far in my experience, most people use the first symbol, though nothing says you have to use one of the other. They are fully equivalent.</p>
+<p><strong>I would recommend using</strong> <code>&lt;-</code> <strong>operator to avoid confusion with mathematical equality, and as a good programming practice.</strong></p>
+<p>Think of variable as a folder with a name in front. You can put a anything into it, look at it, manipulate it, and even replace it with something else.</p>
+<ul>
+<li>Let’s begin by creating a variable in R through simple assignments:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>a &lt;-<span class="st"> </span><span class="dv">8</span></span></code></pre></div>
+<ul>
+<li>This stores the number <code>8</code> into an variable <code>a</code>. Here is another example:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>b &lt;-<span class="st"> </span><span class="dv">22</span></span></code></pre></div>
+<ul>
+<li>You can check for any objects that now exist in R’s memory with the following:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">ls</span>()</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>[<span class="dv">1</span>] <span class="st">&quot;a&quot;</span> <span class="st">&quot;b&quot;</span></span></code></pre></div>
+<ul>
+<li><p>As you can see, both objects are now in R’s memory along with their values.</p></li>
+<li><p>Note: <code>ls</code> is a command for listing objects in the working space. The <code>()</code> you see after that is part of R syntax. Every command in R must end with the parentheses. Although it’s not being implemented here, usually one passes various arguments or options to the command inside those parentheses.</p></li>
+<li><p>To check their values, simply type their name at their prompt:</p></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>a</span>
+<span id="cb6-2"><a href="#cb6-2"></a>[<span class="dv">1</span>] <span class="dv">8</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>b</span>
+<span id="cb6-5"><a href="#cb6-5"></a>[<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
+<p>-Let’s replace the <code>a</code> variable with another value</p>
+<p>-The expression on the right hand side is evaluated first, then value is assigned to the variable on the right.</p>
+<pre><code>a &lt;- a+2</code></pre>
+<p><br></p>
+<h4 id="vectors">3.2.2 Vectors</h4>
+<p>A Vector is an indexed list of variables. Imagine a vector as a folder with dividers. The folder has a name outside and within it are dividers labeled 1,2,3… so on.Each divider is a simple variable, and its’ name is made of, name of the vector and the number of the divider.</p>
+<p>For example, the name of the n-th element (n-th divider, in our example of the vector <code>x</code> is <code>x[n]</code>.</p>
+<ul>
+<li><p>Now let’s create a <strong>Vector</strong>:</p></li>
+<li><p>To create a vector greater than a length of 1, we use <strong>function</strong> called <strong>concatenate</strong>.</p></li>
+<li><p>The concatanate function is denoted as <code>c()</code>.</p></li>
+<li><p>Like mathematical functions, in R functions takes arguments (inputs) and produces outputs.</p></li>
+<li><p>There are number of built-in R functions, the name of it is written first, followed by coma separated arguments (inputs) within parentheses.</p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>months &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a>months</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a> [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span> <span class="dv">12</span></span></code></pre></div>
+<ul>
+<li>You could have created this exact same vector another way e.g.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>months2 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>months2</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a> [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span> <span class="dv">12</span></span></code></pre></div>
+<ul>
+<li><p>As you can see, there are multiple methods for performing same operations. The second one took less effort and is smarter. It also omits the usage of the concatenate function.</p></li>
+<li><p>Let’s make a <strong>character vector</strong>.</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>monthsC &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;January&quot;</span>, <span class="st">&quot;February&quot;</span>, <span class="st">&quot;March&quot;</span>, <span class="st">&quot;April&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;June&quot;</span>, </span>
+<span id="cb10-2"><a href="#cb10-2"></a>        <span class="st">&quot;July&quot;</span>, <span class="st">&quot;August&quot;</span>, <span class="st">&quot;September&quot;</span>, <span class="st">&quot;October&quot;</span>, <span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>monthsC</span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a> [<span class="dv">1</span>] <span class="st">&quot;January&quot;</span>   <span class="st">&quot;February&quot;</span>  <span class="st">&quot;March&quot;</span>     <span class="st">&quot;April&quot;</span>     <span class="st">&quot;May&quot;</span>       <span class="st">&quot;June&quot;</span>     </span>
+<span id="cb10-7"><a href="#cb10-7"></a> [<span class="dv">7</span>] <span class="st">&quot;July&quot;</span>      <span class="st">&quot;August&quot;</span>    <span class="st">&quot;September&quot;</span> <span class="st">&quot;October&quot;</span>   <span class="st">&quot;November&quot;</span>  <span class="st">&quot;December&quot;</span> </span></code></pre></div>
+<ul>
+<li>Pls note that the individual elements in a character vector must be protected by <strong>quotes</strong>.</li>
+</ul>
+<p><br></p>
+<h4 id="data-frames">3.2.3 Data Frames</h4>
+<p>Data frames are 2D objects. A data frame can be created by combining two vectors of equal length.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>year &lt;-<span class="st"> </span><span class="kw">data.frame</span>(months, monthsC)</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>year</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>   months   monthsC</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="dv">1</span>       <span class="dv">1</span>   January</span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="dv">2</span>       <span class="dv">2</span>  February</span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="dv">3</span>       <span class="dv">3</span>     March</span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="dv">4</span>       <span class="dv">4</span>     April</span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="dv">5</span>       <span class="dv">5</span>       May</span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="dv">6</span>       <span class="dv">6</span>      June</span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="dv">7</span>       <span class="dv">7</span>      July</span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="dv">8</span>       <span class="dv">8</span>    August</span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="dv">9</span>       <span class="dv">9</span> September</span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="dv">10</span>     <span class="dv">10</span>   October</span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="dv">11</span>     <span class="dv">11</span>  November</span>
+<span id="cb11-17"><a href="#cb11-17"></a><span class="dv">12</span>     <span class="dv">12</span>  December</span></code></pre></div>
+<p>You will notice that R nicely formats the objects when printing them to the screen. This is quite useful when you are looking at larger data frames. <br></p>
+<p><strong>An overview of R Data structures</strong></p>
+<br>
+<center>
+<img src="R_ds.jpg" alt="R Data Structures" width="800"/img>
+</center>
+<br><br />
+
+<hr>
+<p><br></p>
+<h3 id="creating-data-frames">3.3 Creating Data Frames</h3>
+<p>In our last example, we created a data frame that is a combination of character and numeric vector. But data frames can also be completely numeric, as in the following example:</p>
+<ul>
+<li><p>Following plot shows the average low and high temperatures (celcius) in Laramie, Wyoming; data obtained from www.weather-us.com.</p></li>
+<li><p>Let’s create two numerical vectors containing both high and low temps.</p></li>
+</ul>
+<br>
+<center>
+<img src="laramie.png" alt="laramie_temp" width="800"/img>
+</center>
+<p><br></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>larahighC &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">1.8</span>, <span class="fl">6.1</span>, <span class="fl">10.6</span>, <span class="fl">16.4</span>, <span class="fl">22.5</span>, <span class="fl">26.7</span>, <span class="fl">25.5</span>, <span class="fl">20.3</span>, <span class="fl">13.2</span>, <span class="fl">5.2</span>, <span class="fl">0.1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>laralowC &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">12.2</span>, <span class="fl">-11.2</span>, <span class="fl">-7.4</span>, <span class="fl">-4.1</span>, <span class="fl">0.9</span>, <span class="fl">5.5</span>, <span class="fl">8.9</span>, <span class="fl">8.2</span>, <span class="fl">3.3</span>, <span class="fl">-2.2</span>, <span class="fl">-8.1</span>, <span class="fl">-12.2</span>)</span></code></pre></div>
+<ul>
+<li>Now let’s make a numeric data frame called <code>laratemp</code> using these vectors:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>laratemp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(larahighC, larahighC)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>laratemp </span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>   laralowC larahighC</span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="dv">1</span>     <span class="fl">-12.2</span>       <span class="fl">0.7</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="dv">2</span>     <span class="fl">-11.2</span>       <span class="fl">1.8</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="dv">3</span>      <span class="fl">-7.4</span>       <span class="fl">6.1</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="dv">4</span>      <span class="fl">-4.1</span>      <span class="fl">10.6</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="dv">5</span>       <span class="fl">0.9</span>      <span class="fl">16.4</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="dv">6</span>       <span class="fl">5.5</span>      <span class="fl">22.5</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="dv">7</span>       <span class="fl">8.9</span>      <span class="fl">26.7</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="dv">8</span>       <span class="fl">8.2</span>      <span class="fl">25.5</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="dv">9</span>       <span class="fl">3.3</span>      <span class="fl">20.3</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="dv">10</span>     <span class="fl">-2.2</span>      <span class="fl">13.2</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="dv">11</span>     <span class="fl">-8.1</span>       <span class="fl">5.2</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="dv">12</span>    <span class="fl">-12.2</span>       <span class="fl">0.1</span></span></code></pre></div>
+<ul>
+<li><p>Now, let’s combine two data frames <code>year</code> and <code>laratemp</code>with equal number of rows, to make a new one.</p></li>
+<li><p>Note that we are overwriting the <code>laratemp</code> data frame.</p></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>laratemp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(year, laratemp)</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>laratemp</span>
+<span id="cb14-4"><a href="#cb14-4"></a></span>
+<span id="cb14-5"><a href="#cb14-5"></a>    months   monthsC laralowC larahighC</span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="dv">1</span>        <span class="dv">1</span>   January    <span class="fl">-12.2</span>       <span class="fl">0.7</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="dv">2</span>        <span class="dv">2</span>  February    <span class="fl">-11.2</span>       <span class="fl">1.8</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="dv">3</span>        <span class="dv">3</span>     March     <span class="fl">-7.4</span>       <span class="fl">6.1</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="dv">4</span>        <span class="dv">4</span>     April     <span class="fl">-4.1</span>      <span class="fl">10.6</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="dv">5</span>        <span class="dv">5</span>       May      <span class="fl">0.9</span>      <span class="fl">16.4</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="dv">6</span>        <span class="dv">6</span>      June      <span class="fl">5.5</span>      <span class="fl">22.5</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="dv">7</span>        <span class="dv">7</span>      July      <span class="fl">8.9</span>      <span class="fl">26.7</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="dv">8</span>        <span class="dv">8</span>    August      <span class="fl">8.2</span>      <span class="fl">25.5</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="dv">9</span>        <span class="dv">9</span> September      <span class="fl">3.3</span>      <span class="fl">20.3</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="dv">10</span>      <span class="dv">10</span>   October     <span class="fl">-2.2</span>      <span class="fl">13.2</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="dv">11</span>      <span class="dv">11</span>  November     <span class="fl">-8.1</span>       <span class="fl">5.2</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a><span class="dv">12</span>      <span class="dv">12</span>  December    <span class="fl">-12.2</span>       <span class="fl">0.1</span></span></code></pre></div>
+<ul>
+<li><p>The columns <code>larahighC</code> and <code>laralowC</code> can one by one as columns.</p></li>
+<li><p>Create a new column called <code>larahighC</code> within the data frame <code>year</code></p></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>year<span class="op">$</span>larahighC &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">1.8</span>, <span class="fl">6.1</span>, <span class="fl">10.6</span>, <span class="fl">16.4</span>, <span class="fl">22.5</span>, <span class="fl">26.7</span>, <span class="fl">25.5</span>, <span class="fl">20.3</span>, <span class="fl">13.2</span>, <span class="fl">5.2</span>, <span class="fl">0.1</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a> </span>
+<span id="cb15-3"><a href="#cb15-3"></a>year </span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a>    months   monthsC larahighC</span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="dv">1</span>        <span class="dv">1</span>   January       <span class="fl">0.7</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="dv">2</span>        <span class="dv">2</span>  February       <span class="fl">1.8</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="dv">3</span>        <span class="dv">3</span>     March       <span class="fl">6.1</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="dv">4</span>        <span class="dv">4</span>     April      <span class="fl">10.6</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="dv">5</span>        <span class="dv">5</span>       May      <span class="fl">16.4</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="dv">6</span>        <span class="dv">6</span>      June      <span class="fl">22.5</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="dv">7</span>        <span class="dv">7</span>      July      <span class="fl">26.7</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="dv">8</span>        <span class="dv">8</span>    August      <span class="fl">25.5</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="dv">9</span>        <span class="dv">9</span> September      <span class="fl">20.3</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="dv">10</span>      <span class="dv">10</span>   October      <span class="fl">13.2</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="dv">11</span>      <span class="dv">11</span>  November       <span class="fl">5.2</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="dv">12</span>      <span class="dv">12</span>  December       <span class="fl">0.1</span></span></code></pre></div>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p>Add a new column called <code>laralowC</code> in the data frame <code>year</code>.</p></li>
+<li><p>Create a numeric vector (called <code>numdays</code>) containing number of days in each month (assume leap-year). Addthis vector into the data frame <code>year</code></p></li>
+<li><p>Add two new columns called <code>larahighF</code> and <code>laralowF</code>, by converting <strong>celcius to fahrenheit</strong> in the data frame <code>year</code>.</p>
+<ul>
+<li>Hint : To do this, multiply the temperature in celcius by <code>9/5</code>, then add the resulting number to 32. For example, if you were converting 4C to fahrenheit, you would do this:</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>(<span class="dv">4</span><span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">5</span>)<span class="op">+</span><span class="dv">32</span></span></code></pre></div>
+<ol start="4" type="1">
+<li>Reorder the column names in the data frame <code>year</code>, and name the reordered data frame as <code>laramieTemp</code>.</li>
+</ol>
+<ul>
+<li>Reorder in this order : “months”,“monthsC”,“numdays”,“laralowC”,“larahighC”,“laralowF”,“larahighF”</li>
+</ul>
+<br>
+<hr>
+<p><br></p>
+<h3 id="working-with-data-frames">3.4 Working with Data Frames</h3>
+<p>In Bio-medical research most of the data generated and analyzed are in the format of data frames. It will contain both characters and number. <code>counts.csv</code> is an example data set we will be working from now on. This file contains the number of RNA-Seq reads for each gene, of three <em>Caenorhabdidits elegans</em> strains, at 16 hours after hatching. These strains are namely Wild Type (WT), <em>nekl-2(fd90)</em> and <em>nekl-3(gk506)</em>.</p>
+<p><strong>NOTE :</strong></p>
+<ul>
+<li><p>We are NOT going to analyze this RNA-Seq data.</p></li>
+<li><p>This file contains only one set of data - No Repeats!!!</p></li>
+<li><p>However, we are going to practice some base R functions using this.</p></li>
+</ul>
+<p>R provides functions for reading delimited flat text files i.e. <code>.csv</code> (comma separated) and <code>.txt</code> (tab separated).</p>
+<p>Let’s import the <code>counts.csv</code> file</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>counts&lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;counts.csv&quot;</span>)</span></code></pre></div>
+<ul>
+<li><p>Notice the use of assignment operator i.e. <code>&lt;-</code> to send information obtained from <code>counts.csv</code>, and then storing it inside the object called <code>counts</code>. This object name is completely arbitrary. You could use any name you wish, so long as the name is not the same as one of the R functions and the other stipulation is that it may not begin with a number.</p></li>
+<li><p>A quick method for checking what the data in an object looks like is to run the <code>head()</code> function on it. For example,</p></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">head</span>(counts)</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>    wormbase_ID  WT nekl.<span class="fl">2.</span>fd90. nekl.<span class="fl">3.</span>gk506.</span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="dv">1</span> WBGene00000001 <span class="dv">423</span>          <span class="dv">515</span>           <span class="dv">597</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="dv">2</span> WBGene00000002 <span class="dv">436</span>          <span class="dv">516</span>           <span class="dv">541</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="dv">3</span> WBGene00000003 <span class="dv">214</span>          <span class="dv">129</span>           <span class="dv">153</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="dv">4</span> WBGene00000004 <span class="dv">803</span>          <span class="dv">924</span>          <span class="dv">1158</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="dv">5</span> WBGene00000005 <span class="dv">159</span>           <span class="dv">63</span>            <span class="dv">39</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="dv">6</span> WBGene00000006 <span class="dv">951</span>         <span class="dv">1117</span>          <span class="dv">1335</span></span></code></pre></div>
+<p>This function will always display the first six rows of the data set.</p>
+<ul>
+<li><p>Header names/ Column names in this data frame is long and can be confusing.</p></li>
+<li><p>I would recommend renaming them to make rest of our work less confusing and easy.</p></li>
+</ul>
+<p>Let’s rename the header. For this, we will use the function <code>names</code>.</p>
+<ul>
+<li><p>Enter the new column names within the <code>concatanate</code> function, and each name between quotes <code>""</code>.</p></li>
+<li><p>Look at the <code>head()</code> again.</p></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">names</span>(counts) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;wt&quot;</span>,<span class="st">&quot;nekl2&quot;</span>,<span class="st">&quot;nekl3&quot;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">head</span>(counts)</span>
+<span id="cb19-4"><a href="#cb19-4"></a>              id  wt nekl2 nekl3</span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="dv">1</span> WBGene00000001 <span class="dv">423</span>   <span class="dv">515</span>   <span class="dv">597</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="dv">2</span> WBGene00000002 <span class="dv">436</span>   <span class="dv">516</span>   <span class="dv">541</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="dv">3</span> WBGene00000003 <span class="dv">214</span>   <span class="dv">129</span>   <span class="dv">153</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a><span class="dv">4</span> WBGene00000004 <span class="dv">803</span>   <span class="dv">924</span>  <span class="dv">1158</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="dv">5</span> WBGene00000005 <span class="dv">159</span>    <span class="dv">63</span>    <span class="dv">39</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a><span class="dv">6</span> WBGene00000006 <span class="dv">951</span>  <span class="dv">1117</span>  <span class="dv">1335</span></span></code></pre></div>
+<p>Similarly, you can check the last six rows with the <code>tail()</code> function.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">tail</span>(counts)</span>
+<span id="cb20-2"><a href="#cb20-2"></a>                  id wt nekl2 nekl3</span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="dv">46898</span> WBGene00304202  <span class="dv">0</span>     <span class="dv">0</span>     <span class="dv">1</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="dv">46899</span> WBGene00304203  <span class="dv">7</span>    <span class="dv">17</span>    <span class="dv">11</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="dv">46900</span> WBGene00304215  <span class="dv">3</span>     <span class="dv">2</span>     <span class="dv">2</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="dv">46901</span> WBGene00304219  <span class="dv">0</span>     <span class="dv">0</span>     <span class="dv">0</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="dv">46902</span> WBGene00304220  <span class="dv">0</span>     <span class="dv">2</span>     <span class="dv">0</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="dv">46903</span> WBGene00304237  <span class="dv">5</span>     <span class="dv">8</span>    <span class="dv">10</span></span></code></pre></div>
+<ul>
+<li><p>Notice how R always formats the data nicely such that the columns are perfectly aligned. It also always shows the header line, even when you are looking at the bottom of the file only.</p></li>
+<li><p>You might want to check the dimensions of this data frame (i.e. number of columns and rows).</p></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">dim</span>(counts)</span>
+<span id="cb21-2"><a href="#cb21-2"></a></span>
+<span id="cb21-3"><a href="#cb21-3"></a>[<span class="dv">1</span>] <span class="dv">46903</span>     <span class="dv">4</span></span></code></pre></div>
+<ul>
+<li><p>The first number is for rows and second for columns. There are 46903 rows and 4 columns in this data.</p></li>
+<li><p>If you wanted to check data in other columns and rows that are between those shown by <code>head()</code> and <code>tail()</code> functions, R provides multiple ways to do so. R provides a coordinate system as follows:</p>
+<ul>
+<li><p><code>obj[ROW,COL]</code></p></li>
+<li><p>For example, let’s say you need to view the number of reads in <code>wt</code>,<code>nekl2</code> and <code>nekl3</code> at the 40th row, then you would type this:</p></li>
+<li><p><code>counts[40,2:4]</code></p></li>
+<li><p>In fact, when asking for all columns in a given row, the column call is unnecessary. Instead try this:</p></li>
+<li><p><code>counts[40,]</code> which will all the information (including the <code>id</code>) in the 40-th row.</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>counts[<span class="dv">40</span>,]</span>
+<span id="cb22-2"><a href="#cb22-2"></a>               id    wt nekl2 nekl3</span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="dv">40</span> WBGene00000041 <span class="dv">10027</span> <span class="dv">15298</span> <span class="dv">18473</span></span></code></pre></div>
+<p>Let’s plot the number of reads for each gene in the Wilde Type strain.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">plot</span>(counts<span class="op">$</span>wt)</span></code></pre></div>
+<center>
+<img src="wt_reads.png" alt="wt_reads" width="800"/img>
+</center>
+<p><br></p>
+<p>We could also make histograms.</p>
+<p>Let’s make a histogram of counts from the Wilde Type strain.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">hist</span>(count<span class="op">$</span>wt)</span></code></pre></div>
+<br>
+<center>
+<img src="hist.png" alt="hist" width="800"/img>
+</center>
+<p><br></p>
+<p>We will focus on making advanced plots in the next class</p>
+<p>Let’s find the highest number of read count in each strain. We will use the function <code>max()</code> For example, <code>nekl2</code></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">max</span>(counts<span class="op">$</span>nekl2)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>[<span class="dv">1</span>] <span class="dv">220552</span></span></code></pre></div>
+<p>What is the <code>id</code> of the gene with highest number of read count in <code>nekl2</code>. For this we will use the function <code>subset()</code>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">subset</span>(counts,nekl2 <span class="op">==</span><span class="st"> </span><span class="dv">220552</span>) </span>
+<span id="cb26-2"><a href="#cb26-2"></a>                id     wt  nekl2  nekl3</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="dv">951</span> WBGene00001168 <span class="dv">213336</span> <span class="dv">220552</span> <span class="dv">237027</span></span></code></pre></div>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li>Create dot plot for <code>nekl2</code> vs. <code>nekl3</code> read counts.</li>
+</ol>
+<ul>
+<li>Change arguments of the <code>plot()</code>, to rename the x,y axis labels and add a title. More info about <code>plot()</code> function can be found <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot">here</a>.</li>
+</ul>
+<ol start="2" type="1">
+<li>Make a histogram of <code>nekl3</code> read counts, using only the counts from the rows 10000 to 10115.</li>
+</ol>
+<ul>
+<li>Change arguments of the <code>hist()</code> function. More info about <code>hist()</code> function can be found <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/hist">here</a>.</li>
+</ul>
+<ol start="3" type="1">
+<li><p>Find the highest number of read count in each strain. And what is the WormBase_ID that has the highest number of reads?</p></li>
+<li><p>How many genes have a read count more than 5000 in each strain?</p></li>
+</ol>
+<ul>
+<li>Hint : Use the function <code>sum()</code>.</li>
+</ul>
+<ol start="5" type="1">
+<li>Create a new object called <code>nekl2subset</code>, which will contain only the read counts between 100 and 300 in <code>nekl2</code>.</li>
+</ol>
+<ul>
+<li><p>Make a histogram for the read counts in <code>nekl2subset</code>.</p></li>
+<li><p>Repeat the same for <code>wt</code> and <code>nekl3</code>.</p></li>
+</ul>
+<ol start="6" type="1">
+<li><p>Worm genes <em>mlt-10</em> and <em>nas-37</em> are known to be down-regulated in the <em>nekl-2</em> and <em>nekl-3</em> mutant strains, compared to the Wild Type. Find the read counts for <em>mlt-10</em> and <em>nas-37</em> in each strain.</p>
+<ul>
+<li>Hint : WormBase_ID of <em>mlt-10</em> : WBGene00015646; WormBase_ID of <em>nas-37</em> : WBGene00003553</li>
+</ul></li>
+</ol>
+<hr>
+<h2 id="maintaining-your-r-installation">4. Maintaining Your R Installation</h2>
+<p>There are a few housekeeping tasks you will need to do maintain your R installation on a regular basis. This involves keeping your base-R version, R-Studio installation as well as various additional packages updated. Installing a new version of R often breaks existing packages, which would then have to be updated as well. Updating the R installation is as simple as going to <a href="https://r-project.org">r-project.org</a> and downloading/installing the latest version.</p>
+<p><br></p>
+<h2 id="getting-help-from-fellow-r-users">5. Getting Help from Fellow R Users</h2>
+<p>R has become extremely popular as a powerful statistical analysis program in all sectors e.g. academics, industry, government and NGOs. Consequently, there are a number of websites, forums and mailing lists that are available to you. When you run into a problem with your code and any R function, chances are that someone has already asked a question about it which has been answered. Below is a list of resources that you might find helpful.</p>
+<ul>
+<li><p><a href="https://stat.ethz.ch/mailman/listinfo/r-help">R-Help Mailing List</a></p></li>
+<li><p><a href="https://www.r-project.org/mail.html">Topic Specific Mailing Lists</a></p></li>
+<li><p><a href="https://stackoverflow.com">StackOverFlow.com</a></p></li>
+<li><p><a href="https://community.rstudio.com">R-Studio Community</a></p></li>
+<li><p><a href="https://support.bioconductor.com">Bioconductor Support Forum</a></p></li>
+<li><p><a href="https://freenode.net">Freenode ##r Channel on IRC</a></p></li>
+</ul>
+<p><br> <br></p>
+</body>
+</html>
