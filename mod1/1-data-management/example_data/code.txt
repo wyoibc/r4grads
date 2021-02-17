@@ -1,0 +1,14 @@
+library(scales)
+
+df <- read.table('trimmed_numreads.txt', header=T)
+
+
+pdf('trimmed_numreads.pdf', width=10, height=5)
+
+plot(1:47, df$input/100000, col=alpha('black', 0.2), xlab="Samples (n=47)", ylab="Num. Reads (x 100,000)", pch=16, cex=1)
+points(1:47, df$surviving/100000, col=alpha('darkgreen', 0.8), pch=16, cex=1)
+points(1:47, df$dropped/100000, col=alpha('red', 0.2), pch=16, cex=1)
+legend('topright', c("Input", "Surviving", "Dropped"), pch=16, pt.cex=1.2, cex=0.9, col=c(alpha('black', 0.2), alpha('darkgreen', 0.8), alpha('red', 0.2)))
+title(main="Number of reads pre- and post-QC in 47 skunk samples", font.main=1)
+
+dev.off()
