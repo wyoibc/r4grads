@@ -51,3 +51,6 @@ When the class is in session, we will provide live help on this Slack channel.
 
 
 
+## 2. Data Management and Reproducibility
+
+- Use [this link](mod1/1-data-management/index.html) to proceed.
