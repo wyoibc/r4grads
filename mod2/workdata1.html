@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Vikram Chhatre &amp; Braveen Joseph" />
+  <meta name="dcterms.date" content="2021-02-24" />
+  <title>Module 2 - Working with Data Part 1</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="avenir-white.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Module 2 - Working with Data Part 1</h1>
+<p class="author">Vikram Chhatre &amp; Braveen Joseph</p>
+<p class="date">February 24, 2021</p>
+</header>
+<h2 id="generating-data-within-r">1. Generating Data Within R</h2>
+<p>Last time, we saw several examples of creating some trivial examples of data creation in R, such as month series, numbers from 1 through 12 etc. We can do much more within R using an array of advanced functions that R provides. Below, let’s try out some of these functions.</p>
+<h3 id="generating-sequence-of-numbers-using-seq">1.1 Generating sequence of numbers using <code>seq</code></h3>
+<ul>
+<li>Generate a sequence of 100 consecutive numbers</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">seq</span>(<span class="dv">100</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  [<span class="dv">1</span>]   <span class="dv">1</span>   <span class="dv">2</span>   <span class="dv">3</span>   <span class="dv">4</span>   <span class="dv">5</span>   <span class="dv">6</span>   <span class="dv">7</span>   <span class="dv">8</span>   <span class="dv">9</span>  <span class="dv">10</span>  <span class="dv">11</span>  <span class="dv">12</span>  <span class="dv">13</span>  <span class="dv">14</span>  <span class="dv">15</span>  <span class="dv">16</span>  <span class="dv">17</span>  <span class="dv">18</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a> [<span class="dv">19</span>]  <span class="dv">19</span>  <span class="dv">20</span>  <span class="dv">21</span>  <span class="dv">22</span>  <span class="dv">23</span>  <span class="dv">24</span>  <span class="dv">25</span>  <span class="dv">26</span>  <span class="dv">27</span>  <span class="dv">28</span>  <span class="dv">29</span>  <span class="dv">30</span>  <span class="dv">31</span>  <span class="dv">32</span>  <span class="dv">33</span>  <span class="dv">34</span>  <span class="dv">35</span>  <span class="dv">36</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a> [<span class="dv">37</span>]  <span class="dv">37</span>  <span class="dv">38</span>  <span class="dv">39</span>  <span class="dv">40</span>  <span class="dv">41</span>  <span class="dv">42</span>  <span class="dv">43</span>  <span class="dv">44</span>  <span class="dv">45</span>  <span class="dv">46</span>  <span class="dv">47</span>  <span class="dv">48</span>  <span class="dv">49</span>  <span class="dv">50</span>  <span class="dv">51</span>  <span class="dv">52</span>  <span class="dv">53</span>  <span class="dv">54</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a> [<span class="dv">55</span>]  <span class="dv">55</span>  <span class="dv">56</span>  <span class="dv">57</span>  <span class="dv">58</span>  <span class="dv">59</span>  <span class="dv">60</span>  <span class="dv">61</span>  <span class="dv">62</span>  <span class="dv">63</span>  <span class="dv">64</span>  <span class="dv">65</span>  <span class="dv">66</span>  <span class="dv">67</span>  <span class="dv">68</span>  <span class="dv">69</span>  <span class="dv">70</span>  <span class="dv">71</span>  <span class="dv">72</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a> [<span class="dv">73</span>]  <span class="dv">73</span>  <span class="dv">74</span>  <span class="dv">75</span>  <span class="dv">76</span>  <span class="dv">77</span>  <span class="dv">78</span>  <span class="dv">79</span>  <span class="dv">80</span>  <span class="dv">81</span>  <span class="dv">82</span>  <span class="dv">83</span>  <span class="dv">84</span>  <span class="dv">85</span>  <span class="dv">86</span>  <span class="dv">87</span>  <span class="dv">88</span>  <span class="dv">89</span>  <span class="dv">90</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a> [<span class="dv">91</span>]  <span class="dv">91</span>  <span class="dv">92</span>  <span class="dv">93</span>  <span class="dv">94</span>  <span class="dv">95</span>  <span class="dv">96</span>  <span class="dv">97</span>  <span class="dv">98</span>  <span class="dv">99</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">seq</span>(<span class="dv">1001</span>, <span class="dv">1050</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a> [<span class="dv">1</span>] <span class="dv">1001</span> <span class="dv">1002</span> <span class="dv">1003</span> <span class="dv">1004</span> <span class="dv">1005</span> <span class="dv">1006</span> <span class="dv">1007</span> <span class="dv">1008</span> <span class="dv">1009</span> <span class="dv">1010</span> <span class="dv">1011</span> <span class="dv">1012</span> <span class="dv">1013</span> <span class="dv">1014</span> <span class="dv">1015</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>[<span class="dv">16</span>] <span class="dv">1016</span> <span class="dv">1017</span> <span class="dv">1018</span> <span class="dv">1019</span> <span class="dv">1020</span> <span class="dv">1021</span> <span class="dv">1022</span> <span class="dv">1023</span> <span class="dv">1024</span> <span class="dv">1025</span> <span class="dv">1026</span> <span class="dv">1027</span> <span class="dv">1028</span> <span class="dv">1029</span> <span class="dv">1030</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>[<span class="dv">31</span>] <span class="dv">1031</span> <span class="dv">1032</span> <span class="dv">1033</span> <span class="dv">1034</span> <span class="dv">1035</span> <span class="dv">1036</span> <span class="dv">1037</span> <span class="dv">1038</span> <span class="dv">1039</span> <span class="dv">1040</span> <span class="dv">1041</span> <span class="dv">1042</span> <span class="dv">1043</span> <span class="dv">1044</span> <span class="dv">1045</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>[<span class="dv">46</span>] <span class="dv">1046</span> <span class="dv">1047</span> <span class="dv">1048</span> <span class="dv">1049</span> <span class="dv">1050</span></span></code></pre></div>
+<ul>
+<li>You can also save these numbers to an object within R’s memory.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>seq5000 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">5000</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">length</span>(seq5000)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">5000</span></span></code></pre></div>
+<ul>
+<li>The sequence generated does not have to be consecutive. It can be stepped. For example, you can generate a sequence that skips one intervening number (step of 2).</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>, <span class="dt">by=</span><span class="dv">2</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span> <span class="dv">9</span></span></code></pre></div>
+<ul>
+<li>Generate a sequence between 0 and 1 in increments of 0.01</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>  [<span class="dv">1</span>] <span class="fl">0.00</span> <span class="fl">0.01</span> <span class="fl">0.02</span> <span class="fl">0.03</span> <span class="fl">0.04</span> <span class="fl">0.05</span> <span class="fl">0.06</span> <span class="fl">0.07</span> <span class="fl">0.08</span> <span class="fl">0.09</span> <span class="fl">0.10</span> <span class="fl">0.11</span> <span class="fl">0.12</span> <span class="fl">0.13</span> <span class="fl">0.14</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a> [<span class="dv">16</span>] <span class="fl">0.15</span> <span class="fl">0.16</span> <span class="fl">0.17</span> <span class="fl">0.18</span> <span class="fl">0.19</span> <span class="fl">0.20</span> <span class="fl">0.21</span> <span class="fl">0.22</span> <span class="fl">0.23</span> <span class="fl">0.24</span> <span class="fl">0.25</span> <span class="fl">0.26</span> <span class="fl">0.27</span> <span class="fl">0.28</span> <span class="fl">0.29</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a> [<span class="dv">31</span>] <span class="fl">0.30</span> <span class="fl">0.31</span> <span class="fl">0.32</span> <span class="fl">0.33</span> <span class="fl">0.34</span> <span class="fl">0.35</span> <span class="fl">0.36</span> <span class="fl">0.37</span> <span class="fl">0.38</span> <span class="fl">0.39</span> <span class="fl">0.40</span> <span class="fl">0.41</span> <span class="fl">0.42</span> <span class="fl">0.43</span> <span class="fl">0.44</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a> [<span class="dv">46</span>] <span class="fl">0.45</span> <span class="fl">0.46</span> <span class="fl">0.47</span> <span class="fl">0.48</span> <span class="fl">0.49</span> <span class="fl">0.50</span> <span class="fl">0.51</span> <span class="fl">0.52</span> <span class="fl">0.53</span> <span class="fl">0.54</span> <span class="fl">0.55</span> <span class="fl">0.56</span> <span class="fl">0.57</span> <span class="fl">0.58</span> <span class="fl">0.59</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a> [<span class="dv">61</span>] <span class="fl">0.60</span> <span class="fl">0.61</span> <span class="fl">0.62</span> <span class="fl">0.63</span> <span class="fl">0.64</span> <span class="fl">0.65</span> <span class="fl">0.66</span> <span class="fl">0.67</span> <span class="fl">0.68</span> <span class="fl">0.69</span> <span class="fl">0.70</span> <span class="fl">0.71</span> <span class="fl">0.72</span> <span class="fl">0.73</span> <span class="fl">0.74</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a> [<span class="dv">76</span>] <span class="fl">0.75</span> <span class="fl">0.76</span> <span class="fl">0.77</span> <span class="fl">0.78</span> <span class="fl">0.79</span> <span class="fl">0.80</span> <span class="fl">0.81</span> <span class="fl">0.82</span> <span class="fl">0.83</span> <span class="fl">0.84</span> <span class="fl">0.85</span> <span class="fl">0.86</span> <span class="fl">0.87</span> <span class="fl">0.88</span> <span class="fl">0.89</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a> [<span class="dv">91</span>] <span class="fl">0.90</span> <span class="fl">0.91</span> <span class="fl">0.92</span> <span class="fl">0.93</span> <span class="fl">0.94</span> <span class="fl">0.95</span> <span class="fl">0.96</span> <span class="fl">0.97</span> <span class="fl">0.98</span> <span class="fl">0.99</span> <span class="fl">1.00</span></span></code></pre></div>
+<ul>
+<li>How long is this vector?</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">length</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">101</span></span></code></pre></div>
+<ul>
+<li>It seems then that the <code>seq</code> function has more abilities than we have visited here. How would you learn more about this function? Use the help menu.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>?<span class="kw">seq</span>()</span></code></pre></div>
+<h3 id="exercise">1.1.1 Exercise</h3>
+<ul>
+<li>Generate a sequence of length 100 between -5 and +5.</li>
+</ul>
+<p><br><br><br></p>
+<h3 id="sampling">1.2 Sampling</h3>
+<p>Sampling allows you to draw a sample from a distribution, completely randomly. For example imagine you are studying bacterial colonies on a petri dish. There are a thousand colonies and you want to randomly sample 100 of them.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>colonies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">sample</span>(colonies, <span class="dv">100</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>  [<span class="dv">1</span>]   <span class="dv">60</span>  <span class="dv">580</span> <span class="dv">1000</span>  <span class="dv">925</span>  <span class="dv">666</span>  <span class="dv">742</span>  <span class="dv">658</span>  <span class="dv">121</span>  <span class="dv">862</span>  <span class="dv">837</span>  <span class="dv">240</span>  <span class="dv">345</span>  <span class="dv">507</span>  <span class="dv">559</span>  <span class="dv">922</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a> [<span class="dv">16</span>]  <span class="dv">285</span>  <span class="dv">130</span>  <span class="dv">269</span>  <span class="dv">523</span>  <span class="dv">515</span>  <span class="dv">340</span>  <span class="dv">841</span>  <span class="dv">530</span>   <span class="dv">42</span>  <span class="dv">606</span>  <span class="dv">220</span>  <span class="dv">254</span>  <span class="dv">786</span>  <span class="dv">461</span>  <span class="dv">927</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a> [<span class="dv">31</span>]  <span class="dv">518</span>  <span class="dv">419</span>  <span class="dv">221</span>  <span class="dv">198</span>  <span class="dv">457</span>  <span class="dv">160</span>  <span class="dv">315</span>  <span class="dv">744</span>  <span class="dv">704</span>  <span class="dv">175</span>  <span class="dv">955</span>  <span class="dv">931</span>  <span class="dv">309</span>  <span class="dv">397</span>  <span class="dv">405</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a> [<span class="dv">46</span>]  <span class="dv">491</span>  <span class="dv">592</span>  <span class="dv">349</span>  <span class="dv">157</span>  <span class="dv">844</span>  <span class="dv">630</span>  <span class="dv">648</span>  <span class="dv">542</span>  <span class="dv">858</span>   <span class="dv">78</span>  <span class="dv">241</span>  <span class="dv">468</span>  <span class="dv">926</span>   <span class="dv">97</span>  <span class="dv">169</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a> [<span class="dv">61</span>]  <span class="dv">579</span>  <span class="dv">961</span>  <span class="dv">413</span>  <span class="dv">146</span>  <span class="dv">351</span>  <span class="dv">317</span>  <span class="dv">547</span>  <span class="dv">381</span>  <span class="dv">216</span>  <span class="dv">919</span>  <span class="dv">596</span>   <span class="dv">67</span>  <span class="dv">443</span>  <span class="dv">479</span>  <span class="dv">846</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a> [<span class="dv">76</span>]  <span class="dv">232</span>  <span class="dv">952</span>  <span class="dv">483</span>  <span class="dv">300</span>  <span class="dv">573</span>  <span class="dv">190</span>  <span class="dv">179</span>  <span class="dv">425</span>  <span class="dv">788</span>  <span class="dv">500</span>  <span class="dv">395</span>  <span class="dv">954</span>  <span class="dv">806</span>  <span class="dv">453</span>  <span class="dv">835</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a> [<span class="dv">91</span>]  <span class="dv">757</span>  <span class="dv">296</span>  <span class="dv">280</span>  <span class="dv">793</span>   <span class="dv">84</span>   <span class="dv">46</span>  <span class="dv">312</span>  <span class="dv">633</span>  <span class="dv">945</span>  <span class="dv">831</span></span></code></pre></div>
+<ul>
+<li><p>Try running this command multiple times and compare answers. You won’t get the same result twice.</p></li>
+<li><p>What happens if you try to sample more colonies than there are available? Try:</p></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">sample</span>(colonies, <span class="dv">1002</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>Error <span class="cf">in</span> <span class="kw">sample.int</span>(<span class="kw">length</span>(x), size, replace, prob) <span class="op">:</span><span class="st"> </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="st">  </span>cannot take a sample larger than the population when <span class="st">&#39;replace = FALSE&#39;</span></span></code></pre></div>
+<ul>
+<li>R is complaining that there aren’t enough colonies to pick. But sampling allows you to sample with replacement. What is replacement? Is is the action of putting your previous selection back in the pot. For example, every time you sample a colony, you put it back on the petri dish again (not literally).</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">sample</span>(colonies, <span class="dv">1005</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>   [<span class="dv">1</span>] <span class="dv">320</span> <span class="dv">515</span> <span class="dv">956</span>  <span class="dv">58</span> <span class="dv">114</span> <span class="dv">832</span> <span class="dv">460</span> <span class="dv">656</span> <span class="dv">282</span> <span class="dv">952</span> <span class="dv">218</span> <span class="dv">492</span>  <span class="dv">36</span> <span class="dv">338</span> <span class="dv">378</span> <span class="dv">925</span> <span class="dv">621</span> <span class="dv">671</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>  [<span class="dv">19</span>]  <span class="dv">13</span> <span class="dv">860</span> <span class="dv">427</span> <span class="dv">413</span> <span class="dv">360</span> <span class="dv">698</span> <span class="dv">591</span> <span class="dv">637</span> <span class="dv">741</span> <span class="dv">149</span> <span class="dv">132</span> <span class="dv">436</span> <span class="dv">210</span>  <span class="dv">85</span> <span class="dv">180</span> <span class="dv">161</span> <span class="dv">157</span> <span class="dv">512</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a> ... </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a> [<span class="dv">991</span>] <span class="dv">461</span> <span class="dv">581</span> <span class="dv">514</span> <span class="dv">503</span> <span class="dv">663</span> <span class="dv">304</span> <span class="dv">576</span> <span class="dv">816</span> <span class="dv">339</span> <span class="dv">102</span> <span class="dv">493</span> <span class="dv">972</span> <span class="dv">677</span> <span class="dv">555</span>   <span class="dv">6</span></span></code></pre></div>
+<ul>
+<li>Because we are sampling with replacement, we are allowing R to sample the same colony more than once. Want to know which colonies are sampled 2x or more?</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>sampcol &lt;-<span class="st"> </span><span class="kw">sample</span>(colonies, <span class="dv">1005</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">table</span>(sampcol)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>sampcol</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>   <span class="dv">3</span>    <span class="dv">4</span>    <span class="dv">6</span>    <span class="dv">9</span>   <span class="dv">10</span>   <span class="dv">11</span>   <span class="dv">12</span>   <span class="dv">13</span>   <span class="dv">14</span>   <span class="dv">15</span>   <span class="dv">16</span>   <span class="dv">17</span>   <span class="dv">18</span>   <span class="dv">20</span>   <span class="dv">21</span>   <span class="dv">22</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>   <span class="dv">2</span>    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">1</span>    <span class="dv">1</span>    <span class="dv">2</span>    <span class="dv">1</span>    <span class="dv">1</span>    <span class="dv">2</span>    <span class="dv">1</span>    <span class="dv">2</span>    <span class="dv">2</span>    <span class="dv">2</span>    <span class="dv">2</span>    <span class="dv">3</span>    <span class="dv">2</span> </span></code></pre></div>
+<ul>
+<li><p>As you may have guessed, the <code>table()</code> function counts the number of times each element appears in a vector or a matrix. The first row are the colonies, the second row represent the number of times that particular colony appears in our sample.</p></li>
+<li><p>You might be wondering how this sampling function can be useful? In scientific studies, it is often necessary to ascertain the probability and confidence intervals of a given outcome from an experiment. The sampling function can help you bootstrap your data analysis experiment to test its statistical reproducibility.</p></li>
+</ul>
+<h3 id="exercise-1">1.2.1 Exercise</h3>
+<ul>
+<li>Create an R object that is a character vector consisting of one male and one female.</li>
+<li>Use the <code>sample()</code> function to randomly sample (with replacement) a population of 5000 zebrafish.</li>
+<li>Store this sample in a separate R object called <code>zfish</code>.</li>
+<li>Count the number of animals belonging to each sex.</li>
+<li>Total time allowed: 3 minutes</li>
+</ul>
+<p><br><br><Br></p>
+<h3 id="replicate-a-frequent-companion-of-sample">1.3 <code>replicate</code>, a frequent companion of <code>sample</code></h3>
+<ul>
+<li>As the name suggests, this function allows you to expand an expression. Let’s try the following examples:</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">replicate</span>(<span class="dv">5</span>, pi) </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="fl">3.141593</span> <span class="fl">3.141593</span> <span class="fl">3.141593</span> <span class="fl">3.141593</span> <span class="fl">3.141593</span></span></code></pre></div>
+<ul>
+<li><p>Here we provided replicate with 2 arguments:</p>
+<ul>
+<li><code>5</code>, which is the number of times we want to expand something</li>
+<li><code>pi</code>, which is a mathematical constant</li>
+</ul></li>
+<li><p>Of course, the <code>pi</code> can be replaced with anything, even a character.</p></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">replicate</span>(<span class="dv">10</span>, <span class="st">&quot;replicate_me&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a> [<span class="dv">1</span>] <span class="st">&quot;replicate_me&quot;</span> <span class="st">&quot;replicate_me&quot;</span> <span class="st">&quot;replicate_me&quot;</span> <span class="st">&quot;replicate_me&quot;</span> <span class="st">&quot;replicate_me&quot;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a> [<span class="dv">6</span>] <span class="st">&quot;replicate_me&quot;</span> <span class="st">&quot;replicate_me&quot;</span> <span class="st">&quot;replicate_me&quot;</span> <span class="st">&quot;replicate_me&quot;</span> <span class="st">&quot;replicate_me&quot;</span></span></code></pre></div>
+<ul>
+<li><p>The real strength of replicate comes from its ability to create denovo data frames.</p></li>
+<li><p>Consider a simulation experiment where you have access to two genotypes:</p>
+<ul>
+<li><code>wt</code> is wild type</li>
+<li><code>mut</code> has a mutation</li>
+</ul></li>
+<li><p>You want to generate 20 populations of 100 individuals each with random distribution of wt and mut genotypes.</p></li>
+<li><p>First, do the sampling for one population:</p></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>gt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;wt&quot;</span>, <span class="st">&quot;mut&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="kw">sample</span>(gt, <span class="dv">100</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>  [<span class="dv">1</span>] <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;mut&quot;</span> <span class="st">&quot;mut&quot;</span> <span class="st">&quot;mut&quot;</span> <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;wt&quot;</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a>...</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a> [<span class="dv">97</span>] <span class="st">&quot;wt&quot;</span>  <span class="st">&quot;mut&quot;</span> <span class="st">&quot;mut&quot;</span> <span class="st">&quot;mut&quot;</span></span></code></pre></div>
+<ul>
+<li>Then use replicate to generate 20 such populations</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">replicate</span>(<span class="dv">20</span>, <span class="kw">sample</span>(gt, <span class="dv">100</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>))</span></code></pre></div>
+<ul>
+<li>This is not a small data frame, it has 20 columns each with 100 rows. You had better save it to an R object.</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>pops20 &lt;-<span class="st">  </span><span class="kw">replicate</span>(<span class="dv">20</span>, <span class="kw">sample</span>(gt, <span class="dv">100</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>))</span></code></pre></div>
+<ul>
+<li>Check the dimensions of the data frame to make sure it is what you expect:</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">dim</span>(pops20)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">100</span>  <span class="dv">20</span></span></code></pre></div>
+<ul>
+<li><p>In the output of <code>dim()</code> function, the first number is always for rows, and second number is for columns. So we are good here.</p></li>
+<li><p>What if you wanted to set the names of each populations going from <code>pop1</code> to <code>pop20</code>?</p></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">colnames</span>(pops20) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pop&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<ul>
+<li>How about we calculate the total numbers of the two types of genotypes in the entire data frame?</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">table</span>(pops20)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a> mut   wt </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a> <span class="dv">979</span> <span class="dv">1021</span> </span></code></pre></div>
+<ul>
+<li><p>Your answer above will be different because recall that we drew genotypes randomly.</p></li>
+<li><p>What if you wanted this table function applied to each population separately? We can do this using a very simple <code>for()</code> loop. A loop iterates over the conditions set therein and produces the results you want.</p></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>){</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="kw">colnames</span>(pops20)[i])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="kw">table</span>(pops20[,i]))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a>    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a>}</span></code></pre></div>
+<ul>
+<li>The output</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="st">&quot;pop1&quot;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a>mut  wt </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a> <span class="dv">53</span>  <span class="dv">47</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="st">&quot;pop2&quot;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a>mut  wt </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a> <span class="dv">42</span>  <span class="dv">58</span> </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="st">&quot;pop20&quot;</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a>mut  wt </span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true"></a> <span class="dv">50</span>  <span class="dv">50</span> </span></code></pre></div>
+<ul>
+<li>Finally, you can write this file to the disk</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">write.table</span>(pops20, <span class="st">&quot;pops20.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">col.names=</span>T, <span class="dt">quote=</span>F, <span class="dt">sep=</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span></code></pre></div>
+<p><br><br><br><br></p>
+</body>
+</html>

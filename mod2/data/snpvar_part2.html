@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>snpvar_part2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="avenir-white.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="human-population-genomic-variation">Human Population Genomic Variation</h1>
+<h2 id="variant-snp-rs1426654-in-slc24a5-gene-part-2">Variant (SNP rs1426654) in <em>SLC24A5</em> Gene: Part 2</h2>
+<h3 id="molb-44855485-computers-in-biology">Molb 4485/5485 – Computers in Biology</h3>
+<h3 id="vikram-chhatre-and-nicolas-blouin">Vikram Chhatre and Nicolas Blouin</h3>
+<p>Wyoming INBRE Bioinformatics Core<br />
+Dept. of Molecular Biology<br />
+University of Wyoming</p>
+<a href="mailto:vchhatre@uwyo.edu">vchhatre@uwyo.edu</a><br />
+<a href="mailto:nblouin@uwyo.edu">nblouin@uwyo.edu</a><br />
+<a href="http://molb4485.uwyo.online" class="uri">http://molb4485.uwyo.online</a><br />
+
+<hr>
+<p><img src="2001.jpg" width=800></a> The Dawn of Man. Image Credit: <a href="http://moviemezzanine.com">Movie Mezannine</a></p>
+<p><br><br><br></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol start="4" type="1">
+<li><a href="#r">The R Programming Language</a></li>
+<li><a href="#maps">Plotting Data on Geographical Maps</a></li>
+<li><a href="#save">Save Your Work</a></li>
+</ol>
+<p><br><br><br><br><br></p>
+<p><a name="r"></a></p>
+<h2 id="the-r-programming-language">4. The <code>R</code> Programming Language</h2>
+<p><a href="http://www.r-project.org">R</a> has become the <em>de-facto</em> standard in the scientific community for statistical data analysis and visualization. It is a completely open source language. R comes with a basic framework of functions and utilities commonly used for these two purposes. For anything specialized, you will need to load additional packages into the memory. This is very similar to the module loading system on the Teton environment that you have been interacting with.</p>
+<h3 id="launch-an-r-session">4.1 Launch an <code>R</code> Session</h3>
+<p>R can run both within the terminal shell or as a standalone GUI application (e.g. R-Studio). For today’s exercise, we will run R in the <code>Terminal.app</code>. Launch a new R session as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="ex">R</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a></code></pre></div>
+<p>Note that your version may be different.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">R version <span class="dv">3</span>.<span class="fl">3.1</span> (<span class="dv">2016-06-21</span>) <span class="op">--</span><span class="st"> &quot;Bug in Your Hair&quot;</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">Copyright</span> (C) <span class="dv">2016</span> The R Foundation <span class="cf">for</span> Statistical Computing</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">Platform<span class="op">:</span><span class="st"> </span>x86_<span class="dv">64</span><span class="op">-</span>apple<span class="op">-</span><span class="kw">darwin13.4.0</span> (<span class="dv">64</span><span class="op">-</span>bit)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">R is free software and comes with ABSOLUTELY NO WARRANTY.</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">You are welcome to redistribute it under certain conditions.</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">Type <span class="st">&#39;license()&#39;</span> or <span class="st">&#39;licence()&#39;</span> <span class="cf">for</span> distribution details.</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">  Natural language support but running <span class="cf">in</span> an English locale</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">R is a collaborative project with many contributors.</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">Type <span class="st">&#39;contributors()&#39;</span> <span class="cf">for</span> more information and</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="st">&#39;citation()&#39;</span> on how to cite R or R packages <span class="cf">in</span> publications.</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">Type <span class="st">&#39;demo()&#39;</span> <span class="cf">for</span> some demos, <span class="st">&#39;help()&#39;</span> <span class="cf">for</span> on<span class="op">-</span>line help, or</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="st">&#39;help.start()&#39;</span> <span class="cf">for</span> an HTML browser interface to help.</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">Type <span class="st">&#39;q()&#39;</span> to quit R.</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="op">&gt;</span></a></code></pre></div>
+<p>Notice that the R prompt is <code>&gt;</code> as opposed to Linux where the prompt is <code>$</code>.</p>
+<h3 id="import-data-into-r">4.2 Import Data into <code>R</code></h3>
+<p>R has specific functions for reading text files as data frames. It can import a variety of text files (comma or tab separated). We will now import the gene frequency data that we created earlier (<code>freq.df</code>). Note that our data is in tab delimited format.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">getwd</span>()</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">[<span class="dv">1</span>] <span class="st">&quot;/Users/vikram/LASTNAME_Week5&quot;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="op">&gt;</span><span class="st"> </span><span class="kw">options</span>(<span class="dt">width=</span><span class="dv">150</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="op">&gt;</span><span class="st"> </span>freq &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;freq.df&#39;</span>, <span class="dt">header=</span>T)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(freq)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  pop  dist superpop     lat      long                  popname CHROM      POS N_ALLELES N_CHR  Allele_A Allele_G</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="dv">1</span> ACB <span class="fl">13.19</span>      AFR <span class="fl">13.1776</span>  <span class="fl">-59.5412</span>       African_Carib_BBDS    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">192</span> <span class="fl">0.1041670</span> <span class="fl">0.895833</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="dv">2</span> ASW <span class="fl">-8.78</span>      AFR <span class="fl">36.1070</span> <span class="fl">-112.1130</span>  African_Ancestry_SW_USA    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">122</span> <span class="fl">0.1885250</span> <span class="fl">0.811475</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="dv">3</span> BEB <span class="fl">23.68</span>      SAS <span class="fl">23.6850</span>   <span class="fl">90.3563</span>    Bengali_in_Bangladesh    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">172</span> <span class="fl">0.5348840</span> <span class="fl">0.465116</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="dv">4</span> CDX <span class="fl">22.01</span>      EAS <span class="fl">22.0088</span> <span class="fl">-100.7971</span>              Chinese_Dai    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">186</span> <span class="fl">0.0000000</span> <span class="fl">1.000000</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="dv">5</span> CEU <span class="fl">62.28</span>      EUR <span class="fl">39.3210</span> <span class="fl">-111.0937</span> Utah_Resid_from_NWEurope    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">198</span> <span class="fl">1.0000000</span> <span class="fl">0.000000</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="dv">6</span> CHB <span class="fl">23.13</span>      EAS <span class="fl">39.9042</span>  <span class="fl">116.4074</span>              Han_Chinese    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">206</span> <span class="fl">0.0291262</span> <span class="fl">0.970874</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="op">&gt;</span><span class="st"> </span><span class="kw">tail</span>(freq)</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">   pop  dist superpop     lat     long               popname CHROM      POS N_ALLELES N_CHR  Allele_A  Allele_G</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="dv">21</span> PEL <span class="fl">-9.19</span>      AMR <span class="fl">-9.1900</span> <span class="fl">-75.0152</span>              Peruvian    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">170</span> <span class="fl">0.2823530</span> <span class="fl">0.7176470</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="dv">22</span> PJL <span class="fl">31.55</span>      SAS <span class="fl">31.5546</span>  <span class="fl">74.3572</span>        Punjabi_Lahore    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">192</span> <span class="fl">0.7812500</span> <span class="fl">0.2187500</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="dv">23</span> PUR <span class="fl">18.22</span>      AMR <span class="fl">18.2208</span> <span class="fl">-66.5901</span>          Puerto_Rican    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">208</span> <span class="fl">0.7692310</span> <span class="fl">0.2307690</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="dv">24</span> STU  <span class="fl">7.87</span>      SAS  <span class="fl">7.8731</span>  <span class="fl">80.7718</span>      Sri_Lankan_Tamil    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">204</span> <span class="fl">0.4852940</span> <span class="fl">0.5147060</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="dv">25</span> TSI <span class="fl">43.77</span>      EUR <span class="fl">43.7711</span>  <span class="fl">11.2486</span>         Toscani_Italy    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">214</span> <span class="fl">0.9953270</span> <span class="fl">0.0046729</span></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="dv">26</span> YRI <span class="fl">10.16</span>      AFR  <span class="fl">7.3775</span>   <span class="fl">3.9470</span> Yoruba_Ibadan_Nigeria    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">216</span> <span class="fl">0.0138889</span> <span class="fl">0.9861110</span></a></code></pre></div>
+<p>Notice that R formats the data so that’s all columns are properly spaced making it easy to read. First checked our current location in the directory tree. Then we set the display width to 150 characters. Finally we imported our data and stored it into the variable freq. Now try the following functions:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">names</span>(freq)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">[<span class="dv">1</span>] <span class="st">&quot;pop&quot;</span>       <span class="st">&quot;dist&quot;</span>      <span class="st">&quot;superpop&quot;</span>  <span class="st">&quot;lat&quot;</span>       <span class="st">&quot;long&quot;</span>      <span class="st">&quot;popname&quot;</span>   <span class="st">&quot;CHROM&quot;</span>     <span class="st">&quot;POS&quot;</span>       <span class="st">&quot;N_ALLELES&quot;</span> <span class="st">&quot;N_CHR&quot;</span>     <span class="st">&quot;Allele_A&quot;</span>  <span class="st">&quot;Allele_G&quot;</span> </a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="op">&gt;</span><span class="st"> </span><span class="kw">dim</span>(freq)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">12</span></a></code></pre></div>
+<p>The above two commands tell you the names of columns and the dimensions of the data frame. Do the dimensions match your expectations? This can be a sanity check for the files you read in. If something is off, you will be able to notice it here.</p>
+<h3 id="accessing-rows-and-columns">4.3 Accessing Rows and Columns</h3>
+<p>R keeps track of the order of each row and column in data frame by assigning them coordinates. Thus you can access specific rows and columns of the data frames very quickly and easily. See the following example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>freq[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  pop  dist superpop     lat      long                  popname CHROM      POS N_ALLELES N_CHR Allele_A Allele_G</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="dv">1</span> ACB <span class="fl">13.19</span>      AFR <span class="fl">13.1776</span>  <span class="fl">-59.5412</span>       African_Carib_BBDS    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">192</span> <span class="fl">0.104167</span> <span class="fl">0.895833</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="dv">2</span> ASW <span class="fl">-8.78</span>      AFR <span class="fl">36.1070</span> <span class="fl">-112.1130</span>  African_Ancestry_SW_USA    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">122</span> <span class="fl">0.188525</span> <span class="fl">0.811475</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="dv">3</span> BEB <span class="fl">23.68</span>      SAS <span class="fl">23.6850</span>   <span class="fl">90.3563</span>    Bengali_in_Bangladesh    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">172</span> <span class="fl">0.534884</span> <span class="fl">0.465116</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="dv">4</span> CDX <span class="fl">22.01</span>      EAS <span class="fl">22.0088</span> <span class="fl">-100.7971</span>              Chinese_Dai    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">186</span> <span class="fl">0.000000</span> <span class="fl">1.000000</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="dv">5</span> CEU <span class="fl">62.28</span>      EUR <span class="fl">39.3210</span> <span class="fl">-111.0937</span> Utah_Resid_from_NWEurope    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">198</span> <span class="fl">1.000000</span> <span class="fl">0.000000</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>freq[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">   pop  dist superpop     lat      long</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="dv">1</span>  ACB <span class="fl">13.19</span>      AFR <span class="fl">13.1776</span>  <span class="fl">-59.5412</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="dv">2</span>  ASW <span class="fl">-8.78</span>      AFR <span class="fl">36.1070</span> <span class="fl">-112.1130</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="dv">3</span>  BEB <span class="fl">23.68</span>      SAS <span class="fl">23.6850</span>   <span class="fl">90.3563</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="dv">4</span>  CDX <span class="fl">22.01</span>      EAS <span class="fl">22.0088</span> <span class="fl">-100.7971</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="dv">5</span>  CEU <span class="fl">62.28</span>      EUR <span class="fl">39.3210</span> <span class="fl">-111.0937</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="dv">6</span>  CHB <span class="fl">23.13</span>      EAS <span class="fl">39.9042</span>  <span class="fl">116.4074</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="dv">7</span>  CHS <span class="fl">24.48</span>      EAS <span class="fl">23.9790</span>  <span class="fl">113.7633</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="dv">8</span>  CLM  <span class="fl">6.24</span>      AMR  <span class="fl">6.2442</span>  <span class="fl">-75.5812</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="dv">9</span>  ESN <span class="fl">10.22</span>      AFR  <span class="fl">9.0820</span>    <span class="fl">8.6753</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="dv">10</span> FIN <span class="fl">61.92</span>      EUR <span class="fl">61.9241</span>   <span class="fl">25.7482</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="dv">11</span> GBR <span class="fl">56.49</span>      EUR <span class="fl">55.3781</span>   <span class="fl">-3.4360</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="dv">12</span> GIH <span class="fl">22.26</span>      SAS <span class="fl">22.2587</span>   <span class="fl">71.1924</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="dv">13</span> GWD <span class="fl">13.44</span>      AFR <span class="fl">13.4432</span>  <span class="fl">-15.3101</span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="dv">14</span> IBS <span class="fl">40.46</span>      EUR <span class="fl">40.4830</span>   <span class="fl">-4.0876</span></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="dv">15</span> ITU <span class="fl">11.13</span>      SAS <span class="fl">11.1271</span>   <span class="fl">78.6569</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="dv">16</span> JPT <span class="fl">35.69</span>      EAS <span class="fl">35.6895</span>  <span class="fl">139.6917</span></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="dv">17</span> KHV <span class="fl">14.06</span>      EAS <span class="fl">14.0583</span>  <span class="fl">108.2772</span></a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="dv">18</span> LWK <span class="fl">-0.02</span>      AFR <span class="fl">-0.0236</span>   <span class="fl">37.9062</span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="dv">19</span> MSL  <span class="fl">8.46</span>      AFR  <span class="fl">8.4606</span>  <span class="fl">-11.7799</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="dv">20</span> MXL <span class="fl">23.63</span>      AMR <span class="fl">23.6345</span> <span class="fl">-102.5528</span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="dv">21</span> PEL <span class="fl">-9.19</span>      AMR <span class="fl">-9.1900</span>  <span class="fl">-75.0152</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="dv">22</span> PJL <span class="fl">31.55</span>      SAS <span class="fl">31.5546</span>   <span class="fl">74.3572</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="dv">23</span> PUR <span class="fl">18.22</span>      AMR <span class="fl">18.2208</span>  <span class="fl">-66.5901</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="dv">24</span> STU  <span class="fl">7.87</span>      SAS  <span class="fl">7.8731</span>   <span class="fl">80.7718</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="dv">25</span> TSI <span class="fl">43.77</span>      EUR <span class="fl">43.7711</span>   <span class="fl">11.2486</span></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="dv">26</span> YRI <span class="fl">10.16</span>      AFR  <span class="fl">7.3775</span>    <span class="fl">3.9470</span></a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>freq[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  pop  dist superpop     lat      long</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="dv">1</span> ACB <span class="fl">13.19</span>      AFR <span class="fl">13.1776</span>  <span class="fl">-59.5412</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="dv">2</span> ASW <span class="fl">-8.78</span>      AFR <span class="fl">36.1070</span> <span class="fl">-112.1130</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="dv">3</span> BEB <span class="fl">23.68</span>      SAS <span class="fl">23.6850</span>   <span class="fl">90.3563</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="dv">4</span> CDX <span class="fl">22.01</span>      EAS <span class="fl">22.0088</span> <span class="fl">-100.7971</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="dv">5</span> CEU <span class="fl">62.28</span>      EUR <span class="fl">39.3210</span> <span class="fl">-111.0937</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"></a></code></pre></div>
+<p>As these examples show, you can access specific columns and rows in a data frame. In the first example, we asked R to print rows 1 through 5 to the screen. We indicated rows by printing a comma at the end of our argument. Likewise, columns can be specified by prefixing a comma to the argument. In the last example, we limited the output to the first 5 rows and 5 columns by providing both arguments separated by a comma. <strong>Try out more examples on your own</strong>.</p>
+<h3 id="getting-summary-statistics">4.4 Getting Summary Statistics</h3>
+<p>Suppose you want to calculate basic summary statistics on columns with numerical data. In our data frame, we have three numerical columns: (1) Population location latitudes, (2) Frequency of Allele A and (3) Frequency of Allele G. Let’s work on these columns. While doing so, let’s learn another way to access columns in R, by using their names.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">range</span>(freq<span class="op">$</span>lat)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">[<span class="dv">1</span>] <span class="fl">-9.1900</span> <span class="fl">61.9241</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="op">&gt;</span><span class="st"> </span><span class="kw">range</span>(freq<span class="op">$</span>long)</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">[<span class="dv">1</span>] <span class="fl">-112.1130</span>  <span class="fl">139.6917</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="op">&gt;</span><span class="st"> </span><span class="kw">summary</span>(freq<span class="op">$</span>Allele_A)</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="fl">0.00000</span> <span class="fl">0.04065</span> <span class="fl">0.38382</span> <span class="fl">0.43479</span> <span class="fl">0.77825</span> <span class="fl">1.00000</span> </a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="op">&gt;</span><span class="st"> </span><span class="kw">summary</span>(freq<span class="op">$</span>N_CHR)</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">  <span class="fl">122.0</span>   <span class="fl">186.5</span>   <span class="fl">198.0</span>   <span class="fl">192.6</span>   <span class="fl">207.5</span>   <span class="fl">226.0</span> </a></code></pre></div>
+<p>We tested two R functions above. First function range shows the upper and lower limits of the data. In other words, it reports the minimum and maximum values. Thus, by looking at the output you can tell that our data comes from human populations that range 70 degrees in latitudinal distribution.</p>
+<p>Second function, <code>summary()</code> shows basic statistics for the data - in this case, frequency of allele A. It shows mean, median, and the quantile distribution of the values. Notice that frequency of the allele varies a lot. It goes from 0 all the way to 1.</p>
+<p>As you can see these simple functions are quite handy to get some basic information about data set of any size.</p>
+<h3 id="histograms">4.5 Histograms</h3>
+<p>There is another method in R to quickly gain understanding of how your data is distributed.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">hist</span>(freq<span class="op">$</span>Allele_A)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"></a></code></pre></div>
+<p><img src="histogram_freqA.png" width=600></img></p>
+<p>By default, R breaks into your data into appropriate number of bins. You can change this default behavior by specifying the number of bins. Notice how the Y-axis limits change when you do that.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">hist</span>(freq<span class="op">$</span>Allele_A, <span class="dt">breaks=</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a></code></pre></div>
+<p><img src="histogram_freqA_wBreaks.png" width=600></img></p>
+<h3 id="scatterplots">4.6 Scatterplots</h3>
+<p>When you want to compare the relationships of two variables with each other, a scatterplot comes handy. How would you make a scatterplot in R? Below are a series of R commands each building up the plot we desire, bit by bit. Type each command in increments and observe the resulting plot before typing the next command.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(freq<span class="op">$</span>Allele_A, freq<span class="op">$</span>lat)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"></a></code></pre></div>
+<p><img src="scatterplot1.png" width=600></img></p>
+<p>You can modify the default behavior of the R graphics by specifying more options. Try the examples below.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(freq<span class="op">$</span>Allele_A, freq<span class="op">$</span>lat, <span class="dt">xlab=</span><span class="st">&quot;f(A) rs1426654&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Latitude&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(freq<span class="op">$</span>Allele_A, freq<span class="op">$</span>lat, <span class="dt">xlab=</span><span class="st">&quot;f(A) rs1426654&quot;</span>, </a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">        <span class="dt">ylab=</span><span class="st">&quot;Latitude&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.8</span>, </a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">        <span class="dt">col=</span>freq<span class="op">$</span>popname, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</a></code></pre></div>
+<p>Much better aeshetics? Note that the points are all clumped together because we increased the default x-axis range to be 0 through 1. But really our data only spans about 0.55 to 0.92. So let’s change that around.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(freq<span class="op">$</span>Allele_A, freq<span class="op">$</span>lat, <span class="dt">xlab=</span><span class="st">&quot;f(A) rs1426654&quot;</span>, </a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">        <span class="dt">ylab=</span><span class="st">&quot;Latitude&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.8</span>, </a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">        <span class="dt">col=</span>freq<span class="op">$</span>popname, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="fl">0.55</span>,<span class="fl">0.95</span>))</a></code></pre></div>
+<p><img src="scatterplot2.png" width=600></img></p>
+<p>Assigning a different color to each of the 26 populations makes things messy. There is no real pattern obvious here. But what happens if you instead assign colors by super population? Recall that the regional subpopulations are grouped into 5 global superpopulations.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="op">&gt;</span><span class="st"> </span>myColors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">AFR=</span><span class="st">&#39;red&#39;</span>, <span class="dt">AMR=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">EAS=</span><span class="st">&#39;darkgreen&#39;</span>, <span class="dt">EUR=</span><span class="st">&#39;salmon&#39;</span>, <span class="dt">SAS=</span><span class="st">&#39;black&#39;</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(freq<span class="op">$</span>Allele_A, freq<span class="op">$</span>lat, <span class="dt">xlab=</span><span class="st">&quot;f(A) rs1426654&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Latitude&quot;</span>, </a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">    <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.8</span>, <span class="dt">col=</span>myColors[freq<span class="op">$</span>superpop], <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="scatterplot3.png" width=600></img></p>
+<p>This looks a lot better. Now some pattern is evident in the change of allele frequency across super populations. But we still do not know which color goes with what population, though you can probably figure the continent out by looking at the latitude. One way to make this connection is to write a legend within the plot itself. This is easy to do in R. We will also add a main title for the plot.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(freq<span class="op">$</span>Allele_A, freq<span class="op">$</span>lat, <span class="dt">xlab=</span><span class="st">&quot;f(A) rs1426654&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Latitude&quot;</span>, </a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">        <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.8</span>, <span class="dt">col=</span>myColors[freq<span class="op">$</span>superpop], <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="op">&gt;</span><span class="st"> </span><span class="kw">legend</span>(<span class="st">&#39;topleft&#39;</span>, <span class="kw">c</span>(<span class="st">&#39;African&#39;</span>, <span class="st">&#39;Admixed American&#39;</span>, <span class="st">&#39;East Asia&#39;</span>, <span class="st">&#39;European&#39;</span>, <span class="st">&#39;South Asian&#39;</span>), </a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">        <span class="dt">cex=</span><span class="fl">0.8</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;red&#39;</span>,<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;darkgreen&#39;</span>,<span class="st">&#39;salmon&#39;</span>,<span class="st">&#39;black&#39;</span>), <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">inset=</span><span class="fl">0.02</span>)</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="op">&gt;</span><span class="st"> </span><span class="kw">title</span>(<span class="dt">main=</span><span class="st">&quot;Latitudinal Variation in f(A) at rs1426654 among 26 Human Populations&quot;</span>, <span class="dt">cex.main=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb16-9" data-line-number="9"></a></code></pre></div>
+<p><img src="scatterplot4.png" width=600></img></p>
+<p>It is much clear based on this plot that the frequency of allele A increases going from southern to northern latitudes. It makes us wonder what relationship might exist between the longitudinal positions of populations and the frequency of this allele. But how would you reconcile both geographical coordinates and the frequency data together in one plot? Plotting directly on maps will allow you to do that.</p>
+<p><br><br><br></p>
+<p><a name="maps"></a></p>
+<h2 id="plotting-data-on-geographical-maps">5. Plotting Data on Geographical Maps</h2>
+<p>Before we can begin, we will need access to the following libraries. Try to load all of these <em>one by one</em>. Chances are some of them are not available on your workstation; in which case you will need to install them.</p>
+<h3 id="loadinstall-packages">5.1 Load/Install Packages</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(maps)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(mapdata)</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(scales)</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(mapplots)</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">Error <span class="cf">in</span> <span class="kw">library</span>(mapplots) <span class="op">:</span><span class="st"> </span>there is no package called ‘mapplots’</a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&#39;mapplots&#39;</span>)</a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(mapplots)</a></code></pre></div>
+<h3 id="draw-world-map-layer">5.2 Draw World Map Layer</h3>
+<p>Below, you will be typing the same commands over and over again. It’s best to start a script and write things in there. Open a new tab in your terminal using <code>Cmd</code>+<code>t</code>. Note that the new terminal tab starts with a linux prompt, not R prompt. Do not be confused between the two.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb18-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="fu">touch</span> plots.R</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a></code></pre></div>
+<p>Then open the file in GUI version of the vim text editor.</p>
+<p><img src="vim.png" width=400> </img></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw">box</span>()</a></code></pre></div>
+<p><img src="WorldBlank.png" width=800> </img></p>
+<h4 id="plot-human-populations">5.3 Plot Human Populations</h4>
+<p>We will plot the 26 human populations on this map using the geographical coordinates available to us.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw">points</span>(freq<span class="op">$</span>long, freq<span class="op">$</span>lat, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">col=</span><span class="st">&quot;salmon&quot;</span>)</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="op">&gt;</span><span class="st"> </span><span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"></a></code></pre></div>
+<p><img src="WorldPoints1.png" width=800></img></p>
+<h4 id="adjust-point-size">5.4 Adjust Point Size</h4>
+<p>We could make this plot more informative if we linked the point size to allele frequency.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw">points</span>(freq<span class="op">$</span>long, freq<span class="op">$</span>lat, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span>freq<span class="op">$</span>Allele_A<span class="op">*</span><span class="fl">1.5</span>, <span class="dt">col=</span><span class="st">&quot;salmon&quot;</span>)</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="op">&gt;</span><span class="st"> </span><span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"></a></code></pre></div>
+<p><img src="WorldPoints2.png" width=800></img></p>
+<h4 id="using-pie-charts-to-display-relative-allele-frequencies">5.5 Using Pie Charts to Display Relative Allele Frequencies</h4>
+<p>This would perhaps be the best way to depict our data on the map, because it will show relative frequencies of both alleles at every given geographical position (i.e. population).</p>
+<p>First, let’s just draw one pie to see how it works. We can then apply the same principal to the remaining points on the map.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw">add.pie</span>(<span class="dt">z=</span><span class="kw">c</span>(<span class="fl">0.104</span>, <span class="fl">0.895</span>), <span class="dt">x=</span><span class="op">-</span><span class="fl">59.5412</span>, <span class="dt">y=</span><span class="fl">13.1776</span>, <span class="dt">radius=</span><span class="dv">192</span><span class="op">/</span><span class="dv">100</span>, </a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">            <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">labels=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="op">&gt;</span><span class="st"> </span><span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"></a></code></pre></div>
+<p>As you can see below, we just plotted the allele frequency data for the Barbados African population using a pie chart. The orange and blue colors are representative of the frequencies of alleles A and T respectively.</p>
+<p><img src="WorldPie1.png" width=800></img></p>
+<h4 id="plot-all-pie-charts-using-for-loop">5.6 Plot All Pie Charts Using <code>for{}</code> Loop</h4>
+<p>In order to plot one pie chart per population of data, what we need to do essentially is to cycle through the code above for each row of our data frame <code>freq.df</code>. If you need a refresher in what was contained in that data frame, run a head on it quickly:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb23-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="op">&gt;</span> <span class="fu">head</span>(freq)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">  <span class="ex">pop</span>  dist superpop     lat      long                  popname CHROM      POS N_ALLELES N_CHR  Allele_A Allele_G</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="ex">1</span> ACB 13.19      AFR 13.1776  -59.5412       African_Carib_BBDS    15 48426484         2   192 0.1041670 0.895833</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="ex">2</span> ASW -8.78      AFR 36.1070 -112.1130  African_Ancestry_SW_USA    15 48426484         2   122 0.1885250 0.811475</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="ex">3</span> BEB 23.68      SAS 23.6850   90.3563    Bengali_in_Bangladesh    15 48426484         2   172 0.5348840 0.465116</a>
+<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="ex">4</span> CDX 22.01      EAS 22.0088 -100.7971              Chinese_Dai    15 48426484         2   186 0.0000000 1.000000</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9"><span class="ex">5</span> CEU 62.28      EUR 39.3210 -111.0937 Utah_Resid_from_NWEurope    15 48426484         2   198 1.0000000 0.000000</a>
+<a class="sourceLine" id="cb23-10" data-line-number="10"><span class="ex">6</span> CHB 23.13      EAS 39.9042  116.4074              Han_Chinese    15 48426484         2   206 0.0291262 0.970874</a></code></pre></div>
+<p><code>for{}</code> loops in R are notoriously slow for large data sets, but we have just got 26 iterations of the loop, so we do not need to worry about computational speed. Loops in R are similar to those in bash or any other language and they take the following general form:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">  do something</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">}</a></code></pre></div>
+<p>This means run <code>something</code> command 100 times. How can we apply this to our data?</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="op">&gt;</span><span class="st"> </span><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">26</span>){<span class="kw">add.pie</span>(<span class="dt">z=</span><span class="kw">c</span>(freq<span class="op">$</span>Allele_A[i], freq<span class="op">$</span>Allele_G[i]), <span class="dt">x=</span>freq<span class="op">$</span>long[i], <span class="dt">y=</span>freq<span class="op">$</span>lat[i], </a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">        <span class="dt">radius=</span>freq<span class="op">$</span>N_CHR[i]<span class="op">/</span><span class="dv">100</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">labels=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">  i=i<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="op">&gt;</span><span class="st"> </span><span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb25-13" data-line-number="13"></a></code></pre></div>
+<p><img src="WorldPie2.png" width=800></img></p>
+<p>There are several important bits of information depicted in this plot.</p>
+<ol type="1">
+<li>Geographical positions of populations</li>
+<li>Size of the population under study (Pie circle size)</li>
+<li>The relative frequencies of the two alleles</li>
+</ol>
+<p>All we need to do now is to add a legend and then the plot is ready.</p>
+<h4 id="add-legend-and-label-populations">5.7 Add Legend and Label Populations</h4>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="op">&gt;</span><span class="st"> </span><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">26</span>){</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6">  <span class="kw">add.pie</span>(<span class="dt">z=</span><span class="kw">c</span>(freq<span class="op">$</span>Allele_A[i], freq<span class="op">$</span>Allele_G[i]), <span class="dt">x=</span>freq<span class="op">$</span>long[i], <span class="dt">y=</span>freq<span class="op">$</span>lat[i], </a>
+<a class="sourceLine" id="cb26-7" data-line-number="7">        <span class="dt">radius=</span>freq<span class="op">$</span>N_CHR[i]<span class="op">/</span><span class="dv">100</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">labels=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb26-8" data-line-number="8">  i=i<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb26-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb26-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb26-11" data-line-number="11"><span class="op">&gt;</span><span class="st"> </span><span class="kw">text</span>(freq<span class="op">$</span>long, freq<span class="op">$</span>lat, <span class="dt">labels=</span>freq<span class="op">$</span>superpop, <span class="dt">cex=</span><span class="fl">0.5</span>, <span class="dt">pos=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb26-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb26-13" data-line-number="13"><span class="op">&gt;</span><span class="st"> </span><span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb26-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb26-15" data-line-number="15"><span class="op">&gt;</span><span class="st"> </span><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">bty=</span><span class="st">&#39;1&#39;</span>, <span class="kw">c</span>(<span class="st">&quot;Freq. Allele A&quot;</span>, <span class="st">&quot;Freq. Allele G&quot;</span>), </a>
+<a class="sourceLine" id="cb26-16" data-line-number="16">        <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">pt.cex=</span><span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb26-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb26-18" data-line-number="18"><span class="op">&gt;</span><span class="st"> </span><span class="kw">title</span>(<span class="dt">main=</span><span class="st">&quot;Global Distribution of rs1426654 Alleles&quot;</span>, <span class="dt">font.main=</span><span class="dv">1</span>, <span class="dt">cex.main=</span><span class="fl">0.9</span>)</a>
+<a class="sourceLine" id="cb26-19" data-line-number="19"></a></code></pre></div>
+<p><img src="WorldPie_Final.png" width=800></img></p>
+<h4 id="save-the-map-plot">5.8 Save the Map Plot</h4>
+<p>Below are the contents of your script <code>plots.R</code>. Do not include the <code>&gt;</code> prompts in the script. Once you are done writing the entire script. You can run it without copy pasting (see below).</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">pdf</span>(<span class="st">&#39;WorldPie_Final2.pdf&#39;</span>, <span class="dt">width=</span><span class="dv">10</span>, <span class="dt">height=</span><span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="op">&gt;</span><span class="st"> </span><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">26</span>){</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8">  <span class="kw">add.pie</span>(<span class="dt">z=</span><span class="kw">c</span>(freq<span class="op">$</span>Allele_A[i], freq<span class="op">$</span>Allele_G[i]), <span class="dt">x=</span>freq<span class="op">$</span>long[i], <span class="dt">y=</span>freq<span class="op">$</span>lat[i], </a>
+<a class="sourceLine" id="cb27-9" data-line-number="9">        <span class="dt">radius=</span>freq<span class="op">$</span>N_CHR[i]<span class="op">/</span><span class="dv">100</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">labels=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb27-10" data-line-number="10">  i=i<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb27-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb27-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb27-13" data-line-number="13"><span class="op">&gt;</span><span class="st"> </span><span class="kw">text</span>(freq<span class="op">$</span>long, freq<span class="op">$</span>lat, <span class="dt">labels=</span>freq<span class="op">$</span>superpop, <span class="dt">cex=</span><span class="fl">0.5</span>, <span class="dt">pos=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb27-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb27-15" data-line-number="15"><span class="op">&gt;</span><span class="st"> </span><span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb27-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb27-17" data-line-number="17"><span class="op">&gt;</span><span class="st"> </span><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">bty=</span><span class="st">&#39;1&#39;</span>, <span class="kw">c</span>(<span class="st">&quot;Freq. Allele A&quot;</span>, <span class="st">&quot;Freq. Allele G&quot;</span>), <span class="dt">pch=</span><span class="dv">16</span>, </a>
+<a class="sourceLine" id="cb27-18" data-line-number="18">        <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">pt.cex=</span><span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb27-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb27-20" data-line-number="20"><span class="op">&gt;</span><span class="st"> </span><span class="kw">title</span>(<span class="dt">main=</span><span class="st">&quot;Global Distribution of rs1426654 Alleles&quot;</span>, <span class="dt">font.main=</span><span class="dv">1</span>, <span class="dt">cex.main=</span><span class="fl">0.9</span>)</a>
+<a class="sourceLine" id="cb27-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb27-22" data-line-number="22"><span class="op">&gt;</span><span class="st"> </span><span class="kw">dev.off</span>()</a></code></pre></div>
+<p>Execute the script as follows. You don’t have to close vim in order to run the script. Just make to sure to save all the changes.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">source</span>(<span class="st">&quot;plots.R&quot;</span>)</a></code></pre></div>
+<h4 id="closing-analysis">5.9 Closing Analysis</h4>
+<p>Based on this map, what inferences can you draw about the allele frequency differences at SNP rs1426654 in the gene SLC24A5 among global human populations?</p>
+<p><strong>Remember:</strong> This is not an indication that there is genetic basis for race. Race is only a social construct with no evidence whatsoever that genetics underlies it.</p>
+<p><br><br></p>
+<p><a name="save"></a></p>
+<h2 id="saving-your-work">6. Saving Your Work</h2>
+<h3 id="on-local-workstation">6.1 On Local Workstation</h3>
+<ol type="1">
+<li>Save your RSession in an image. Make sure to replace LASTNAME with your own.</li>
+</ol>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span><span class="kw">setwd</span>(<span class="st">&quot;~/LASTNAME_Week5/&quot;</span>)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span><span class="kw">save.image</span>(<span class="st">&#39;LASTNAME_Week5.RData&#39;</span>)</a></code></pre></div>
+<ol start="2" type="1">
+<li>Compress all files you generated today and copy them to the Week5 folder on MtMoran.</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb30-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="bu">cd</span> ~/LASTNAME_Week5/</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="fu">tar</span> -cvzf LASTNAME_Week5_Local.tar.gz *</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="fu">scp</span> LASTNAME_Week5_Local.tar.gz <span class="op">&lt;</span>inbreNNN<span class="op">&gt;</span>@teton.uwyo.edu:/project/inbre-train/<span class="op">&lt;</span>inbreNNN<span class="op">&gt;</span>/Week5_LastName/</a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"></a></code></pre></div>
+<h3 id="save-history-on-teton">6.2 Save History on Teton</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb31-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="bu">cd</span> /project/inbre-train/<span class="op">&lt;</span>inbreNNN<span class="op">&gt;</span>/History/</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="bu">history</span> <span class="op">&gt;</span> LASTNAME_Week5_History.sh</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="fu">ls</span> -lh LASTNAME_Week5_History.sh</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="fu">tail</span> -n LASTNAME_Week5_History.sh</a>
+<a class="sourceLine" id="cb31-9" data-line-number="9"></a></code></pre></div>
+</body>
+</html>
