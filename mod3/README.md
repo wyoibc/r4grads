@@ -29,11 +29,11 @@ The data set itself can be downloaded here (**but you do not need to**):
 
 - [7. Normalize Expression Counts Across Samples](#normalize-expression-counts-across-samples)
 
+- [8. Estimate Dispersion](#estimate-dispersion)
 
+- [9. Pairwise Comparison Between Experimental Conditions](#pairwise-comparison-between-experimental-conditions)
 
-
-
-
+	- [9.1 GBR Female vs GBR Male](#gbr-female-vs-gbr-male)
 
 
 
@@ -440,6 +440,9 @@ and may lead to discrepancies.
 
 ## 7. Normalize Expression Counts Across Samples
 
+- Normalizing libraries between samples is essential to getting accurate
+  downstream results.
+
 ```r
 ynorm <- calcNormFactors(yfilt)
 
@@ -460,18 +463,182 @@ ERR188104     4  1988270    1.0055686
 ERR188044     4  2063117    0.9805151
 ```
 
+<br><br>
+
+## 8. Estimate Dispersion
+
+- Differential gene expression analysis uses generalized linear models. It
+  becomes necessary to understand how much gene expression varies in different
+samples from a mean of all samples.  That estimate is called dispersion.
+
+```r
+ydisp <- estimateDisp(ynorm)
+
+ydisp
+
+An object of class "DGEList"
+$counts
+                   ERR188245 ERR188428 ERR188337 ERR188401 ERR188257 ERR188383 ERR204916 ERR188234 ERR188273 ERR188454 ERR188104 ERR188044
+NM_001242640|BRCC3       520       313       737       737       614       304       312       574        83       358       495       401
+NM_001356|DDX3X          203       336       312       312       239        37       129       432        44        32       879       102
+NM_000489|ATRX          1260      3278      3919      3919      4098      3632      4259      1946      1692      2501      5921      4909
+NM_000116|TAZ            207       282       562       562       286       389       468       598       130       263       430       432
+NM_016024|RBMX2         1072      1164      1849      1849      1356      1752      1430      1453       765      1292      1843      1626
+640 more rows ...
+
+$samples
+          group lib.size norm.factors
+ERR188245     1  1348614    0.9683824
+ERR188428     1  1344673    0.9242010
+ERR188337     1  2098545    1.0695881
+ERR188401     2  2098545    1.0695881
+ERR188257     2  1501166    1.0594384
+7 more rows ...
+
+$common.dispersion
+[1] 0.226083
+
+$trended.dispersion
+[1] 0.2841544 0.3252375 0.1064144 0.2970612 0.1550413
+640 more elements ...
+
+$tagwise.dispersion
+[1] 0.14545759 0.71584346 0.14771572 0.11178168 0.04818607
+640 more elements ...
+
+$AveLogCPM
+[1]  8.012388  7.168844 10.977294  7.764692  9.739103
+640 more elements ...
+
+$trend.method
+[1] "locfit"
+
+$prior.df
+[1] 2.607188
+
+$prior.n
+[1] 0.3258985
+
+$span
+[1] 0.4588173
+```
+
+<br><br>
+
+## 9. Pairwise Comparison Between Experimental Conditions
+
+- Finally, we are ready to perform differential gene expression analysis.  Let's
+take a quick look at our phenotypic data to decide which pair to try first.
 
 
+```r
+pheno
+
+      sampid    sex pop
+1  ERR188245 Female GBR
+2  ERR188428 Female GBR
+3  ERR188337 Female GBR
+4  ERR188401   Male GBR
+5  ERR188257   Male GBR
+6  ERR188383   Male GBR
+7  ERR204916 Female YRI
+8  ERR188234 Female YRI
+9  ERR188273 Female YRI
+10 ERR188454   Male YRI
+11 ERR188104   Male YRI
+12 ERR188044   Male YRI
+```
+
+<br>
+
+### 9.1 GBR Female vs GBR Male
+
+- According to our group factors, these are groups 1 and 2. How can we verify
+  this?
+
+```r
+levels(ydisp$samples$group)
+
+[1] "1" "2" "3" "4"
+
+rownames(ydisp$samples)[1:4]
+[1] "ERR188245" "ERR188428" "ERR188337" "ERR188401"
+```
+
+- Cross check to make sure that the ``ERR`` library names match between the
+  pheno files for the phenotypes we are selecting.
+
+- Then use Fisher's Exact test to estimate DEGs for this pair of samples.
+
+```r
+GBR_MF <- exactTest(ydisp, pair=c(1,2))
+
+GBR_MF
+
+An object of class "DGEExact"
+$table
+                         logFC    logCPM    PValue
+NM_001242640|BRCC3 -0.11039010  8.012388 0.8097677
+NM_001356|DDX3X    -0.85210878  7.168844 0.4124643
+NM_000489|ATRX      0.30650253 10.977294 0.5020825
+NM_000116|TAZ       0.08702188  7.764692 0.8299446
+NM_016024|RBMX2     0.10799335  9.739103 0.6799526
+640 more rows ...
+
+$comparison
+[1] "1" "2"
+
+$genes
+NULL
+```
+
+- You will notice in the table that we have three types of values.
+
+	- ``logFC`` is log fold change, a metric of how different gene
+	  expression is between the samples
+	- ``logCPM`` is the log of counts per million (you can disregard this
+	  for now)
+	- ``PValue`` is your standard measure of significance from Fisher's
+	  exact test.
+
+- Doing multiple testing and simply using P values for inference may lead to
+  spurious false positives and/or false negatives. 
+
+- To make our results more robust, we will estimate ``FDR`` or False Discovery
+  Rate which is preferable to using Pvalues.
 
 
+```r
+GBR_MF_FDR <- topTags(GBR_MF, n=Inf)
+
+head(GBR_MF_FDR)
+
+Comparison of groups:  2-1 
+                        logFC    logCPM       PValue        FDR
+NR_003255|TSIX     -5.3282667  8.731971 4.682312e-05 0.03020091
+NM_004187|KDM5C    -0.6818842 10.926060 1.801629e-02 1.00000000
+NR_132647|AIFM1     1.6119246  5.374244 2.130455e-02 1.00000000
+NM_001282622|KDM5C -0.6675069 10.949292 2.165767e-02 1.00000000
+NR_033699|FMR1      1.3293297  7.244091 2.210837e-02 1.00000000
+NM_001281463|SMC1A  4.2982844  8.333749 2.417667e-02 1.00000000
+```
+
+- Write this data to a file
+
+```r
+write.table(GBR_MF_FDR, "GBR_MF_FDR.txt", row.names=T, col.names=T, quote=F, sep='\t')
+```
 
 
+- Which genes are significant for DE?
 
+```r
+sum(GBR_MF_FDR$table$FDR <= 0.05)
+[1] 1
+```
 
-
-
-
-
+- That's shocking. One one significant gene: ``NR_003255|TSIX``. Let's do one
+  more pairwise comparison.
 
 
 
