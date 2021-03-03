@@ -21,6 +21,28 @@ The data set itself can be downloaded here (**but you do not need to**):
 
 - [3. Data Cleanup](#data-cleanup)
 
+- [4. Package Installation](#r-package-installation)
+
+- [5. Import gene count data in EdgeR](#import-data-into-edger)
+
+- [6. Filter For Low Expressing Genes](#filter-for-low-expressing-genes)
+
+- [7. Normalize Expression Counts Across Samples](#normalize-expression-counts-across-samples)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -242,18 +264,201 @@ head(gc3)
 output to a new frame called ``gc3``.  We now have 656 rows of data, which
 means 1426 rows had no data, so we discarded them.
 
+- Let's write this data frame to disk
+
+```r
+write.table(gc3, "gene_count_matrix_final.txt", row.names=F, col.names=T,
+quote=F, sep='\t')
+```
+
+- Verify that the file was written correctly by opening in a text editor.
 
 
+<br><br>
+
+## 4. R Package Installation
+
+For this exercise, we will use the Bioconductor package
+[EdgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html).  click
+on the link which will take you to the instructions for installing this
+package.
+
+Bioconductor is a repository for packages used in biological data analysis. It
+has a different system for installing packages.
 
 
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("edgeR")
+```
+
+- Load the package
+
+```r
+library(edgeR)
+```
+
+- Package documentation is available [here](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)
 
 
+<br><br>
 
 
+## 5. Import data in EdgeR
+
+In our current data frame, the gene name appear in their own column. EdgeR
+prefers to have this data as row names.  
 
 
+<br>
+
+### 5.1 Import count data
+
+```r
+ct <- read.table("gene_count_matrix_Final.txt", header=TRUE, row.names="gene_id")
+
+head(ct)
+
+                   ERR188245 ERR188428 ERR188337 ERR188401 ERR188257 ERR188383 ERR204916 ERR188234 ERR188273 ERR188454 ERR188104 ERR188044
+NM_001242640|BRCC3       520       313       737       737       614       304       312       574        83       358       495       401
+NM_001356|DDX3X          203       336       312       312       239        37       129       432        44        32       879       102
+NM_000489|ATRX          1260      3278      3919      3919      4098      3632      4259      1946      1692      2501      5921      4909
+NM_000116|TAZ            207       282       562       562       286       389       468       598       130       263       430       432
+NM_016024|RBMX2         1072      1164      1849      1849      1356      1752      1430      1453       765      1292      1843      1626
+NR_029635|MIR221           1         2         8         8         5         2         3         3         2         2        10         6
+```
+
+- Notice how the ``gene_id`` column has now been converted into row names.
 
 
+<br>
+
+### 5.2 Create factors to describe phenotypic data
+
+- Next, we need to create factors for our phenotypic data.  Our phenotypes
+  consist of two sexes from each of the two populations with three replicates
+from each.  So we have four factors.
+
+```r
+group <- factor(c(1,1,1,2,2,2,3,3,3,4,4,4))
+
+group
+
+ [1] 1 1 1 2 2 2 3 3 3 4 4 4
+
+Levels: 1 2 3 4
+```
+
+<br>
+
+### 5.3 Create Differential Gene Expression List
+
+```r
+y <- DGEList(counts=ct, group=group)
+
+y
+
+An object of class "DGEList"
+$counts
+                   ERR188245 ERR188428 ERR188337 ERR188401 ERR188257 ERR188383 ERR204916 ERR188234 ERR188273 ERR188454 ERR188104 ERR188044
+NM_001242640|BRCC3       520       313       737       737       614       304       312       574        83       358       495       401
+NM_001356|DDX3X          203       336       312       312       239        37       129       432        44        32       879       102
+NM_000489|ATRX          1260      3278      3919      3919      4098      3632      4259      1946      1692      2501      5921      4909
+NM_000116|TAZ            207       282       562       562       286       389       468       598       130       263       430       432
+NM_016024|RBMX2         1072      1164      1849      1849      1356      1752      1430      1453       765      1292      1843      1626
+651 more rows ...
+
+$samples
+          group lib.size norm.factors
+ERR188245     1  1348647            1
+ERR188428     1  1344702            1
+ERR188337     1  2098602            1
+ERR188401     2  2098602            1
+ERR188257     2  1501213            1
+7 more rows ...
+```
+
+<br><br>
+
+
+## 6. Filter For Low Expressing Genes 
+
+You may recall that earlier in this process we had removed genes which had no
+data.  But there may still be some genes left in the data with very few counts.
+Since we will be normalizing count data, such low expression genes might skew
+our estimates.  So we will remove them at this stage.
+
+- First assign a function within EdgeR library called ``filterByExpr()`` to a
+  keyword ``keep`` for ease of use.
+
+```r
+keep <- filterByExpr(y)
+```
+
+- Let the filtering proceed. We 
+
+```r
+yfilt <- y[keep, , keep.lib.sizes=FALSE]
+
+yfilt
+
+An object of class "DGEList"
+$counts
+                   ERR188245 ERR188428 ERR188337 ERR188401 ERR188257 ERR188383 ERR204916 ERR188234 ERR188273 ERR188454 ERR188104 ERR188044
+NM_001242640|BRCC3       520       313       737       737       614       304       312       574        83       358       495       401
+NM_001356|DDX3X          203       336       312       312       239        37       129       432        44        32       879       102
+NM_000489|ATRX          1260      3278      3919      3919      4098      3632      4259      1946      1692      2501      5921      4909
+NM_000116|TAZ            207       282       562       562       286       389       468       598       130       263       430       432
+NM_016024|RBMX2         1072      1164      1849      1849      1356      1752      1430      1453       765      1292      1843      1626
+640 more rows ...
+
+$samples
+          group lib.size norm.factors
+ERR188245     1  1348614            1
+ERR188428     1  1344673            1
+ERR188337     1  2098545            1
+ERR188401     2  2098545            1
+ERR188257     2  1501166            1
+7 more rows ...
+
+```
+
+- The filtering function as applied here only keeps those genes that have
+  worthwhile counts in a minimum number of samples. This number of samples is
+computed from the factors we had created earlier. In our case, that number is
+``3`` - the group size (3 replicates per condition).
+
+- The ``keep.lib.sizes=FALSE`` option allows EdgeR to recalculate the library
+  size (total number of reads in each sample) after such low count genes have
+been removed.  The opposite of this would be setting this option to ``TRUE``
+and may lead to discrepancies.
+
+<br><br>
+
+
+## 7. Normalize Expression Counts Across Samples
+
+```r
+ynorm <- calcNormFactors(yfilt)
+
+ynorm$samples
+
+          group lib.size norm.factors
+ERR188245     1  1348614    0.9683824
+ERR188428     1  1344673    0.9242010
+ERR188337     1  2098545    1.0695881
+ERR188401     2  2098545    1.0695881
+ERR188257     2  1501166    1.0594384
+ERR188383     2  1530767    1.0352421
+ERR204916     3  1697815    1.0025118
+ERR188234     3  2419080    0.9015856
+ERR188273     3   917517    0.9375173
+ERR188454     4  1600884    1.0658455
+ERR188104     4  1988270    1.0055686
+ERR188044     4  2063117    0.9805151
+```
 
 
 

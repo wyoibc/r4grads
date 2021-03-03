@@ -93,6 +93,10 @@
 <li><p><a href="#typical-rnaseq-analysis-pipeline">1. Typical RNAseq Analysis Pipeline</a></p></li>
 <li><p><a href="#data-access">2. Data Access</a></p></li>
 <li><p><a href="#data-cleanup">3. Data Cleanup</a></p></li>
+<li><p><a href="#r-package-installation">4. Package Installation</a></p></li>
+<li><p><a href="#import-data-into-edger">5. Import gene count data in EdgeR</a></p></li>
+<li><p><a href="#filter-for-low-expressing-genes">6. Filter For Low Expressing Genes</a></p></li>
+<li><p><a href="#normalize-expression-counts-across-samples">7. Normalize Expression Counts Across Samples</a></p></li>
 </ul>
 <p><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br></p>
 <h2 id="typical-rnaseq-analysis-pipeline">1. Typical RNAseq Analysis Pipeline</h2>
@@ -230,8 +234,139 @@
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a><span class="dv">23</span>    NM_<span class="dv">016024</span><span class="op">|</span>RBMX2      <span class="dv">1072</span>      <span class="dv">1164</span>      <span class="dv">1849</span>      <span class="dv">1849</span>      <span class="dv">1356</span>      <span class="dv">1752</span>      <span class="dv">1430</span>      <span class="dv">1453</span>       <span class="dv">765</span>      <span class="dv">1292</span>      <span class="dv">1843</span>      <span class="dv">1626</span></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a><span class="dv">28</span>   NR_<span class="dv">029635</span><span class="op">|</span>MIR221         <span class="dv">1</span>         <span class="dv">2</span>         <span class="dv">8</span>         <span class="dv">8</span>         <span class="dv">5</span>         <span class="dv">2</span>         <span class="dv">3</span>         <span class="dv">3</span>         <span class="dv">2</span>         <span class="dv">2</span>        <span class="dv">10</span>         <span class="dv">6</span></span></code></pre></div>
 <ul>
-<li>What we did above is to remove rows containing only 0s for columns 2 through 14 in the data set. But instead of saving it in the same data frame, we sent output to a new frame called <code>gc3</code>. We now have 656 rows of data, which means 1426 rows had no data, so we discarded them.</li>
+<li><p>What we did above is to remove rows containing only 0s for columns 2 through 14 in the data set. But instead of saving it in the same data frame, we sent output to a new frame called <code>gc3</code>. We now have 656 rows of data, which means 1426 rows had no data, so we discarded them.</p></li>
+<li><p>Let’s write this data frame to disk</p></li>
 </ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">write.table</span>(gc3, <span class="st">&quot;gene_count_matrix_final.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">col.names=</span>T,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="dt">quote=</span>F, <span class="dt">sep=</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</span></code></pre></div>
+<ul>
+<li>Verify that the file was written correctly by opening in a text editor.</li>
+</ul>
+<p><br><br></p>
+<h2 id="r-package-installation">4. R Package Installation</h2>
+<p>For this exercise, we will use the Bioconductor package <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html">EdgeR</a>. click on the link which will take you to the instructions for installing this package.</p>
+<p>Bioconductor is a repository for packages used in biological data analysis. It has a different system for installing packages.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="st">&quot;edgeR&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Load the package</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">library</span>(edgeR)</span></code></pre></div>
+<ul>
+<li>Package documentation is available <a href="https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf">here</a></li>
+</ul>
+<p><br><br></p>
+<h2 id="import-data-in-edger">5. Import data in EdgeR</h2>
+<p>In our current data frame, the gene name appear in their own column. EdgeR prefers to have this data as row names.</p>
+<p><br></p>
+<h3 id="import-count-data">5.1 Import count data</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>ct &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;gene_count_matrix_Final.txt&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">row.names=</span><span class="st">&quot;gene_id&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="kw">head</span>(ct)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>                   ERR188245 ERR188428 ERR188337 ERR188401 ERR188257 ERR188383 ERR204916 ERR188234 ERR188273 ERR188454 ERR188104 ERR188044</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>NM_<span class="dv">001242640</span><span class="op">|</span>BRCC3       <span class="dv">520</span>       <span class="dv">313</span>       <span class="dv">737</span>       <span class="dv">737</span>       <span class="dv">614</span>       <span class="dv">304</span>       <span class="dv">312</span>       <span class="dv">574</span>        <span class="dv">83</span>       <span class="dv">358</span>       <span class="dv">495</span>       <span class="dv">401</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a>NM_<span class="dv">001356</span><span class="op">|</span>DDX3X          <span class="dv">203</span>       <span class="dv">336</span>       <span class="dv">312</span>       <span class="dv">312</span>       <span class="dv">239</span>        <span class="dv">37</span>       <span class="dv">129</span>       <span class="dv">432</span>        <span class="dv">44</span>        <span class="dv">32</span>       <span class="dv">879</span>       <span class="dv">102</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>NM_<span class="dv">000489</span><span class="op">|</span>ATRX          <span class="dv">1260</span>      <span class="dv">3278</span>      <span class="dv">3919</span>      <span class="dv">3919</span>      <span class="dv">4098</span>      <span class="dv">3632</span>      <span class="dv">4259</span>      <span class="dv">1946</span>      <span class="dv">1692</span>      <span class="dv">2501</span>      <span class="dv">5921</span>      <span class="dv">4909</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>NM_<span class="dv">000116</span><span class="op">|</span>TAZ            <span class="dv">207</span>       <span class="dv">282</span>       <span class="dv">562</span>       <span class="dv">562</span>       <span class="dv">286</span>       <span class="dv">389</span>       <span class="dv">468</span>       <span class="dv">598</span>       <span class="dv">130</span>       <span class="dv">263</span>       <span class="dv">430</span>       <span class="dv">432</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a>NM_<span class="dv">016024</span><span class="op">|</span>RBMX2         <span class="dv">1072</span>      <span class="dv">1164</span>      <span class="dv">1849</span>      <span class="dv">1849</span>      <span class="dv">1356</span>      <span class="dv">1752</span>      <span class="dv">1430</span>      <span class="dv">1453</span>       <span class="dv">765</span>      <span class="dv">1292</span>      <span class="dv">1843</span>      <span class="dv">1626</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a>NR_<span class="dv">029635</span><span class="op">|</span>MIR221           <span class="dv">1</span>         <span class="dv">2</span>         <span class="dv">8</span>         <span class="dv">8</span>         <span class="dv">5</span>         <span class="dv">2</span>         <span class="dv">3</span>         <span class="dv">3</span>         <span class="dv">2</span>         <span class="dv">2</span>        <span class="dv">10</span>         <span class="dv">6</span></span></code></pre></div>
+<ul>
+<li>Notice how the <code>gene_id</code> column has now been converted into row names.</li>
+</ul>
+<p><br></p>
+<h3 id="create-factors-to-describe-phenotypic-data">5.2 Create factors to describe phenotypic data</h3>
+<ul>
+<li>Next, we need to create factors for our phenotypic data. Our phenotypes consist of two sexes from each of the two populations with three replicates from each. So we have four factors.</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>group &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>group</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a>Levels<span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span></span></code></pre></div>
+<p><br></p>
+<h3 id="create-differential-gene-expression-list">5.3 Create Differential Gene Expression List</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">DGEList</span>(<span class="dt">counts=</span>ct, <span class="dt">group=</span>group)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a>y</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>An object of class <span class="st">&quot;DGEList&quot;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="op">$</span>counts</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a>                   ERR188245 ERR188428 ERR188337 ERR188401 ERR188257 ERR188383 ERR204916 ERR188234 ERR188273 ERR188454 ERR188104 ERR188044</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a>NM_<span class="dv">001242640</span><span class="op">|</span>BRCC3       <span class="dv">520</span>       <span class="dv">313</span>       <span class="dv">737</span>       <span class="dv">737</span>       <span class="dv">614</span>       <span class="dv">304</span>       <span class="dv">312</span>       <span class="dv">574</span>        <span class="dv">83</span>       <span class="dv">358</span>       <span class="dv">495</span>       <span class="dv">401</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>NM_<span class="dv">001356</span><span class="op">|</span>DDX3X          <span class="dv">203</span>       <span class="dv">336</span>       <span class="dv">312</span>       <span class="dv">312</span>       <span class="dv">239</span>        <span class="dv">37</span>       <span class="dv">129</span>       <span class="dv">432</span>        <span class="dv">44</span>        <span class="dv">32</span>       <span class="dv">879</span>       <span class="dv">102</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a>NM_<span class="dv">000489</span><span class="op">|</span>ATRX          <span class="dv">1260</span>      <span class="dv">3278</span>      <span class="dv">3919</span>      <span class="dv">3919</span>      <span class="dv">4098</span>      <span class="dv">3632</span>      <span class="dv">4259</span>      <span class="dv">1946</span>      <span class="dv">1692</span>      <span class="dv">2501</span>      <span class="dv">5921</span>      <span class="dv">4909</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a>NM_<span class="dv">000116</span><span class="op">|</span>TAZ            <span class="dv">207</span>       <span class="dv">282</span>       <span class="dv">562</span>       <span class="dv">562</span>       <span class="dv">286</span>       <span class="dv">389</span>       <span class="dv">468</span>       <span class="dv">598</span>       <span class="dv">130</span>       <span class="dv">263</span>       <span class="dv">430</span>       <span class="dv">432</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a>NM_<span class="dv">016024</span><span class="op">|</span>RBMX2         <span class="dv">1072</span>      <span class="dv">1164</span>      <span class="dv">1849</span>      <span class="dv">1849</span>      <span class="dv">1356</span>      <span class="dv">1752</span>      <span class="dv">1430</span>      <span class="dv">1453</span>       <span class="dv">765</span>      <span class="dv">1292</span>      <span class="dv">1843</span>      <span class="dv">1626</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a><span class="dv">651</span> more rows ...</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a><span class="op">$</span>samples</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a>          group lib.size norm.factors</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true"></a>ERR188245     <span class="dv">1</span>  <span class="dv">1348647</span>            <span class="dv">1</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true"></a>ERR188428     <span class="dv">1</span>  <span class="dv">1344702</span>            <span class="dv">1</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true"></a>ERR188337     <span class="dv">1</span>  <span class="dv">2098602</span>            <span class="dv">1</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true"></a>ERR188401     <span class="dv">2</span>  <span class="dv">2098602</span>            <span class="dv">1</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true"></a>ERR188257     <span class="dv">2</span>  <span class="dv">1501213</span>            <span class="dv">1</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true"></a><span class="dv">7</span> more rows ...</span></code></pre></div>
+<p><br><br></p>
+<h2 id="filter-for-low-expressing-genes">6. Filter For Low Expressing Genes</h2>
+<p>You may recall that earlier in this process we had removed genes which had no data. But there may still be some genes left in the data with very few counts. Since we will be normalizing count data, such low expression genes might skew our estimates. So we will remove them at this stage.</p>
+<ul>
+<li>First assign a function within EdgeR library called <code>filterByExpr()</code> to a keyword <code>keep</code> for ease of use.</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>keep &lt;-<span class="st"> </span><span class="kw">filterByExpr</span>(y)</span></code></pre></div>
+<ul>
+<li>Let the filtering proceed. We</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>yfilt &lt;-<span class="st"> </span>y[keep, , keep.lib.sizes=<span class="ot">FALSE</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>yfilt</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>An object of class <span class="st">&quot;DGEList&quot;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a><span class="op">$</span>counts</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a>                   ERR188245 ERR188428 ERR188337 ERR188401 ERR188257 ERR188383 ERR204916 ERR188234 ERR188273 ERR188454 ERR188104 ERR188044</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a>NM_<span class="dv">001242640</span><span class="op">|</span>BRCC3       <span class="dv">520</span>       <span class="dv">313</span>       <span class="dv">737</span>       <span class="dv">737</span>       <span class="dv">614</span>       <span class="dv">304</span>       <span class="dv">312</span>       <span class="dv">574</span>        <span class="dv">83</span>       <span class="dv">358</span>       <span class="dv">495</span>       <span class="dv">401</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a>NM_<span class="dv">001356</span><span class="op">|</span>DDX3X          <span class="dv">203</span>       <span class="dv">336</span>       <span class="dv">312</span>       <span class="dv">312</span>       <span class="dv">239</span>        <span class="dv">37</span>       <span class="dv">129</span>       <span class="dv">432</span>        <span class="dv">44</span>        <span class="dv">32</span>       <span class="dv">879</span>       <span class="dv">102</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true"></a>NM_<span class="dv">000489</span><span class="op">|</span>ATRX          <span class="dv">1260</span>      <span class="dv">3278</span>      <span class="dv">3919</span>      <span class="dv">3919</span>      <span class="dv">4098</span>      <span class="dv">3632</span>      <span class="dv">4259</span>      <span class="dv">1946</span>      <span class="dv">1692</span>      <span class="dv">2501</span>      <span class="dv">5921</span>      <span class="dv">4909</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true"></a>NM_<span class="dv">000116</span><span class="op">|</span>TAZ            <span class="dv">207</span>       <span class="dv">282</span>       <span class="dv">562</span>       <span class="dv">562</span>       <span class="dv">286</span>       <span class="dv">389</span>       <span class="dv">468</span>       <span class="dv">598</span>       <span class="dv">130</span>       <span class="dv">263</span>       <span class="dv">430</span>       <span class="dv">432</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true"></a>NM_<span class="dv">016024</span><span class="op">|</span>RBMX2         <span class="dv">1072</span>      <span class="dv">1164</span>      <span class="dv">1849</span>      <span class="dv">1849</span>      <span class="dv">1356</span>      <span class="dv">1752</span>      <span class="dv">1430</span>      <span class="dv">1453</span>       <span class="dv">765</span>      <span class="dv">1292</span>      <span class="dv">1843</span>      <span class="dv">1626</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true"></a><span class="dv">640</span> more rows ...</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true"></a><span class="op">$</span>samples</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true"></a>          group lib.size norm.factors</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true"></a>ERR188245     <span class="dv">1</span>  <span class="dv">1348614</span>            <span class="dv">1</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true"></a>ERR188428     <span class="dv">1</span>  <span class="dv">1344673</span>            <span class="dv">1</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true"></a>ERR188337     <span class="dv">1</span>  <span class="dv">2098545</span>            <span class="dv">1</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true"></a>ERR188401     <span class="dv">2</span>  <span class="dv">2098545</span>            <span class="dv">1</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true"></a>ERR188257     <span class="dv">2</span>  <span class="dv">1501166</span>            <span class="dv">1</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true"></a><span class="dv">7</span> more rows ...</span></code></pre></div>
+<ul>
+<li><p>The filtering function as applied here only keeps those genes that have worthwhile counts in a minimum number of samples. This number of samples is computed from the factors we had created earlier. In our case, that number is <code>3</code> - the group size (3 replicates per condition).</p></li>
+<li><p>The <code>keep.lib.sizes=FALSE</code> option allows EdgeR to recalculate the library size (total number of reads in each sample) after such low count genes have been removed. The opposite of this would be setting this option to <code>TRUE</code> and may lead to discrepancies.</p></li>
+</ul>
+<p><br><br></p>
+<h2 id="normalize-expression-counts-across-samples">7. Normalize Expression Counts Across Samples</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>ynorm &lt;-<span class="st"> </span><span class="kw">calcNormFactors</span>(yfilt)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>ynorm<span class="op">$</span>samples</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a>          group lib.size norm.factors</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a>ERR188245     <span class="dv">1</span>  <span class="dv">1348614</span>    <span class="fl">0.9683824</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>ERR188428     <span class="dv">1</span>  <span class="dv">1344673</span>    <span class="fl">0.9242010</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a>ERR188337     <span class="dv">1</span>  <span class="dv">2098545</span>    <span class="fl">1.0695881</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a>ERR188401     <span class="dv">2</span>  <span class="dv">2098545</span>    <span class="fl">1.0695881</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a>ERR188257     <span class="dv">2</span>  <span class="dv">1501166</span>    <span class="fl">1.0594384</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a>ERR188383     <span class="dv">2</span>  <span class="dv">1530767</span>    <span class="fl">1.0352421</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a>ERR204916     <span class="dv">3</span>  <span class="dv">1697815</span>    <span class="fl">1.0025118</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true"></a>ERR188234     <span class="dv">3</span>  <span class="dv">2419080</span>    <span class="fl">0.9015856</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a>ERR188273     <span class="dv">3</span>   <span class="dv">917517</span>    <span class="fl">0.9375173</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true"></a>ERR188454     <span class="dv">4</span>  <span class="dv">1600884</span>    <span class="fl">1.0658455</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true"></a>ERR188104     <span class="dv">4</span>  <span class="dv">1988270</span>    <span class="fl">1.0055686</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true"></a>ERR188044     <span class="dv">4</span>  <span class="dv">2063117</span>    <span class="fl">0.9805151</span></span></code></pre></div>
 <p><br><br><br><br> <br><br><br><br> <br><br><br><br> <br><br><br><br></p>
 </body>
 </html>
