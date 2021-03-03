@@ -100,8 +100,16 @@
 <li><p><a href="#estimate-dispersion">8. Estimate Dispersion</a></p></li>
 <li><p><a href="#pairwise-comparison-between-experimental-conditions">9. Pairwise Comparison Between Experimental Conditions</a></p>
 <ul>
-<li><a href="#gbr-female-vs-gbr-male">9.1 GBR Female vs GBR Male</a></li>
+<li><p><a href="#gbr-female-vs-gbr-male">9.1 GBR Female vs GBR Male</a></p></li>
+<li><p><a href="#gbr-female-vs-yri-female">9.2 GBR Female vs YRI Female</a></p></li>
+<li><p><a href="#gbr-male-vs-yri-female">9.3 GBR Male vs YRI Female</a></p></li>
+<li><p><a href="#gbr-male-vs-yri-male">9.4 GBR Male vs YRI Male</a></p></li>
+<li><p><a href="#gbr-female-vs-yri-male">9.5 GBR Female vs YRI Male</a></p></li>
+<li><p><a href="#yri-female-vs-yri-male">9.6 YRI Female vs YRI Male</a></p></li>
 </ul></li>
+<li><p><a href="#subset-all-comparisons-for-the-7-significant-de-genes">10. Subset All Comparisons for the 7 Significant DE Genes</a></p></li>
+<li><p><a href="#make-a-heatmap-of-logfc">11. Make A Heatmap of logFC</a></p></li>
+<li><p><a href="#homework">12. Homework</a></p></li>
 </ul>
 <p><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br></p>
 <h2 id="typical-rnaseq-analysis-pipeline">1. Typical RNAseq Analysis Pipeline</h2>
@@ -517,6 +525,131 @@
 <ul>
 <li>That’s shocking. One one significant gene: <code>NR_003255|TSIX</code>. Let’s do one more pairwise comparison.</li>
 </ul>
+<p><br></p>
+<h3 id="gbr-female-vs-yri-female">9.2 GBR Female vs YRI Female</h3>
+<ul>
+<li>These would be for groups 1 and 3.</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>GBRF_YRIF &lt;-<span class="st"> </span><span class="kw">exactTest</span>(ydisp, <span class="dt">pair=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a>GBRF_YRIF</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a>GBRF_YRIF_FDR &lt;-<span class="st"> </span><span class="kw">topTags</span>(GBRF_YRIF, <span class="dt">n=</span><span class="ot">Inf</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="kw">sum</span>(GBRF_YRIF_FDR<span class="op">$</span>table<span class="op">$</span>FDR <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">0</span></span></code></pre></div>
+<ul>
+<li>It seems that there are no significant DE genes in this pair either. This may indicate problems with the analysis upstream of what we have done today. Just to be sure, let’s try one more pair.</li>
+</ul>
+<p><br></p>
+<h3 id="gbr-male-vs-yri-female">9.3 GBR Male vs YRI Female</h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a>GBRM_YRIF &lt;-<span class="st"> </span><span class="kw">exactTest</span>(ydisp, <span class="dt">pair=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a>GBRM_YRIF</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a>GBRM_YRIF_FDR &lt;-<span class="st"> </span><span class="kw">topTags</span>(GBRM_YRIF, <span class="dt">n=</span><span class="ot">Inf</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a><span class="kw">sum</span>(GBRM_YRIF_FDR<span class="op">$</span>table<span class="op">$</span>FDR <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div>
+<ul>
+<li>There are six genes in this comparison that are significant. What are they?</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="kw">subset</span>(GBRM_YRIF_FDR<span class="op">$</span>table, FDR <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>                       logFC    logCPM       PValue         FDR</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a>NR_<span class="dv">003255</span><span class="op">|</span>TSIX      <span class="fl">6.274395</span>  <span class="fl">8.731971</span> <span class="fl">4.195616e-06</span> <span class="fl">0.002706173</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a>NR_<span class="dv">026595</span><span class="op">|</span>FAM226A   <span class="fl">2.404004</span>  <span class="fl">4.684012</span> <span class="fl">2.161911e-05</span> <span class="fl">0.004897595</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a>NM_<span class="dv">004187</span><span class="op">|</span>KDM5C     <span class="fl">1.232794</span> <span class="fl">10.926060</span> <span class="fl">2.277951e-05</span> <span class="fl">0.004897595</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a>NM_<span class="dv">001306145</span><span class="op">|</span>MTMR1 <span class="fl">-3.476830</span>  <span class="fl">4.682143</span> <span class="fl">5.607137e-05</span> <span class="fl">0.009041509</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true"></a>NM_<span class="dv">018390</span><span class="op">|</span>PLCXD1    <span class="fl">1.486596</span> <span class="fl">11.132709</span> <span class="fl">1.025941e-04</span> <span class="fl">0.013234645</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true"></a>NR_<span class="dv">109776</span><span class="op">|</span>ARHGAP6   <span class="fl">2.798704</span>  <span class="fl">2.504785</span> <span class="fl">1.807483e-04</span> <span class="fl">0.019430437</span></span></code></pre></div>
+<p><br></p>
+<h3 id="gbr-male-vs-yri-male">9.4 GBR Male vs YRI Male</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a>GBRM_YRIM &lt;-<span class="st"> </span><span class="kw">exactTest</span>(ydisp, <span class="dt">pair=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a>GBRM_YRIM</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a>GBRM_YRIM_FDR &lt;-<span class="st"> </span><span class="kw">topTags</span>(GBRM_YRIM, <span class="dt">n=</span><span class="ot">Inf</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a><span class="kw">sum</span>(GBRM_YRIM_FDR<span class="op">$</span>table<span class="op">$</span>FDR <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">0</span></span></code></pre></div>
+<p><br></p>
+<h3 id="gbr-female-vs-yri-male">9.5 GBR Female vs YRI Male</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a>GBRF_YRIM &lt;-<span class="st"> </span><span class="kw">exactTest</span>(ydisp, <span class="dt">pair=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true"></a>GBRF_YRIM</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a>GBRF_YRIM_FDR &lt;-<span class="st"> </span><span class="kw">topTags</span>(GBRF_YRIM, <span class="dt">n=</span><span class="ot">Inf</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a><span class="kw">sum</span>(GBRF_YRIM_FDR<span class="op">$</span>table<span class="op">$</span>FDR <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">0</span></span></code></pre></div>
+<p><br></p>
+<h3 id="yri-female-vs-yri-male">9.6 YRI Female vs YRI Male</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a>YRIF_YRIM &lt;-<span class="st"> </span><span class="kw">exactTest</span>(ydisp, <span class="dt">pair=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a>YRIF_YRIM</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a>YRIF_YRIM_FDR &lt;-<span class="st"> </span><span class="kw">topTags</span>(YRIF_YRIM, <span class="dt">n=</span><span class="ot">Inf</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true"></a><span class="kw">sum</span>(YRIF_YRIM_FDR<span class="op">$</span>table<span class="op">$</span>FDR <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true"></a>[<span class="dv">1</span>] <span class="dv">0</span></span></code></pre></div>
+<p><br><br></p>
+<h2 id="subset-all-comparisons-for-the-6-significant-de-genes">10. Subset All Comparisons for the 6 Significant DE Genes</h2>
+<ul>
+<li>First create a simple vector containing names of those 6 genes.</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true"></a>genes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NR_003255|TSIX&quot;</span>, <span class="st">&quot;NR_026595|FAM226A&quot;</span>, <span class="st">&quot;NM_004187|KDM5C&quot;</span>,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true"></a><span class="st">&quot;NM_001306145|MTMR1&quot;</span>, <span class="st">&quot;NM_018390|PLCXD1&quot;</span>, <span class="st">&quot;NR_109776|ARHGAP6&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a>sub1 &lt;-<span class="st"> </span><span class="kw">subset</span>(GBR_MF_FDR<span class="op">$</span>table, <span class="kw">rownames</span>(GBR_MF_FDR<span class="op">$</span>table) <span class="op">%in%</span><span class="st"> </span>genes)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a>sub2 &lt;-<span class="st"> </span><span class="kw">subset</span>(GBRF_YRIF_FDR<span class="op">$</span>table, <span class="kw">rownames</span>(GBRF_YRIF_FDR<span class="op">$</span>table) <span class="op">%in%</span><span class="st"> </span>genes)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a>sub3 &lt;-<span class="st"> </span><span class="kw">subset</span>(GBRM_YRIF_FDR<span class="op">$</span>table, <span class="kw">rownames</span>(GBRM_YRIF_FDR<span class="op">$</span>table) <span class="op">%in%</span><span class="st"> </span>genes)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true"></a>sub4 &lt;-<span class="st"> </span><span class="kw">subset</span>(GBRM_YRIM_FDR<span class="op">$</span>table, <span class="kw">rownames</span>(GBRM_YRIM_FDR<span class="op">$</span>table) <span class="op">%in%</span><span class="st"> </span>genes)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true"></a>sub5 &lt;-<span class="st"> </span><span class="kw">subset</span>(GBRF_YRIM_FDR<span class="op">$</span>table, <span class="kw">rownames</span>(GBRF_YRIM_FDR<span class="op">$</span>table) <span class="op">%in%</span><span class="st"> </span>genes)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true"></a>sub6 &lt;-<span class="st"> </span><span class="kw">subset</span>(YRIF_YRIM_FDR<span class="op">$</span>table, <span class="kw">rownames</span>(YRIF_YRIM_FDR<span class="op">$</span>table) <span class="op">%in%</span><span class="st"> </span>genes)</span></code></pre></div>
+<ul>
+<li>Second, extract the logFC column from each and put into a single data frame.</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a>logFC &lt;-<span class="st"> </span><span class="kw">data.frame</span>(sub1<span class="op">$</span>logFC, sub2<span class="op">$</span>logFC, sub3<span class="op">$</span>logFC, sub4<span class="op">$</span>logFC, sub5<span class="op">$</span>logFC, sub6<span class="op">$</span>logFC)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true"></a><span class="kw">rownames</span>(logFC) &lt;-<span class="st"> </span>genes</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true"></a>logFC</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true"></a>                   sub1.logFC sub2.logFC sub3.logFC sub4.logFC sub5.logFC sub6.logFC</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true"></a>NR_<span class="dv">003255</span><span class="op">|</span>TSIX     <span class="fl">-5.3282667</span> <span class="fl">-3.0164320</span>   <span class="fl">6.274395</span>  <span class="fl">2.5758704</span>  <span class="fl">2.5758704</span>  <span class="fl">2.5758704</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true"></a>NR_<span class="dv">026595</span><span class="op">|</span>FAM226A  <span class="fl">-0.6818842</span>  <span class="fl">2.1898706</span>   <span class="fl">2.404004</span>  <span class="fl">1.1532322</span>  <span class="fl">1.1532322</span>  <span class="fl">1.1532322</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true"></a>NM_<span class="dv">004187</span><span class="op">|</span>KDM5C    <span class="fl">-0.5414571</span>  <span class="fl">1.5945215</span>   <span class="fl">1.232794</span>  <span class="fl">1.3553918</span>  <span class="fl">1.3553918</span>  <span class="fl">1.3553918</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true"></a>NM_<span class="dv">001306145</span><span class="op">|</span>MTMR1 <span class="fl">-0.8092117</span>  <span class="fl">0.9451367</span>  <span class="fl">-3.476830</span> <span class="fl">-1.7765739</span> <span class="fl">-1.7765739</span> <span class="fl">-1.7765739</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true"></a>NM_<span class="dv">018390</span><span class="op">|</span>PLCXD1    <span class="fl">0.4589596</span>  <span class="fl">0.5509091</span>   <span class="fl">1.486596</span>  <span class="fl">0.5849666</span>  <span class="fl">0.5849666</span>  <span class="fl">0.5849666</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true"></a>NR_<span class="dv">109776</span><span class="op">|</span>ARHGAP6  <span class="fl">-0.6058542</span>  <span class="fl">0.9461587</span>   <span class="fl">2.798704</span>  <span class="fl">0.4847461</span>  <span class="fl">0.4847461</span>  <span class="fl">0.4847461</span></span></code></pre></div>
+<p><br><br></p>
+<h2 id="make-a-heatmap-of-logfc">11. Make A Heatmap of logFC</h2>
+<ul>
+<li>Convert logFC data frame to a matrix</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a>logFCm &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(logFC)</span></code></pre></div>
+<ul>
+<li>Draw a heat map</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true"></a><span class="kw">pdf</span>(<span class="st">&quot;heatmap_chrX.pdf&quot;</span>, <span class="dt">width=</span><span class="dv">10</span>, <span class="dt">height=</span><span class="dv">10</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true"></a><span class="kw">heatmap</span>(logFCm)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<center>
+<img src="heatmap_chrX.png" width=500>
+</center>
+<p><br><br></p>
+<h2 id="homework">12. Homework</h2>
+<ol type="1">
+<li><p>Make a Github repository named <code>rnaseq_chrX</code></p></li>
+<li><p>Recreate the heat map figure using <code>heatmap.2()</code> function in R</p></li>
+<li><p>Write a short paragraph explaining what this heat map is showing or not showing</p></li>
+<li><p>Create a new markdown file with this paragraph and the heatmap figure.</p></li>
+<li><p>Push it to your GitHub repository</p></li>
+<li><p>Post GitHub repo URL to #livecoding channel on Slack</p></li>
+</ol>
 <p><br><br><br><br> <br><br><br><br> <br><br><br><br> <br><br><br><br></p>
 </body>
 </html>

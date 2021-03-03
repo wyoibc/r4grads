@@ -34,14 +34,22 @@ The data set itself can be downloaded here (**but you do not need to**):
 - [9. Pairwise Comparison Between Experimental Conditions](#pairwise-comparison-between-experimental-conditions)
 
 	- [9.1 GBR Female vs GBR Male](#gbr-female-vs-gbr-male)
+	
+	- [9.2 GBR Female vs YRI Female](#gbr-female-vs-yri-female)
+	
+	- [9.3 GBR Male vs YRI Female](#gbr-male-vs-yri-female)
 
+	- [9.4 GBR Male vs YRI Male](#gbr-male-vs-yri-male)
 
+	- [9.5 GBR Female vs YRI Male](#gbr-female-vs-yri-male)
 
+	- [9.6 YRI Female vs YRI Male](#yri-female-vs-yri-male)
 
+- [10. Subset All Comparisons for the 7 Significant DE Genes](#subset-all-comparisons-for-the-7-significant-de-genes)
 
+- [11. Make A Heatmap of logFC](#make-a-heatmap-of-logfc)
 
-
-
+- [12. Homework](#homework)
 
 
 
@@ -641,11 +649,201 @@ sum(GBR_MF_FDR$table$FDR <= 0.05)
   more pairwise comparison.
 
 
+<br>
+
+### 9.2 GBR Female vs YRI Female
+
+- These would be for groups 1 and 3.
 
 
+```r
+GBRF_YRIF <- exactTest(ydisp, pair=c(1,3))
+
+GBRF_YRIF
+```
+
+```r
+GBRF_YRIF_FDR <- topTags(GBRF_YRIF, n=Inf)
+
+sum(GBRF_YRIF_FDR$table$FDR <= 0.05)
+
+[1] 0
+```
+
+- It seems that there are no significant DE genes in this pair either. This may
+  indicate problems with the analysis upstream of what we have done today. Just
+to be sure, let's try one more pair.
+
+<br>
+
+### 9.3 GBR Male vs YRI Female
+
+```r
+GBRM_YRIF <- exactTest(ydisp, pair=c(2,3))
+
+GBRM_YRIF
+```
+
+```r
+GBRM_YRIF_FDR <- topTags(GBRM_YRIF, n=Inf)
+
+sum(GBRM_YRIF_FDR$table$FDR <= 0.05)
+
+[1] 6
+```
+
+- There are six genes in this comparison that are significant.  What are they?
+
+```r
+subset(GBRM_YRIF_FDR$table, FDR <= 0.05)
+
+                       logFC    logCPM       PValue         FDR
+NR_003255|TSIX      6.274395  8.731971 4.195616e-06 0.002706173
+NR_026595|FAM226A   2.404004  4.684012 2.161911e-05 0.004897595
+NM_004187|KDM5C     1.232794 10.926060 2.277951e-05 0.004897595
+NM_001306145|MTMR1 -3.476830  4.682143 5.607137e-05 0.009041509
+NM_018390|PLCXD1    1.486596 11.132709 1.025941e-04 0.013234645
+NR_109776|ARHGAP6   2.798704  2.504785 1.807483e-04 0.019430437
+```
+
+<br>
+
+### 9.4 GBR Male vs YRI Male
+
+```r
+GBRM_YRIM <- exactTest(ydisp, pair=c(2,4))
+
+GBRM_YRIM
+```
+
+```r
+GBRM_YRIM_FDR <- topTags(GBRM_YRIM, n=Inf)
+
+sum(GBRM_YRIM_FDR$table$FDR <= 0.05)
+
+[1] 0
+```
 
 
+<br>
 
+### 9.5 GBR Female vs YRI Male
+
+
+```r
+GBRF_YRIM <- exactTest(ydisp, pair=c(2,4))
+
+GBRF_YRIM
+```
+
+```r
+GBRF_YRIM_FDR <- topTags(GBRF_YRIM, n=Inf)
+
+sum(GBRF_YRIM_FDR$table$FDR <= 0.05)
+
+[1] 0
+```
+
+<br>
+
+### 9.6 YRI Female vs YRI Male
+
+```r
+YRIF_YRIM <- exactTest(ydisp, pair=c(2,4))
+
+YRIF_YRIM
+```
+
+```r
+YRIF_YRIM_FDR <- topTags(YRIF_YRIM, n=Inf)
+
+sum(YRIF_YRIM_FDR$table$FDR <= 0.05)
+
+[1] 0
+```
+
+<br><br>
+
+## 10. Subset All Comparisons for the 6 Significant DE Genes
+
+- First create a simple vector containing names of those 6 genes.
+
+```r
+genes <- c("NR_003255|TSIX", "NR_026595|FAM226A", "NM_004187|KDM5C",
+"NM_001306145|MTMR1", "NM_018390|PLCXD1", "NR_109776|ARHGAP6")
+```
+
+```r
+sub1 <- subset(GBR_MF_FDR$table, rownames(GBR_MF_FDR$table) %in% genes)
+sub2 <- subset(GBRF_YRIF_FDR$table, rownames(GBRF_YRIF_FDR$table) %in% genes)
+sub3 <- subset(GBRM_YRIF_FDR$table, rownames(GBRM_YRIF_FDR$table) %in% genes)
+sub4 <- subset(GBRM_YRIM_FDR$table, rownames(GBRM_YRIM_FDR$table) %in% genes)
+sub5 <- subset(GBRF_YRIM_FDR$table, rownames(GBRF_YRIM_FDR$table) %in% genes)
+sub6 <- subset(YRIF_YRIM_FDR$table, rownames(YRIF_YRIM_FDR$table) %in% genes)
+```
+
+- Second, extract the logFC column from each and put into a single data frame.
+
+```r
+logFC <- data.frame(sub1$logFC, sub2$logFC, sub3$logFC, sub4$logFC, sub5$logFC, sub6$logFC)
+
+rownames(logFC) <- genes
+
+logFC
+                   sub1.logFC sub2.logFC sub3.logFC sub4.logFC sub5.logFC sub6.logFC
+NR_003255|TSIX     -5.3282667 -3.0164320   6.274395  2.5758704  2.5758704  2.5758704
+NR_026595|FAM226A  -0.6818842  2.1898706   2.404004  1.1532322  1.1532322  1.1532322
+NM_004187|KDM5C    -0.5414571  1.5945215   1.232794  1.3553918  1.3553918  1.3553918
+NM_001306145|MTMR1 -0.8092117  0.9451367  -3.476830 -1.7765739 -1.7765739 -1.7765739
+NM_018390|PLCXD1    0.4589596  0.5509091   1.486596  0.5849666  0.5849666  0.5849666
+NR_109776|ARHGAP6  -0.6058542  0.9461587   2.798704  0.4847461  0.4847461  0.4847461
+
+```
+
+<br><br>
+
+## 11. Make A Heatmap of logFC
+
+- Convert logFC data frame to a matrix
+
+```r
+logFCm <- as.matrix(logFC)
+```
+
+- Draw a heat map
+
+```r
+par(mar=c(5,4,4,4), oma=c(6,5,5,5))
+
+pdf("heatmap_chrX.pdf", width=10, height=10)
+
+heatmap(logFCm)
+
+dev.off()
+
+```
+
+<center>
+<img src="heatmap_chrX.png" width=500>
+</center>
+
+
+<br><br>
+
+## 12. Homework
+
+1. Make a Github repository named ``rnaseq_chrX``
+
+2. Recreate the heat map figure using ``heatmap.2()`` function in R
+
+3. Write a short paragraph explaining what this heat map is showing or not
+showing
+
+4. Create a new markdown file with this paragraph and the heatmap figure.
+
+5. Push it to your GitHub repository
+
+6. Post GitHub repo URL to #livecoding channel on Slack
 
 
 
