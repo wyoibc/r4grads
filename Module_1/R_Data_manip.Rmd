@@ -1,0 +1,211 @@
+---
+title: "R data manipulation"
+author: "Sean Harrington"
+date: "2/3/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = '~/r4grads')
+
+```
+
+### Reading in the data
+
+We will explore some basic data manipulation, including reading, filtering, and transforming. This will all be taking place in R.
+
+Start by setting out working drirectory. We will also create an object with the path to our data directory.
+
+```{r, eval = FALSE}
+setwd("~/r4grads")
+```
+
+We will also create an object with the path to our data directory.
+```{r}
+data_dir <- "~/r4grads/Fish_data/Modified/"
+```
+
+
+Then read in the data. Here, we have the data in two separate csv files for different data pertaining to some fish. One file is body size data with some information about sampling and the species, and the other file contains stable isotope data. Note that we're using `paste0()` inside `read.csv()` to paste our path to the data together with the specific data file names
+
+```{r}
+body <- read.csv(paste0(data_dir, "/", "Fish_body_size.csv"))
+iso <- read.csv(paste0(data_dir, "/","Fish_isotopes.csv"))
+```
+
+
+Let's take a quick look at the top few rows of each dataset.
+
+
+```{r}
+head(body)
+head(iso)
+```
+
+We can also look at the bottom few rows.
+```{r}
+tail(body)
+```
+
+See how many rows and columns are in each dataframe:
+
+```{r}
+dim(body)
+dim(iso)
+```
+
+
+Let's take a look at what species are included and how many samples we have of each species.
+
+```{r}
+unique(body$Species)
+
+summary(as.factor(body$Species))
+```
+
+
+
+### Fixing spelling
+Looking at either of those last outputs, you should notice that we have some misspellings. In some cases, "Coho" was written in all capital letters, and because R is case sensitive (as are most other coding languages), these are interpreted as different species, but they should not be. We also have "Dolly Varden" abbreviated down to just "Dolly" in one case, and a misspelling of "Steelhead" as "Steelhesd". We will want to correct these before we move forward with any further data processing.
+
+There are a few ways to do this. One is by using an indexing approach to identify all of the elements of the objects that contain the values we want to replace, and replacing them with the values we want.
+
+Let's build this out:
+
+We'll start by identifying which elements of the "Species" column of `body` contains `"COHO"`
+```{r, eval=FALSE}
+body$Species=="COHO"
+```
+
+You should see a long list of TRUE/FALSE values corresponding to whether each element is (TRUE) or is not (FALSE) "COHO". We can then use this to select out only the TRUE elements of `body$Species`:
+
+```{r, eval=FALSE}
+body$Species[body$Species=="COHO"]
+```
+
+
+And finally, using that indexing to identify the incorrect entries, we can replace them with "Coho":
+```{r}
+body$Species[body$Species=="COHO"] <- "Coho"
+```
+
+
+But there are also much faster ways to do this. The function `gsub()` will search for all occurrences of its first argument and replace them with its second argument in the object specified in the third argument:
+
+```{r}
+body$Species <- gsub("Dolly", "Dolly varden", body$Species)
+body$Species <- gsub("Steelhesd", "Steelhead", body$Species)
+```
+
+
+If we take a look at the data again, we should see that these errors have been corrected:
+
+```{r}
+unique(body$Species)
+summary(as.factor(body$Species))
+```
+
+
+We should also know how many species we sampled, and we can check how many are in this dataset:
+
+```{r}
+length(unique(body$Species))
+```
+
+We also have a similar error in `body$Site` that we'll fix real quick:
+```{r}
+body$Site <- gsub("RT02-R", "RT02R", body$Site)
+sort(unique(body$Site))
+```
+
+These look pretty good now. Note that misspellings like these are relatively easy to catch, but incorrect numerical values can be much harder. Those errors will typically require plotting of the data to identify obviously incorrect values, which we'll cover later on. 
+
+
+
+### Merging the data
+
+Before we continue on, we'd like to have all of our data in a sinle object. This is simpler to keep track of and also allows us to apply filters and manipulations to the entire dataset at once, rather than needing to modify each object individually.
+
+When merging, datasets may not include the same exact samples or samples may be in different orders, so we can't just stick the columns all together. If we look at the dimensions of our two dataframes again, we'll notice that they have different numbers of rows, indicating that at least one sample is one set but not the other.
+
+We can check for `Fish.code` elements that are in the body size data but not the isotope data:
+
+```{r}
+which(!body$Fish.code %in% iso$Fish.code)
+```
+
+the `%in%` operator checks for occurrences of the preceding object in the following object, and returns a vector of TRUE?FALSE. The `!` at the beginning reverses TRUE/FALSE, so that TRUE instead corresponds to elements of `body$Fish.code` that are NOT in `iso$Fish.code`, and the `which()` gives us the numeric indices of the elements of the TRUE/FALSE vector that are true. The result is that the numbers this spits out are the indices of `body$Fish.code` that are NOT in `iso$Fish.code`.
+
+We can use this as an index to get the actual values of `body$Fish.code` that are not shared by `iso$Fish.code`:
+
+```{r}
+body$Fish.code[which(!body$Fish.code %in% iso$Fish.code)]
+```
+
+and we can run the same check in reverse order to see values of `iso$Fish.code` not in `body$Fish.code`:
+
+```{r}
+iso$Fish.code[which(!iso$Fish.code %in% body$Fish.code)]
+```
+
+
+We can see that we have a total of 9 samples that are present in one of the datasets, but not the other. We can identify which fish are in both datasets:
+
+```{r}
+in_both <- intersect(iso$Fish.code, body$Fish.code)
+```
+
+```{r, eval=FALSE}
+in_both
+```
+
+Then we can use that to subset both of the datasets to only these samples, both in the same row order:
+
+```{r}
+iso_red <- iso[iso$Fish.code %in% in_both, ]
+body_red <- body[body$Fish.code %in% in_both, ]
+dim(iso_red)
+dim(body_red)
+```
+
+Both of these objects now have the same number of rows, and we know that they are in the same row order because we indexed them both from the same object in the same way. We can now simply bind these columns together:
+
+```{r}
+all_data1 <- cbind(body_red, iso_red)
+head(all_data1)
+```
+
+
+
+This leaves us with two "Fish.code" columns, however, so we can can use the numeric index of the second of these to drop out the column that we don't need:
+
+```{r}
+all_data2 <- all_data1[,-7]
+head(all_data2)
+dim(all_data2)
+```
+
+This looks better. This is a fairly long and tedious way of combining dataframes, though. We can actually achieve all of this with a single function:
+
+```{r}
+all_data <- merge(body, iso)
+head(all_data)
+dim(all_data)
+```
+
+This has the same dimensions as the way that did this above using indexing and `cbind`. Looks good. Before we continue on, let's write this to a csv file. Then we can easily read this cleaned and merged data into R or another program anytime we want without having to repeat these steps:
+
+```{r}
+write.csv(all_data, "fish_data_merged.csv")
+```
+
+
+
+### Other stuff to still do: more demos of subsetting/filtering
+
+
+
+
+
+
