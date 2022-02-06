@@ -2,11 +2,33 @@
 title: r4grads - Data Analysis & Publishing in R
 ---
 
-### Part of MOLB5700 - Beyond the Bench: Fundamental Skills for Biomedical Researchers
+**Part of MOLB5700 - Beyond the Bench: Fundamental Skills for Biomedical Researchers**
 
-### [Vikram E. Chhatre](mailto:vchhatre@uwyo.edu), [Sean Harrington](mailto:sharrin2@uwyo.edu) and [Braveen Joseph](mailto:bjoseph3@uwyo.edu)
+
+### Wyoming Instructors
+- [Vikram E. Chhatre](mailto:vchhatre@uwyo.edu), 
+- [Sean Harrington](mailto:sharrin2@uwyo.edu) and
+- [Braveen Joseph](mailto:bjoseph3@uwyo.edu)
+
+
+### Idaho Instructor
+
+- [Barrie Robinson](mailto:brobinson@uidaho.edu)
+
 
 <br><br>
+
+
+## Class Location Information
+
+The class will meet in Agriculture Building Room 316 between 9AM and 12PM MDT on following dates:
+
+- February 9
+- February 16
+- February 23
+
+<br><br>
+
 
 ## COVID-19 Information
 
