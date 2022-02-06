@@ -1,0 +1,262 @@
+---
+title: "HasturBasics"
+author: "Barrie Robison"
+date: "2/3/2022"
+output: html_document
+---
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+Let's use this document to explore some of the ways r and r markdown can help you do your research more quickly, more accurately, and more repeatably...
+
+Is repeatably a word? Anyway... Literate programming should become your "go-to" method for your work, from data management to writing papers and presentations...
+
+## A big data set
+
+In the Hastur directory you should find about 18 .csv files with weird names. They are pretty big files (\~7.5 Mb), each containing roughly 122768 rows and 89 columns. This kind of data set is pretty typical these days, especially in certain fields (simulation studies, genomics and bioinformatics, geospatial data, and forecasting with things like climate projectsions, etc.)
+
+In this case, the data come from an evolutionary video game we published a couple years ago. You can check it out here:
+
+<https://store.steampowered.com/app/800700/Project_Hastur/>
+
+Don't buy it though. We have tons of Steam keys and we are about to make it a free download.
+
+We claim that Project Hastur is an evolutionary tower defense game in which the enemies adapt to how you set up your defenses. Let's use r to do a simple test of that claim.
+
+## Learning Objectives
+
+Here is what I'm hoping you get out of this exercise:
+
+1.  Learn how to ingest, combine, modify, and work with multiple large data files.
+2.  Learn how to conduct basic exploratory analyses.
+3.  Learn how to create simple figures.
+4.  Learn how to conduct simple statistical tests.
+
+## Project Hastur - A brief summary (optional reading)
+
+Project Hastur is a tower defense video game developed by students in the Polymorphic Games studio at the University of Idaho. The game features a campaign of 16 original game maps, as well as an experiment mode that allows the game to serve as a simulation model. Project Hastur was released on the Steam game site on Feb 12th, 2019. The unique feature of Project Hastur is that the enemies in the game model a finite population defined by digital genomes of quantitative traits.
+
+In Project Hastur, the player must defend their base against waves of enemies called the Protean Swarm. The player defends their base by placing defensive towers in strategic locations, and the towers each have different capabilities, strengths, and weaknesses. In campaign mode, the player unlocks new game maps and defensive capabilities as they proceed through the story. Each map is defined by victory conditions that involve defeating a set number of enemy generations or building their defenses to specific criteria. Enemies appear in "waves", a classic trope of tower defense games in which the developers script the number and type of enemies that appear over the course of the level. In Project Hastur, however, the enemy waves are part of a generational evolutionary model - each new enemy wave is comprised of the offspring of the most successful parents in the previous wave. In this way, we programmed Project Hastur to become an evolutionary tower defense game in which the enemy population adapts as the game proceeds.
+
+The defensive capabilities of the player include four different categories of tower with qualitative differences in how they interact with the physics engine of the game. These include kinetic, ice, flame, and acid based towers, with each category including 4 different versions of upgrades. In addition, the player can access and upgrade two different abilities that are activated on demand with a cooldown - robotic minions and airstrikes.
+
+### Evolutionary Model
+
+Each individual in the enemy population is defined by a digital genome of real numbers. There are 80 genes in the genome. Each Protean is diploid, such that its final trait value is calculated as the sum of the genetic values for the given locus on each chromosome. While all of these genes are used by the game engine to render a wide variety of visually distinct game enemies, some of the genes also affect Protean traits that are relevant to game play.
+
+#### Variation
+
+When the game begins, Protean trait values are instantiated using preset starting values with some variation drawn from a Gaussian distribution. This creates the standing genetic variation in the population upon which selection will act. When offspring are created (described below), additional mutational variance is introduced. In campaign mode, the *per locus* mutation rate and effect size vary depending on the map's degree of difficulty - more mutational variance causes the game to become much more difficult. In experiment mode, mutation rate and effect size are determined by the user. Mutation rate (*u*) is defined as the per locus probability that the genetic value of the locus will be changed by a number drawn from a Gaussian distribution with mean zero and standard deviation defined by the variable Mutation Effect Size (*e*).
+
+#### Inheritance
+
+Each "wave" of Proteans in Project Hastur is a discrete generation of enemies created from the previous generation using a tournament selection algorithm. Proteans that are selected as parents (see Tournament Selection, below for the algorithm) each contribute one of their chromosomes, determined randomly, for each locus. Project Hastur uses a free recombination model (each locus acts as its own chromosome), but the game can specify a customized matrix of recombination frequencies among loci if the user desires. The chromosomes passed to the offspring are each passed to the mutation algorithm, and each locus has a chance (specified by *u*) to receive a mutation. Once the new offspring's genome is instantiated, it is passed to the population for the next generation. Project Hastur records the unique ID numbers for each parent of every Protean. Proteans reproduce sexually, but are encoded as hermaphrodites.
+
+On game maps that contain human civilians, Proteans can also reproduce using an asexual model. In this case, if a Protean kills a human the Protean clones itself. This cloning process produces an offspring that is genetically identical to its parent during the gameplay phase (rather than waiting until the end of the wave). The number of clones produced by this process depends on the parent's size (Collider Surface Area). Smaller Proteans produce more clones than larger Proteans.
+
+#### Selection
+
+Project Hastur specifies two fitness functions that determine the probability that Proteans will be selected to reproduce at the end of each generation. The first Fitness Function, called BASE FITNESS is related to the player's base. This is a number that specifies the closest distance to the player base that was achieved by a given Protean. Should the Protean reach the base (a distance of zero), then BASE FITNESS includes the DAMAGE the Protean does to the base. Lower BASE FITNESS values increase the probability of reproduction when the wave ends. TOWER DAMAGE is the other fitness function used to calculate whether an individual will reproduce. In this case, the game sums the total DAMAGE done by the Protean to any defensive structure. TOTAL FITNESS is calculated by subtracting TOWER DAMAGE from BASE FITNESS.
+
+At the end of each generation, we use tournament selection to identify individuals that will serve as parents. To do this, the game randomly selects a sample of Proteans from the previous generation. The number of individuals in this sample is a controllable parameter in experiment mode called TOURNAMENT SIZE. The individual with the best (lowest) value for TOTAL FITNESS is selected as a parent. A new tournament is then conducted to select the mate. Reproduction then occurs as described above and a single offspring is passed to the population for the next generation. This process is repeated until the population in the next generation has a number of individuals in it equal to POPULATION SIZE.
+
+#### Time
+
+Over the course of each wave (defined in terms of generations), the Proteans with the trait values that best enable them to navigate the map, damage player defenses, and reach the player base will accrue the best values for fitness. Each generation the most fit Proteans will produce the most offspring and the multivariate trait distribution of the population will change.
+
+## Experimental Design
+
+The data files represent replicate autonomous runs of Project Hastur using two different conditions. The first nine replicates "FSC1.csv ... FSC9.csv" use only "Autocannon" turrets. The second group of nine replicates "ISC1.csv ... ISC2.csv" use only "Ice Chipper" turrets. The formation and number of the turrets was identical and all game conditions and parameters were the same.
+
+The enemy creatures start with a certain amount of "Health". When Health reaches zero, they die.
+
+The Autocannon is a high rate of fire turret that deals damage using a ray-cast. The damage of this type of projectile is (we think) reduced by a trait called "Armor". The Ice Chipper operates quite differently. It fires a single high damage projectile at a set speed. The game uses the physics engine to determnie whether the projectile collides with an enemy and delivers damage. Presumably, the IceRes trait should reduce this damage.
+
+Each file contains the data for one entire replicate, in which the game was run for 50 generations. This means there is a fair amount of complexity in each data file - there are trait data for many individuals each of which occured in a single generation and may or may not have reproduced to create offspring in the next generation.
+
+Let's explore the data and test whether these two towers cause different evolutionary results!
+
+## 1. A Working Directory!
+
+I used this code chunk to establish a working directory where all my files are located and where outputs will be generated. Obviously, your working directory will be different than mine.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = '~/Documents/Teaching/Bio502')
+```
+
+## 2. Basic Data Structure
+
+Lets have a look at the data structure in one of our files. In this code chunk we read in a file, assign it to a data frame called onereplicate and then use the skimr package to quickly get a summary of what's in there.
+
+```{r}
+onereplicate<-read.csv("FSC1.csv", header = TRUE)
+library(skimr)
+skim(onereplicate)
+```
+
+This approach gives us a quick glimpse at the variables in the data set, and helps us understand what might be necessary as we move towards analyses. However, this glimpse is far from the complete story for this file.
+
+## 2. Changes in traits over time
+
+In the case of this exercise, we know that there is a time series component to this experiment. The time component is encoded in the Variable called Generation. One common approach in exploratory data analyses is to use simple visualizations (usually plots) to understand simple relationships, identify outliers, and generally perform a 'sanity check' on your data.
+
+Let's use base r functionality to create a simple plot of the Health trait against Generation.  Note that I'm using some notation that specifies both the dataframe and the variable name (dataframe$variable) within the plot command, separated by a $ symbol.  This is kind of clumsy, but we'll fix that later.
+
+```{r}
+
+plot(onereplicate$Generation, onereplicate$Health)
+```
+Cool.  I guess?  I mean its a plot.  In this case, each point on this scatter plot represents a single individual alien.  It shows us the generation in which that alien existed and what its Health value was.
+
+What do we observe in terms of the pattern?  
+
+It looks like the Health of the aliens started out quite low, but at around Generatin 20 aliens with higher Health values started to appear.  By the end of this replicate (Generation 49) most of the aliens had Health values that were MUCH higher than at the beginning of the run.
+
+This plot is really ugly.  Let's add some additional parameters to the plot command to improve things a bit.  I'm going to set the point symbol (pch - see http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r), get rid of the frame, clean up the axis labels, and change the color (in this case using a hex code).
+
+```{r}
+
+plot(onereplicate$Generation, onereplicate$Health,
+     pch = 16, frame = FALSE,
+     xlab = "Generation", ylab = "Health", col = "#2E9FDF")
+```
+
+Base r plotting functions are pretty powerful and very flexible.  We can add lines of best fit, titles, etc...
+
+```{r}
+
+plot(onereplicate$Generation, onereplicate$Health, main = "Autocannon",
+     pch = 16, frame = FALSE,
+     xlab = "Generation", ylab = "Health", col = "#2E9FDF")
+lines(lowess(onereplicate$Generation, onereplicate$Health), col = "blue")
+
+```
+
+Now, lets demonstrate the flexibility of R!  What if we wanted to change the above plot to look at the relationship between a different trait and Generation? Pretty simple - just change one thing in the previous code chunk.  I changed all instances of the word "Health" to "Armor".  Still a bit clumsy, but again we'll streamline things later....
+
+```{r}
+
+plot(onereplicate$Generation, onereplicate$Armor, main = "Autocannon",
+     pch = 16, frame = FALSE,
+     xlab = "Generation", ylab = "Armor", col = "#2E9FDF")
+lines(lowess(onereplicate$Generation, onereplicate$Armor), col = "blue")
+
+```
+
+
+## 3. Reflect - Do these results make sense?
+
+Part of exploratory data analyses is making sure your data sets and analyses are correct and free of errors, artifacts, and other weirdness.  Do the patterns we observed make sense in the context of the experiment?  Are their weird outliers or issues of scale?  Missing data?  Extra data?
+
+It is often a good idea to start this process with components of your data that should have obvious and predictable patterns.  Two variables that you know should be highly correlated (height and weight in humans), the distribution of variables that are known from other sources (i.e. not new data you just collected), etc.  
+
+In our case, does it make sense that in the face of a relentless hailstorm of autocannon bullets the aliens end up with higher values of Health and Armor?
+
+## 4. Try some Exercises!
+
+Drop and give me 50 pushups!
+
+Good.  Also, see if you can modify our code to:
+
+1. Change the color of the data points to red. [easy!]
+2. Change the main title so that it contains the file name of the replicate. [probably more challenging!]
+3. Change the plot so that it is using a different replicate file. [probably more challenging!]
+4. Change the plot type entirely!  Try creating a histogram of the Health variable. [INSANE DIFFICULTY! ... not really ...]
+
+HINT.  The internet is a thing... http://www.sthda.com/english/wiki/histogram-and-density-plots-r-base-graphs
+
+## 5. A glimpse at other packages for plots and figures
+
+Base R is fine, but there are many R packages out there that make specific visualization tasks easier.  An example is the lattice package (you will have to install it).  Here we use a slightly different syntax to make the same(ish) plot as earlier.
+
+```{r}
+library("lattice")
+
+
+xyplot(Health ~ Generation , data = onereplicate,
+       type = c("p", "smooth"),
+       scales = "free")
+
+```
+
+Or how about the scatterplot function in the "car" package?  http://www.sthda.com/english/wiki/scatter-plots-r-base-graphs  Neat!
+
+```{r, echo = FALSE}
+#install.packages("car")
+
+
+library("car")
+scatterplot(Health ~ Generation, data = onereplicate)
+
+```
+
+## 6. Ingesting all the replicates into a single data frame.
+
+All that fun was just using one of the 18 data files.  Obviously, to test our hypothesis we want to use all the data and account for its structure.  This is where R really shines compared to say... spreadsheets.
+
+First, let's write some code that reads in all the .csv files in our working directory, extracts replicate metadata from the filename, and binds all the data together into one massive data frame!
+
+In this case, we will call our big data frame "all_the_data", because I'm bad at naming things.  We are adding the variables 'flie', 'Turret', 'Player', 'Strategy', and 'replicate' to the data file.  Each of these variables is encoded as a specific letter in the file name.  In this particular case, only the value of 'Turret' differs between replicates (F = Autocannon, I = Ice Chipper).
+
+```{r}
+
+
+all_the_data = data.frame()
+for(csv in dir(pattern="*.csv")){
+  d = read.csv(csv, as.is=T, header=T)
+  sst <- t(as.data.frame(strsplit(csv, "")))
+  d['file'] = csv
+  d['Turret']=sst[1,1]
+  d['Player']=sst[1,2]
+  d['replicate']=sst[1,4]
+  d['Strategy']=sst[1,3]
+  
+  all_the_data <- rbind(all_the_data, d)
+  print(csv)
+}
+
+
+
+```
+
+~181,000 aliens all combined into a single data frame!  Let's see if we can put that to work.
+
+## 7. Accounting for the structure of the data set
+
+Here I am going back to the lattice package because I can use it to plot our Health data for each value of Turret.
+
+```{r , echo=FALSE}
+
+
+xyplot(Health ~ Generation | Turret, 
+       data = all_the_data,
+       type = c( "p", "smooth"),
+       scales = "free")
+```
+
+
+yikes.  pretty ugly.  That is a lot of data to be plotting every individual point!  Instead, lets only plot the fit lines and calculate those for each replicate.
+
+```{r , echo=FALSE}
+
+
+xyplot(Health ~ Generation | Turret, 
+       group = file, data = all_the_data,
+       type = c( "smooth"),
+       scales = "free")
+```
+
+
+Do you think there is a difference between the evolution of Health when the player uses Autocannons (F) vs Ice Chippers (I)?  Obviously we need to make some cosmetic improvements, but the pattern is pretty clear.  Could it have occured by chance?  In the next unit we can do some statistical analysis.  
+
+
+## Resources
+
+Base R plot cheat sheet:  http://publish.illinois.edu/johnrgallagher/files/2015/10/BaseGraphicsCheatsheet.pdf
+
+
