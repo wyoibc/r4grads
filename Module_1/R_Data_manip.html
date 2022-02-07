@@ -238,7 +238,7 @@ iso &lt;- read.csv(paste0(data_dir, &quot;/&quot;,&quot;Fish_isotopes.csv&quot;)
 </div>
 <div id="fixing-spelling" class="section level3">
 <h3>Fixing spelling</h3>
-<p>Looking at either of those last outputs, you should notice that we have some misspellings. In some cases, “Coho” was written in all capital letters, and because R is case sensitive (as are most other coding languages), these are interpreted as different species, but they should not be. We also have “Dolly Varden” abbreviated down to just “Dolly” in one case, and a misspelling of “Steelhead” as “Steelhesd”. We will want to correct these before we move forward with any further data processing.</p>
+<p>Looking at either of those last outputs, you should notice that we have some misspellings. In some cases, “Coho” was written in all capital letters, and because R is case sensitive (as are most other coding languages), these are interpreted as different species, but that’s what we . We also have “Dolly Varden” abbreviated down to just “Dolly” in one case, and a misspelling of “Steelhead” as “Steelhesd”. We will want to correct these before we move forward with any further data processing.</p>
 <p>There are a few ways to do this. One is by using an indexing approach to identify all of the elements of the objects that contain the values we want to replace, and replacing them with the values we want.</p>
 <p>Let’s build this out:</p>
 <p>We’ll start by identifying which elements of the “Species” column of <code>body</code> contains <code>&quot;COHO&quot;</code></p>
@@ -278,7 +278,7 @@ sort(unique(body$Site))</code></pre>
 </div>
 <div id="merging-the-data" class="section level3">
 <h3>Merging the data</h3>
-<p>Before we continue on, we’d like to have all of our data in a sinle object. This is simpler to keep track of and also allows us to apply filters and manipulations to the entire dataset at once, rather than needing to modify each object individually.</p>
+<p>Before we continue on, we’d like to have all of our data in a single object. This is simpler to keep track of and also allows us to apply filters and manipulations to the entire dataset at once, rather than needing to modify each object individually.</p>
 <p>When merging, datasets may not include the same exact samples or samples may be in different orders, so we can’t just stick the columns all together. If we look at the dimensions of our two dataframes again, we’ll notice that they have different numbers of rows, indicating that at least one sample is one set but not the other.</p>
 <p>We can check for <code>Fish.code</code> elements that are in the body size data but not the isotope data:</p>
 <pre class="r"><code>which(!body$Fish.code %in% iso$Fish.code)</code></pre>
@@ -300,7 +300,9 @@ dim(iso_red)</code></pre>
 <pre><code>## [1] 409   5</code></pre>
 <pre class="r"><code>dim(body_red)</code></pre>
 <pre><code>## [1] 409   6</code></pre>
-<p>Both of these objects now have the same number of rows, and we know that they are in the same row order because we indexed them both from the same object in the same way. We can now simply bind these columns together:</p>
+<p>Both of these objects now have the same number of rows, and we know that they are in the same row order because we indexed them both from the same object in the same way.</p>
+<p>Note that when indexing a dataframe or other objects that have both rows and columns, we index using a <code>[row,column]</code> format. If we are selecting all columns, we can simply leave the portion after the comma blank, but we must still include the comma. The reverse is true for selecting all rows and certain columns.</p>
+<p>We can now simply bind these columns together:</p>
 <pre class="r"><code>all_data1 &lt;- cbind(body_red, iso_red)
 head(all_data1)</code></pre>
 <pre><code>##   Fish.code Species Site     Date Weight..g. Fork.length..cm. Fish.code del13C
@@ -358,8 +360,62 @@ head(all_data)</code></pre>
 <p>This has the same dimensions as the way that did this above using indexing and <code>cbind</code>. Looks good. Before we continue on, let’s write this to a csv file. Then we can easily read this cleaned and merged data into R or another program anytime we want without having to repeat these steps:</p>
 <pre class="r"><code>write.csv(all_data, &quot;fish_data_merged.csv&quot;)</code></pre>
 </div>
-<div id="other-stuff-to-still-do-more-demos-of-subsettingfiltering" class="section level3">
-<h3>Other stuff to still do: more demos of subsetting/filtering</h3>
+<div id="further-filtering-and-subsetting-examples" class="section level3">
+<h3>Further filtering and subsetting examples</h3>
+<p>Let’s read that csv file back into R, just to demonstrate it.</p>
+<pre class="r"><code>all_data &lt;- read.csv(&quot;fish_data_merged.csv&quot;)</code></pre>
+<p>For some analyses, we might want to analyze a single species of fish at a time. We can do this similarly to how we used row indexing to merge datasets above.</p>
+<pre class="r"><code>coho_data &lt;- all_data[all_data$Species == &quot;Coho&quot;,]
+head(coho_data, n=4)</code></pre>
+<pre><code>##   X Fish.code Species Site     Date Weight..g. Fork.length..cm. del13C
+## 1 1       C01    Coho RK17 11/10/92       13.2             10.2 -23.08
+## 2 2       C02    Coho RK17 11/10/92        5.8              7.9 -22.82
+## 3 3       C03    Coho RT02 11/18/92        8.6              8.9 -22.44
+## 4 4       C04    Coho RT02 11/18/92       11.8              9.8 -21.69
+##   Std..error del15N Std..error.1
+## 1       0.00  13.56         0.04
+## 2       0.11  13.04         0.16
+## 3       0.11  14.08         0.13
+## 4       0.09  14.01         0.11</code></pre>
+<p>We could simultaneously select out a single species and only the <code>Fish.code</code> and <code>Fork.length..cm.</code> columns.</p>
+<pre class="r"><code>coho_length &lt;- all_data[all_data$Species == &quot;Coho&quot;, c(&quot;Fish.code&quot;, &quot;Fork.length..cm.&quot;)]
+head(coho_length, n=4)</code></pre>
+<pre><code>##   Fish.code Fork.length..cm.
+## 1       C01             10.2
+## 2       C02              7.9
+## 3       C03              8.9
+## 4       C04              9.8</code></pre>
+<p>We can select two or more species at once in a couple different ways:</p>
+<pre class="r"><code>cs_data &lt;- all_data[all_data$Species %in% c(&quot;Coho&quot;, &quot;Steelhead&quot;),]</code></pre>
+<pre class="r"><code>cs_data</code></pre>
+<p>Or using more complex pattern matching:</p>
+<pre class="r"><code>cs_data1 &lt;- all_data[all_data$Species == &quot;Coho&quot; | all_data$Species == &quot;Steelhead&quot;,]</code></pre>
+<pre class="r"><code>cs_data1</code></pre>
+<p>where the pipe <code>|</code> indicates that we want to match the first condition or the second condition.</p>
+<p>We can also use <code>&amp;</code> to get only rows that satisfy two or more conditions. E.g., we can find the Coho that are smaller than 10 g:</p>
+<pre class="r"><code>coho_small &lt;- all_data[all_data$Species == &quot;Coho&quot; &amp; all_data$Weight..g. &lt; 10,]</code></pre>
+<pre class="r"><code>coho_small</code></pre>
+</div>
+<div id="transforming-data" class="section level3">
+<h3>Transforming data</h3>
+<p>R makes it very easy to transform or otherwise convert data. Operations can be applied across entire vectors or columns of dataframes easily. We can easily log-transform our body size data:</p>
+<pre class="r"><code>log_weight &lt;- log(all_data$Weight..g.)
+data_w_log &lt;- cbind(all_data, log_weight)</code></pre>
+</div>
+<div id="handling-nas-not-applicableempty-data" class="section level3">
+<h3>Handling NAs (not applicable/empty data)</h3>
+<p>R treats NA data differently than other types of data. For this reason, we need special tools if we want to remove NA. To demonstrate this, let’s first introduce some NAs into our data. We’ll convert all values of “Fork.length..cm.” less than 5 to NA:</p>
+<pre class="r"><code>all_data$Fork.length..cm.[all_data$Fork.length..cm. &lt; 5] &lt;- NA</code></pre>
+<pre class="r"><code>all_data$Fork.length..cm.</code></pre>
+<p>If we try to check if values are NA the same way that we’ve evaluated things so far, it won’t work:</p>
+<pre class="r"><code>all_data$Fork.length..cm.==NA</code></pre>
+<p>And in fact, if you’re using RStudio and put the above line in a script, it will flag that line and mousing over the exclamation mark will tell you to use <code>is.na</code>. Let’s try that instead:</p>
+<pre class="r"><code>is.na(all_data$Fork.length..cm.)</code></pre>
+<p>This looks like what we’d expect, and we can use this to filter out NAs in this row. Note that many functions can include NA values, so this may not always be desirable. It will depend heavily on your specific dataset.</p>
+<pre class="r"><code>data_noNA &lt;- all_data[!is.na(all_data$Fork.length..cm.),]</code></pre>
+<p>Notice the <code>!</code> in the above line that lets us keep everything that is NOT NA. Now if we check if we have any NAs in the <code>Fork.length..cm.</code> of this new object, we should not get any:</p>
+<pre class="r"><code>which(is.na(data_noNA$Fork.length..cm.))</code></pre>
+<pre><code>## integer(0)</code></pre>
 </div>
 
 
