@@ -42,7 +42,7 @@ colnames(fish_dat)
 We would probably expect a relationship between weight and fork length, since it makes sense that longer fish are probably heavier fish. Let's see what it looks like:
 
 ```{r}
-plot(fish_dat$Weight..g., fish_dat$Fork.length..cm.)
+plot(fish_dat$Fork.length..cm., fish_dat$Weight..g.)
 ```
 
 
@@ -51,10 +51,55 @@ Cool, looks like there's a relationship here. Try plotting out a couple extra va
 Once you do that, let's try cleaning this plot up a bit, it's pretty hideous right now. 
 
 ```{r}
-plot(fish_dat$Weight..g., fish_dat$Fork.length..cm.,
+plot(fish_dat$Fork.length..cm., fish_dat$Weight..g.,
      pch = 16, frame = FALSE, col = "blue", cex=0.5,
-     xlab="Weight (g)", ylab = "Fork length (cm)")
+     ylab="Weight (g)", xlab = "Fork length (cm)")
 ```
+
+There are a number of other graphical parameters you can tweak as you like. There are good resources all over the internet that can be easily found by searching things like "base R axis labels".
+
+
+This plot gives us a pretty good idea that there's a correlation between our data, but it looks distinctly non-linear. This isn't surprising, since larger fish don't just get longer, but also wider and taller, so we'd expect the mass to increase more than linearly. This is a good example of when we might want to transform our data. Let's log transform weight and then plot that against fork length.
+
+
+```{r}
+log_weight <- log(fish_dat$Weight..g.)
+plot(fish_dat$Fork.length..cm., log_weight,
+     pch = 16, frame = FALSE, col = "blue", cex=0.5,
+     ylab="Logged weight (g)", xlab = "Fork length (cm)")
+
+```
+
+This looks much more linear, but not quite. We generally expect mass and volume to increase with the cube of a linear measure, so let's try out a cube root transform:
+
+
+```{r}
+root_weight <- (fish_dat$Weight..g.)^(1/3)
+plot(fish_dat$Fork.length..cm., root_weight,
+     pch = 16, frame = FALSE, col = "blue", cex=0.5,
+     ylab="Cube root weight (g)", xlab = "Fork length (cm)")
+
+```
+
+This looks very linear now. Let's use an acual statistical test to see if there is a correlation:
+
+```{r}
+cor.test(fish_dat$Fork.length..cm., root_weight)
+```
+
+We have a very high correlation coefficient and a very low p value, cool. Remember however that we cube root transformed the weight data, so the interpretation is **not** that there is a linear relationship between weight and length. Rather the relationship is a cube relationship.
+
+Since we have a hypothesis in correlation (being larger causes a fish to be heavier), a linear regression is actually probably more appropriate here than a correlation test. This also allows us to plot out the regression line on our scatterplot:
+
+```{r}
+reg <- lm(root_weight ~ fish_dat$Fork.length..cm.)
+plot(fish_dat$Fork.length..cm., root_weight,
+     pch = 16, frame = FALSE, col = "blue", cex=0.5,
+     ylab="Cube root weight (g)", xlab = "Fork length (cm)")
+abline(reg, col="black")
+```
+
+Note that here, the order of weight and length in the regression formula (the linear model `lm` function) is important because we are saying that weight is a function of length, not simply asking if there is a correlation.
 
 
 
@@ -62,7 +107,7 @@ plot(fish_dat$Weight..g., fish_dat$Fork.length..cm.,
 
 #### OTHER STUFF FOR IN HERE:
 
-do correlation among things we've plotted - then go plot out some things by groups, and follow those up with ANOVA & T-test
+plot out some things by groups, and follow those up with ANOVA & T-test
 
 
 

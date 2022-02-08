@@ -13,7 +13,7 @@ knitr::opts_knit$set(root.dir = '~/r4grads')
 
 ### Reading in the data
 
-We will explore some basic data manipulation, including reading, filtering, and transforming. This will all be taking place in R.
+We will explore some basic data manipulation, including reading, filtering, and transforming. This will all be taking place in R. I **highly** recommend writing all of your code in an R script and commenting it liberally. Even if you are doing relatively simple operations, if you need to repeat them or slightly tweak them, it's much easier to simply open up your script and re-run it or tweak it than to re-type everything into R. Even more importantly, it ensures that there is a record of exactly what you did. If you haven't already dealt with trying to remember how you handled data when you come back it to after notworking on it for a bit, you'll probably be surprised by just how quickly you can forget what you were doing and why.
 
 Start by setting out working drirectory. We will also create an object with the path to our data directory.
 
