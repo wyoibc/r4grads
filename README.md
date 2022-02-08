@@ -2,7 +2,7 @@
 title: r4grads - Data Analysis & Publishing in R
 ---
 
-**Part of MOLB5700 - Beyond the Bench: Fundamental Skills for Biomedical Researchers**
+## Part of MOLB5700 - Beyond the Bench: Fundamental Skills for Biomedical Researchers
 
 
 ### Wyoming Instructors
@@ -40,7 +40,16 @@ The class will meet in Agriculture Building Room 316 between 9AM and 12PM MDT on
 
 <br><br>
 
-## How to Prepare for This Section
+## How to Prepare for the Modules
 
 - [1. Essential R Skills](prep/rskills.html)
 
+<br><br>
+
+## Module 1 (February 9, 2022)
+
+- [1. Tools for Reproducible Research](Module_1/git/git.html)
+
+- [2. Exploratory Data Analysis in R](Module_1/EDA/R_Data_manip.html)
+
+- [3. Using RMarkdown To Compile Notebooks]()

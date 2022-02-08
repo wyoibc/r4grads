@@ -39,13 +39,13 @@ title: Reproducible Data Analysis and Publishing
 
 ## 1. The importance of reproducible data analysis
 
-You are likely already familiar with the concept of *reproducible research*. In the field of scientific research, we put great value on being able to repeat the work of others and confirm their results. This reproducibility is essential to ensure that empirical observations made by scientists are rooted in facts and are not just fluke or an observation occurring simply by chance alone. Peer-review also ensures, at least in part that the results are repeatable/reproducible. 
+You are likely already familiar with the concept of *reproducible research*. In the field of scientific research, we put great value on being able to repeat the work of others and confirm their results. This reproducibility is essential to ensure that empirical observations made by scientists are rooted in facts and are not just a fluke or an observation occurring by chance alone. Peer-review also ensures, at least in part that the results are repeatable/reproducible. 
 
 This same principle can also be applied to statistical analysis. As you are aware, we are in the midst of a data revolution. Take the example of the field of genomics. The amount of data scientists are generating using genomic sequencing is rising exponentially. More data is leading to development of increasingly complex statistical models and routines. A whole generation of scientists are devoting their careers to data analysis alone. 
 
 As graduate students, no matter what your subdiscipline, you will be dealing with a lot of data. You will generate, collect and analyze data. You will write scripts, save them in some obscure location on your computer, you will write a paper based on it, send it off to peer review. A few months later, you will hear from the reviewers who will ask you some tough questions about the analysis and interpretation and more likely than not ask you to repeat your analysis with a different set of parameters (among other things).
 
-Off then you go looking for your raw data, transformed data and scripts. If you are lucky, you find all of those things. But did you annotate your scripts properly? If you did, you are lucky. If not, you are going to have to relearn what exactly the script is doing (or do some time travel to your younger self). Then you try to rerun the script, and of course it doesn't work. The R functions have changed a bit in their new version and the old routine produces lots of error messages. You are under a deadline to respond to the reviewers and now you are having to retrace every single step of your analysis from before. You get the gist.
+Off then you go looking for your raw data, transformed data and scripts. If you are lucky, you find all of those things. But did you annotate your scripts properly? If you did, you are lucky. If not, you are going to have to relearn what exactly the script is doing (or do some time travel to your younger self). Then you try to rerun the script, and of course it doesn't work. The R functions have changed a bit in their new version and the old routine produces lots of error messages. You are under a deadline to respond to the reviewers and now you are having to retrace every single step of your analysis from before. **You get the gist.**
 
 Cue reproducible data analysis. How can you achieve the goldi locks zone?
 
@@ -196,8 +196,6 @@ man git
 
 
 ## 4. SSH Authentication with keys
-
-- When you used your login credentials to push contents of your local repository to a new and empty remote GitHub repository, you may have received an email-notice from GitHub that this method of authentication is *deprecated*. That's computer science lingo for "about to be phased out". What that means is that sometime soon, using username and password to push contents to github will no longer work (don't confuse this with logging onto Github.com, which will still use those credentials.
 
 - Instead, you will be using a much more secure form of login called ``SSH``, short for **S**ecure **SH**ell. A SSH password is called a ``key``, which is much longer than a typical, secure password. But perhaps even more importantly, it is encrypted.
 
