@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Reproducible Data Analysis and Publishing</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="avenir-white.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Reproducible Data Analysis and Publishing</h1>
+</header>
+<p><strong>This module is a part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical Researchers)</strong></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<p><a href="#the-importance-of-reproducible-data-analysis">1. The importance of reproducible data analysis</a></p>
+<p><a href="#what-is-git-and-why-should-you-care">2. What is git and why should you care?</a></p>
+<p><a href="#what-is-github-and-how-does-it-work-with-git">3. What is github and how does it work with git</a></p>
+<p><a href="#ssh-authentication-with-keys">4. SSH Authentication with keys</a></p>
+<p><a href="#create-your-first-git-repository">4. Create Your first git repository</a></p>
+<p><a href="#generate-some-content">5. Generate some content</a></p>
+<p><a href="#configure-the-repository-for-github">6. Configure the repository for github</a></p>
+<p><a href="#commit-and-push-your-changes-to-github">7. Commit and push your changes to github</a></p>
+<p><br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br></p>
+<h2 id="the-importance-of-reproducible-data-analysis">1. The importance of reproducible data analysis</h2>
+<p>You are likely already familiar with the concept of <em>reproducible research</em>. In the field of scientific research, we put great value on being able to repeat the work of others and confirm their results. This reproducibility is essential to ensure that empirical observations made by scientists are rooted in facts and are not just fluke or an observation occurring simply by chance alone. Peer-review also ensures, at least in part that the results are repeatable/reproducible.</p>
+<p>This same principle can also be applied to statistical analysis. As you are aware, we are in the midst of a data revolution. Take the example of the field of genomics. The amount of data scientists are generating using genomic sequencing is rising exponentially. More data is leading to development of increasingly complex statistical models and routines. A whole generation of scientists are devoting their careers to data analysis alone.</p>
+<p>As graduate students, no matter what your subdiscipline, you will be dealing with a lot of data. You will generate, collect and analyze data. You will write scripts, save them in some obscure location on your computer, you will write a paper based on it, send it off to peer review. A few months later, you will hear from the reviewers who will ask you some tough questions about the analysis and interpretation and more likely than not ask you to repeat your analysis with a different set of parameters (among other things).</p>
+<p>Off then you go looking for your raw data, transformed data and scripts. If you are lucky, you find all of those things. But did you annotate your scripts properly? If you did, you are lucky. If not, you are going to have to relearn what exactly the script is doing (or do some time travel to your younger self). Then you try to rerun the script, and of course it doesn’t work. The R functions have changed a bit in their new version and the old routine produces lots of error messages. You are under a deadline to respond to the reviewers and now you are having to retrace every single step of your analysis from before. You get the gist.</p>
+<p>Cue reproducible data analysis. How can you achieve the goldi locks zone?</p>
+<p><br></p>
+<h3 id="steps-for-making-your-analysis-reproducible">1.1 Steps for making your analysis reproducible</h3>
+<ul>
+<li>Maintain an electronic notebook</li>
+<li>Annotate your scripts</li>
+<li>Document version numbers of software packages you are using</li>
+<li>Create an online version that you can access from anywhere</li>
+<li>Maintain an incremental backup</li>
+</ul>
+<p>But in order to get there, you will need to invest some time in developing a tool kit.</p>
+<p><br></p>
+<h3 id="tools-for-reproducible-analysis-and-publishing">1.2 Tools for reproducible analysis and publishing</h3>
+<ul>
+<li>BASH</li>
+<li>Markdown and rMarkdown</li>
+<li>Git and GitHub</li>
+<li>SSH (Secure Shell Protocol)</li>
+<li>Some HTML</li>
+</ul>
+<p><br><br></p>
+<h2 id="what-is-git-and-why-should-you-care">2. What is git and why should you care?</h2>
+<p>Before we get to <code>git</code>, let’s familiarize ourselves with a BASH terminal. In the spotlight search (top right corner - magnifying glass icon), type terminal and hit enter.</p>
+<center>
+<img src="images/terminal.png" width=600 />
+</center>
+<p>On Macintosh, this window is called a terminal. On different systems, it can have different names (e.g. xterm, shell). But they all run the same program called BASH. At the core of a computer, there is a set of programs (called <strong>kernel</strong>) which controls the basic functions such as identifying all the hardware and allowing communication amongst them. When you plug in a USB key into a USB port, it’s the kernel that recognizes that a new piece of hardware is plugged in and connects it to the rest of the system.</p>
+<p>But in order for us to make the computer do what we want, there are other programs which act as an interface between the computer and us. BASH is one such program. You can also refer to it as shell.</p>
+<p>As an example, let’s run a couple of commands in the shell:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">ls</span> -l</span></code></pre></div>
+<ul>
+<li><p><code>ls</code> is a Unix command (also available on Mac because it is based on Unix) that lists contents of a given location.</p></li>
+<li><p>But what location is that?</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="bu">pwd</span></span></code></pre></div>
+<ul>
+<li><code>pwd</code> is acronym for <em>print working directory</em> i.e. the location you are at in the terminal right now.</li>
+</ul>
+<p><br></p>
+<h3 id="what-is-git">2.1 What is <code>git</code>?</h3>
+<pre><code>- Git is a version control program
+
+- Git runs inside the BASH terminal</code></pre>
+<ul>
+<li><p>Imagine that you are writing a term paper over several weeks. Over the course of your writing, you make numerous changes to this document by adding, deleting or editing matter. If you allow <code>git</code> to monitor these changes you are making, it keeps a meticulous record of those changes saving them as incremental versions.</p></li>
+<li><p>And in doing so, it allows you to undo a change, revert to a previous version or in general not having to worry about <em>what</em> changes you made <em>when</em>.</p></li>
+<li><p>This workflow can be applied to any number of entities e.g. reports, manuscripts, to-do lists, scripts etc.</p></li>
+<li><p>So then how does this all work? Let’s start simple. In your terminal window, invoke git to check its current version number:</p></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">git</span> --version</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="fu">git</span> version 2.29.1</span></code></pre></div>
+<ul>
+<li><p>Your output maybe different. It all depends upon when git was installed on your computer and if it was updated recently. All Macintosh systems ship with <code>git</code> pre-installed, so you should all have access to it.</p></li>
+<li><p>What if you want to learn what types of commands are incorporated into git? Like all Unix programs, git also comes with a built-in user manual. You can invoke it by doing one of two things:</p></li>
+<li><p>Simply type <code>git</code> at the terminal and it will print help menu to the screen.</p></li>
+<li><p>Or invoke the standard user manual page using <code>man git</code></p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">man</span> git</span></code></pre></div>
+<center>
+<img src="images/mangit.png" width=700 />
+</center>
+<p><br><br></p>
+<h2 id="what-is-github-and-how-does-it-work-with-git">3. What is github and how does it work with git</h2>
+<ul>
+<li><p>GitHub is a web interface that works on the same principles as git. Essentially, you can create a copy of your local git project (called a repository) on GitHub. This system really shines when you need to collaborate with someone else e.g. your advisor or a fellow scientist in your lab.</p></li>
+<li><p>GitHub makes it easy for two or more people to simultaneously work on the same project and add/edit/delete items from the repository.</p></li>
+<li><p>The underlying git functionality seamlessly keeps track of changes by all collaborators on a repository and in case of conflicts, allows them to resolve such conflicts.</p></li>
+</ul>
+<p><br></p>
+<h3 id="login-to-your-account-and-make-a-new-repository">3.1 Login to your account and make a new repository</h3>
+<ul>
+<li><p>We will assume that you each have a free github account. Login to your account.</p></li>
+<li><p>At the top right hand corner, you will see a <code>+</code> icon. Click on it and choose <em>create a new repository</em>.</p></li>
+</ul>
+<br>
+<center>
+<img src="images/newrepo.png" width=700 />
+</center>
+<p><br></p>
+<ul>
+<li>This will generate a page like the following. Create a new repository called ‘test’.</li>
+</ul>
+<br>
+<center>
+<img src="images/newrepo2.png" width=700 />
+</center>
+<p><br></p>
+<ul>
+<li>Once an empty repository is created, you will be presented with the following screen:</li>
+</ul>
+<br>
+<center>
+<img src="images/newrepo3.png" width=700 />
+</center>
+<p><br></p>
+<ul>
+<li>Leave this page open in the browser - we will return to it a bit later.</li>
+</ul>
+<p><br><br></p>
+<h2 id="ssh-authentication-with-keys">4. SSH Authentication with keys</h2>
+<ul>
+<li><p>When you used your login credentials to push contents of your local repository to a new and empty remote GitHub repository, you may have received an email-notice from GitHub that this method of authentication is <em>deprecated</em>. That’s computer science lingo for “about to be phased out”. What that means is that sometime soon, using username and password to push contents to github will no longer work (don’t confuse this with logging onto Github.com, which will still use those credentials.</p></li>
+<li><p>Instead, you will be using a much more secure form of login called <code>SSH</code>, short for <strong>S</strong>ecure <strong>SH</strong>ell. A SSH password is called a <code>key</code>, which is much longer than a typical, secure password. But perhaps even more importantly, it is encrypted.</p></li>
+<li><p>A SSH key comes as a pair of a public password, and a private password. You provide your public part to others who you wish to securely communicate with (i.e. Github in this instance). The private key should never be shared with anyone for any purpose. It will sit securely on your computer inside a hidden folder.</p></li>
+<li><p>In this section, we will generate a SSH key pair and then associate the public key with your Github.com account.</p></li>
+</ul>
+<p><br></p>
+<h3 id="generate-ssh-key-pair">4.1 Generate SSH Key Pair</h3>
+<ul>
+<li>On Macintosh and other Unix-like systems, SSH key pair can be generated using a program called <code>ssh-keygen</code>. It comes preinstalled with the OS. Windows users should be able to access this program inside <code>git bash</code>.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">ssh-keygen</span> -t rsa -b 4096 -C <span class="st">&quot;name@host.edu&quot;</span></span></code></pre></div>
+<ul>
+<li><p>Here, <code>-t rsa</code> flag tells the program to use <code>RSA</code> encryption algorithm when generating the private key. RSA stands for first initials of the three authors who developed this algorithm (Rivest, Shamir &amp; Adleman) in 1977.</p></li>
+<li><p><code>-b</code> flag denotes amount of bits to use (size of the key)</p></li>
+<li><p><code>-C</code> flag allows a comment, which in this case is your email address associated with github. It will become part of your key.</p></li>
+<li><p>Once you hit enter, your system will present the following dialogue:</p></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">Generating</span> public/private rsa key pair.</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="ex">Enter</span> file in which to save the key (/Users/wyoibc/.ssh/id_rsa)<span class="bu">:</span> </span></code></pre></div>
+<ul>
+<li><p>Notice that the keys will be stored inside your home directory in a hidden folder named <code>.ssh</code>.</p></li>
+<li><p>By default the keys are named: <code>id_rsa</code> (private) and <code>id_rsa.pub</code> (public). But you don’t have to keep this name. If you wish to change is, type it out. An example could be: <code>/Users/wyoibc/.ssh/t_rex</code>. If you want to keep the default, just hit enter.</p></li>
+<li><p>Next, the system will ask if you want to protect these keys with a passphrase. If you choose to enter a passphrase, you will need to memorize it and the system will ask you to enter it everytime you wish to use the key. I personally always use a passphrase.</p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ex">Enter</span> passphrase (empty for no passphrase)<span class="bu">:</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="ex">Your</span> identification has been saved in /Users/wyoibc/.ssh/t_rex.</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="ex">Your</span> public key has been saved in /Users/wyoibc/.ssh/t_rex.pub.</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="ex">The</span> key fingerprint is:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="ex">SHA256</span>:4ps5bMhN7293Grtr0v+dCsUI4Ji02WQL9v+Wut7uOu4 name@host.edu</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="ex">The</span> key<span class="st">&#39;s randomart image is:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="st">+---[RSA 4096]----+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="st">|     + +         |</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="st">|    o % o        |</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="st">|     = = .       |</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="st">|        . . o    |</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="st">|      . S. . o   |</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a><span class="st">|     ...  . o    |</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a><span class="st">|   . =..   *.    |</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a><span class="st">|    o =+..* =o. o|</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a><span class="st">|     .+o=EBB=Booo|</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a><span class="st">+----[SHA256]-----+</span></span></code></pre></div>
+<p><br></p>
+<h3 id="associate-public-key-with-github">4.2 Associate Public Key with GitHub</h3>
+<ul>
+<li>Next we need to copy our public key and associate it with our GitHub account.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="bu">cd</span> /Users/wyoibc/.ssh/</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="ex">pbcopy</span> <span class="op">&lt;</span> t_rex.pub  </span></code></pre></div>
+<ul>
+<li><p>The key has now been copied to your clipboard.</p></li>
+<li><p>Next, go to GitHub.com and login to your account. Choose settings, and then SSH keys as follows:</p></li>
+</ul>
+<br>
+<center>
+<img src="images/git_settings.png" width=250 /> <img src="images/git_ssh.png" width=250 />
+</center>
+<p><br></p>
+<ul>
+<li>Click on <code>New SSH key</code> and use <code>ctrl+V</code> to paste your public key into the available box and choose a title. Leave no spaces in the title. A title is just an identifier for your key. Finally, choose <code>Add SSH key</code> to complete the process.</li>
+</ul>
+<br>
+<center>
+<img src="images/keypaste.png" width=650 />
+</center>
+<p><br></p>
+<ul>
+<li>Once you have added the key, it will appear in your account as follows:</li>
+</ul>
+<br>
+<center>
+<img src="images/keyadded.png" width=650 />
+</center>
+<p><br></p>
+<p><br></p>
+<h3 id="configure-your-system-to-use-ssh-keys">4.3 Configure Your System to Use SSH Keys</h3>
+<ul>
+<li>First, make sure that <code>ssh-agent</code> is enabled on your system, and add your newly created ssh key to the agent. If you set up a passphrase earlier, you will need to enter it now.</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="fu">ssh-agent</span> -s</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="fu">ssh-add</span> /Users/wyoibc/.ssh/t_rex</span></code></pre></div>
+<ul>
+<li>Make sure that the ssh-agent is using your key.</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="fu">ssh-add</span> -l</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="ex">4096</span> SHA256:uMFoUIUC7osmgDQaNowsOnqEt3XmPPZe4RnR2+Q1KB0 name@host.edu (RSA)</span></code></pre></div>
+<ul>
+<li>Second, open the configuration file for ssh</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="bu">cd</span> /Users/wyoibc/.ssh</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="ex">vim</span> config</span></code></pre></div>
+<ul>
+<li>If this file doesn’t exist, you will be creating a new one. Add following lines to this file:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="ex">Host</span> *</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>   <span class="ex">AddKeysToAgent</span> yes</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>   <span class="ex">UseKeychain</span> yes</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="ex">Host</span> wyoibc.github.com</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>        <span class="ex">HostName</span> github.com</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a>        <span class="ex">User</span> git</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>        <span class="ex">PreferredAuthentications</span> publickey</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>        <span class="ex">IdentityFile</span> ~/.ssh/t_rex</span></code></pre></div>
+<ul>
+<li>Save and close the file.</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>:<span class="ex">wq</span></span></code></pre></div>
+<p><br></p>
+<h3 id="test-your-ssh-key">4.4 Test Your SSH Key</h3>
+<ul>
+<li><p>Now that your keys are loaded into the ssh-agent, you can check to make sure github will recognize them.</p></li>
+<li><p>In the terminal, type the following:</p></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="fu">ssh</span> -T git@github.com</span></code></pre></div>
+<ul>
+<li>You maybe presented with a message like this:</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="op">&gt;</span> <span class="ex">The</span> authenticity of host <span class="st">&#39;github.com (IP ADDRESS)&#39;</span> can<span class="st">&#39;t be established.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="st">&gt; RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="st">&gt; Are you sure you want to continue connecting (yes/no)?</span></span></code></pre></div>
+<ul>
+<li>Type <code>yes</code> and hit <code>ENTER</code>. Then your key will be tested and if everything goes well, Github will present you with this message:</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="op">&gt;</span> <span class="ex">Hi</span> username! You<span class="st">&#39;ve successfully authenticated, but GitHub does not</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="st">&gt; provide shell access.</span></span></code></pre></div>
+<ul>
+<li>If this did not work or if you are curious about what’s happening in the background, rerun the command with an additional flag:</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="fu">ssh</span> -vT git@github.com</span></code></pre></div>
+<ul>
+<li>The <code>v</code> flag translates to <em>verbose</em>, which will show you more details. What did you see?</li>
+</ul>
+<p><br><br></p>
+<h2 id="create-your-first-git-repository">4. Create Your first git repository</h2>
+<ul>
+<li><p>So far we have simply been making preparations to use git and github. Now we can test out our set up.</p></li>
+<li><p>Create following folder structure on your machine:</p></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="bu">cd</span> ~</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="fu">mkdir</span> Github <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> Github</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a><span class="fu">mkdir</span> test <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> test</span></code></pre></div>
+<ul>
+<li><p>Note that we are using the same name for our local repository as we did on GitHub. This is important.</p></li>
+<li><p>Next, invoke git and ask it to monitor this repo (short for repository)</p></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="fu">git</span> init</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a><span class="ex">Initialized</span> empty Git repository in /Users/wyoibc/Github/test/.git/</span></code></pre></div>
+<ul>
+<li>One of the most commonly used git commands is to check the status of a repository:</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="fu">git</span> status</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="ex">On</span> branch master</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="ex">No</span> commits yet</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a><span class="ex">nothing</span> to commit (create/copy files and use <span class="st">&quot;git add&quot;</span> to track)</span></code></pre></div>
+<ul>
+<li><p><code>git</code> is now monitoring the repo and it is telling us that no changes have taken place at this location.</p></li>
+<li><p>In the next section, we will generate some simple content for our repo.</p></li>
+</ul>
+<p><br><br></p>
+<h2 id="generate-some-content">5. Generate some content</h2>
+<ul>
+<li>In your terminal, invoke <code>vim</code> text editor and create a new file:</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="ex">vim</span> README.md</span></code></pre></div>
+<ul>
+<li>Add following items to the file:</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="co">## test.git</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a><span class="ex">This</span> is my first git repository.</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a><span class="ex">The</span> date is February 9, 2022.</span></code></pre></div>
+<ul>
+<li>Save and close the file</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a>:<span class="ex">wq</span></span></code></pre></div>
+<ul>
+<li>Now check the status again.</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="fu">git</span> status</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="ex">On</span> branch master</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a><span class="ex">No</span> commits yet</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true"></a><span class="ex">Untracked</span> files:</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true"></a>    <span class="ex">README.md</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true"></a><span class="ex">nothing</span> added to commit but untracked files present (use <span class="st">&quot;git add&quot;</span> to track)</span></code></pre></div>
+<ul>
+<li><p><code>git</code> is telling us that there is a new file, but it is not being currently tracked.</p></li>
+<li><p>Add the file to git’s memory so that it will start monitoring it:</p></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="fu">git</span> add README.md</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a><span class="fu">git</span> status</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true"></a><span class="ex">On</span> branch master</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true"></a><span class="ex">No</span> commits yet</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true"></a>    <span class="ex">new</span> file:   README.md</span></code></pre></div>
+<ul>
+<li>Good, now we are ready to move forward.</li>
+</ul>
+<p><br><br></p>
+<h2 id="configure-the-repository-for-github">6. Configure the repository for github</h2>
+<ul>
+<li><p>Before we can push our newly created content to the GitHub repository we created earlier, we need to configure the local repository so it knows about the remote (GitHub) repository.</p></li>
+<li><p>Configuring essentially consists of making a connection between local and remote. Here is how to do it:</p></li>
+<li><p>Add your user name</p></li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="fu">git</span> config user.name <span class="st">&quot;wyoibc&quot;</span></span></code></pre></div>
+<ul>
+<li>Add your email (the same one you used to open the GitHub account)</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="fu">git</span> config user.email <span class="st">&quot;wyoinbre@gmail.com&quot;</span></span></code></pre></div>
+<ul>
+<li>Add address of the remote repo</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="fu">git</span> remote add origin git@github.com:wyoibc/test</span></code></pre></div>
+<ul>
+<li>Check whether remotes were set correctly</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="fu">git</span> remote -v</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a><span class="ex">origin</span>  git@github.com:wyoibc/test (fetch)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a><span class="ex">origin</span>  git@github.com:wyoibc/test (push)</span></code></pre></div>
+<ul>
+<li>Check to make sure all parameters were correct entered</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="fu">git</span> config --list</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a><span class="ex">user.name</span>=wyoibc</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a><span class="ex">user.email</span>=wyoinbre@gmail.com</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a><span class="ex">remote.origin.url</span>=git@github.com:wyoibc/test</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a><span class="ex">remote.origin.fetch</span>=+refs/heads/*:refs/remotes/origin/*</span></code></pre></div>
+<ul>
+<li>Good now we are ready to push our content upstream.</li>
+</ul>
+<p><br><br></p>
+<h2 id="commit-and-push-your-changes-to-github">7. Commit and push your changes to github</h2>
+<ul>
+<li>In a previous section, you added a file to git’s memory. The final step in this process is to commit that change:</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a><span class="fu">git</span> commit -m <span class="st">&quot;my first commit&quot;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a>[<span class="ex">master</span> (root-commit) <span class="ex">79f60ea</span>] my first commit</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true"></a> <span class="ex">1</span> file changed, 5 insertions(+)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true"></a> <span class="ex">create</span> mode 100644 README.md</span></code></pre></div>
+<ul>
+<li>One more time, ensure that you have chosen the correct key in the ssh-agent:</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="fu">ssh-add</span> -l</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true"></a><span class="ex">4096</span> SHA256:uMFoNMZK7osmgTMaNowsOnqEt3XmUXAe4RnR2+Q1KB0 wyoinbre@gmail.com (RSA)</span></code></pre></div>
+<ul>
+<li>Push your commits:</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="fu">git</span> push -u origin master</span></code></pre></div>
+<ul>
+<li>If all went well, you should see a message like this:</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="ex">Enumerating</span> objects: 3, done.</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a><span class="ex">Counting</span> objects: 100% (3/3), <span class="kw">done</span><span class="ex">.</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a><span class="ex">Delta</span> compression using up to 8 threads</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true"></a><span class="ex">Compressing</span> objects: 100% (2/2), <span class="kw">done</span><span class="ex">.</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true"></a><span class="ex">Writing</span> objects: 100% (3/3), <span class="ex">279</span> bytes <span class="kw">|</span> <span class="ex">279.00</span> KiB/s, done.</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true"></a><span class="ex">Total</span> 3 (delta 0), <span class="ex">reused</span> 0 (delta 0), <span class="ex">pack-reused</span> 0</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true"></a><span class="ex">To</span> github.com:wyoibc/test</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true"></a> <span class="ex">*</span> [new branch]      master -<span class="op">&gt;</span> master</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true"></a><span class="ex">Branch</span> <span class="st">&#39;master&#39;</span> set up to track remote branch <span class="st">&#39;master&#39;</span> from <span class="st">&#39;origin&#39;</span>.</span></code></pre></div>
+<ul>
+<li><p>If you get an error message, bring it up with your instructors.</p></li>
+<li><p>Refresh your browser page for the repo and make sure this upload is showing up there.</p></li>
+</ul>
+<p><br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br></p>
+</body>
+</html>
