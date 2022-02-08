@@ -94,10 +94,11 @@ body$Species[body$Species=="COHO"] <- "Coho"
 But there are also much faster ways to do this. The function `gsub()` will search for all occurrences of its first argument and replace them with its second argument in the object specified in the third argument:
 
 ```{r}
-body$Species <- gsub("Dolly", "Dolly varden", body$Species)
+body$Species <- gsub("^Dolly$", "Dolly varden", body$Species)
 body$Species <- gsub("Steelhesd", "Steelhead", body$Species)
 ```
 
+In the above, the `^` indicates the start of a string and teh `$` indicates the end of string of a string, indicating that only want to replace Dolly when the D is the start of a string and the y is the end -- why is this necessary? What happens if we just replace `"Dolly"`?
 
 If we take a look at the data again, we should see that these errors have been corrected:
 
@@ -202,7 +203,7 @@ dim(all_data)
 This has the same dimensions as the way that did this above using indexing and `cbind`. Looks good. Before we continue on, let's write this to a csv file. Then we can easily read this cleaned and merged data into R or another program anytime we want without having to repeat these steps:
 
 ```{r}
-write.csv(all_data, "fish_data_merged.csv")
+write.csv(all_data, paste0(data_dir, "/", "fish_data_merged.csv"))
 ```
 
 
@@ -211,7 +212,7 @@ write.csv(all_data, "fish_data_merged.csv")
 Let's read that csv file back into R, just to demonstrate it.
 
 ```{r}
-all_data <- read.csv("fish_data_merged.csv")
+all_data <- read.csv(paste0(data_dir, "/", "fish_data_merged.csv"))
 ```
 
 For some analyses, we might want to analyze a single species of fish at a time. We can do this similarly to how we used row indexing to merge datasets above.

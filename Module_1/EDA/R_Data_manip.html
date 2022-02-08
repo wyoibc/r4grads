@@ -248,24 +248,25 @@ iso &lt;- read.csv(paste0(data_dir, &quot;/&quot;,&quot;Fish_isotopes.csv&quot;)
 <p>And finally, using that indexing to identify the incorrect entries, we can replace them with “Coho”:</p>
 <pre class="r"><code>body$Species[body$Species==&quot;COHO&quot;] &lt;- &quot;Coho&quot;</code></pre>
 <p>But there are also much faster ways to do this. The function <code>gsub()</code> will search for all occurrences of its first argument and replace them with its second argument in the object specified in the third argument:</p>
-<pre class="r"><code>body$Species &lt;- gsub(&quot;Dolly&quot;, &quot;Dolly varden&quot;, body$Species)
+<pre class="r"><code>body$Species &lt;- gsub(&quot;^Dolly$&quot;, &quot;Dolly varden&quot;, body$Species)
 body$Species &lt;- gsub(&quot;Steelhesd&quot;, &quot;Steelhead&quot;, body$Species)</code></pre>
+<p>In the above, the <code>^</code> indicates the start of a string and teh <code>$</code> indicates the end of string of a string, indicating that only want to replace Dolly when the D is the start of a string and the y is the end – why is this necessary? What happens if we just replace <code>&quot;Dolly&quot;</code>?</p>
 <p>If we take a look at the data again, we should see that these errors have been corrected:</p>
 <pre class="r"><code>unique(body$Species)</code></pre>
 <pre><code>## [1] &quot;Coho&quot;                    &quot;Chum&quot;                   
-## [3] &quot;Dolly varden varden&quot;     &quot;Dolly varden&quot;           
-## [5] &quot;Pink&quot;                    &quot;coastrange sculpin&quot;     
-## [7] &quot;Steelhead&quot;               &quot;Three spine stickleback&quot;</code></pre>
+## [3] &quot;Dolly varden&quot;            &quot;Pink&quot;                   
+## [5] &quot;coastrange sculpin&quot;      &quot;Steelhead&quot;              
+## [7] &quot;Three spine stickleback&quot;</code></pre>
 <pre class="r"><code>summary(as.factor(body$Species))</code></pre>
 <pre><code>##                    Chum      coastrange sculpin                    Coho 
 ##                      10                      58                     189 
-##            Dolly varden     Dolly varden varden                    Pink 
-##                       1                      98                      15 
-##               Steelhead Three spine stickleback 
-##                       8                      34</code></pre>
+##            Dolly varden                    Pink               Steelhead 
+##                      99                      15                       8 
+## Three spine stickleback 
+##                      34</code></pre>
 <p>We should also know how many species we sampled, and we can check how many are in this dataset:</p>
 <pre class="r"><code>length(unique(body$Species))</code></pre>
-<pre><code>## [1] 8</code></pre>
+<pre><code>## [1] 7</code></pre>
 <p>We also have a similar error in <code>body$Site</code> that we’ll fix real quick:</p>
 <pre class="r"><code>body$Site &lt;- gsub(&quot;RT02-R&quot;, &quot;RT02R&quot;, body$Site)
 sort(unique(body$Site))</code></pre>
@@ -358,12 +359,12 @@ head(all_data)</code></pre>
 <pre class="r"><code>dim(all_data)</code></pre>
 <pre><code>## [1] 409  10</code></pre>
 <p>This has the same dimensions as the way that did this above using indexing and <code>cbind</code>. Looks good. Before we continue on, let’s write this to a csv file. Then we can easily read this cleaned and merged data into R or another program anytime we want without having to repeat these steps:</p>
-<pre class="r"><code>write.csv(all_data, &quot;fish_data_merged.csv&quot;)</code></pre>
+<pre class="r"><code>write.csv(all_data, paste0(data_dir, &quot;/&quot;, &quot;fish_data_merged.csv&quot;))</code></pre>
 </div>
 <div id="further-filtering-and-subsetting-examples" class="section level3">
 <h3>Further filtering and subsetting examples</h3>
 <p>Let’s read that csv file back into R, just to demonstrate it.</p>
-<pre class="r"><code>all_data &lt;- read.csv(&quot;fish_data_merged.csv&quot;)</code></pre>
+<pre class="r"><code>all_data &lt;- read.csv(paste0(data_dir, &quot;/&quot;, &quot;fish_data_merged.csv&quot;))</code></pre>
 <p>For some analyses, we might want to analyze a single species of fish at a time. We can do this similarly to how we used row indexing to merge datasets above.</p>
 <pre class="r"><code>coho_data &lt;- all_data[all_data$Species == &quot;Coho&quot;,]
 head(coho_data, n=4)</code></pre>

@@ -29,7 +29,7 @@ fish_dat <- read.csv(paste0(data_dir, "/", "fish_data_merged.csv"))
 ```
 
 
-### Relationships among variables
+### Relationships among continuous variables
 
 When collecting data, we likely have some hypotheses that we are testing or at least general ideas about what kinds of patterns we expect in the data. In many cases, we may hypothesize that two variables are correlated. We can visualize the association between two variables using a scatterpot.
 
@@ -70,7 +70,7 @@ plot(fish_dat$Fork.length..cm., log_weight,
 
 ```
 
-This looks much more linear, but not quite. We generally expect mass and volume to increase with the cube of a linear measure, so let's try out a cube root transform:
+This looks more linear, but not quite. We generally expect mass and volume to increase with the cube of a linear measure, so let's try out a cube root transform:
 
 
 ```{r}
@@ -105,12 +105,57 @@ Note that here, the order of weight and length in the regression formula (the li
 
 
 
-#### OTHER STUFF FOR IN HERE:
+### Differences among groups
 
-plot out some things by groups, and follow those up with ANOVA & T-test
+Beyond correlations among continuous variables, in many cases we are interested in differences in measurements among groups. Here we have several different species, and we expect that our measurements will different across these. We'll take the same general approach as above, starting with some simple visualization, then explicitly testing for differences among groups. 
 
 
+We can start by plotting out a distribution for a single species by filtering our data to a single species data and making a histogram.
 
+```{r}
+coho_weight <- fish_dat[fish_dat$Species=="Coho", "Weight..g."]
+hist(coho_weight, breaks = 30, xlab = "Coho weight", main = NULL)
+```
+
+
+We can also plot multipe histograms together in different colors to get a sense for how distributions do or do not overlap. 
+
+```{r}
+dolly_weight <- fish_dat[fish_dat$Species=="Dolly varden", "Weight..g."]
+hist(coho_weight, breaks = 20, xlab = "weight", main = NULL, xlim = c(0,70),
+     col="blue")
+hist(dolly_weight, breaks = 60, add = TRUE, col = "red")
+
+```
+
+
+A better way to plot this would be to make the histograms partially transparent. We won't explore that here, but as for most things in R, there are plenty of resources on the internet: https://stackoverflow.com/questions/3541713/how-to-plot-two-histograms-together-in-r
+
+Even with some transparency, if we plotted all seven of our species, this would get hard to interpret pretty quickly. One option for plotting multiple is to use box plots. Personally, I prefer violin plots from ggplot, but we'll start with box plots for now
+
+
+```{r}
+boxplot(Weight..g. ~ Species, data = fish_dat, main="Fish weights",
+   xlab = NULL, ylab = "Weight (g)", las = 2)
+```
+
+This looks ok. There is a lot of customization we could do with this, but again, we won't get into that here. We can see here that it looks like we have some major differences in body sizes across the different fish species. Let's test that out using ANOVA. 
+
+```{r}
+res.aov <- aov(Weight..g. ~ Species, data = fish_dat)
+summary(res.aov)
+```
+
+
+Looks like we have some some highly significant differences among the species here. ANOVA itself won't tell us what is different from what, though, so let's run a quick Tukey post-hoc test.
+
+```{r}
+TukeyHSD(res.aov)
+```
+
+Keep in mind that ANOVA carries assumptions like equal variance among groups and normality that may be violated in this data. When running any test with such assumptions, you should be eplicitly testing that your data conform to them. If your data do not meet the test's assumptions, your results may be biased, and so data transformation or the use of a non-parametric test that does carry the same assumptions may be a better alternative. You can find more detail on testing ANOVA assumptions and ANOVA alternatives in R here: http://www.sthda.com/english/wiki/one-way-anova-test-in-r
+
+All statistical tests make certain assumptions about the data, and tests vary in how robust they are to violations of those assumptions. In the end, you will need to know the specifics of both your dataset and the relevant statistical tests to know what methods will be applicable to your data. 
 
 
 
