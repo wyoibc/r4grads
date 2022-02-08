@@ -1,0 +1,73 @@
+---
+title: "Fish data exploration"
+author: "Sean Harrington"
+date: "2/8/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = '~/r4grads')
+
+```
+
+
+### Exploratory data visualization
+
+So far, we've explored how we can manipulate our data in R, including reading in, subsetting, and merging datasets. These are all very important, but looking at data in the ways we have so far doesn't give us a good intuition for what kind of patterns or distributions there are in the data. Do we have mostly large fish? Mostly small fish? Are the data roughly normally distributed? If you have far better mathematical intuition than I do, you might be able to guess at this from looking at a dataframe in the R console, but I sure can't. Plotting the data gives us a much better idea of what's going on.
+
+Here, we'll explore some of the basic plotting functionality in R (i.e., base R graphics). There are much more powerful ways to generate fancier, pretty, publication-quality plots, but base R functionality can provide quick and easy insight into your data.
+
+
+We'll start by reading back in the data that we combined previously.
+
+
+```{r}
+setwd("~/r4grads")
+data_dir <- "~/r4grads/Fish_data/Modified/"
+fish_dat <- read.csv(paste0(data_dir, "/", "fish_data_merged.csv"))
+```
+
+
+### Relationships among variables
+
+When collecting data, we likely have some hypotheses that we are testing or at least general ideas about what kinds of patterns we expect in the data. In many cases, we may hypothesize that two variables are correlated. We can visualize the association between two variables using a scatterpot.
+
+Let's quickly remind ourselves of the variables that are in our fish dataset:
+
+```{r}
+colnames(fish_dat)
+```
+
+We would probably expect a relationship between weight and fork length, since it makes sense that longer fish are probably heavier fish. Let's see what it looks like:
+
+```{r}
+plot(fish_dat$Weight..g., fish_dat$Fork.length..cm.)
+```
+
+
+Cool, looks like there's a relationship here. Try plotting out a couple extra variables and see what kinds of relationsips you can identify.
+
+Once you do that, let's try cleaning this plot up a bit, it's pretty hideous right now. 
+
+```{r}
+plot(fish_dat$Weight..g., fish_dat$Fork.length..cm.,
+     pch = 16, frame = FALSE, col = "blue", cex=0.5,
+     xlab="Weight (g)", ylab = "Fork length (cm)")
+```
+
+
+
+
+
+#### OTHER STUFF FOR IN HERE:
+
+do correlation among things we've plotted - then go plot out some things by groups, and follow those up with ANOVA & T-test
+
+
+
+
+
+
+
+
