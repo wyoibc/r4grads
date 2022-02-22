@@ -199,73 +199,62 @@ YRI     10.16   AFR     7.3775  3.9470  Yoruba_Ibadan_Nigeria
 
 
 ```bash
-
 cat *.frq > all.freq
 
 head -n 6 all.freq
 
-CHROM	POS	N_ALLELES	N_CHR	{ALLELE:FREQ}
-15	48426484	2	192	A:0.104167	G:0.895833
-CHROM	POS	N_ALLELES	N_CHR	{ALLELE:FREQ}
-15	48426484	2	122	A:0.188525	G:0.811475
-CHROM	POS	N_ALLELES	N_CHR	{ALLELE:FREQ}
-15	48426484	2	172	A:0.534884	G:0.465116
-
-
+pop	CHROM	POS	N_ALLELES	N_CHR	ALLELE1	FREQ1	ALLELE2	FREQ2
+ACB	15	48426484	2	192	A	0.104167	G	0.895833
+pop     CHROM   POS     N_ALLELES       N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2
+ASW	15	48426484	2	122	A	0.188525	G	0.811475
+pop     CHROM   POS     N_ALLELES       N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2
+BEB	15	48426484	2	172	A	0.534884	G	0.465116
 ```
 
 ### 3.2 Formatting the ``all.freq`` File
 
-For our downstream visualization analysis, we need to get this file into correct format. You may have noticed that each allele frequency estimate has a header line. We do not need this redundant information for downstream analysis. Only one instance of the header line should be suffucient. We can selectively extract only those lines that we care about from this file. 
+For our downstream visualization analysis, we need to get this file into correct format. You may have noticed that each allele frequency estimate has a header line. We do not need this redundant information for downstream analysis. Only one instance of the header line should be suffucient. We can selectively delete those redundant lines from the text file. 
 
-Let's do an example first. Create a short file with following information:
+We will use the program ``awk`` to copy out only even numbered lines from the file:
+
 
 ```bash
-vim test.txt
+awk 'NR%2==0' infile > outfile
 ```
 
+- Try this on the ``all.freq`` file. Note that you will need to name an output file.
+
+- Once done, check the contents of the output file. It should look like the following.
+
 
 ```bash
-header_line
-line 1
-line 2
-line 3
-line 4
-line 5
-line 6
+cat outfile | head -n 10
+
+ACB	15	48426484	2	192	A	0.104167	G	0.895833
+ASW	15	48426484	2	122	A	0.188525	G	0.811475
+BEB	15	48426484	2	172	A	0.534884	G	0.465116
+CDX	15	48426484	2	186	A	0	G	1
+CEU	15	48426484	2	198	A	1	G	0
+CHB	15	48426484	2	206	A	0.0291262	G	0.970874
+CHS	15	48426484	2	210	A	0.0190476	G	0.980952
+CLM	15	48426484	2	188	A	0.718085	G	0.281915
+ESN	15	48426484	2	198	A	0.0252525	G	0.974747
+FIN	15	48426484	2	198	A	0.989899	G	0.010101
 ```
 
-- Now imagine that you wish to extract only the first line from this file. So you will do this:
+- We still need to insert a header line. The header you need is inside a file named ``header``.
+
+- If you want to concatenate two files, you can use the ``cat`` command like below:
 
 ```bash
-gsed -n 1p test.txt
-
-header_line
+cat file1 file2 > output
 ```
 
-- Additionally you want to grab every third line from the file. So you will do this:
-
-
-```bash
-gsed -n 1p;0~3p test.txt
-
-header_line
-line 2
-line 5
-```
-
-
-
-<br>
-
-#### 3.2.1 Exercise
-
-- Now apply the same technique to get the first line and then every second line from the combined frequencies file. Send the output to another file named master.freq.
-
-- Talk to your partner to figure this out. After this step, your file should look like this:
-
+- Try this out and name your output file ``master.freq``. Then check the contents of the output file again. 
 
 ```bash
+cat master.freq | head -n 10
+
 pop	CHROM	POS	N_ALLELES	N_CHR	ALLELE1	FREQ1	ALLELE2	FREQ2
 ACB	15	48426484	2	192	A	0.104167	G	0.895833
 ASW	15	48426484	2	122	A	0.188525	G	0.811475
@@ -277,6 +266,8 @@ CHS	15	48426484	2	210	A	0.0190476	G	0.980952
 CLM	15	48426484	2	188	A	0.718085	G	0.281915
 ESN	15	48426484	2	198	A	0.0252525	G	0.974747
 ```
+
+<br>
 
 
 
@@ -424,7 +415,7 @@ plot(x, y, col=file$superpop)
 
 
 ```r
-mypal <- c(AFR="red", AMR="blue", EAS="darkgreen", EUR="salmono", SAS="black")
+mypal <- c(AFR="red", AMR="blue", EAS="darkgreen", EUR="salmon", SAS="black")
 
 mypal
 
