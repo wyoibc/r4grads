@@ -6,75 +6,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Human Population Genomic Variation</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style>
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="avenir-white.css" />
   <!--[if lt IE 9]>
@@ -132,10 +132,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Before you can access data, you need to update your local repository:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> ~/r4grads</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">git</span> pull</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> ~/r4grads</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">git</span> pull</span></code></pre></div>
 <ul>
 <li>This command should fetch all the updates made to our class repository to your local computer and merge the changes with existing information. If you run into issues, talk to an instructor.</li>
 </ul>
@@ -144,153 +144,153 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Navigate to the <code>Module_3</code> folder.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">cd</span> Module_3</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="bu">cd</span> data</span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">ls</span> -lh</span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 YRI.pop.frq</span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 TSI.pop.frq</span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 STU.pop.frq</span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 PUR.pop.frq</span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    78B Oct 28  2018 PJL.pop.frq</span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 PEL.pop.frq</span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 MXL.pop.frq</span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 MSL.pop.frq</span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 LWK.pop.frq</span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    82B Oct 28  2018 KHV.pop.frq</span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    82B Oct 28  2018 JPT.pop.frq</span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 ITU.pop.frq</span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    66B Oct 28  2018 IBS.pop.frq</span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 GWD.pop.frq</span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 GIH.pop.frq</span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    66B Oct 28  2018 GBR.pop.frq</span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 FIN.pop.frq</span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 ESN.pop.frq</span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 CLM.pop.frq</span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 CHS.pop.frq</span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 CHB.pop.frq</span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    66B Oct 28  2018 CEU.pop.frq</span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    66B Oct 28  2018 CDX.pop.frq</span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 BEB.pop.frq</span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 ASW.pop.frq</span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 ACB.pop.frq</span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="ex">-rw-r--r--@</span> 1 vikram   1.6K Nov  5  2018 popdata</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="bu">cd</span> Module_3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="bu">cd</span> data</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="fu">ls</span> -lh</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 YRI.pop.frq</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 TSI.pop.frq</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 STU.pop.frq</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 PUR.pop.frq</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    78B Oct 28  2018 PJL.pop.frq</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 PEL.pop.frq</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 MXL.pop.frq</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 MSL.pop.frq</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 LWK.pop.frq</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    82B Oct 28  2018 KHV.pop.frq</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    82B Oct 28  2018 JPT.pop.frq</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 ITU.pop.frq</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    66B Oct 28  2018 IBS.pop.frq</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 GWD.pop.frq</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 GIH.pop.frq</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    66B Oct 28  2018 GBR.pop.frq</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 FIN.pop.frq</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 ESN.pop.frq</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 CLM.pop.frq</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 CHS.pop.frq</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    81B Oct 28  2018 CHB.pop.frq</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    66B Oct 28  2018 CEU.pop.frq</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    66B Oct 28  2018 CDX.pop.frq</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 BEB.pop.frq</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 ASW.pop.frq</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="ex">-rw-rw-r--@</span> 1 vikram    80B Oct 28  2018 ACB.pop.frq</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="ex">-rw-r--r--@</span> 1 vikram   1.6K Nov  5  2018 popdata</span></code></pre></div>
 <ul>
 <li>There are 26 files containing allele frequency data and one file containing population demographic data. Let’s take a quick peek inside both types of files:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">cat</span> YRI.pop.frq</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">pop</span> CHROM   POS N_ALLELES   N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">YRI</span> 15  48426484    2   216 A   0.0138889   G   0.986111</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">cat</span> YRI.pop.frq</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="ex">pop</span> CHROM   POS N_ALLELES   N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="ex">YRI</span> 15  48426484    2   216 A   0.0138889   G   0.986111</span></code></pre></div>
 <ul>
 <li><p>The file lists relevant details and frequencies of two alleles: A and G. Each of the 26 files contain this type of data.</p></li>
 <li><p>Now check the popdata file:</p></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">cat</span> popdata</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">pop</span>     dist    superpop        lat     long    popname</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="ex">ACB</span>     13.19   AFR     13.1776 -59.5412        African_Carib_BBDS</span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="ex">ASW</span>     -8.78   AFR     36.1070 -112.1130       African_Ancestry_SW_USA</span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="ex">BEB</span>     23.68   SAS     23.6850 90.3563 Bengali_in_Bangladesh</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="ex">CDX</span>     22.01   EAS     22.0088 -100.7971       Chinese_Dai</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="ex">CEU</span>     62.28   EUR     39.3210 -111.0937       Utah_Resid_from_NWEurope</span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="ex">CHB</span>     23.13   EAS     39.9042 116.4074        Han_Chinese</span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="ex">CHS</span>     24.48   EAS     23.9790 113.7633        Southern_Han_Chinese</span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="ex">CLM</span>     6.24    AMR     6.2442  -75.5812        Columbian_Medellin</span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="ex">ESN</span>     10.22   AFR     9.0820  8.6753  Esan_in_Nigeria</span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="ex">FIN</span>     61.92   EUR     61.9241 25.7482 Finnish_Finland</span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="ex">GBR</span>     56.49   EUR     55.3781 -3.4360 Bri_England_Scotland</span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="ex">GIH</span>     22.26   SAS     22.2587 71.1924 Guj_Ind_Houston</span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="ex">GWD</span>     13.44   AFR     13.4432 -15.3101        Gambian_WestGambia</span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="ex">IBS</span>     40.46   EUR     40.4830 -4.0876 Iberian_Spain</span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="ex">ITU</span>     11.13   SAS     11.1271 78.6569 Telugu_Ind_UK</span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="ex">JPT</span>     35.69   EAS     35.6895 139.6917        Jap_Tokyo</span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="ex">KHV</span>     14.06   EAS     14.0583 108.2772        Kinh_Vietnam</span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="ex">LWK</span>     -0.02   AFR     -0.0236 37.9062 Luhya_Kenya</span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="ex">MSL</span>     8.46    AFR     8.4606  -11.7799        Mende_Sierra_Leone</span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="ex">MXL</span>     23.63   AMR     23.6345 -102.5528       Mex_LA_USA</span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="ex">PEL</span>     -9.19   AMR     -9.19   -75.0152        Peruvian</span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="ex">PJL</span>     31.55   SAS     31.5546 74.3572 Punjabi_Lahore</span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="ex">PUR</span>     18.22   AMR     18.2208 -66.5901        Puerto_Rican</span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="ex">STU</span>     7.87    SAS     7.8731  80.7718 Sri_Lankan_Tamil</span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="ex">TSI</span>     43.77   EUR     43.7711 11.2486 Toscani_Italy</span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="ex">YRI</span>     10.16   AFR     7.3775  3.9470  Yoruba_Ibadan_Nigeria</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">cat</span> popdata</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="ex">pop</span>     dist    superpop        lat     long    popname</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="ex">ACB</span>     13.19   AFR     13.1776 -59.5412        African_Carib_BBDS</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="ex">ASW</span>     -8.78   AFR     36.1070 -112.1130       African_Ancestry_SW_USA</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="ex">BEB</span>     23.68   SAS     23.6850 90.3563 Bengali_in_Bangladesh</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="ex">CDX</span>     22.01   EAS     22.0088 -100.7971       Chinese_Dai</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="ex">CEU</span>     62.28   EUR     39.3210 -111.0937       Utah_Resid_from_NWEurope</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="ex">CHB</span>     23.13   EAS     39.9042 116.4074        Han_Chinese</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="ex">CHS</span>     24.48   EAS     23.9790 113.7633        Southern_Han_Chinese</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="ex">CLM</span>     6.24    AMR     6.2442  -75.5812        Columbian_Medellin</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="ex">ESN</span>     10.22   AFR     9.0820  8.6753  Esan_in_Nigeria</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="ex">FIN</span>     61.92   EUR     61.9241 25.7482 Finnish_Finland</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="ex">GBR</span>     56.49   EUR     55.3781 -3.4360 Bri_England_Scotland</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="ex">GIH</span>     22.26   SAS     22.2587 71.1924 Guj_Ind_Houston</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="ex">GWD</span>     13.44   AFR     13.4432 -15.3101        Gambian_WestGambia</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="ex">IBS</span>     40.46   EUR     40.4830 -4.0876 Iberian_Spain</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="ex">ITU</span>     11.13   SAS     11.1271 78.6569 Telugu_Ind_UK</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="ex">JPT</span>     35.69   EAS     35.6895 139.6917        Jap_Tokyo</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="ex">KHV</span>     14.06   EAS     14.0583 108.2772        Kinh_Vietnam</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="ex">LWK</span>     -0.02   AFR     -0.0236 37.9062 Luhya_Kenya</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="ex">MSL</span>     8.46    AFR     8.4606  -11.7799        Mende_Sierra_Leone</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="ex">MXL</span>     23.63   AMR     23.6345 -102.5528       Mex_LA_USA</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="ex">PEL</span>     -9.19   AMR     -9.19   -75.0152        Peruvian</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="ex">PJL</span>     31.55   SAS     31.5546 74.3572 Punjabi_Lahore</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="ex">PUR</span>     18.22   AMR     18.2208 -66.5901        Puerto_Rican</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="ex">STU</span>     7.87    SAS     7.8731  80.7718 Sri_Lankan_Tamil</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="ex">TSI</span>     43.77   EUR     43.7711 11.2486 Toscani_Italy</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a><span class="ex">YRI</span>     10.16   AFR     7.3775  3.9470  Yoruba_Ibadan_Nigeria</span></code></pre></div>
 <p><br><br></p>
 <h2 id="combine-all-frequency-files">3. Combine All Frequency Files</h2>
 <ul>
 <li>Your goal is to combine all frequency data into a single file.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">cat</span> *.frq <span class="op">&gt;</span> all.freq</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">head</span> -n 6 all.freq</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="ex">pop</span> CHROM   POS N_ALLELES   N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="ex">ACB</span> 15  48426484    2   192 A   0.104167    G   0.895833</span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">pop</span>     CHROM   POS     N_ALLELES       N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="ex">ASW</span> 15  48426484    2   122 A   0.188525    G   0.811475</span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="ex">pop</span>     CHROM   POS     N_ALLELES       N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="ex">BEB</span> 15  48426484    2   172 A   0.534884    G   0.465116</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">cat</span> *.frq <span class="op">&gt;</span> all.freq</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="fu">head</span> -n 6 all.freq</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="ex">pop</span> CHROM   POS N_ALLELES   N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="ex">ACB</span> 15  48426484    2   192 A   0.104167    G   0.895833</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="ex">pop</span>     CHROM   POS     N_ALLELES       N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="ex">ASW</span> 15  48426484    2   122 A   0.188525    G   0.811475</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="ex">pop</span>     CHROM   POS     N_ALLELES       N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="ex">BEB</span> 15  48426484    2   172 A   0.534884    G   0.465116</span></code></pre></div>
 <h3 id="formatting-the-all.freq-file">3.2 Formatting the <code>all.freq</code> File</h3>
 <p>For our downstream visualization analysis, we need to get this file into correct format. You may have noticed that each allele frequency estimate has a header line. We do not need this redundant information for downstream analysis. Only one instance of the header line should be suffucient. We can selectively delete those redundant lines from the text file.</p>
 <p>We will use the program <code>awk</code> to copy out only even numbered lines from the file:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">awk</span> <span class="st">&#39;NR%2==0&#39;</span> infile <span class="op">&gt;</span> outfile</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">awk</span> <span class="st">&#39;NR%2==0&#39;</span> infile <span class="op">&gt;</span> outfile</span></code></pre></div>
 <ul>
 <li><p>Try this on the <code>all.freq</code> file. Note that you will need to name an output file.</p></li>
 <li><p>Once done, check the contents of the output file. It should look like the following.</p></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">cat</span> outfile <span class="kw">|</span> <span class="fu">head</span> -n 10</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">ACB</span> 15  48426484    2   192 A   0.104167    G   0.895833</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="ex">ASW</span> 15  48426484    2   122 A   0.188525    G   0.811475</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="ex">BEB</span> 15  48426484    2   172 A   0.534884    G   0.465116</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="ex">CDX</span> 15  48426484    2   186 A   0   G   1</span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="ex">CEU</span> 15  48426484    2   198 A   1   G   0</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="ex">CHB</span> 15  48426484    2   206 A   0.0291262   G   0.970874</span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="ex">CHS</span> 15  48426484    2   210 A   0.0190476   G   0.980952</span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="ex">CLM</span> 15  48426484    2   188 A   0.718085    G   0.281915</span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="ex">ESN</span> 15  48426484    2   198 A   0.0252525   G   0.974747</span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="ex">FIN</span> 15  48426484    2   198 A   0.989899    G   0.010101</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="fu">cat</span> outfile <span class="kw">|</span> <span class="fu">head</span> -n 10</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="ex">ACB</span> 15  48426484    2   192 A   0.104167    G   0.895833</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="ex">ASW</span> 15  48426484    2   122 A   0.188525    G   0.811475</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="ex">BEB</span> 15  48426484    2   172 A   0.534884    G   0.465116</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="ex">CDX</span> 15  48426484    2   186 A   0   G   1</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="ex">CEU</span> 15  48426484    2   198 A   1   G   0</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="ex">CHB</span> 15  48426484    2   206 A   0.0291262   G   0.970874</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="ex">CHS</span> 15  48426484    2   210 A   0.0190476   G   0.980952</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="ex">CLM</span> 15  48426484    2   188 A   0.718085    G   0.281915</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="ex">ESN</span> 15  48426484    2   198 A   0.0252525   G   0.974747</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="ex">FIN</span> 15  48426484    2   198 A   0.989899    G   0.010101</span></code></pre></div>
 <ul>
 <li><p>We still need to insert a header line. The header you need is inside a file named <code>header</code>.</p></li>
 <li><p>If you want to concatenate two files, you can use the <code>cat</code> command like below:</p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">cat</span> file1 file2 <span class="op">&gt;</span> output</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="fu">cat</span> file1 file2 <span class="op">&gt;</span> output</span></code></pre></div>
 <ul>
 <li>Try this out and name your output file <code>master.freq</code>. Then check the contents of the output file again.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">cat</span> master.freq <span class="kw">|</span> <span class="fu">head</span> -n 10</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="ex">pop</span> CHROM   POS N_ALLELES   N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="ex">ACB</span> 15  48426484    2   192 A   0.104167    G   0.895833</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="ex">ASW</span> 15  48426484    2   122 A   0.188525    G   0.811475</span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="ex">BEB</span> 15  48426484    2   172 A   0.534884    G   0.465116</span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="ex">CDX</span> 15  48426484    2   186 A   0   G   1</span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="ex">CEU</span> 15  48426484    2   198 A   1   G   0</span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="ex">CHB</span> 15  48426484    2   206 A   0.0291262   G   0.970874</span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="ex">CHS</span> 15  48426484    2   210 A   0.0190476   G   0.980952</span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="ex">CLM</span> 15  48426484    2   188 A   0.718085    G   0.281915</span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="ex">ESN</span> 15  48426484    2   198 A   0.0252525   G   0.974747</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="fu">cat</span> master.freq <span class="kw">|</span> <span class="fu">head</span> -n 10</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="ex">pop</span> CHROM   POS N_ALLELES   N_CHR   ALLELE1 FREQ1   ALLELE2 FREQ2</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="ex">ACB</span> 15  48426484    2   192 A   0.104167    G   0.895833</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="ex">ASW</span> 15  48426484    2   122 A   0.188525    G   0.811475</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="ex">BEB</span> 15  48426484    2   172 A   0.534884    G   0.465116</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="ex">CDX</span> 15  48426484    2   186 A   0   G   1</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="ex">CEU</span> 15  48426484    2   198 A   1   G   0</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="ex">CHB</span> 15  48426484    2   206 A   0.0291262   G   0.970874</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="ex">CHS</span> 15  48426484    2   210 A   0.0190476   G   0.980952</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="ex">CLM</span> 15  48426484    2   188 A   0.718085    G   0.281915</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="ex">ESN</span> 15  48426484    2   198 A   0.0252525   G   0.974747</span></code></pre></div>
 <p><br></p>
 <p><br></p>
 <h2 id="the-popdata-file">4. The <code>popdata</code> File</h2>
 <p>You will find this file also in the <code>data</code> subdirectory. It contains alphabetical list of population names whose lines correspond to those in allele frequency file. Check to make sure the file exists. This file also contains information on geographical locations of each of the 26 human populations we are studying. The populations are in turn grouped into 5 super populations.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="bu">cd</span> data/</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">head</span> popdata</span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="ex">pop</span>     dist    superpop        lat     long    popname</span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="ex">ACB</span>     13.19   AFR     13.1776 -59.5412        African_Carib_BBDS</span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="ex">ASW</span>     -8.78   AFR     36.1070 -112.1130       African_Ancestry_SW_USA</span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="ex">BEB</span>     23.68   SAS     23.6850 90.3563 Bengali_in_Bangladesh</span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="ex">CDX</span>     22.01   EAS     22.0088 -100.7971       Chinese_Dai</span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="ex">CEU</span>     62.28   EUR     39.3210 -111.0937       Utah_Resid_from_NWEurope</span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="ex">CHB</span>     23.13   EAS     39.9042 116.4074        Han_Chinese</span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="ex">CHS</span>     24.48   EAS     23.9790 113.7633        Southern_Han_Chinese</span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="ex">CLM</span>     6.24    AMR     6.2442  -75.5812        Columbian_Medellin</span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="ex">ESN</span>     10.22   AFR     9.0820  8.6753  Esan_in_Nigeria</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="bu">cd</span> data/</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="fu">head</span> popdata</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="ex">pop</span>     dist    superpop        lat     long    popname</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="ex">ACB</span>     13.19   AFR     13.1776 -59.5412        African_Carib_BBDS</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="ex">ASW</span>     -8.78   AFR     36.1070 -112.1130       African_Ancestry_SW_USA</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="ex">BEB</span>     23.68   SAS     23.6850 90.3563 Bengali_in_Bangladesh</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="ex">CDX</span>     22.01   EAS     22.0088 -100.7971       Chinese_Dai</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="ex">CEU</span>     62.28   EUR     39.3210 -111.0937       Utah_Resid_from_NWEurope</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="ex">CHB</span>     23.13   EAS     39.9042 116.4074        Han_Chinese</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="ex">CHS</span>     24.48   EAS     23.9790 113.7633        Southern_Han_Chinese</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a><span class="ex">CLM</span>     6.24    AMR     6.2442  -75.5812        Columbian_Medellin</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a><span class="ex">ESN</span>     10.22   AFR     9.0820  8.6753  Esan_in_Nigeria</span></code></pre></div>
 <p><br></p>
 <h2 id="join-popdata-with-master.freq">5. Join <code>popdata</code> with <code>master.freq</code></h2>
 <p>The simplest way to accomplish this is use the <code>cbind</code> function in R.</p>
@@ -299,22 +299,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Use the <code>cbind</code> function to join the two frames by columns into a single object called <code>freq.df</code></p></li>
 <li><p>After the join, your file should look like this:</p></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">head</span>(freq.df)</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  pop CHROM      POS N_ALLELES N_CHR ALLELE1     FREQ1 ALLELE2    FREQ2 pop  dist superpop     lat      long                  popname</span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="dv">1</span> ACB    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">192</span>       A <span class="fl">0.1041670</span>       G <span class="fl">0.895833</span> ACB <span class="fl">13.19</span>      AFR <span class="fl">13.1776</span>  <span class="fl">-59.5412</span>       African_Carib_BBDS</span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="dv">2</span> ASW    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">122</span>       A <span class="fl">0.1885250</span>       G <span class="fl">0.811475</span> ASW <span class="fl">-8.78</span>      AFR <span class="fl">36.1070</span> <span class="fl">-112.1130</span>  African_Ancestry_SW_USA</span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="dv">3</span> BEB    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">172</span>       A <span class="fl">0.5348840</span>       G <span class="fl">0.465116</span> BEB <span class="fl">23.68</span>      SAS <span class="fl">23.6850</span>   <span class="fl">90.3563</span>    Bengali_in_Bangladesh</span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="dv">4</span> CDX    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">186</span>       A <span class="fl">0.0000000</span>       G <span class="fl">1.000000</span> CDX <span class="fl">22.01</span>      EAS <span class="fl">22.0088</span> <span class="fl">-100.7971</span>              Chinese_Dai</span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="dv">5</span> CEU    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">198</span>       A <span class="fl">1.0000000</span>       G <span class="fl">0.000000</span> CEU <span class="fl">62.28</span>      EUR <span class="fl">39.3210</span> <span class="fl">-111.0937</span> Utah_Resid_from_NWEurope</span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="dv">6</span> CHB    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">206</span>       A <span class="fl">0.0291262</span>       G <span class="fl">0.970874</span> CHB <span class="fl">23.13</span>      EAS <span class="fl">39.9042</span>  <span class="fl">116.4074</span>              Han_Chinese</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">head</span>(freq.df)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>  pop CHROM      POS N_ALLELES N_CHR ALLELE1     FREQ1 ALLELE2    FREQ2 pop  dist superpop     lat      long                  popname</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="dv">1</span> ACB    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">192</span>       A <span class="fl">0.1041670</span>       G <span class="fl">0.895833</span> ACB <span class="fl">13.19</span>      AFR <span class="fl">13.1776</span>  <span class="fl">-59.5412</span>       African_Carib_BBDS</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a><span class="dv">2</span> ASW    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">122</span>       A <span class="fl">0.1885250</span>       G <span class="fl">0.811475</span> ASW <span class="fl">-8.78</span>      AFR <span class="fl">36.1070</span> <span class="fl">-112.1130</span>  African_Ancestry_SW_USA</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="dv">3</span> BEB    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">172</span>       A <span class="fl">0.5348840</span>       G <span class="fl">0.465116</span> BEB <span class="fl">23.68</span>      SAS <span class="fl">23.6850</span>   <span class="fl">90.3563</span>    Bengali_in_Bangladesh</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="dv">4</span> CDX    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">186</span>       A <span class="fl">0.0000000</span>       G <span class="fl">1.000000</span> CDX <span class="fl">22.01</span>      EAS <span class="fl">22.0088</span> <span class="fl">-100.7971</span>              Chinese_Dai</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="dv">5</span> CEU    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">198</span>       A <span class="fl">1.0000000</span>       G <span class="fl">0.000000</span> CEU <span class="fl">62.28</span>      EUR <span class="fl">39.3210</span> <span class="fl">-111.0937</span> Utah_Resid_from_NWEurope</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a><span class="dv">6</span> CHB    <span class="dv">15</span> <span class="dv">48426484</span>         <span class="dv">2</span>   <span class="dv">206</span>       A <span class="fl">0.0291262</span>       G <span class="fl">0.970874</span> CHB <span class="fl">23.13</span>      EAS <span class="fl">39.9042</span>  <span class="fl">116.4074</span>              Han_Chinese</span></code></pre></div>
 <p><br></p>
 <h3 id="exercise-check-file-for-correctness">5.1 Exercise: Check file for correctness</h3>
 <ul>
 <li><p>You want to make sure that the geographical data on a given line belongs to the population name mentioned. Note that there are two <code>pop</code> columns. You could check to see whether they match with each other.</p></li>
 <li><p>Use the <code>==</code> operator in R to check these two columns. For example:</p></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>file<span class="op">$</span>column1 <span class="op">==</span><span class="st"> </span>file<span class="op">$</span>column2</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>file<span class="op">$</span>column1 <span class="op">==</span><span class="st"> </span>file<span class="op">$</span>column2</span></code></pre></div>
 <ul>
 <li>If the output is all <code>TRUE</code> then you are good. If you see even one <code>FALSE</code>, retrace your steps backwards to find out where you made a mistake.</li>
 </ul>
@@ -337,12 +337,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Generate a histogram of frequencies of each allele. For example:</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">hist</span>(freq.df<span class="op">$</span>FREQ1)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">hist</span>(freq.df<span class="op">$</span>FREQ1)</span></code></pre></div>
 <ul>
 <li><p>Try this command on the second allele</p></li>
 <li><p>Generate a scatterplot of <code>FREQ1</code> and <code>lat</code> (latitude).</p></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">plot</span>(freq.df<span class="op">$</span>FREQ1, freq.df<span class="op">$</span>lat)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">plot</span>(freq.df<span class="op">$</span>FREQ1, freq.df<span class="op">$</span>lat)</span></code></pre></div>
 <br>
 <center>
 <img src="images/scatterplot1.png" width=600 />
@@ -365,20 +365,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Note that our data set has a column called <code>superpop</code> which groups individual populations into one or more higher level pops. We can make use of that. What happens if you assign the <code>col</code> parameter to <code>superpop</code>?</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">plot</span>(x, y, <span class="dt">col=</span>file<span class="op">$</span>superpop)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">plot</span>(x, y, <span class="dt">col=</span>file<span class="op">$</span>superpop)</span></code></pre></div>
 <ul>
 <li>That’s right, it doesn’t work. R complains that it can’t find a color called <code>AFR</code>. In order to make this work, we need to create a new color panel:</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>mypal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">AFR=</span><span class="st">&quot;red&quot;</span>, <span class="dt">AMR=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">EAS=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">EUR=</span><span class="st">&quot;salmon&quot;</span>, <span class="dt">SAS=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a>mypal</span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a>        AFR         AMR         EAS         EUR         SAS </span>
-<span id="cb16-6"><a href="#cb16-6"></a>      <span class="st">&quot;red&quot;</span>      <span class="st">&quot;blue&quot;</span> <span class="st">&quot;darkgreen&quot;</span>   <span class="st">&quot;salmono&quot;</span>     <span class="st">&quot;black&quot;</span> </span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>mypal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">AFR=</span><span class="st">&quot;red&quot;</span>, <span class="dt">AMR=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">EAS=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">EUR=</span><span class="st">&quot;salmon&quot;</span>, <span class="dt">SAS=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>mypal</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a>        AFR         AMR         EAS         EUR         SAS </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a>      <span class="st">&quot;red&quot;</span>      <span class="st">&quot;blue&quot;</span> <span class="st">&quot;darkgreen&quot;</span>   <span class="st">&quot;salmono&quot;</span>     <span class="st">&quot;black&quot;</span> </span></code></pre></div>
 <ul>
 <li>Now assign the color palette in the plot command:</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">plot</span>(x, y, <span class="dt">col=</span>mypal[file<span class="op">$</span>superpop]</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">plot</span>(x, y, <span class="dt">col=</span>mypal[file<span class="op">$</span>superpop]</span></code></pre></div>
 <br>
 <center>
 <img src="images/scatterplot3.png" width=600 />
@@ -394,12 +394,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Now we have populations colored differently and grouped by super populations. But if you send this figure to someone they won’t know what color represents what populations.</p></li>
 <li><p>This is where the <code>legend()</code> comes in. Here is the syntax:</p></li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">plot</span>(...as above...)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="ex">legend</span>(POSITION, WHAT_TO_INCLUDE_IN_THE_LEGEND, POINT_SIZE, COLORS, LEGEND_TEXT_SIZE, INSET_OR_NO)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="ex">plot</span>(...as above...)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="ex">legend</span>(POSITION, WHAT_TO_INCLUDE_IN_THE_LEGEND, POINT_SIZE, COLORS, LEGEND_TEXT_SIZE, INSET_OR_NO)</span></code></pre></div>
 <ul>
 <li>And here is an example:</li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="ex">legend</span>(<span class="st">&#39;bottomright&#39;</span>, c(<span class="st">&#39;African&#39;</span>), <span class="va">pch=</span>1.2, <span class="va">col=</span>c<span class="va">(</span><span class="st">&#39;red&#39;</span><span class="va">)</span>, <span class="va">cex=</span>0.8, <span class="va">inset=</span>0.02)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="ex">legend</span>(<span class="st">&#39;bottomright&#39;</span>, c(<span class="st">&#39;African&#39;</span>), <span class="va">pch=</span>1.2, <span class="va">col=</span>c<span class="va">(</span><span class="st">&#39;red&#39;</span><span class="va">)</span>, <span class="va">cex=</span>0.8, <span class="va">inset=</span>0.02)</span></code></pre></div>
 <ul>
 <li><p>Did it work? If yes, how many populations are listed?</p></li>
 <li><p>Now repeat the command by adding all the super populations and all associated colors. You should see something like this:</p></li>
@@ -423,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><br></p>
 <h3 id="draw-world-map-layer">7.1 Draw World Map Layer</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <ul>
 <li>Keep in mind what the x and y values above are. They are longitudes and latitudes.</li>
 </ul>
@@ -437,8 +437,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>R provides a function called <code>points()</code> that allows you to plot points using x,y coordinates on the plot.</p></li>
 <li><p>For example:</p></li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">plot</span>()</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">points</span>(x, y, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">col=</span><span class="st">&quot;your_favorite_color&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="kw">plot</span>()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a><span class="kw">points</span>(x, y, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">col=</span><span class="st">&quot;your_favorite_color&quot;</span>)</span></code></pre></div>
 <ul>
 <li><p>Try it out. Did it work? Do you know what to use for x and for y?</p></li>
 <li><p>If it worked, your map should now look like this:</p></li>
@@ -452,11 +452,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 id="allele-frequencies-as-pie-charts">8. Allele Frequencies As Pie Charts</h2>
 <p>This would perhaps be the best way to depict our data on the map, because it will show relative frequencies of both alleles at every given geographical position (i.e. population).</p>
 <p>First, let’s just draw one pie to see how it works. We can then apply the same principal to the remaining points on the map.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="kw">add.pie</span>(<span class="dt">z=</span><span class="kw">c</span>(<span class="fl">0.104</span>, <span class="fl">0.895</span>), <span class="dt">x=</span><span class="op">-</span><span class="fl">59.5412</span>, <span class="dt">y=</span><span class="fl">13.1776</span>, <span class="dt">radius=</span><span class="dv">192</span><span class="op">/</span><span class="dv">100</span>, </span>
-<span id="cb22-4"><a href="#cb22-4"></a>            <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">labels=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="kw">box</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a><span class="kw">add.pie</span>(<span class="dt">z=</span><span class="kw">c</span>(<span class="fl">0.104</span>, <span class="fl">0.895</span>), <span class="dt">x=</span><span class="op">-</span><span class="fl">59.5412</span>, <span class="dt">y=</span><span class="fl">13.1776</span>, <span class="dt">radius=</span><span class="dv">192</span><span class="op">/</span><span class="dv">100</span>, </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a>            <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">labels=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a><span class="kw">box</span>()</span></code></pre></div>
 <p>As you can see below, we just plotted the allele frequency data for the Barbados African population using a pie chart. The orange and blue colors are representative of the frequencies of alleles A and T respectively.</p>
 <br>
 <center>
@@ -465,33 +465,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <h3 id="exercise-plot-all-pie-charts-using-for-loop">8.1 Exercise: Plot All Pie Charts Using <code>for{}</code> Loop</h3>
 <p>In order to plot one pie chart per population of data, what we need to do essentially is to cycle through the code above for each row of our data frame <code>freq.df</code>. If you need a refresher in what was contained in that data frame, run a head on it quickly:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="op">&gt;</span> <span class="fu">head</span>(freq.df)</span>
-<span id="cb23-3"><a href="#cb23-3"></a></span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="ex">pop</span>  dist superpop     lat      long                  popname CHROM      POS N_ALLELES N_CHR  Allele_A Allele_G</span>
-<span id="cb23-5"><a href="#cb23-5"></a><span class="ex">1</span> ACB 13.19      AFR 13.1776  -59.5412       African_Carib_BBDS    15 48426484         2   192 0.1041670 0.895833</span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="ex">2</span> ASW -8.78      AFR 36.1070 -112.1130  African_Ancestry_SW_USA    15 48426484         2   122 0.1885250 0.811475</span>
-<span id="cb23-7"><a href="#cb23-7"></a><span class="ex">3</span> BEB 23.68      SAS 23.6850   90.3563    Bengali_in_Bangladesh    15 48426484         2   172 0.5348840 0.465116</span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="ex">4</span> CDX 22.01      EAS 22.0088 -100.7971              Chinese_Dai    15 48426484         2   186 0.0000000 1.000000</span>
-<span id="cb23-9"><a href="#cb23-9"></a><span class="ex">5</span> CEU 62.28      EUR 39.3210 -111.0937 Utah_Resid_from_NWEurope    15 48426484         2   198 1.0000000 0.000000</span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="ex">6</span> CHB 23.13      EAS 39.9042  116.4074              Han_Chinese    15 48426484         2   206 0.0291262 0.970874</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a><span class="op">&gt;</span> <span class="fu">head</span>(freq.df)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a>  <span class="ex">pop</span>  dist superpop     lat      long                  popname CHROM      POS N_ALLELES N_CHR  Allele_A Allele_G</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a><span class="ex">1</span> ACB 13.19      AFR 13.1776  -59.5412       African_Carib_BBDS    15 48426484         2   192 0.1041670 0.895833</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true"></a><span class="ex">2</span> ASW -8.78      AFR 36.1070 -112.1130  African_Ancestry_SW_USA    15 48426484         2   122 0.1885250 0.811475</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true"></a><span class="ex">3</span> BEB 23.68      SAS 23.6850   90.3563    Bengali_in_Bangladesh    15 48426484         2   172 0.5348840 0.465116</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true"></a><span class="ex">4</span> CDX 22.01      EAS 22.0088 -100.7971              Chinese_Dai    15 48426484         2   186 0.0000000 1.000000</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true"></a><span class="ex">5</span> CEU 62.28      EUR 39.3210 -111.0937 Utah_Resid_from_NWEurope    15 48426484         2   198 1.0000000 0.000000</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true"></a><span class="ex">6</span> CHB 23.13      EAS 39.9042  116.4074              Han_Chinese    15 48426484         2   206 0.0291262 0.970874</span></code></pre></div>
 <p><code>for{}</code> loops in R are notoriously slow for large data sets, but we have just got 26 iterations of the loop, so we do not need to worry about computational speed. Loops in R are similar to those in bash or any other language and they take the following general form:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</span>
-<span id="cb24-2"><a href="#cb24-2"></a>  do something</span>
-<span id="cb24-3"><a href="#cb24-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a>  do something</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a>}</span></code></pre></div>
 <p>This means run <code>something</code> command 100 times. Let’s try some examples:</p>
 <ul>
 <li>Print numbers 1 to 10</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){</span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="kw">print</span>(i)</span>
-<span id="cb25-3"><a href="#cb25-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a>}</span></code></pre></div>
 <ul>
 <li>Multiply each number between 200 and 220 by 3</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">200</span><span class="op">:</span><span class="dv">220</span>){</span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="kw">print</span>(i<span class="op">*</span><span class="dv">3</span>)</span>
-<span id="cb26-3"><a href="#cb26-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">200</span><span class="op">:</span><span class="dv">220</span>){</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a>  <span class="kw">print</span>(i<span class="op">*</span><span class="dv">3</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a>}</span></code></pre></div>
 <ul>
 <li><p>Now that you understand how <code>for()</code> loop works, go ahead and apply it to your map code above so that you will have 26 pie charts one per population on the map.</p></li>
 <li><p>The solution to this problem is at the end of this page. But try to solve it by yourself first (with your partner).</p></li>
@@ -512,26 +512,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p><br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br> <br><br><br><br><br><Br></p>
 <h3 id="final-map-r-code">8.2 Final Map R Code</h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">pdf</span>(<span class="st">&#39;WorldPie_Final2.pdf&#39;</span>, <span class="dt">width=</span><span class="dv">10</span>, <span class="dt">height=</span><span class="dv">7</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a></span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</span>
-<span id="cb27-4"><a href="#cb27-4"></a></span>
-<span id="cb27-5"><a href="#cb27-5"></a></span>
-<span id="cb27-6"><a href="#cb27-6"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">26</span>){</span>
-<span id="cb27-7"><a href="#cb27-7"></a>  <span class="kw">add.pie</span>(<span class="dt">z=</span><span class="kw">c</span>(freq<span class="op">$</span>Allele_A[i], freq<span class="op">$</span>Allele_G[i]), <span class="dt">x=</span>freq<span class="op">$</span>long[i], <span class="dt">y=</span>freq<span class="op">$</span>lat[i], </span>
-<span id="cb27-8"><a href="#cb27-8"></a>        <span class="dt">radius=</span>freq<span class="op">$</span>N_CHR[i]<span class="op">/</span><span class="dv">100</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">labels=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb27-9"><a href="#cb27-9"></a>  i=i<span class="op">+</span><span class="dv">1</span></span>
-<span id="cb27-10"><a href="#cb27-10"></a>}</span>
-<span id="cb27-11"><a href="#cb27-11"></a></span>
-<span id="cb27-12"><a href="#cb27-12"></a><span class="kw">text</span>(freq<span class="op">$</span>long, freq<span class="op">$</span>lat, <span class="dt">labels=</span>freq<span class="op">$</span>superpop, <span class="dt">cex=</span><span class="fl">0.5</span>, <span class="dt">pos=</span><span class="dv">1</span>)</span>
-<span id="cb27-13"><a href="#cb27-13"></a></span>
-<span id="cb27-14"><a href="#cb27-14"></a><span class="kw">box</span>()</span>
-<span id="cb27-15"><a href="#cb27-15"></a></span>
-<span id="cb27-16"><a href="#cb27-16"></a><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">bty=</span><span class="st">&#39;1&#39;</span>, <span class="kw">c</span>(<span class="st">&quot;Freq. Allele A&quot;</span>, <span class="st">&quot;Freq. Allele G&quot;</span>), <span class="dt">pch=</span><span class="dv">16</span>, </span>
-<span id="cb27-17"><a href="#cb27-17"></a>        <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">pt.cex=</span><span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">0.7</span>)</span>
-<span id="cb27-18"><a href="#cb27-18"></a></span>
-<span id="cb27-19"><a href="#cb27-19"></a><span class="kw">title</span>(<span class="dt">main=</span><span class="st">&quot;Global Distribution of rs1426654 Alleles&quot;</span>, <span class="dt">font.main=</span><span class="dv">1</span>, <span class="dt">cex.main=</span><span class="fl">0.9</span>)</span>
-<span id="cb27-20"><a href="#cb27-20"></a></span>
-<span id="cb27-21"><a href="#cb27-21"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="kw">pdf</span>(<span class="st">&#39;WorldPie_Final2.pdf&#39;</span>, <span class="dt">width=</span><span class="dv">10</span>, <span class="dt">height=</span><span class="dv">7</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="kw">map</span>(<span class="st">&#39;worldHires&#39;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>,<span class="dv">142</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="dv">72</span>), <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>, <span class="dt">fill=</span><span class="ot">FALSE</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">26</span>){</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a>  <span class="kw">add.pie</span>(<span class="dt">z=</span><span class="kw">c</span>(freq.df<span class="op">$</span>FREQ1[i], freq.df<span class="op">$</span>FREQ2[i]), <span class="dt">x=</span>freq.df<span class="op">$</span>long[i], <span class="dt">y=</span>freq.df<span class="op">$</span>lat[i], </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a>        <span class="dt">radius=</span>freq.df<span class="op">$</span>N_CHR[i]<span class="op">/</span><span class="dv">100</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">labels=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true"></a>  i=i<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true"></a>}</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true"></a><span class="kw">text</span>(freq.df<span class="op">$</span>long, freq.df<span class="op">$</span>lat, <span class="dt">labels=</span>freq.df<span class="op">$</span>superpop, <span class="dt">cex=</span><span class="fl">0.5</span>, <span class="dt">pos=</span><span class="dv">1</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true"></a><span class="kw">box</span>()</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true"></a><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">bty=</span><span class="st">&#39;1&#39;</span>, <span class="kw">c</span>(<span class="st">&quot;Freq. Allele A&quot;</span>, <span class="st">&quot;Freq. Allele G&quot;</span>), <span class="dt">pch=</span><span class="dv">16</span>, </span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true"></a>        <span class="dt">col=</span><span class="kw">c</span>(<span class="kw">alpha</span>(<span class="st">&quot;orange&quot;</span>, <span class="fl">0.6</span>), <span class="kw">alpha</span>(<span class="st">&quot;blue&quot;</span>, <span class="fl">0.6</span>)), <span class="dt">pt.cex=</span><span class="dv">1</span>, <span class="dt">cex=</span><span class="fl">0.7</span>)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true"></a></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true"></a><span class="kw">title</span>(<span class="dt">main=</span><span class="st">&quot;Global Distribution of rs1426654 Alleles&quot;</span>, <span class="dt">font.main=</span><span class="dv">1</span>, <span class="dt">cex.main=</span><span class="fl">0.9</span>)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true"></a><span class="kw">dev.off</span>()</span></code></pre></div>
 </body>
 </html>

@@ -688,12 +688,12 @@ map('worldHires', xlim=c(-120,142), ylim=c(-15,72), col='gray', fill=FALSE)
 
 
 for (i in 1:26){
-  add.pie(z=c(freq$Allele_A[i], freq$Allele_G[i]), x=freq$long[i], y=freq$lat[i], 
-		radius=freq$N_CHR[i]/100, col=c(alpha("orange", 0.6), alpha("blue", 0.6)), labels="")
+  add.pie(z=c(freq.df$FREQ1[i], freq.df$FREQ2[i]), x=freq.df$long[i], y=freq.df$lat[i], 
+		radius=freq.df$N_CHR[i]/100, col=c(alpha("orange", 0.6), alpha("blue", 0.6)), labels="")
   i=i+1
 }
 
-text(freq$long, freq$lat, labels=freq$superpop, cex=0.5, pos=1)
+text(freq.df$long, freq.df$lat, labels=freq.df$superpop, cex=0.5, pos=1)
 
 box()
 
