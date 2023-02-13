@@ -6,12 +6,14 @@ title: r4grads - Data Analysis & Publishing in R
 Part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical Researchers)
 </center>
 
-### Wyoming Instructors
-[Vikram E. Chhatre](mailto:vchhatre@uwyo.edu) | [Sean Harrington](mailto:sharrin2@uwyo.edu) | [Braveen Joseph](mailto:bjoseph3@uwyo.edu)
+### Instructor
+[Sean Harrington](mailto:sharrin2@uwyo.edu)
 
 
-### Idaho Instructor
-[Barrie Robinson](mailto:brobinson@uidaho.edu)
+
+
+UNDER DEVELOPMENT!!!!
+
 
 
 <br>
@@ -20,27 +22,52 @@ Part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical Researcher
 
 The class will meet in Agriculture Building Room 316 between 9AM and 12PM MDT on following dates:
 
-- February 9
-- February 16
-- February 23
+- February 22
+- March 1 
+- March 8
+- March 22
+
+<br>
+
+## Prep:
+
+Download and install the **latest versions** of R and RStudio
+
+	- R can be downloaded from [r-project.org](https://r-project.org). 
+
+	- RStudio can be obtained from [rstudio.com/products/rstudio/](https://rstudio.com/products/rstudio/)
+
+
+
+
+## Module 1
+
+- Essential R skills
+
+This session will introduce the basics of R and RStudio.
+
+If you already have experience in R and are comfortable with creating and manipulating objects, applying functions, and using RStudio, you may skip this session. *If you are not familiar with R, it is essential that you attend this session!* We will assume basic proficiency with R in all subsequent classes, without time to catch people up.
+
 
 <br>
 
 
-## COVID-19 Information
+Website link: [https://wyoibc.github.io/r4grads/](https://wyoibc.github.io/r4grads/)
 
-- In accordance with University of Wyoming policy, masks are required for the entire duration of the class. 
-- Your instructors are fully vaccinated and boosted
-- Please be mindful of other’s safety when removing the mask for any reason during the workshop.
-- If you are feeling sick, do not come to the class. Please email your instructors.
+Github repo: [https://github.com/wyoibc/r4grads](https://github.com/wyoibc/r4grads)
 
 
 
-<br>
+
+
+
+
 
 ## How to Prepare for the Modules
 
 - [1. Essential R Skills](prep/rskills.html)
+
+
 
 <br>
 
@@ -61,3 +88,7 @@ The class will meet in Agriculture Building Room 316 between 9AM and 12PM MDT on
 
 <br><br><br><br>
 <br><br><br><br>
+
+
+
+
