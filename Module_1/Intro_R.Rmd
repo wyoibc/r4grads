@@ -17,11 +17,11 @@ You can read more about R in the developers' own words [here](https://www.r-proj
 
 In its most basic implementation, R is a command line program and looks like this:
 
-![R console](R_command_line.png){#id .class width=45% height=45%}\
+![R console](R_command_line.png){#id .class width=80% height=80%}\
 
 This means that you only type commands into R, there is no point and click functionality. However, we will be using RStudio, which is an integrated development environment (IDE) which is a much more friendly way to interface with R and does include some limited ability to point and click. 
 
-Coding can be tricky to learn at first. Things like specifying how to make a plot by typing out lines of code can seem cumbersome and slower than clicking some buttons in Excel, but there are major advantages to coding a task, even if you could accomplish it using some other interface that you can interactively click your way through. One of the biggest advantages is that you can save all of your code in a script which then means that you have a full record of exactly how you manipulated your data; this is handy both when you need to write up your methods for publication and for if you need to re-analyze your data or a similar dataset. Once you get the hang of it, you'll also find that R can make graphics that are much better and more customizable than what typical point and click programs are capable of.
+Coding can be tricky to learn at first. Things like specifying how to make a plot by typing out lines of code can seem cumbersome and slower than clicking some buttons in Excel, but there are major advantages to coding a task, even if you could accomplish it using some other interface that you can interactively click your way through. One of the biggest advantages is that you can save all of your code in a script, which we'll talk about more below.
 
 
 ## Getting oriented in RStudio
@@ -30,10 +30,10 @@ As stated above, we'll be using RStudio. When you open RStudio for the first tim
 
 
 
-![RStudio layout](rstudio_layout.png){#id .class width=45% height=45%}\
+![RStudio layout](rstudio_layout.png){#id .class width=70% height=70%}\
 
 
-Note that I've changed the color of my interface and I think I change the order of the two panes on the right. This is just personal preference and has no functional implications.
+Note that I've changed the color of my interface and I think I changed the orientation of the two panes on the right. This is just personal preference and has no functional implications.
 
 The pane on the left is the R console that actually runs R code. We can type code straight into the console on the line with the `>` and hit `enter` to run a line. Let's try that quick, type the following into the console and run it:
 
@@ -41,7 +41,147 @@ The pane on the left is the R console that actually runs R code. We can type cod
 3+3
 ```
 
-Note that here and throughout these tutorials, blocks of code will appear in gray boxes, with output from R immediately following it (in most cases) in a white box with `##` at the left side of each line of output.
+* Note that here and throughout these tutorials, blocks of code will appear in gray boxes, with output from R immediately following it (in most cases) in a white box with `##` at the left side of each line of output.
+
+We could entirely interact with R in this way, but that defeats the purpose of using RStudio. RStudio's single most useful feature (in my opinion at least) is that it makes it very easy to develop and run R scripts.
+
+
+## Starting an R script
+
+While you *could* type all of your code directly into the console in RStudio, I **HIGHLY** recommend that you put all of your code into a script whenever you code in R (and any other languages). A script is just a text file that contains commands for R (or another language). When you put all of your commands into an R script and save it, you keep a permanent record of what you did. This helps you remember what you did; lets you replicate what you did or slightly tweak what you did if you need to redo it, make small changes, or run the same operations on a different dataset; and allows you to share your code with others so that others can replicate your science.
+
+If you haven't done much coding before, you'll be surprised just how fast you can forget everything you did, and even more importantly, why you did it. Well commented scripts avoid (or at least massively mitigate) this problem.
+
+To create a new R script, click on the little `+` button in the top right of RStudio and click on `R script`:
+
+![new script](new_script.png){#id .class width=45% height=45%}\
+
+<br>
+
+This will open a new window with an empty R script. You can type all of your code into here. Once you type a line of code, you can run it by hitting `command + return` if you are on a Mac or `ctrl + return` if you are on Windows while your cursor is anywhere in that line. You can also highlight entire blocks of code or portions of a single line and run the selected code the exact same way.
+
+To save your R script, go up to `file` in the menu bar (possibly at the top of your screen, above your RStudio window) and select `save as`.
+
+In your script, anything that you type after `#` will be treated as a comment, meaning that R will not try to run it. This allows you to include information about what you're running and why as a reference for your future self and anyone that you might share the code with. For an idea of how I structure R scripts and use comments, take a look here: https://github.com/seanharrington256/Lgetula_gbs/blob/master/04_R_analyses/Lgetula_pop_assignment.R   
+
+This is a single script from the Github repository for one of my manuscripts on kingsnake population genetics. This script does a lot of things in a large loop over multiple datasets, and would be pretty hard to figure out without lots of comments. Readability is particularly important here because this is publicly available code that accompanies the manuscript so that others can replicate my analyses if they choose.
+
+* Note that while you'll probably most often want to interact with an R script in RStudio, an R script is just a plain text file, and can be opened with any editor that works with these files (e.g., bbedit, notepad++, etc.). Do not use word processors like Miscrosoft Word to look at or edit a script, though. These programs can easily change characters in a script into characters that looks similar but that are not interpreted the same by R (e.g., ` and '). 
+
+
+## Basic math
+
+About the simplest way to use R is as a fancy calculator. In your script, type the following, then use `command + enter` or `ctrl + enter` to execute the line from the script in the R console:
+
+```{r}
+3+7
+```
+
+Get used to typing commands in your R script and then running them in the R console, we'll be doing this a lot. 
+
+R can do all sorts of math:
+
+
+```{r}
+3+7 # addition
+5-23 # subtraction
+86*63  # multiplication
+33/11 # division
+4^2 # exponents
+```
+
+
+The vast majority of what you'll want to do in R will use functions rather than simple mathematical operators. A function is just some piece of code that performs a set of operations on whatever input you provide. Functions are named and always followed by `()`
+
+If we want to take the logarithm of a number we can use the `log()` function.
+
+```{r}
+log(10)
+```
+
+Note that the default base of the `log()` function is *e* for the natural log. If we want to change that and get the log using base 10 instead, we can specify that as another argument in the function -- arguments are the inputs and options for a function, and many functions have many possible arguments. In most cases, any arguments that are not explicitly specified by the user will be set to some default.
+
+If we want to see the arguments for `log()` or get other help and information about the function, we can run:
+
+```{r}
+?log()
+```
+
+This shows us that we can get log base 10 using either a related function `log10()` or by using:
+
+```{r}
+log(10, base = 10)
+```
+
+
+This is great, but for coding to be useful, we need to be able to work with data without just typing in numbers. This is where objects come in.
+
+## Objects
+
+R is an object-based language. It stores data in memory as "objects" that the user can manipulate using the names of the objects. Data are assigned to objects using the `<-` operator.
+
+We can use this to assign a single value to an object:
+
+```{r}
+num <- 3
+```
+
+The object named `num` now contains the value 3. We can execute the object in the console to see what it contains and confirm that it's 3:
+
+```{r}
+num
+```
+
+Now we can use this object as we would the number 3:
+
+```{r}
+80-num
+```
+
+
+We can also assign the ouput of an operation or function to an object:
+
+```{r}
+num_2 <- 9*256
+num_3 <- num + num_2
+num_4 <- log(num_3)
+```
+
+We can also assign character strings or TRUE/FALSE values to objects:
+
+```{r}
+some_text <- "character string"
+sometruefalse <- TRUE
+```
+
+
+
+These aren't very informative object names - you usually want to strike a balance between using informative names that help you remember what's in an object while trying not to have object names be overly long.
+
+
+## Types of objects
+
+We aren't restricted to objects that contain only a single value: some objects contain vast amounts of data.
+
+1. Vectors:
+
+Vectors are just a series of values - these can be numbers, characters, TRUE/FALSE, whatecer. An important part of vectors is that hey have a sinlge dimension: they do not have columns and rows, they are just a series of values.
+
+```{r}
+vec1 <- c(1,2,3,4,5,6,7,8,9)
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
