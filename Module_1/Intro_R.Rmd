@@ -168,9 +168,104 @@ We aren't restricted to objects that contain only a single value: some objects c
 Vectors are just a series of values - these can be numbers, characters, TRUE/FALSE, whatecer. An important part of vectors is that hey have a sinlge dimension: they do not have columns and rows, they are just a series of values.
 
 ```{r}
-vec1 <- c(1,2,3,4,5,6,7,8,9)
+months <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+
+months
 ```
 
+Note how the `c()` or concatenate function allows you to create a vector.
+
+You could have created this exact same vector another way e.g.:
+
+```{r}
+months2 <- 1:12  # the colon between 2 numbers will make a series of numbers
+
+months2
+```
+
+
+Vectors do not need to be numeric, let's make a character vector:
+
+```{r}
+monthsC <- c("January", "February", "March", "April", "May", "June", 
+		"July", "August", "September", "October", "November", "December")
+```
+
+Notice that unlike numbers, characters need to be in quotes. Why is this? What happens if you try to do this without the quotes?
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```{r}
+monthsC <- c(January, "February", "March", "April", "May", "June", 
+		"July", "August", "September", "October", "November", "December")
+```
+
+
+Text without quotes is assumed to be the name of any object in R (except in special cases, like TRUE/FALSE). So R assumes that you're trying to reference an object called `January`, but this object does not exist, causing an error.
+
+
+
+2. Dataframes
+
+Dataframes are table-like 2-dimenensional sets of data. They have rows and columns, and the columns can contain different types of data (e.g., numeric, character) -- don't worry about what this means too much right now, we'll talk more about data types next session.
+
+Here, we can combine two of our vectors into a dataframe:
+
+```{r}
+year <- data.frame(months, monthsC)
+
+year
+```
+
+3. Matrices
+
+A matrix is also a table-like 2-dimensional way to store data, but unlike dataframes, all of the values in a matrix are of the same type (e.g., all numeric, all character, all logical).
+
+Let's create a matrix:
+
+```{r}
+M <- matrix(c(3:14), nrow = 4, byrow = TRUE)
+M
+```
+
+
+We can add row names, column names etc, but we'll save that for later.
+
+4. Lists
+
+Lists are what they sound like - lists of things. Note that they can be much more complicated than they sound, however. Lists can contain almost anything as an element of a list. They can be simple lists of values:
+
+```{r}
+list1 <- list("RED", 99, "table", 165)
+list1
+```
+
+But they can also contain vectors, matrices, dataframes, and even other lists all as elements:
+
+```{r}
+list2 <- list(list1, M, monthsC, 745, "GREEN")
+list2
+```
+
+
+
+
+* Note that while you'll occasionally create vectors or other types of objects from scratch, most of the time you'll reading data into R from a file, we'll get into that in the next session.
 
 
 
