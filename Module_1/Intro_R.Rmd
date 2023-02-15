@@ -210,7 +210,7 @@ Notice that unlike numbers, characters need to be in quotes. Why is this? What h
 <br>
 <br>
 
-```{r}
+```{r eval = FALSE}
 monthsC <- c(January, "February", "March", "April", "May", "June", 
 		"July", "August", "September", "October", "November", "December")
 ```
@@ -265,18 +265,134 @@ list2
 
 
 
-* Note that while you'll occasionally create vectors or other types of objects from scratch, most of the time you'll reading data into R from a file, we'll get into that in the next session.
+* Note that while you'll occasionally create objects from scratch, but most of the time you'll reading data into R from a file, we'll get into that in the next session.
+
+
+## Setting your working directory
+
+
+Most of the time, you won't be creating objects from scratch like we've done here - instead, you'll be loading external data. All sorts of different types of data can be written from and read into R by various functions.
+
+
+Let's take the `year` dataframe and write that out to a csv file. csv, or comma separate values files, are basically a simple type of spreadsheet that can be easily read into R and other programming languages. This is one of of the standard formats to keep data in for this reason.
+
+Before writing this file, we first need to tell R what the working directory is - this is where R will write files or look for files that you are trying to read in. The alternative to setting the working directory is to specify the full file path each time, but this gets cumbersome if you're reading and writing lots of files from the same place.
+
+To see your current working directory, you can use the function `getwd()`.
+
+```{r}
+getwd()
+```
+* Note that even we aren't supplying any arguments to this function, we still need the open and close parentheses to indicate that this is a function we want to execute. If you forget them, you'll get some internal information about the function instead.
+
+You can set the working directory somewhere else using `setwd()`:
+
+```{r}
+setwd("~/Desktop") # set the working directory to the desktop
+```
+
+- Note that this will set the directory to the desktop if you're on Mac or Linux, but you'll have to find the path you want to set if you're on Windows - Windows doesn't use the `~` as a shortcut for the home directory in the same way (or at least it didn't in the past, it's been a while since I've used Windows).
+
+
+In RStudio, you can also use the `Files` tab in one of the panes on the right to navigate to where you want to set the working directory, and then click on `More` with the gear next to it, and select `set as working directory`. 
+
+![setwd](setwd_files_tab.png){#id .class width=80% height=80%}\
+
+If you do this, you'll see the `setwd()` command gets executed in the R console. You can then copy this and paste it into your script so that you don't need to manually click through this each time you run the script.
+
+Let's quickly write a file to this location and then read it in:
+
+```{r}
+write.csv(year, file = "year.csv")
+```
+
+And then let's read that back in:
+
+```{r}
+years2 <- read.csv("year.csv")
+years2
+```
+
+If we set the working directory to somewhere else and then try to read in the file, it won't work, but we can always use the full path to the file:
+
+```{r eval = FALSE}
+setwd("~")
+years3 <- read.csv("year.csv") # this fails
+years3 <- read.csv("/Users/harrington/r4grads/Module_1/year.csv") # This works
+
+```
+
+* Note that your paths will be different than mine! This is all about where you write your files and how your computer is set up.
+
+
+## Packages
+
+Every installation of R comes loaded with a number of basic functions that are always available when R is started up. Every function that we've used so far falls into this category.
+
+However, one of the biggest advantages of R is that anyone can write an R function to perform a specific task, and then make that function available for other people to use. Bundles of functions that do conceptually related things are distributed together as "packages". A package is just a set of functions, documentation, and often example datasets.
+
+Packages can be made available on a few different repositories that host the code and allow people to easliy download them. The most common repository is CRAN ("The Comprehensive R Archive Network").
+
+To install a package from CRAN, you can use `install.packages()`. For example if we want to install the package `adegenet`, which has a lot of population genetics functions, we can use:
+
+```{r eval = FALSE}
+install.packages("adegenet")
+```
+
+To actually use any of the functions in `adegenet`, we need to now load up the package, even once installed, it is not loaded by default:
+
+```{r}
+library(adegenet)
+```
+
+
+* Note that when installing a package, you need to put the package name in quotes `"adegenet"`, but that once it has been installed, you do not need to use quotes in the `library()` function, because now R knows what `adegenet` means.
+
+Once `adegenet` os loaded we can look at the help menu to find information about the package and the functions it contains:
+
+```{r}
+?adegenet
+```
 
 
 
+Another common place for packages to be hosted is Github (also where this tutorial is hosted). In many cases, even packages that are hosted on CRAN have their development code hosted on Github, and in such cases, you can often download a "development version" of the pacakge that is more recent than the CRAN version, sometimes containing bug fixes that haven't yet made it into the CRAN version (although sometimes also including new bigs that haven't been found and fixed yet).
 
 
+To install packages from Github, you first need to install the `devtools` package from CRAN and load it up:
+
+```{r eval = FALSE}
+install.packages("devtools")
+```
+```{r}
+library(devtools)
+```
 
 
+Then we can install a package from github:
+
+```{r}
+install_github("liamrevell/phytools") # this is the development version of phytools, a package for phylogenetics
+```
 
 
+Bioconductor is third repository that is commonly used in biology, which contains a number of bioinformatic and genomic oriented packages. Like installing from Github, we need to install a package from CRAN that contains functions that allow us to install packages from Bioconductor:
+
+```{r eval = FALSE}
+install.packages("BiocManager") # install BiocManager from CRAN
+```
+
+```{r}
+BiocManager::install("DESeq2") # install DESeq2 from Bioconductor
+```
+* Here, we used the double colon after `BiocManager` to tell R to use a function from that package without loading the whole package.
+
+#### TO add:
 
 
+- getting help - cover in the next one
+
+ - staying current - biggest issues are old R, old packages
 
 
 
