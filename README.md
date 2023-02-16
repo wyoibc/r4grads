@@ -21,13 +21,6 @@ The class will meet in Agriculture Building Room 316 between 9AM and 12PM on fol
 - March 22
 
 <br>
-
-
-
-UNDER DEVELOPMENT!!!!
-
-
-
 <br>
 
 
@@ -35,12 +28,12 @@ UNDER DEVELOPMENT!!!!
 
 Download and install the **latest versions** of R and RStudio if using your own laptop
 
-	- R can be downloaded from [r-project.org](https://r-project.org). 
+- R can be downloaded from [r-project.org](https://r-project.org). 
 
-	- RStudio can be obtained from [rstudio.com/products/rstudio/](https://rstudio.com/products/rstudio/)
+- RStudio can be obtained from [rstudio.com/products/rstudio/](https://rstudio.com/products/rstudio/)
 
 
-
+<br>
 
 ## Module 1
 
