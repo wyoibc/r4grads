@@ -450,7 +450,7 @@ library(devtools)
 
 Then we can install a package from github:
 
-```{r}
+```{r eval = FALSE}
 install_github("liamrevell/phytools") # this is the development version of phytools, a package for phylogenetics
 ```
 
