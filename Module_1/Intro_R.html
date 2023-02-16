@@ -357,6 +357,7 @@ display: none;
 </div>
 
 
+<p><br> <br> <br> <br></p>
 <div id="what-is-r" class="section level2">
 <h2>What is R?</h2>
 <p>R is a programming language for data analysis and visualization. R is
@@ -379,6 +380,7 @@ coding a task, even if you could accomplish it using some other
 interface that you can interactively click your way through. One of the
 biggest advantages is that you can save all of your code in a script,
 which we’ll talk about more below.</p>
+<p><br></p>
 </div>
 <div id="getting-oriented-in-rstudio" class="section level2">
 <h2>Getting oriented in RStudio</h2>
@@ -390,6 +392,7 @@ exactly, like this:</p>
 <p>Note that I’ve changed the color of my interface and I think I
 changed the orientation of the two panes on the right. This is just
 personal preference and has no functional implications.</p>
+<p><br></p>
 <p>The pane on the left is the R console that actually runs R code. We
 can type code straight into the console on the line with the
 <code>&gt;</code> and hit <code>enter</code> to run a line. Let’s try
@@ -402,10 +405,12 @@ appear in gray boxes, with output from R immediately following it (in
 most cases) in a white box with <code>##</code> at the left side of each
 line of output.</li>
 </ul>
+<p><br></p>
 <p>We could entirely interact with R in this way, but that defeats the
 purpose of using RStudio. RStudio’s single most useful feature (in my
 opinion at least) is that it makes it very easy to develop and run R
 scripts.</p>
+<p><br></p>
 </div>
 <div id="starting-an-r-script" class="section level2">
 <h2>Starting an R script</h2>
@@ -457,10 +462,12 @@ choose.</p>
 R script in RStudio, an R script is just a plain text file, and can be
 opened with any editor that works with these files (e.g., bbedit,
 notepad++, etc.). Do not use word processors like Miscrosoft Word to
-look at or edit a script, though. These programs can easily change
-characters in a script into characters that looks similar but that are
-not interpreted the same by R (e.g., ` and ’).</li>
+look at or edit a script, though. On top of not displayign scripts well,
+these programs can easily change characters in a script into characters
+that looks similar but that are not interpreted the same by R (e.g., `
+and ’).</li>
 </ul>
+<p><br></p>
 </div>
 <div id="basic-math" class="section level2">
 <h2>Basic math</h2>
@@ -472,6 +479,7 @@ console:</p>
 <pre><code>## [1] 10</code></pre>
 <p>Get used to typing commands in your R script and then running them in
 the R console, we’ll be doing this a lot.</p>
+<p><br></p>
 <p>R can do all sorts of math:</p>
 <pre class="r"><code>3+7 # addition</code></pre>
 <pre><code>## [1] 10</code></pre>
@@ -483,6 +491,7 @@ the R console, we’ll be doing this a lot.</p>
 <pre><code>## [1] 3</code></pre>
 <pre class="r"><code>4^2 # exponents</code></pre>
 <pre><code>## [1] 16</code></pre>
+<p><br> <br></p>
 <p>The vast majority of what you’ll want to do in R will use functions
 rather than simple mathematical operators. A function is just some piece
 of code that performs a set of operations on whatever input you provide.
@@ -501,19 +510,23 @@ some default.</p>
 <p>If we want to see the arguments for <code>log()</code> or get other
 help and information about the function, we can run:</p>
 <pre class="r"><code>?log()</code></pre>
-<p>This shows us that we can get log base 10 using either a related
-function <code>log10()</code> or by using:</p>
+<p>Based on this help menu, how would we specify that we want to use 10
+(or some other number) as the base?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br> <br> <br></p>
 <pre class="r"><code>log(10, base = 10)</code></pre>
 <pre><code>## [1] 1</code></pre>
 <p>This is great, but for coding to be useful, we need to be able to
 work with data without just typing in numbers. This is where objects
 come in.</p>
+<p><br></p>
 </div>
 <div id="objects" class="section level2">
 <h2>Objects</h2>
 <p>R is an object-based language. It stores data in memory as “objects”
 that the user can manipulate using the names of the objects. Data are
 assigned to objects using the <code>&lt;-</code> operator.</p>
+<p><br></p>
 <p>We can use this to assign a single value to an object:</p>
 <pre class="r"><code>num &lt;- 3</code></pre>
 <p>The object named <code>num</code> now contains the value 3. We can
@@ -524,6 +537,7 @@ that it’s 3:</p>
 <p>Now we can use this object as we would the number 3:</p>
 <pre class="r"><code>80-num</code></pre>
 <pre><code>## [1] 77</code></pre>
+<p><br></p>
 <p>We can also assign the ouput of an operation or function to an
 object:</p>
 <pre class="r"><code>num_2 &lt;- 9*256
@@ -537,14 +551,15 @@ sometruefalse &lt;- TRUE</code></pre>
 strike a balance between using informative names that help you remember
 what’s in an object while trying not to have object names be overly
 long.</p>
+<p><br></p>
 </div>
 <div id="types-of-objects" class="section level2">
 <h2>Types of objects</h2>
 <p>We aren’t restricted to objects that contain only a single value:
 some objects contain vast amounts of data.</p>
-<ol style="list-style-type: decimal">
-<li>Vectors:</li>
-</ol>
+<p><br></p>
+<div id="vectors" class="section level4">
+<h4>1. Vectors:</h4>
 <p>Vectors are just a series of values - these can be numbers,
 characters, TRUE/FALSE, whatecer. An important part of vectors is that
 hey have a sinlge dimension: they do not have columns and rows, they are
@@ -555,6 +570,7 @@ months</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12</code></pre>
 <p>Note how the <code>c()</code> or concatenate function allows you to
 create a vector.</p>
+<p><br></p>
 <p>You could have created this exact same vector another way e.g.:</p>
 <pre class="r"><code>months2 &lt;- 1:12  # the colon between 2 numbers will make a series of numbers
 
@@ -566,16 +582,17 @@ months2</code></pre>
 <p>Notice that unlike numbers, characters need to be in quotes. Why is
 this? What happens if you try to do this without the quotes?</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-<br></p>
+<br> <br> <br> <br> <br> <br> <br> <br></p>
 <pre class="r"><code>monthsC &lt;- c(January, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, 
         &quot;July&quot;, &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;)</code></pre>
 <p>Text without quotes is assumed to be the name of any object in R
 (except in special cases, like TRUE/FALSE). So R assumes that you’re
 trying to reference an object called <code>January</code>, but this
 object does not exist, causing an error.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Dataframes</li>
-</ol>
+<p><br></p>
+</div>
+<div id="dataframes" class="section level4">
+<h4>2. Dataframes</h4>
 <p>Dataframes are table-like 2-dimenensional sets of data. They have
 rows and columns, and the columns can contain different types of data
 (e.g., numeric, character) – don’t worry about what this means too much
@@ -597,9 +614,10 @@ year</code></pre>
 ## 10     10   October
 ## 11     11  November
 ## 12     12  December</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Matrices</li>
-</ol>
+<p><br></p>
+</div>
+<div id="matrices" class="section level4">
+<h4>3. Matrices</h4>
 <p>A matrix is also a table-like 2-dimensional way to store data, but
 unlike dataframes, all of the values in a matrix are of the same type
 (e.g., all numeric, all character, all logical).</p>
@@ -613,12 +631,13 @@ M</code></pre>
 ## [4,]   12   13   14</code></pre>
 <p>We can add row names, column names etc, but we’ll save that for
 later.</p>
-<ol start="4" style="list-style-type: decimal">
-<li>Lists</li>
-</ol>
-<p>Lists are what they sound like - lists of things. Note that they can
-be much more complicated than they sound, however. Lists can contain
-almost anything as an element of a list. They can be simple lists of
+<p><br></p>
+</div>
+<div id="lists" class="section level4">
+<h4>4. Lists</h4>
+<p>Lists are what they sound like - lists of things. They can be much
+more complicated than they sound, however. Lists can contain almost
+anything as an element of a list. They can be simple lists of
 values:</p>
 <pre class="r"><code>list1 &lt;- list(&quot;RED&quot;, 99, &quot;table&quot;, 165)
 list1</code></pre>
@@ -633,6 +652,7 @@ list1</code></pre>
 ## 
 ## [[4]]
 ## [1] 165</code></pre>
+<p><br> <br></p>
 <p>But they can also contain vectors, matrices, dataframes, and even
 other lists all as elements:</p>
 <pre class="r"><code>list2 &lt;- list(list1, M, monthsC, 745, &quot;GREEN&quot;)
@@ -668,10 +688,12 @@ list2</code></pre>
 ## [[5]]
 ## [1] &quot;GREEN&quot;</code></pre>
 <ul>
-<li>Note that while you’ll occasionally create objects from scratch, but
-most of the time you’ll reading data into R from a file, we’ll get into
-that in the next session.</li>
+<li>While you’ll occasionally create objects from scratch, most of the
+time you’ll reading data into R from a file, we’ll get into that more in
+the next session, with a brief description below.</li>
 </ul>
+<p><br></p>
+</div>
 </div>
 <div id="setting-your-working-directory" class="section level2">
 <h2>Setting your working directory</h2>
@@ -679,17 +701,19 @@ that in the next session.</li>
 we’ve done here - instead, you’ll be loading external data. All sorts of
 different types of data can be written from and read into R by various
 functions.</p>
+<p><br></p>
 <p>Let’s take the <code>year</code> dataframe and write that out to a
-csv file. csv, or comma separate values files, are basically a simple
-type of spreadsheet that can be easily read into R and other programming
-languages. This is one of of the standard formats to keep data in for
-this reason.</p>
+csv file. csv, or comma separate values files, are a simple type of
+spreadsheet that can be easily read into R and other programming
+languages. It is one of of the standard formats to keep data in for this
+reason.</p>
 <p>Before writing this file, we first need to tell R what the working
 directory is - this is where R will write files or look for files that
 you are trying to read in. The alternative to setting the working
 directory is to specify the full file path each time, but this gets
 cumbersome if you’re reading and writing lots of files from the same
 place.</p>
+<p><br></p>
 <p>To see your current working directory, you can use the function
 <code>getwd()</code>.</p>
 <pre class="r"><code>getwd()</code></pre>
@@ -710,6 +734,7 @@ on Windows - Windows doesn’t use the <code>~</code> as a shortcut for
 the home directory in the same way (or at least it didn’t in the past,
 it’s been a while since I’ve used Windows).</li>
 </ul>
+<p><br></p>
 <p>In RStudio, you can also use the <code>Files</code> tab in one of the
 panes on the right to navigate to where you want to set the working
 directory, and then click on <code>More</code> with the gear next to it,
@@ -720,6 +745,7 @@ and select <code>set as working directory</code>.</p>
 executed in the R console. You can then copy this and paste it into your
 script so that you don’t need to manually click through this each time
 you run the script.</p>
+<p><br></p>
 <p>Let’s quickly write a file to this location and then read it in:</p>
 <pre class="r"><code>write.csv(year, file = &quot;year.csv&quot;)</code></pre>
 <p>And then let’s read that back in:</p>
@@ -748,6 +774,7 @@ years3 &lt;- read.csv(&quot;/Users/harrington/r4grads/Module_1/year.csv&quot;) #
 <li>Note that your paths will be different than mine! This is all about
 where you write your files and how your computer is set up.</li>
 </ul>
+<p><br></p>
 </div>
 <div id="packages" class="section level2">
 <h2>Packages</h2>
@@ -760,6 +787,7 @@ available for other people to use. Bundles of functions that do
 conceptually related things are distributed together as “packages”. A
 package is just a set of functions, documentation, and often example
 datasets.</p>
+<p><br></p>
 <p>Packages can be made available on a few different repositories that
 host the code and allow people to easliy download them. The most common
 repository is CRAN (“The Comprehensive R Archive Network”).</p>
@@ -788,6 +816,7 @@ function, because now R knows what <code>adegenet</code> means.</li>
 <p>Once <code>adegenet</code> os loaded we can look at the help menu to
 find information about the package and the functions it contains:</p>
 <pre class="r"><code>?adegenet</code></pre>
+<p><br></p>
 <p>Another common place for packages to be hosted is Github (also where
 this tutorial is hosted). In many cases, even packages that are hosted
 on CRAN have their development code hosted on Github, and in such cases,
@@ -803,15 +832,22 @@ including new bigs that haven’t been found and fixed yet).</p>
 <p>Then we can install a package from github:</p>
 <pre class="r"><code>install_github(&quot;liamrevell/phytools&quot;) # this is the development version of phytools, a package for phylogenetics</code></pre>
 <pre><code>## Downloading GitHub repo liamrevell/phytools@HEAD</code></pre>
+<pre><code>## ape (5.6-2 -&gt; 5.7) [CRAN]</code></pre>
+<pre><code>## Installing 1 packages: ape</code></pre>
 <pre><code>## 
-## ── R CMD build ─────────────────────────────────────────────────────────────────
+##   There is a binary version available but the source version is later:
+##     binary source needs_compilation
+## ape  5.6-2    5.7              TRUE</code></pre>
+<pre><code>## installing the source package &#39;ape&#39;</code></pre>
+<pre><code>## Warning in i.p(...): installation of package &#39;ape&#39; had non-zero exit status</code></pre>
+<pre><code>## ── R CMD build ─────────────────────────────────────────────────────────────────
 ##   
-   checking for file ‘/private/var/folders/bh/hgdc9n_d1qxd5p7jsxzv2dlr0000gn/T/Rtmp33B7ER/remotes134be32cfb3aa/liamrevell-phytools-70fe5a8/DESCRIPTION’ ...
+   checking for file ‘/private/var/folders/bh/hgdc9n_d1qxd5p7jsxzv2dlr0000gn/T/RtmppeqWvS/remotes16ab617a6ff73/liamrevell-phytools-36b740d/DESCRIPTION’ ...
   
-✔  checking for file ‘/private/var/folders/bh/hgdc9n_d1qxd5p7jsxzv2dlr0000gn/T/Rtmp33B7ER/remotes134be32cfb3aa/liamrevell-phytools-70fe5a8/DESCRIPTION’
+✔  checking for file ‘/private/var/folders/bh/hgdc9n_d1qxd5p7jsxzv2dlr0000gn/T/RtmppeqWvS/remotes16ab617a6ff73/liamrevell-phytools-36b740d/DESCRIPTION’
 ## 
   
-─  preparing ‘phytools’: (383ms)
+─  preparing ‘phytools’: (375ms)
 ## 
   
    checking DESCRIPTION meta-information ...
@@ -819,7 +855,7 @@ including new bigs that haven’t been found and fixed yet).</p>
 ✔  checking DESCRIPTION meta-information
 ## 
   
-─  checking for LF line-endings in source and make files and shell scripts (384ms)
+─  checking for LF line-endings in source and make files and shell scripts (385ms)
 ## 
   
 ─  checking for empty or unneeded directories
@@ -828,37 +864,83 @@ including new bigs that haven’t been found and fixed yet).</p>
 ─  looking to see if a ‘data/datalist’ file should be added
 ## 
   
-─  building ‘phytools_1.4-6.tar.gz’
+─  building ‘phytools_1.4-7.tar.gz’
 ## 
   
    
 ## </code></pre>
 <pre><code>## Warning in i.p(...): installation of package
-## &#39;/var/folders/bh/hgdc9n_d1qxd5p7jsxzv2dlr0000gn/T//Rtmp33B7ER/file134be621c77f5/phytools_1.4-6.tar.gz&#39;
+## &#39;/var/folders/bh/hgdc9n_d1qxd5p7jsxzv2dlr0000gn/T//RtmppeqWvS/file16ab65754ff48/phytools_1.4-7.tar.gz&#39;
 ## had non-zero exit status</code></pre>
-<p>Bioconductor is third repository that is commonly used in biology,
-which contains a number of bioinformatic and genomic oriented packages.
-Like installing from Github, we need to install a package from CRAN that
-contains functions that allow us to install packages from
+<p><br></p>
+<p>Bioconductor is the third repository that is commonly used in
+biology, which contains a number of bioinformatic and genomic oriented
+packages. Like installing from Github, we need to install a package from
+CRAN that contains functions that allow us to install packages from
 Bioconductor:</p>
 <pre class="r"><code>install.packages(&quot;BiocManager&quot;) # install BiocManager from CRAN</code></pre>
 <pre class="r"><code>BiocManager::install(&quot;DESeq2&quot;) # install DESeq2 from Bioconductor</code></pre>
 <pre><code>## Bioconductor version 3.15 (BiocManager 1.30.19), R 4.2.2 (2022-10-31)</code></pre>
 <pre><code>## Warning: package(s) not installed when version(s) same as or greater than current; use
 ##   `force = TRUE` to re-install: &#39;DESeq2&#39;</code></pre>
-<pre><code>## Old packages: &#39;GenSA&#39;, &#39;httpuv&#39;, &#39;spatstat.model&#39;</code></pre>
+<pre><code>## Old packages: &#39;ape&#39;, &#39;GenSA&#39;, &#39;httpuv&#39;, &#39;spatstat.model&#39;</code></pre>
 <ul>
 <li>Here, we used the double colon after <code>BiocManager</code> to
 tell R to use a function from that package without loading the whole
 package.</li>
 </ul>
-<div id="to-add" class="section level4">
-<h4>TO add:</h4>
-<ul>
-<li><p>getting help - cover in the next one</p></li>
-<li><p>staying current - biggest issues are old R, old packages</p></li>
-</ul>
+<p><br></p>
 </div>
+<div id="getting-help-in-r" class="section level2">
+<h2>Getting help in R:</h2>
+<p>There are a few options for getting help with R. The first is to use
+the <code>?</code> to see the documentation that accompanies a fucntion
+within R:</p>
+<pre class="r"><code>?plot
+
+?mean</code></pre>
+<p><br></p>
+<p>Sometimes this documentation is really good, sometimes it’s not so
+good or doesn’t contain enough information. If this doesn’t tell you
+enough, then it’s generally time to turn to Google or your buddy who’s
+been coding in R longer than you have.</p>
+<p>Getting good at coding isn’t about learning every function you’ll
+ever need and being to write a giant script to process your data without
+ever looking anything up – it’s more about learning enough to know what
+questions to ask and how to interpret answers you’ll find on the
+internet or in documentaion. I look at documentation all the time while
+coding, even for functions I use frequently.</p>
+<p>Sometimes, you can search things like “LEA package tutorial” and find
+good documentation for an entire package like <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/LEA/inst/doc/LEA.pdf">this</a>.
+Other times, you might have a much more specific question about a
+particular function and want to search something like “set background
+color in histogram R”, which might take you to a stackoverflow page like
+<a href="https://stackoverflow.com/questions/7236958/change-background-color-of-r-plot">this</a>.
+Stackoverflow is a common place where questions and answers to specific
+problems get posted. Understanding the answers can require a bit of
+knowledge, though.</p>
+<p><br></p>
+</div>
+<div id="staying-current-in-r" class="section level2">
+<h2>Staying current in R</h2>
+<p>New versions of R come out several times each year, and you should
+always ensure that you are working with the most recent version of R
+whenever possible. If you are using an outdated version of R, but
+install a package that was built under a newer version of R, this can
+cause incompatibilities. This can either prevent the package from
+installing at all or sometimes cause errors when you try to use a
+function that are hard to diagnose.</p>
+<p>For this reason, it is recommend to udpate your R installation and
+installed packages frequently. R can be updated by just downloading and
+installing the newest version from CRAN: <a href="https://cran.r-project.org/">https://cran.r-project.org/</a>.</p>
+<p>RStudio makes it easy to update packages in the “packages” tab – you
+can click on the update button and select any or all packages that you
+want to update.</p>
+<p>RStudio also updates periodically. Staying fully current with RStudio
+is less critical than staying current with R and packages, but can cause
+issues with plotting and other features if you get too far behind.
+RStudio will usually prompt you when a new version is available.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 </div>
 
 
