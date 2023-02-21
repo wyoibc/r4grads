@@ -695,8 +695,8 @@ the next session, with a brief description below.</li>
 <p><br></p>
 </div>
 </div>
-<div id="setting-your-working-directory" class="section level2">
-<h2>Setting your working directory</h2>
+<div id="setting-your-working-directory-reading-and-writing-data" class="section level2">
+<h2>Setting your working directory, reading and writing data</h2>
 <p>Most of the time, you won’t be creating objects from scratch like
 we’ve done here - instead, you’ll be loading external data. All sorts of
 different types of data can be written from and read into R by various
@@ -775,6 +775,19 @@ years3 &lt;- read.csv(&quot;/Users/harrington/r4grads/Module_1/year.csv&quot;) #
 where you write your files and how your computer is set up.</li>
 </ul>
 <p><br></p>
+<p>Another common format to store biological data is in tab delimited,
+rather than comma delimited (comma separated), files. This just means
+that tabs sparate columns. Let’s quickly write and then read back in a
+tab delimited file:</p>
+<pre class="r"><code>write.table(year, file = &quot;year.tsv&quot;, sep = &quot;\t&quot;) # write out the tab delimited file
+year_tab &lt;- read.table(&quot;year.tsv&quot;, sep = &quot;\t&quot;) # read it back in
+year_tab1 &lt;- read.delim(&quot;year.tsv&quot;) # alternately, use read.delim</code></pre>
+<p><br></p>
+<p>There are many other types of files that can be written and read by
+R, especially once you start using packages, and not just the base R
+functionality. We’ll briefly show some of this in subsequent
+lessons.</p>
+<p><br></p>
 </div>
 <div id="packages" class="section level2">
 <h2>Packages</h2>
@@ -842,7 +855,8 @@ Bioconductor:</p>
 <pre><code>## Bioconductor version 3.15 (BiocManager 1.30.19), R 4.2.2 (2022-10-31)</code></pre>
 <pre><code>## Warning: package(s) not installed when version(s) same as or greater than current; use
 ##   `force = TRUE` to re-install: &#39;DESeq2&#39;</code></pre>
-<pre><code>## Old packages: &#39;ape&#39;, &#39;GenSA&#39;, &#39;httpuv&#39;, &#39;spatstat.model&#39;</code></pre>
+<pre><code>## Old packages: &#39;ape&#39;, &#39;data.table&#39;, &#39;deeptime&#39;, &#39;gdtools&#39;, &#39;GenSA&#39;, &#39;httpuv&#39;,
+##   &#39;phytools&#39;, &#39;recipes&#39;, &#39;RSQLite&#39;, &#39;spatstat.model&#39;, &#39;xts&#39;</code></pre>
 <ul>
 <li>Here, we used the double colon after <code>BiocManager</code> to
 tell R to use a function from that package without loading the whole

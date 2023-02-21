@@ -338,7 +338,7 @@ list2
 <br>
 
 
-## Setting your working directory
+## Setting your working directory, reading and writing data
 
 
 Most of the time, you won't be creating objects from scratch like we've done here - instead, you'll be loading external data. All sorts of different types of data can be written from and read into R by various functions.
@@ -399,6 +399,21 @@ years3 <- read.csv("/Users/harrington/r4grads/Module_1/year.csv") # This works
 ```
 
 * Note that your paths will be different than mine! This is all about where you write your files and how your computer is set up.
+
+
+<br>
+
+Another common format to store biological data is in tab delimited, rather than comma delimited (comma separated), files. This just means that tabs sparate columns. Let's quickly write and then read back in a tab delimited file:
+
+```{r}
+write.table(year, file = "year.tsv", sep = "\t") # write out the tab delimited file
+year_tab <- read.table("year.tsv", sep = "\t") # read it back in
+year_tab1 <- read.delim("year.tsv") # alternately, use read.delim
+```
+
+<br>
+
+There are many other types of files that can be written and read by R, especially once you start using packages, and not just the base R functionality. We'll briefly show some of this in subsequent lessons.
 
 <br>
 
