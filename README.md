@@ -48,6 +48,8 @@ If you already have experience in R and are comfortable with creating and manipu
 
 ## Modules 2-4 under development
 
+- [Data manipulation](Module_2/R_Data_manip.html)
+
 <br>
 <br>
 <br>
