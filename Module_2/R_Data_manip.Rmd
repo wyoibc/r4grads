@@ -27,7 +27,10 @@ How to open a script is detailed in the intro to R tutorial.
 ### Reading in the data
 
 <br>
-Start by either creating a directory called `r4grads`` and downloading the data from Github or clone the Github repository for this workshop. How to do this and then appropriately set the working directory is detailed in the section on importing data in base R.       EDIT THIS 
+
+Before we can work with the data, we need to download it. Go to the Github repository for this workshop: [https://github.com/wyoibc/r4grads](https://github.com/wyoibc/r4grads) and click on the green `Code` button, then on the `Download ZIP` button. (You can alternately clone the repo if you're familiar with git). You can also download the individual files from [here](https://github.com/wyoibc/r4grads/tree/master/Fish_data/Modified) if you know how to do that.
+
+![download zip](download_zip.png){#id .class width=50% height=50%}\
 
 <br>
 
@@ -40,13 +43,15 @@ setwd("~/r4grads/Fish_data/Modified/")
 **Again, make sure this points to the correct path for you, not my path.**
 
 <br>
-Then read in the data. Here, we have the data in two separate csv files for different data pertaining to some fish. One file is body size data with some information about sampling and the species, and the other file contains stable isotope data. Note that we're using `paste0()` inside `read.csv()` to paste together the paths and file names. `read.csv()` is the base R function for reading in csv (comma separated value) files, which is a common format for storing many types of biological data.
+
+Then read in the data. Here, we have the data in two separate csv files for different data pertaining to some fish. One file is body size data with some information about sampling and the species, and the other file contains stable isotope data.
 
 ```{r}
 body <- read.csv("Fish_body_size.csv")
 iso <- read.csv("Fish_isotopes.csv")
 ```
 <br>
+
 Let's take a quick look at the top few rows of each dataset.
 
 
@@ -91,7 +96,11 @@ summary(as.factor(body$Species))
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
@@ -209,6 +218,8 @@ What if we want to replace "Dolly" with "Dolly varden"? Try it out.
 <br>
 <br>
 
+
+
 I'm guessing that you used something like:
 
 ```{r}
@@ -235,7 +246,11 @@ summary(as.factor(body$Species))
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
@@ -251,9 +266,14 @@ In the above, the `^` indicates the start of a string and the `$` indicates the 
 <br>
 <br>
 
-**Try out turning "Dolly varden varden" back into "Dolly varden?**
+**Try out turning "Dolly varden varden" back into "Dolly varden**
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -621,4 +641,123 @@ Notice the `!` in the above line that lets us keep everything that is *not* NA. 
 ```{r}
 which(is.na(data_noNA$Fork.length..cm.))
 ```
+
+
+<br>
+<br>
+
+# Tidyverse
+
+<br>
+
+So far, we've done all of the manipulation using base R function. We can also do a lot of fancy data manipulation using the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. 
+
+
+<br>
+
+To start, you'll need to make sure you have the Tidyverse packages installed and then loaded:
+
+```{r eval = FALSE}
+install.packages("tidyverse")
+```
+```{r}
+library(tidyverse)
+```
+
+<br>
+
+Before we actually start doing anything, there's an important issue to point out in this loading message. The conflicts show that there are functions in `dplyr` and the base R `stats` packages that share the same function names. Whenever this happens, the function from the most recently loaded package will mask the other function. If you load `dplyr` last and then run `filter()`, what you'll get is the function from `dplyr`, vs. if you load `stats` last, you'll get the `filter()` function from that package.
+
+This is important to keep track of. Especially if you write a script and then edit it to load up a package at the the top of a script. You can always call a function from a specific package by using the notation `package::function()`. The double colons tell R to explicitly use a function from the stated package before the colons.
+
+<br>
+
+
+Some of these functions are very similar to base R functions. E.g., `str_replace()` is very similar to `gsub()`, but with a different order of arguments: 
+
+```{r}
+body <- read.csv("Fish_body_size.csv")
+body$Species <- str_replace(body$Species, "Steelhesd", "Steelhead")
+```
+
+
+<br>
+
+We can filter data using the `filter()` function, this is similar to how we filtered data using base R:
+
+```{r}
+coho_data <- filter(all_data, Species == "Coho")
+big_coho <- filter(all_data, Species == "Coho" & Fork.length..cm. > 10)
+```
+
+We can select only certain columns using `select()`:
+
+```{r}
+big_coho_size_vars <- select(big_coho, Weight..g., Fork.length..cm.)
+```
+
+We can add in columns that are combinations or transformations of others:
+
+```{r}
+  big_coho2 <- mutate(
+    big_coho,
+    mass2 = Weight..g. * 2,
+    mass2_squared = mass2 ^ 2
+  )
+```
+
+<br>
+
+Tidyverse has all sorts of functions like these that each do specific data manipulations that you can explore at your leisure. Many people love Tidyverse and use it for all of their data manipulation, others prefer to use base R for basic manipulations and use Tidyverse only for more complex operations. It's totally up to you which you prefer and which makes more sense to you.
+
+<br>
+
+## Tibbles
+
+On top of all sorts of functions, Tidyverse also introduces a couple other important pieces of functionality: tibbles and pipes.
+
+Tibbles are effectively an extension of the dataframe format that has very specific rules. You can read all about them [here](https://tibble.tidyverse.org/).
+
+You can convert dataframes to tibbles like so:
+
+
+```{r}
+big_coho_tib <- as_tibble(big_coho)
+big_coho_tib
+```
+
+Notice that this prints differently from a dataframe. There are some other key differences, including that Tibbles do not have row names (instead this information is expected to be as a column within the tibble). Use whichever you prefer. In many cases, they operate pretty much interchangeably, although some functions from various packages will require input data to be in one of the formats or the other -- it is easy to convert back and forth, though.
+
+
+<br>
+
+You can also read data into R straight into a tibble using Tidyverse functions:
+
+```{r}
+body_tib <- read_csv("Fish_body_size.csv")
+body_tib
+```
+
+
+
+
+Note that is almost the same as the base `read.csv()` function, just with an underscore instead of a period. You can also read in tab delimited data using `read_tsv()` and there are probably Tidyverse equivalents of most functions to read in data.
+
+<br>
+<br>
+
+## Pipes
+
+<br>
+
+Pipes allow you to chain (or "pipe") together multiple functions into a single long command. If you're familiar with the Linux/Unix command line, this is done with the `|` character. R uses that for some other purposes, so Tidyverse instead introduces the pipe as `%>%`. I honestly think this is incredibly unwieldy, but here we are.
+
+
+
+
+
+
+
+
+
 
