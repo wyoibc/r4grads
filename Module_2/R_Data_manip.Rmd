@@ -750,10 +750,19 @@ Note that is almost the same as the base `read.csv()` function, just with an und
 
 <br>
 
-Pipes allow you to chain (or "pipe") together multiple functions into a single long command. If you're familiar with the Linux/Unix command line, this is done with the `|` character. R uses that for some other purposes, so Tidyverse instead introduces the pipe as `%>%`. I honestly think this is incredibly unwieldy, but here we are.
+Pipes allow you to chain (or "pipe") together multiple functions into a single long command. If you're familiar with the Linux/Unix command line, this is done with the `|` character. R uses that for some other purposes, so Tidyverse instead introduces the pipe as `%>%`.
+
+
+When you pipe a function to another function, the output from the first function becomes the data argument of the second function, and you can link many pipes together.
 
 
 
+iris %>%
+  group_by(Species) %>%
+  summarize_if(is.numeric, mean) %>%
+  ungroup() %>%
+  gather(measure, value, -Species) %>%
+  arrange(value)
 
 
 
