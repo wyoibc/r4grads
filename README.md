@@ -46,9 +46,16 @@ If you already have experience in R and are comfortable with creating and manipu
 
 <br>
 
-## Modules 2-4 under development
+## Module 2
 
 - [Data manipulation](Module_2/R_Data_manip.html)
+
+<br>
+
+
+## Modules 3-4 under development
+
+
 
 <br>
 <br>

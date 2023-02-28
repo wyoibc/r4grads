@@ -649,8 +649,9 @@ indices of <code>body$Fish.code</code> that are NOT in
 <p>We can see that we have a total of 9 samples that are present in one
 of the datasets, but not the other. We can identify which fish are in
 both datasets:</p>
-<pre class="r"><code>in_both &lt;- intersect(iso$Fish.code, body$Fish.code)</code></pre>
-<pre class="r"><code>in_both</code></pre>
+<pre class="r"><code>in_both &lt;- intersect(iso$Fish.code, body$Fish.code)
+
+in_both</code></pre>
 <p>Then we can use that to subset both of the datasets down to only
 these shared samples, both in the same row order. <code>match()</code>
 will give us the positions of it’s first argument in it’s second, and
@@ -737,15 +738,12 @@ let’s write this to a csv file. Then we can easily read this cleaned and
 merged data into R or another program anytime we want without having to
 repeat these steps:</p>
 <pre class="r"><code>write.csv(all_data, &quot;fish_data_merged.csv&quot;)</code></pre>
+<p><br> <br></p>
 </div>
 <div id="further-filtering-and-subsetting-examples" class="section level3">
 <h3>Further filtering and subsetting examples</h3>
-<p><strong>Read that .csv file back into R just to demonstrate that we
-have successfully written out the data.</strong>() This will use the
-same <code>read.csv()</code> function that we used to initially read in
-the two data files.</p>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-<br></p>
+<p>Read that .csv file back into R just to demonstrate that we have
+successfully written out the data.</p>
 <pre class="r"><code>all_data &lt;- read.csv(&quot;fish_data_merged.csv&quot;)</code></pre>
 <p>For some analyses, we might want to analyze a single species of fish
 at a time.</p>
@@ -753,7 +751,7 @@ at a time.</p>
 the rows of <code>all_data</code> for only Coho
 observations.</strong></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-<br></p>
+<br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <pre class="r"><code>coho_data &lt;- all_data[all_data$Species == &quot;Coho&quot;,]
 head(coho_data, n=4)</code></pre>
 <pre><code>##   X Fish.code Species Site     Date Weight..g. Fork.length..cm. del13C
@@ -778,18 +776,23 @@ head(coho_length, n=4)</code></pre>
 ## 4       C04              9.8</code></pre>
 <p>We can select two or more species at once in a couple different
 ways:</p>
-<pre class="r"><code>cs_data &lt;- all_data[all_data$Species %in% c(&quot;Coho&quot;, &quot;Steelhead&quot;),]</code></pre>
-<pre class="r"><code>cs_data</code></pre>
+<pre class="r"><code>cs_data &lt;- all_data[all_data$Species %in% c(&quot;Coho&quot;, &quot;Steelhead&quot;),]
+
+cs_data</code></pre>
+<p><br></p>
 <p>Or using more complex pattern matching:</p>
-<pre class="r"><code>cs_data1 &lt;- all_data[all_data$Species == &quot;Coho&quot; | all_data$Species == &quot;Steelhead&quot;,]</code></pre>
-<pre class="r"><code>cs_data1</code></pre>
+<pre class="r"><code>cs_data1 &lt;- all_data[all_data$Species == &quot;Coho&quot; | all_data$Species == &quot;Steelhead&quot;,]
+
+cs_data1</code></pre>
 <p>where the pipe <code>|</code> indicates that we want to match the
 first condition or the second condition.</p>
+<p><br></p>
 <p>We can also use <code>&amp;</code> to get only rows that satisfy two
 or more conditions. E.g., we can find the Coho that are smaller than 10
 g:</p>
-<pre class="r"><code>coho_small &lt;- all_data[all_data$Species == &quot;Coho&quot; &amp; all_data$Weight..g. &lt; 10,]</code></pre>
-<pre class="r"><code>coho_small</code></pre>
+<pre class="r"><code>coho_small &lt;- all_data[all_data$Species == &quot;Coho&quot; &amp; all_data$Weight..g. &lt; 10,]
+
+coho_small</code></pre>
 <p><br> <br></p>
 </div>
 <div id="transforming-data" class="section level3">
@@ -803,7 +806,7 @@ new object called <code>data_w_log</code> that contains
 <code>all_data</code> with <code>log_weight</code> as an added column.
 </strong></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-<br></p>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <pre class="r"><code>data_w_log &lt;- cbind(all_data, log_weight)</code></pre>
 </div>
 <div id="handling-nas-not-applicableempty-data" class="section level3">
@@ -816,10 +819,11 @@ NA.</strong> You should be able to figure this out by looking at when we
 used indexing to replace species misspellings and when we subsetted by
 values of <code>Weight..g.</code>.</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-<br></p>
-<pre class="r"><code>all_data$Fork.length..cm.[all_data$Fork.length..cm. &lt; 5] &lt;- NA</code></pre>
-<pre class="r"><code>all_data$Fork.length..cm.</code></pre>
-<p><br></p>
+<br> <br> <br> <br> <br> <br> <br></p>
+<pre class="r"><code>all_data$Fork.length..cm.[all_data$Fork.length..cm. &lt; 5] &lt;- NA
+
+all_data$Fork.length..cm.</code></pre>
+<p><br> <br></p>
 <p>If we try to check if values are NA the same way that we’ve evaluated
 things so far, it won’t work:</p>
 <pre class="r"><code>all_data$Fork.length..cm.==NA</code></pre>
@@ -844,7 +848,7 @@ get any:</p>
 <div id="tidyverse" class="section level1">
 <h1>Tidyverse</h1>
 <p><br></p>
-<p>So far, we’ve done all of the manipulation using base R function. We
+<p>So far, we’ve done all of the manipulation using base R functions. We
 can also do a lot of fancy data manipulation using the <a href="https://www.tidyverse.org/">Tidyverse</a> set of R packages, which
 all share some general principles in their architecture.</p>
 <p><br></p>
@@ -897,6 +901,22 @@ others:</p>
     mass2 = Weight..g. * 2,
     mass2_squared = mass2 ^ 2
   )</code></pre>
+<p><br></p>
+<p>We can also get useful summaries of our data grouped however we want.
+E.g., we can get the mean weight of each species from our
+<code>all_data</code> object:</p>
+<pre class="r"><code>by_spec &lt;- group_by(all_data, Species)
+summarise(by_spec, size = mean(Weight..g., na.rm = TRUE))</code></pre>
+<pre><code>## # A tibble: 7 × 2
+##   Species                  size
+##   &lt;chr&gt;                   &lt;dbl&gt;
+## 1 Chum                    0.32 
+## 2 Coho                    3.38 
+## 3 Dolly varden            9.66 
+## 4 Pink                    0.147
+## 5 Steelhead               7.29 
+## 6 Three spine stickleback 1.32 
+## 7 coastrange sculpin      7.33</code></pre>
 <p><br></p>
 <p>Tidyverse has all sorts of functions like these that each do specific
 data manipulations that you can explore at your leisure. Many people
@@ -979,9 +999,77 @@ some other purposes, so Tidyverse instead introduces the pipe as
 <p>When you pipe a function to another function, the output from the
 first function becomes the data argument of the second function, and you
 can link many pipes together.</p>
-<p>iris %&gt;% group_by(Species) %&gt;% summarize_if(is.numeric, mean)
-%&gt;% ungroup() %&gt;% gather(measure, value, -Species) %&gt;%
-arrange(value)</p>
+<p><br></p>
+<p>For example, we can pipe together all of the commands we used above
+to make the big_coho2 object:</p>
+<pre class="r"><code>big_coho3 &lt;- filter(all_data, Species == &quot;Coho&quot; &amp; Fork.length..cm. &gt; 10) %&gt;%
+  select(Weight..g., Fork.length..cm.) %&gt;%
+  mutate(
+    mass2 = Weight..g. * 2,
+    mass2_squared = mass2 ^ 2
+  )</code></pre>
+<p><br></p>
+<p>Try out piping together <code>group_by()</code> and
+<code>summarise()</code> to get an object that has the mean and standard
+deviation of the weight of each species from the <code>all_data</code>
+object:</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br> <br></p>
+<pre class="r"><code>weight_sum &lt;- group_by(all_data, Species) %&gt;%
+  summarise(size = mean(Weight..g., na.rm = TRUE), stdev = sd(Weight..g., na.rm = TRUE))
+
+weight_sum</code></pre>
+<pre><code>## # A tibble: 7 × 3
+##   Species                  size   stdev
+##   &lt;chr&gt;                   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Chum                    0.32   0.0632
+## 2 Coho                    3.38   3.35  
+## 3 Dolly varden            9.66  10.2   
+## 4 Pink                    0.147  0.0516
+## 5 Steelhead               7.29   5.95  
+## 6 Three spine stickleback 1.32   0.545 
+## 7 coastrange sculpin      7.33   3.86</code></pre>
+<p><br></p>
+<p>We could also add in some other columns using mutate:</p>
+<pre class="r"><code>weight_sum2 &lt;- group_by(all_data, Species) %&gt;%
+  summarise(
+    size = mean(Weight..g., na.rm = TRUE), 
+    stdev = sd(Weight..g., na.rm = TRUE)
+    ) %&gt;%
+  mutate(
+    lower = size - stdev,
+    upper = size + stdev
+    )
+
+weight_sum2</code></pre>
+<pre><code>## # A tibble: 7 × 5
+##   Species                  size   stdev   lower  upper
+##   &lt;chr&gt;                   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Chum                    0.32   0.0632  0.257   0.383
+## 2 Coho                    3.38   3.35    0.0339  6.73 
+## 3 Dolly varden            9.66  10.2    -0.519  19.8  
+## 4 Pink                    0.147  0.0516  0.0950  0.198
+## 5 Steelhead               7.29   5.95    1.34   13.2  
+## 6 Three spine stickleback 1.32   0.545   0.770   1.86 
+## 7 coastrange sculpin      7.33   3.86    3.46   11.2</code></pre>
+<p><br></p>
+<p>Here, I’ve split up single functions onto multiple lines to improve
+readability: each column being created by <code>summarise()</code> and
+<code>mutate()</code> gets its own line.</p>
+<p><br></p>
+<p>There are advantages and disadvantages to piping together commands. A
+major advantage is that you don’t need to store intermediate data
+objects that you aren’t going to use as objects in R’s memory. A
+disadvantage is that if you pipe together too many commands, your code
+can start to become less readable.</p>
+<p><br> <br></p>
+<p>As already mentioned, we’ve really only scarped the surface of how to
+manipulate data with either base R or Tidyverse. There is a whole book
+<a href="https://r4ds.had.co.nz/index.html">R for Data Science</a>
+written by the primary developers (or at least originators) of
+Tidyverse. That link will take you to the site for the free book, which
+is filled with code examples.</p>
+<p><br> <br> <br> <br> <br></p>
 </div>
 </div>
 

@@ -120,14 +120,14 @@ Let's build this out:
 
 We'll start by identifying which elements of the "Species" column of `body` contains `"COHO"`
 
-```{r, eval=FALSE}
+```{r, results = FALSE}
 body$Species=="COHO"
 ```
 <br>
 
 You should see a long list of TRUE/FALSE values corresponding to whether each element is (TRUE) or is not (FALSE) "COHO". We can then use this to select out only the TRUE elements of `body$Species`:
 
-```{r, eval=FALSE}
+```{r, results = FALSE}
 body$Species[body$Species=="COHO"]
 ```
 
@@ -395,11 +395,9 @@ iso$Fish.code[which(!iso$Fish.code %in% body$Fish.code)]
 
 We can see that we have a total of 9 samples that are present in one of the datasets, but not the other. We can identify which fish are in both datasets:
 
-```{r}
+```{r, results = FALSE}
 in_both <- intersect(iso$Fish.code, body$Fish.code)
-```
 
-```{r, eval=FALSE}
 in_both
 ```
 
@@ -452,26 +450,12 @@ This has the same dimensions as the way that did this above using indexing and `
 write.csv(all_data, "fish_data_merged.csv")
 ```
 
+<br>
+<br>
 
 ### Further filtering and subsetting examples
 
-**Read that .csv file back into R just to demonstrate that we have successfully written out the data.**() This will use the same `read.csv()` function that we used to initially read in the two data files.
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+Read that .csv file back into R just to demonstrate that we have successfully written out the data.
 
 
 ```{r}
@@ -497,7 +481,14 @@ For some analyses, we might want to analyze a single species of fish at a time.
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 ```{r}
@@ -516,31 +507,31 @@ head(coho_length, n=4)
 
 We can select two or more species at once in a couple different ways:
 
-```{r}
+```{r, results = FALSE}
 cs_data <- all_data[all_data$Species %in% c("Coho", "Steelhead"),]
-```
-```{r, eval=FALSE}
+
 cs_data
 ```
 
+<br>
 
 Or using more complex pattern matching:
 
-```{r}
+```{r, results = FALSE}
 cs_data1 <- all_data[all_data$Species == "Coho" | all_data$Species == "Steelhead",]
-```
-```{r, eval=FALSE}
+
 cs_data1
 ```
 
 where the pipe `|` indicates that we want to match the first condition or the second condition.
 
+<br>
+
 We can also use `&` to get only rows that satisfy two or more conditions. E.g., we can find the Coho that are smaller than 10 g:
 
-```{r}
+```{r, results = FALSE}
 coho_small <- all_data[all_data$Species == "Coho" & all_data$Weight..g. < 10,]
-```
-```{r, eval=FALSE}
+
 coho_small
 ```
 
@@ -559,6 +550,17 @@ log_weight <- log(all_data$Weight..g.)
 
 **Take this object that contains the logged weights and make a new object called `data_w_log` that contains `all_data` with `log_weight` as an added column. **
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -605,26 +607,32 @@ R treats NA (not applicable) data differently than other types of data. For this
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
-```{r}
+```{r, results = FALSE}
 all_data$Fork.length..cm.[all_data$Fork.length..cm. < 5] <- NA
-```
-```{r, eval=FALSE}
+
 all_data$Fork.length..cm.
 ```
 
 <br>
+<br>
 
 If we try to check if values are NA the same way that we've evaluated things so far, it won't work:
 
-```{r, eval=FALSE}
+```{r, results = FALSE}
 all_data$Fork.length..cm.==NA
 ```
 
 And in fact, if you're using RStudio and put the above line in a script, it will flag that line and mousing over the exclamation mark will tell you to use `is.na()`. Let's try that instead:
 
-```{r, eval=FALSE}
+```{r, results = FALSE}
 is.na(all_data$Fork.length..cm.)
 ```
 
@@ -650,7 +658,7 @@ which(is.na(data_noNA$Fork.length..cm.))
 
 <br>
 
-So far, we've done all of the manipulation using base R function. We can also do a lot of fancy data manipulation using the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. 
+So far, we've done all of the manipulation using base R functions. We can also do a lot of fancy data manipulation using the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. 
 
 
 <br>
@@ -708,6 +716,16 @@ We can add in columns that are combinations or transformations of others:
 
 <br>
 
+We can also get useful summaries of our data grouped however we want. E.g., we can get the mean weight of each species from our `all_data` object:
+
+```{r}
+by_spec <- group_by(all_data, Species)
+summarise(by_spec, size = mean(Weight..g., na.rm = TRUE))
+```
+
+
+<br>
+
 Tidyverse has all sorts of functions like these that each do specific data manipulations that you can explore at your leisure. Many people love Tidyverse and use it for all of their data manipulation, others prefer to use base R for basic manipulations and use Tidyverse only for more complex operations. It's totally up to you which you prefer and which makes more sense to you.
 
 <br>
@@ -755,15 +773,93 @@ Pipes allow you to chain (or "pipe") together multiple functions into a single l
 
 When you pipe a function to another function, the output from the first function becomes the data argument of the second function, and you can link many pipes together.
 
+<br>
+
+For example, we can pipe together all of the commands we used above to make the big_coho2 object:
 
 
-iris %>%
-  group_by(Species) %>%
-  summarize_if(is.numeric, mean) %>%
-  ungroup() %>%
-  gather(measure, value, -Species) %>%
-  arrange(value)
+```{r}
+big_coho3 <- filter(all_data, Species == "Coho" & Fork.length..cm. > 10) %>%
+  select(Weight..g., Fork.length..cm.) %>%
+  mutate(
+    mass2 = Weight..g. * 2,
+    mass2_squared = mass2 ^ 2
+  )
+```
 
+
+<br>
+
+Try out piping together `group_by()` and `summarise()` to get an object that has the mean and standard deviation of the weight of each species from the `all_data` object:
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```{r}
+weight_sum <- group_by(all_data, Species) %>%
+  summarise(size = mean(Weight..g., na.rm = TRUE), stdev = sd(Weight..g., na.rm = TRUE))
+
+weight_sum
+```
+
+
+<br>
+
+We could also add in some other columns using mutate:
+
+```{r}
+weight_sum2 <- group_by(all_data, Species) %>%
+  summarise(
+    size = mean(Weight..g., na.rm = TRUE), 
+    stdev = sd(Weight..g., na.rm = TRUE)
+    ) %>%
+  mutate(
+    lower = size - stdev,
+    upper = size + stdev
+    )
+
+weight_sum2
+```
+
+<br>
+
+Here, I've split up single functions onto multiple lines to improve readability: each column being created by `summarise()` and `mutate()` gets its own line.
+
+
+
+<br>
+
+There are advantages and disadvantages to piping together commands. A major advantage is that you don't need to store intermediate data objects that you aren't going to use as objects in R's memory. A disadvantage is that if you pipe together too many commands, your code can start to become less readable.
+
+<br>
+<br>
+
+As already mentioned, we've really only scarped the surface of how to manipulate data with either base R or Tidyverse. There is a whole book [R for Data Science](https://r4ds.had.co.nz/index.html) written by the primary developers (or at least originators) of Tidyverse. That link will take you to the site for the free book, which is filled with code examples.
+
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
