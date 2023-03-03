@@ -52,8 +52,14 @@ If you already have experience in R and are comfortable with creating and manipu
 
 <br>
 
+## Module 3
 
-## Modules 3-4 under development
+- [Tidyverse and data visualization](Module_3/Tidyverse_and_viz.html)
+
+<br>
+
+
+## Module 4 under development
 
 
 
