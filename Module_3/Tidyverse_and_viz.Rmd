@@ -28,8 +28,16 @@ all_data <- read.csv("fish_data_merged.csv")
 If you've lost track of this file, we can create it again:
 
 ```{r}
+# read in each of the data files
 body <- read.csv("Fish_body_size.csv")
 iso <- read.csv("Fish_isotopes.csv")
+# Make all of the subsitutions that we made last time
+body$Species <- gsub("Steelhesd", "Steelhead", body$Species)
+body$Species <- gsub("COHO", "Coho", body$Species)
+body$Species <- gsub("^Dolly$", "Dolly varden", body$Species)
+body$Site <- gsub("RT02-R", "RT02R", body$Site)
+body$Site <- gsub("RT02-BP", "RT02BP", body$Site)
+# Merge the data
 all_data <- merge(body, iso)
 ```
 
@@ -73,27 +81,35 @@ body$Species <- str_replace(body$Species, "Steelhesd", "Steelhead")
 
 <br>
 
+## dplyr and tidyr for filtering and summarizing
+
+<br>
+
 We can filter data using the `filter()` function, this is similar to how we filtered data using base R:
 
-```{r}
+```{r, results = FALSE}
 coho_data <- filter(all_data, Species == "Coho")
+coho_data
 big_coho <- filter(all_data, Species == "Coho" & Fork.length..cm. > 10)
+big_coho
 ```
 
 We can select only certain columns using `select()`:
 
-```{r}
+```{r, results = FALSE}
 big_coho_size_vars <- select(big_coho, Weight..g., Fork.length..cm.)
+big_coho_size_vars
 ```
 
 We can add in columns that are combinations or transformations of others:
 
-```{r}
-  big_coho2 <- mutate(
-    big_coho,
-    mass2 = Weight..g. * 2,
-    mass2_squared = mass2 ^ 2
-  )
+```{r, results = FALSE}
+big_coho2 <- mutate(
+  big_coho,
+  mass2 = Weight..g. * 2,
+  mass2_squared = mass2 ^ 2
+)
+big_coho2
 ```
 
 <br>
@@ -167,12 +183,13 @@ big_coho3 <- filter(all_data, Species == "Coho" & Fork.length..cm. > 10) %>%
     mass2 = Weight..g. * 2,
     mass2_squared = mass2 ^ 2
   )
+big_coho3
 ```
 
 
 <br>
 
-Try out piping together `group_by()` and `summarise()` to get an object that has the mean and standard deviation of the weight of each species from the `all_data` object:
+Try out piping together `group_by()` and `summarise()` to get an object that has the mean and standard deviation of the weight of each species from the `all_data` object. You'll need to look up what functions calculate means and standard deviations.
 
 <br>
 <br>
@@ -196,7 +213,7 @@ Try out piping together `group_by()` and `summarise()` to get an object that has
 <br>
 <br>
 
-```{r}
+```{r, results = FALSE}
 weight_sum <- group_by(all_data, Species) %>%
   summarise(size = mean(Weight..g., na.rm = TRUE), stdev = sd(Weight..g., na.rm = TRUE))
 
@@ -242,9 +259,227 @@ As already mentioned, we've really only scarped the surface of how to manipulate
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+
+
+### Exploratory data visualization
+
+So far, we've explored how we can manipulate our data in R, including reading in, subsetting, and merging datasets. These are all very important, but looking at data in the ways we have so far doesn't give us a good intuition for what kind of patterns or distributions there are in the data. Do we have mostly large fish? Mostly small fish? Are the data roughly normally distributed? If you have far better mathematical intuition than I do, you might be able to guess at this from looking at a dataframe in the R console, but I sure can't. Plotting the data gives us a much better idea of what's going on.  
+
+We'll start with a few basic plots using base R functionality, then move onto fancier graphics in ggplot.
+
+<br>
+
+### Relationships among continuous variables
+
+When collecting data, we likely have some hypotheses that we are testing or at least general ideas about what kinds of patterns we expect in the data. In many cases, we may hypothesize that two variables are correlated. We can visualize the association between two variables using a scatterpot.
+
+Let's quickly remind ourselves of the variables that are in our fish dataset:
+
+```{r}
+colnames(all_data)
+```
+
+
+We would probably expect a relationship between weight and fork length, since it makes sense that longer fish are probably heavier fish. Let's see what it looks like:
+
+```{r}
+plot(all_data$Fork.length..cm., all_data$Weight..g.)
+```
+
+<br>
+
+Cool, looks like there's a relationship here, but it's pretty hideous, so let's clean it up a little.
+
+```{r}
+plot(all_data$Fork.length..cm., all_data$Weight..g.,
+     pch = 16, frame = FALSE, col = "blue", cex=0.5,
+     ylab="Weight (g)", xlab = "Fork length (cm)")
+```
+
+There are a number of other graphical parameters you can tweak as you like. There are good resources all over the internet that can be easily found by searching things like "base R axis labels".
+
+<br>
+
+This plot gives us a pretty good idea that there's a correlation between our data, but it looks distinctly non-linear. This isn't surprising, since larger fish don't just get longer, but also wider and taller, so we'd expect the mass to increase more than linearly. This is a good example of when we might want to transform our data. 
+
+**Try cube root transforming weight and then plot that against fork length.** We're using the cube root because mass typically increases cubically as a function of length (assuming that other dimensions stay roughly proportional). Remember that a cube root is the same as raising a number to the power of 1/3.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r}
+cube_weight <- all_data$Weight..g.^(1/3)
+plot(all_data$Fork.length..cm., cube_weight,
+     pch = 16, frame = FALSE, col = "blue", cex=0.5,
+     ylab="Cube root weight (g)", xlab = "Fork length (cm)")
+
+## OR 
+all_dat_wcube <- mutate(all_data, cubeweight = Weight..g.^(1/3))
+plot(all_dat_wcube$Fork.length..cm., all_dat_wcube$cubeweight,
+     pch = 16, frame = FALSE, col = "blue", cex=0.5,
+     ylab="Cube root weight (g)", xlab = "Fork length (cm)")
+
+
+```
+
+<br>
+
+This looks very linear now. Let's use an actual statistical test to see if there is a correlation:
+
+```{r}
+cor.test(all_data$Fork.length..cm., cube_weight)
+```
+
+We have a very high correlation coefficient and a very low p value, cool. Remember, however, that we cube root transformed the weight data, so the interpretation is **not** that there is a linear relationship between weight and length. Rather there is a cubic relationship.
+
+<br>
+<br>
+
+Since we have a hypothesis of causation (being larger causes a fish to be heavier), a linear regression is probably more appropriate here than a correlation test. This also allows us to plot out the regression line on our scatterplot:
+
+```{r}
+reg <- lm(all_dat_wcube$cubeweight ~ all_dat_wcube$Fork.length..cm.)
+plot(all_dat_wcube$Fork.length..cm., all_dat_wcube$cubeweight,
+     pch = 16, frame = FALSE, col = "blue", cex=0.5,
+     ylab="Cube root weight (g)", xlab = "Fork length (cm)")
+abline(reg, col="black")
+```
+
+
+Note that here, the order of weight and length in the regression formula is important because we are saying that weight is a function of length (i.e., that length is the predictor/independent variable), not simply asking if there is a correlation.
+
+
+<br>
+<br>
+
+### Differences among groups
+
+Beyond correlations among continuous variables, in many cases we are interested in differences in measurements among groups. Here we have several different species, and we expect that our measurements will differ across these. We'll take the same general approach as above, starting with some simple visualization, then explicitly testing for differences among groups. 
+
+
+We can start by plotting out a distribution for a single species by filtering our data to a single species data and making a histogram.
+
+```{r}
+coho_weight <- all_data[all_data$Species=="Coho", "Weight..g."]
+hist(coho_weight, breaks = 30, xlab = "Coho weight", main = NULL)
+```
+
+We can also plot multipe histograms together in different colors to get a sense for how distributions do or do not overlap. 
+
+```{r}
+dolly_weight <- all_data[all_data$Species=="Dolly varden", "Weight..g."]
+hist(coho_weight, breaks = 20, xlab = "weight", main = NULL, xlim = c(0,70),
+     col="blue")
+hist(dolly_weight, breaks = 60, add = TRUE, col = "red")
+
+```
+
+
+<br>
+
+A better way to plot this would be to make the histograms partially transparent. We won't explore that here, but as for most things in R, there are plenty of resources on the internet: https://stackoverflow.com/questions/3541713/how-to-plot-two-histograms-together-in-r
+
+Even with some transparency, if we plotted all seven of our species, this would get hard to interpret pretty quickly. One option for plotting multiple distributions is to use box plots. Personally, I prefer violin plots from ggplot, but we'll start with box plots for now.
+
+
+```{r}
+par(mar=c(10,4.1,4.1,2.1))
+boxplot(Weight..g. ~ Species, data = all_data, main="Fish weights",
+   xlab = NULL, ylab = "Weight (g)", las = 2)
+```
+
+
+This looks ok. There is a lot more customization we could do with this, but again, we won't get into that here. The `par()` function sets graphical parameters, and we used it to set the margins `mar()` so that the bottom margin is wider than the default to accommodate the vertical labels. You can find more info here: https://www.r-bloggers.com/2010/06/setting-graph-margins-in-r-using-the-par-function-and-lots-of-cow-milk/
+
+<br>
+
+Let's write this plot out to pdf. You *can* save plots directly from RStudio using some GUI options, but the quality is not as good as plotting to a pdf or other image format using `pdf()`, `png()`, etc. I personally prefer pdf format because it is vector-based and maintains resolution under infinite zoom. We use the function `pdf()` to open a pdf plotting device, then plot like normal, but now everything being plotted goes to the pdf file that is open for writing. When we're done, we use `dev.off()` to turn off and close the active plotting device, leaving us with our completed pdf file.
+
+```{r}
+pdf(file="boplot.pdf", width=6, height=5)
+par(mar=c(10,4.1,4.1,2.1))
+boxplot(Weight..g. ~ Species, data = all_data, main="Fish weights",
+   xlab = NULL, ylab = "Weight (g)", las = 2)
+dev.off()
+
+```
+
+We can see here that it looks like we have some major differences in body sizes across the different fish species. Let's test that out using ANOVA. 
+
+**There are various ways to run ANOVAs in R, one is using the `aov()` function. This function is structured similarly to the `lm()` and `boxplot()` functions. Try using `?aov()` to figure out how to run an ANOVA that will tell us if body weights differe among species.** You might need to search the internet for how to specify formulas in R.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r}
+res.aov <- aov(Weight..g. ~ Species, data = all_data)
+summary(res.aov)
+```
+
+<br>
+
+Looks like we have some some highly significant differences among the species here. ANOVA itself won't tell us what is different from what, though, so let's run a quick Tukey post-hoc test.
+
+```{r}
+TukeyHSD(res.aov)
+```
+
+<br>
 
 
 
+Keep in mind that ANOVA carries assumptions like equal variance among groups and normality that may be violated in this data. When running any test with such assumptions, you should be eplicitly testing that your data conform to them. If your data do not meet the test's assumptions, your results may be biased, and so data transformation or the use of a non-parametric test that does not carry the same assumptions may be a better alternative. You can find more detail on testing ANOVA assumptions and ANOVA alternatives in R here: http://www.sthda.com/english/wiki/one-way-anova-test-in-r
+
+All statistical tests make certain assumptions about the data, and tests vary in how robust they are to violations of those assumptions. In the end, you will need to know the specifics of both your dataset and the relevant statistical tests to know what methods will be applicable to your data. 
 
 
 
