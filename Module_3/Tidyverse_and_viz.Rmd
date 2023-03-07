@@ -400,7 +400,7 @@ hist(dolly_weight, breaks = 60, add = TRUE, col = "red")
 
 A better way to plot this would be to make the histograms partially transparent. We won't explore that here, but as for most things in R, there are plenty of resources on the internet: https://stackoverflow.com/questions/3541713/how-to-plot-two-histograms-together-in-r
 
-Even with some transparency, if we plotted all seven of our species, this would get hard to interpret pretty quickly. One option for plotting multiple distributions is to use box plots. Personally, I prefer violin plots from ggplot, but we'll start with box plots for now.
+Even with some transparency, if we plotted all seven of our species, this would get hard to interpret pretty quickly. One option for plotting multiple distributions is to use box plots. Personally, I prefer violin plots from ggplot, but we'll get to those later on.
 
 
 ```{r}
@@ -410,13 +410,13 @@ boxplot(Weight..g. ~ Species, data = all_data, main="Fish weights",
 ```
 
 
-This looks ok. There is a lot more customization we could do with this, but again, we won't get into that here. The `par()` function sets graphical parameters, and we used it to set the margins `mar()` so that the bottom margin is wider than the default to accommodate the vertical labels. You can find more info here: https://www.r-bloggers.com/2010/06/setting-graph-margins-in-r-using-the-par-function-and-lots-of-cow-milk/
+This looks ok. There is a lot more customization we could do with this, but again, we won't get into that here. The `par()` function sets graphical parameters, and we used it to set the margins `mar()` so that the bottom margin is wider than the default to accommodate the vertical labels. You can find more info [here](https://www.r-bloggers.com/2010/06/setting-graph-margins-in-r-using-the-par-function-and-lots-of-cow-milk/).
 
 <br>
 
 Let's write this plot out to pdf. You *can* save plots directly from RStudio using some GUI options, but the quality is not as good as plotting to a pdf or other image format using `pdf()`, `png()`, etc. I personally prefer pdf format because it is vector-based and maintains resolution under infinite zoom. We use the function `pdf()` to open a pdf plotting device, then plot like normal, but now everything being plotted goes to the pdf file that is open for writing. When we're done, we use `dev.off()` to turn off and close the active plotting device, leaving us with our completed pdf file.
 
-```{r}
+```{r, message = FALSE, results = FALSE}
 pdf(file="boplot.pdf", width=6, height=5)
 par(mar=c(10,4.1,4.1,2.1))
 boxplot(Weight..g. ~ Species, data = all_data, main="Fish weights",
@@ -424,6 +424,8 @@ boxplot(Weight..g. ~ Species, data = all_data, main="Fish weights",
 dev.off()
 
 ```
+
+<br>
 
 We can see here that it looks like we have some major differences in body sizes across the different fish species. Let's test that out using ANOVA.
 
@@ -651,7 +653,7 @@ ggplot(data = all_data) +
   geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N, linetype = Species))
 ```
 
-This does not look good at all and throws some warnings These are caused because at least oen of our species has very few observations, and this causes issues with the method used to create the smoothed line.
+This does not look good at all and throws some warnings These are caused because at least one of our species has very few observations, and this causes issues with the method used to create the smoothed line.
 
 * **Warnings vs. errors**: An error in R means that something has gone wrong such that the function you tried to run could not be successfully executed. Warnings are *potentially* less severe. It means that some potetentially undesirable behavior has occurred, but that the function is still able to run and return output. However, a warning could very well mean that your function has returned bad results, and you should always investigate what caused a warning and if the output is acceptable or not.
 
@@ -674,6 +676,8 @@ ggplot(data = all_data) +
   geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N)) +
   facet_wrap(~ Species, scales = "free")
 ```
+
+As is the case with most things in `ggplot` and R more generally, there are many ways to customize facets, and we won't explore those here.
 
 * Which of these species looks problematic? Try making a single plot using `geom_smooth()` including `linetype = Species` as above, but remove the offending species.
 
@@ -728,9 +732,10 @@ Using filter from `dplyr`:
 ggplot(data = filter(all_data, Species != "Pink")) + # Note the != for "not equal to"
   geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N,  linetype = Species))
 ```
+
 This works, but, it's still rather hard to tell what's going on with each species. 
 
-* Try adding an argumnet to maked the lines different colors
+* Try adding an argument to make the lines different colors.
 
 
 <br>
@@ -767,7 +772,7 @@ This works, but, it's still rather hard to tell what's going on with each specie
 <br>
 
 ```{r}
-ggplot(data = filter(all_data, Species != "Pink")) + # Note the != for "not equal to"
+ggplot(data = filter(all_data, Species != "Pink")) +
   geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N,  linetype = Species, color = Species))
 ```
 <br>
@@ -779,6 +784,9 @@ This looks reasonably good, but still a little busy. This may or may not be the 
 ```{r}
 data_red <- filter(all_data, Species %in% c("Coho", "coastrange sculpin", "Steelhead"))
 ```
+
+<br>
+<br>
 
 We will often want to stack multiple geoms on top of each other. E.g., to fully visualize the trends and spread in the data, we might want to plot both the points and the line:
 
@@ -800,6 +808,8 @@ ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N)) +
   geom_smooth()
 ```
 
+<br>
+
 We get exactly the same plot. The global mappings are applied to each geom when it is called. We can also extend or override the global mappings within each geom:
 
 ```{r}
@@ -807,6 +817,9 @@ ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N)) +
   geom_point(mapping = aes(color = Species)) +
   geom_smooth()
 ```
+
+<br>
+<br>
 
 * Make a plot that has both points colored by species, including separate colored lines for each species as well.
 
@@ -853,7 +866,7 @@ ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N, color = 
 
 <br>
 
-Note that we can also add the data argument into a geom. Here we'll plot the points for all spoecies, but the line for only Coho:
+Note that we can also add the data argument into a geom. Here we'll plot the points for all species, but the line for only Coho:
 
 ```{r}
 ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N, color = Species)) + 
@@ -873,7 +886,194 @@ We've made a bunch of scatter and line plots, let's explore a few ways to plot o
 
 <br>
 
+We can make just a scatterplot, but it's really not very informative.
 
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_point()
+```
+
+
+<br>
+<br>
+
+We can make a boxplot instead:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_boxplot()
+```
+
+This tells us a lot more information. We can also do things like swap the x and y coordinates:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_boxplot() +
+  coord_flip()
+```
+
+Or fill the boxes with colors by species:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N, fill = Species)) + 
+  geom_boxplot() +
+  theme(legend.position="none")
+```
+
+* What does `theme(legend.position="none")` in the above code do? What happens if we remove it?
+
+<br>
+<br>
+<br>
+<br>
+
+There are lots of other things we could do with boxplots, but we'll move on. My favorite way of visualizing distributions for discrete variables is using violin plots:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE)
+```
+
+
+This is fine, but not great. Change this plot so that the violins are filled with different colors for each species. Also get rid of any legend that shows up. 
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N, fill = Species)) + 
+  geom_violin(trim=FALSE) +
+  theme(legend.position="none")
+```
+
+<br>
+
+If we want to, we can add boxplots within the violins. This is similar to adding the `geom_smooth` to the scatterplots above. Try making a violin plot with boxplots inside. 
+
+Make the violins filled by different colors for each species, but keep the boxplots unfilled. As a hint, the argument `width` controls the width of boxplots.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  theme(legend.position="none")
+```
+
+
+This looks pretty fancy to me.
+
+<br>
+<br>
+
+A couple final things:
+
+We can change the axis labels and add a plot title if we want:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  theme(legend.position="none") +
+  labs(title="Fish nitrogen isotopes", x = "Species", y = "delta 15 N")
+```
+
+And/or we can change the theme of the background:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  labs(x = "Species", y = "delta 15 N") +
+  theme_minimal() +
+  theme(legend.position="none")
+```
+
+* Note that we had to move `theme(legend.position="none")` to after `theme_minimal()` because whichever comes last will override some of the parameters set by the one that is run first.
+
+or 
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  labs(x = "Species", y = "delta 15 N") +
+  theme_classic() +
+  theme(legend.position="none")
+```
+
+
+<br>
+<br>
+<br>
+<br>
+
+You customize each of these plots almost endlesslessly, and there are many other types of plots that you can create, as well. If you want to get an idea for some of the plotting diversity available, check out the the [R graph gallery](https://r-graph-gallery.com/).
 
 
 
@@ -882,3 +1082,6 @@ We've made a bunch of scatter and line plots, let's explore a few ways to plot o
 <br>
 <br>
 <br>
+
+
+
