@@ -10,6 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
 ```
 
+<br>
+<br>
+<br>
 
 ## Set up:
 
@@ -469,7 +472,7 @@ summary(res.aov)
 
 Looks like we have some some highly significant differences among the species here. ANOVA itself won't tell us what is different from what, though, so let's run a quick Tukey post-hoc test.
 
-```{r}
+```{r, results = FALSE}
 TukeyHSD(res.aov)
 ```
 
@@ -481,5 +484,170 @@ Keep in mind that ANOVA carries assumptions like equal variance among groups and
 
 All statistical tests make certain assumptions about the data, and tests vary in how robust they are to violations of those assumptions. In the end, you will need to know the specifics of both your dataset and the relevant statistical tests to know what methods will be applicable to your data. 
 
+
+<br>
+<br>
+
+# ggplot
+
+<br>
+
+`ggplot` is an extremely popular R package that can make all sorts of very nice graphics. If you get familiar with the general style of `ggplot`, you'll pretty quickly start to notice that many figures in research papers are made with this package.
+
+<br>
+
+
+### ggplot syntax
+
+`ggplot` makes some very nice figures, but it has a whole syntax to it that can take a little while to learn. We'll make a quick plot, then explain what's going on here:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.))
+```
+
+<br>
+
+All calls to `ggplot()` are composed of at least two pieces. The first simply specifies the object that contains the data. All of the data for the plot should be in a single object, with different variables in different columns and each row specifying a single observation of a data (this is part of the general "Tidy" data philosophy).
+
+The basic `ggplot()` call without adding in a `geom` function will just render a blank plot, since you haven't told it what kind of plot to make with the data - this is unlike the base R `plot()` function we used above, which will try to guess what type of plot you want based on the nature of the data.
+
+```{r, fig.show = 'hide'}
+ggplot(data = all_data) # this makes an empty plot
+```
+
+<br>
+
+In the full call:
+
+```{r, fig.show = 'hide'}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.))
+```
+
+The `geom_point()` function tells `ggplot` to plot out the data as points. Within this function, the `mapping` argument specifies how the data are mapped to the visualization. The mapping is specified using the `aes()` (aesthetic) function. Here we specify only which variable is x and which is y, but there are other things we can specify as well.
+
+* Multiple `geom` functions can be combined into a single plot, and the `mapping` argument can be specified independently in each, or can be specified globally within the `ggplot()` function call.
+
+
+<br>
+
+### Aesthetic mappings 
+
+We've so far plotted out two variables, but we can add information about additional variables by passing additional arguments to `aes()`. For example, we can change the shape the points by species:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g., shape = Species))
+```
+
+* Note the warning that we can only assign up to 6 shapes to variables, and see that three spine stickleback has been left out because of this. 
+
+<br>
+
+Instead we can cahnge the color by species:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g., color = Species))
+```
+
+<br>
+
+We can also scale the size of the points by some variable using the `size` argument in `aes()`. Try modifying the above plot so that the points are sized by `del15N`.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(
+    x = Fork.length..cm., 
+    y = Weight..g., 
+    color = Species,
+    size = del15N))
+```
+
+This is a very busy plot at this point, and for me, all points are too large to be interpretable, so let's add a function that controls the range of point sizes:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(
+    x = Fork.length..cm., 
+    y = Weight..g., 
+    color = Species,
+    size = del15N)) +
+  scale_size(range = c(0.1, 2))
+```
+
+This is a little better, but still is clearly not the best way to display these data. Just because you *can* plot things in a certain way, doesn't mean you *should* plot them that way.
+
+
+<br>
+
+If we want to change the color (or size, shape, etc.) of all points, rather than according to a variable, we can do this by pulling that aesthetic outside of the `aes()` function and setting it manually:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.), color = "blue")
+```
+
+
+
+
+<br>
+<br>
+
+
+### Geometric objects
+
+There are many other types of geoms, or geometric objects, that we can plot. We won't come anywhere close to exploring the full set that are available, but we'll demonstrate a few others.
+
+
+
+
+
+<br>
+
+
+
+
+
+* To ADD:
+
+- facets
+- violin plots, etc.
+  
 
 
