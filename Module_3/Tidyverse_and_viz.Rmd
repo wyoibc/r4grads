@@ -1,7 +1,7 @@
 ---
 title: "Tidyverse and data visualization"
 author: "Sean Harrington"
-date: "2023-03-01"
+date: "2023-03-08"
 output: html_document
 ---
 
@@ -267,7 +267,7 @@ As already mentioned, we've really only scarped the surface of how to manipulate
 <br>
 
 
-### Exploratory data visualization
+# Exploratory data visualization
 
 So far, we've explored how we can manipulate our data in R, including reading in, subsetting, and merging datasets. These are all very important, but looking at data in the ways we have so far doesn't give us a good intuition for what kind of patterns or distributions there are in the data. Do we have mostly large fish? Mostly small fish? Are the data roughly normally distributed? If you have far better mathematical intuition than I do, you might be able to guess at this from looking at a dataframe in the R console, but I sure can't. Plotting the data gives us a much better idea of what's going on.  
 
@@ -425,7 +425,7 @@ dev.off()
 
 ```
 
-We can see here that it looks like we have some major differences in body sizes across the different fish species. Let's test that out using ANOVA. 
+We can see here that it looks like we have some major differences in body sizes across the different fish species. Let's test that out using ANOVA.
 
 **There are various ways to run ANOVAs in R, one is using the `aov()` function. This function is structured similarly to the `lm()` and `boxplot()` functions. Try using `?aov()` to figure out how to run an ANOVA that will tell us if body weights differe among species.** You might need to search the internet for how to specify formulas in R.
 
@@ -545,7 +545,7 @@ ggplot(data = all_data) +
 
 <br>
 
-Instead we can cahnge the color by species:
+Instead we can change the color by species:
 
 ```{r}
 ggplot(data = all_data) + 
@@ -630,13 +630,246 @@ ggplot(data = all_data) +
 <br>
 
 
-### Geometric objects
+### Geometric objects and facets
 
 There are many other types of geoms, or geometric objects, that we can plot. We won't come anywhere close to exploring the full set that are available, but we'll demonstrate a few others.
 
 
+Here is a smoothed line plot of length vs. del15N:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N))
+```
+
+<br>
+
+We can show the different species by setting `linetype`:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N, linetype = Species))
+```
+
+This does not look good at all and throws some warnings These are caused because at least oen of our species has very few observations, and this causes issues with the method used to create the smoothed line.
+
+* **Warnings vs. errors**: An error in R means that something has gone wrong such that the function you tried to run could not be successfully executed. Warnings are *potentially* less severe. It means that some potetentially undesirable behavior has occurred, but that the function is still able to run and return output. However, a warning could very well mean that your function has returned bad results, and you should always investigate what caused a warning and if the output is acceptable or not.
+
+<br>
+
+In this case, it might be useful to look at each species plotted individually. However, I don't want to go through and individually code each plot. Instead, let's use the facet functionality of ggplot:
 
 
+```{r}
+ggplot(data = all_data) + 
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N)) +
+  facet_wrap(~ Species)
+```
+
+We can start to see where the problem might be, but the x and y scales for these different species really aren't comparable, so let's allow those to change freely:
+
+
+```{r, warning = FALSE}
+ggplot(data = all_data) + 
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N)) +
+  facet_wrap(~ Species, scales = "free")
+```
+
+* Which of these species looks problematic? Try making a single plot using `geom_smooth()` including `linetype = Species` as above, but remove the offending species.
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+I removed only "Pink" - you might have decided to also remove "Chum" - either is fine.
+
+
+Using base R indexing:
+
+```{r, fig.show = 'hide', message = FALSE}
+ggplot(data = all_data[!all_data$Species == "Pink", ]) + 
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N,  linetype = Species))
+```
+
+
+Using filter from `dplyr`:
+
+```{r}
+ggplot(data = filter(all_data, Species != "Pink")) + # Note the != for "not equal to"
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N,  linetype = Species))
+```
+This works, but, it's still rather hard to tell what's going on with each species. 
+
+* Try adding an argumnet to maked the lines different colors
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```{r}
+ggplot(data = filter(all_data, Species != "Pink")) + # Note the != for "not equal to"
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N,  linetype = Species, color = Species))
+```
+<br>
+<br>
+
+
+This looks reasonably good, but still a little busy. This may or may not be the best way to convey these data. For the next few things we try, let's reduce out dataset down to just Coho, coastrange sculpin, and Steelhead.
+
+```{r}
+data_red <- filter(all_data, Species %in% c("Coho", "coastrange sculpin", "Steelhead"))
+```
+
+We will often want to stack multiple geoms on top of each other. E.g., to fully visualize the trends and spread in the data, we might want to plot both the points and the line:
+
+
+```{r}
+ggplot(data = data_red) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = del15N)) +
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N))
+```
+
+
+<br>
+
+If we have multiple layers in our plot that all share the same aesthetic, it can be easier to specify them once in the `ggplot()` call rather than idividually each time we call a new geom:
+
+```{r}
+ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N)) + 
+  geom_point() +
+  geom_smooth()
+```
+
+We get exactly the same plot. The global mappings are applied to each geom when it is called. We can also extend or override the global mappings within each geom:
+
+```{r}
+ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N)) + 
+  geom_point(mapping = aes(color = Species)) +
+  geom_smooth()
+```
+
+* Make a plot that has both points colored by species, including separate colored lines for each species as well.
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```{r}
+ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N, color = Species)) + 
+  geom_point() +
+  geom_smooth(mapping = aes(linetype = Species))
+```
+
+
+<br>
+
+Note that we can also add the data argument into a geom. Here we'll plot the points for all spoecies, but the line for only Coho:
+
+```{r}
+ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N, color = Species)) + 
+  geom_point() +
+  geom_smooth(data = filter(data_red, Species == "Coho"))
+```
+
+
+There are many, many ways to futher customize graphics in ggplot. If there is a type of plot you want to make, there is a good chance that ggplot will make it and you can usually find good examples with some internet searching. I turn to Google all the time to figure out how to make specific plots in ggplot.
+
+<br>
+<br>
+
+### Plots by discrete variables
+
+We've made a bunch of scatter and line plots, let's explore a few ways to plot out discrete variables.
 
 <br>
 
@@ -644,10 +877,8 @@ There are many other types of geoms, or geometric objects, that we can plot. We 
 
 
 
-* To ADD:
 
-- facets
-- violin plots, etc.
-  
-
-
+<br>
+<br>
+<br>
+<br>
