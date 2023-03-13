@@ -35,7 +35,7 @@ Download and install the **latest versions** of R and RStudio if using your own 
 
 <br>
 
-## Module 1
+## Week 1
 
 - [Essential R skills](Module_1/Intro_R.html)
 
@@ -46,20 +46,23 @@ If you already have experience in R and are comfortable with creating and manipu
 
 <br>
 
-## Module 2
+## Week 2
 
 - [Data manipulation](Module_2/R_Data_manip.html)
 
 <br>
 
-## Module 3
+## Week 3
 
 - [Tidyverse and data visualization](Module_3/Tidyverse_and_viz.html)
 
 <br>
 
 
-## Module 4 under development
+## Week 4
+
+- [ggplot continued, loops](Module_4/ggplot_contd_programming.html)
+
 
 
 
