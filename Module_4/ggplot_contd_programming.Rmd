@@ -1,7 +1,7 @@
 ---
-title: "Tidyverse and data visualization"
+title: "ggplot continued, loops"
 author: "Sean Harrington"
-date: "2023-03-08"
+date: "2023-03-22"
 output: html_document
 ---
 
@@ -11,12 +11,17 @@ knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
 ```
 
 <br>
+
+[Home](https://wyoibc.github.io/r4grads/)
+
 <br>
 <br>
 
 ## Set up:
 
-If you don't have the data from last time handy, or have forgotten where you put it, use the instructions from the last session to re-download it. Then set your working directory to where the data are:
+If you don't have the data from last time handy, or have forgotten where you put it, use the instructions from the the [week 2 session](https://wyoibc.github.io/r4grads/Module_2/R_Data_manip.html) to re-download it. Then set your working directory to where the data are:
+
+* **Remember that this file path will almost definitely be different for you!**
 
 ```{r, eval = FALSE}
 setwd("~/r4grads/Fish_data/Modified/")
@@ -29,6 +34,8 @@ all_data <- read.csv("fish_data_merged.csv")
 ```
 
 If you've lost track of this file, we can create it again:
+
+* **If you have the "fish_data_merged.csv" file and were able to run the line above, you do not need to run these lines!**
 
 ```{r}
 # read in each of the data files
@@ -510,6 +517,9 @@ You customize each of these plots almost endlesslessly, and there are many other
 
 <br>
 <br>
+
+[Home](https://wyoibc.github.io/r4grads/)
+
 <br>
 <br>
 

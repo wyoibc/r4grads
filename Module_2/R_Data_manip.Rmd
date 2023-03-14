@@ -11,6 +11,13 @@ knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
 
 ```
 
+<br>
+
+[Home](https://wyoibc.github.io/r4grads/)
+
+<br>
+<br>
+
 In this tutorial, we will explore some basic data manipulation in R, including reading, filtering, and transforming. These are essential steps for nearly all datasets, as data is rarely ever perfectly clean and formatted exactly right for all of the analyses that you're interested in.
 <br>
 I **highly** recommend writing all of your code in an R script and commenting it liberally. Even for relatively simple operations, if you need to repeat them or slightly tweak them, it's much easier to simply open up your script and re-run it or edit it than to re-type everything into R. Even more importantly, it ensures that there is a record of exactly what you did. If you haven't already dealt with trying to remember how you handled data when you come back it to after a while, you'll probably be surprised by just how quickly you can forget what you were doing and why.
@@ -654,3 +661,7 @@ which(is.na(data_noNA$Fork.length..cm.))
 <br>
 <br>
 
+[Home](https://wyoibc.github.io/r4grads/)
+
+<br>
+<br>

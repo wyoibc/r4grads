@@ -11,9 +11,9 @@
 
 <meta name="author" content="Sean Harrington" />
 
-<meta name="date" content="2023-03-08" />
+<meta name="date" content="2023-03-22" />
 
-<title>Tidyverse and data visualization</title>
+<title>ggplot continued, loops</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,26 +350,36 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Tidyverse and data visualization</h1>
+<h1 class="title toc-ignore">ggplot continued, loops</h1>
 <h4 class="author">Sean Harrington</h4>
-<h4 class="date">2023-03-08</h4>
+<h4 class="date">2023-03-22</h4>
 
 </div>
 
 
-<p><br> <br> <br></p>
+<p><br></p>
+<p><a href="https://wyoibc.github.io/r4grads/">Home</a></p>
+<p><br> <br></p>
 <div id="set-up" class="section level2">
 <h2>Set up:</h2>
 <p>If you don’t have the data from last time handy, or have forgotten
-where you put it, use the instructions from the last session to
-re-download it. Then set your working directory to where the data
-are:</p>
+where you put it, use the instructions from the the <a href="https://wyoibc.github.io/r4grads/Module_2/R_Data_manip.html">week
+2 session</a> to re-download it. Then set your working directory to
+where the data are:</p>
+<ul>
+<li><strong>Remember that this file path will almost definitely be
+different for you!</strong></li>
+</ul>
 <pre class="r"><code>setwd(&quot;~/r4grads/Fish_data/Modified/&quot;)</code></pre>
 <p>We’ll need our <code>all_data</code> object again. If you have your
 <code>&quot;fish_data_merged.csv&quot;</code> file that we wrote out last time,
 you can read in:</p>
 <pre class="r"><code>all_data &lt;- read.csv(&quot;fish_data_merged.csv&quot;)</code></pre>
 <p>If you’ve lost track of this file, we can create it again:</p>
+<ul>
+<li><strong>If you have the “fish_data_merged.csv” file and were able to
+run the line above, you do not need to run these lines!</strong></li>
+</ul>
 <pre class="r"><code># read in each of the data files
 body &lt;- read.csv(&quot;Fish_body_size.csv&quot;)
 iso &lt;- read.csv(&quot;Fish_isotopes.csv&quot;)
@@ -675,7 +685,9 @@ override some of the parameters set by the one that is run first.</li>
 many other types of plots that you can create, as well. If you want to
 get an idea for some of the plotting diversity available, check out the
 the <a href="https://r-graph-gallery.com/">R graph gallery</a>.</p>
-<p><br> <br> <br> <br></p>
+<p><br> <br></p>
+<p><a href="https://wyoibc.github.io/r4grads/">Home</a></p>
+<p><br> <br></p>
 </div>
 </div>
 

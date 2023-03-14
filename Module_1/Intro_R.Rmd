@@ -10,7 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <br>
-<br>
+
+[Home](https://wyoibc.github.io/r4grads/)
+
 <br>
 <br>
 
@@ -517,23 +519,17 @@ RStudio makes it easy to update packages in the "packages" tab -- you can click 
 RStudio also updates periodically. Staying fully current with RStudio is less critical than staying current with R and packages, but can cause issues with plotting and other features if you get too far behind. RStudio will usually prompt you when a new version is available.
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 
 
 
+<br>
+<br>
 
+[Home](https://wyoibc.github.io/r4grads/)
+
+<br>
+<br>
 
 
 

@@ -11,12 +11,15 @@ knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
 ```
 
 <br>
+
+[Home](https://wyoibc.github.io/r4grads/)
+
 <br>
 <br>
 
 ## Set up:
 
-If you don't have the data from last time handy, or have forgotten where you put it, use the instructions from the last session to re-download it. Then set your working directory to where the data are:
+If you don't have the data from last time handy, or have forgotten where you put it, use the instructions from the [week 2 session](https://wyoibc.github.io/r4grads/Module_2/R_Data_manip.html) to re-download it. Then set your working directory to where the data are:
 
 ```{r, eval = FALSE}
 setwd("~/r4grads/Fish_data/Modified/")
@@ -627,6 +630,11 @@ ggplot(data = all_data) +
 
 
 
+
+<br>
+<br>
+
+[Home](https://wyoibc.github.io/r4grads/)
 
 <br>
 <br>
