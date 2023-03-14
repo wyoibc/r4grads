@@ -59,7 +59,7 @@ all_data <- merge(body, iso)
 <br>
 <br>
 
-Load up tidyverse:
+Load up tidyverse (alternately, you can just use `library(ggplot2)` if you don't care about loading up other tidyverse packages):
 
 ```{r}
 library(tidyverse)
@@ -71,7 +71,7 @@ library(tidyverse)
 
 ### Geometric objects and facets
 
-There are many other types of geoms, or geometric objects, that we can plot. We won't come anywhere close to exploring the full set that are available, but we'll demonstrate a few others.
+There are many types of geoms, or geometric objects, that we can plot. We won't come anywhere close to exploring the full set that are available, but we'll demonstrate a few.
 
 
 Here is a smoothed line plot of length vs. del15N:
@@ -105,8 +105,56 @@ ggplot(data = all_data) +
   facet_wrap(~ Species)
 ```
 
-We can start to see where the problem might be, but the x and y scales for these different species really aren't comparable, so let's allow those to change freely:
+We can start to see where the problem might be, but the x and y scales for these different species really aren't comparable. How would we go about finding information to let the x and y axes vary across facets?
 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+I'd always start with R's internal help:
+
+```{r}
+?facet_wrap()
+```
+
+If you look at the `scales` argument, this looks like what we want.
+
+If that hadn't been helpful, we can always google something like "ggplot facets different axes". I get [this](https://stackoverflow.com/questions/21937127/different-axis-limits-per-facet-in-ggplot2) as the top result, and it also indicates that we need to set the `scales` argument.
+
+
+<br>
 
 ```{r, warning = FALSE}
 ggplot(data = all_data) + 
@@ -116,7 +164,7 @@ ggplot(data = all_data) +
 
 As is the case with most things in `ggplot` and R more generally, there are many ways to customize facets, and we won't explore those here.
 
-* Which of these species looks problematic? Try making a single plot using `geom_smooth()` including `linetype = Species` as above, but remove the offending species.
+* Which of these species looks problematic? Try making a single plot using `geom_smooth()` including `linetype = Species` as above, but remove the offending species from the data before plotting.
 
 
 <br>
@@ -225,7 +273,44 @@ data_red <- filter(all_data, Species %in% c("Coho", "coastrange sculpin", "Steel
 <br>
 <br>
 
-We will often want to stack multiple geoms on top of each other. E.g., to fully visualize the trends and spread in the data, we might want to plot both the points and the line:
+We will often want to stack multiple geoms on top of each other. E.g., to fully visualize the trends and spread in the data, we might want to plot both the points and the line.
+
+How do you think we'd go about plotting both of these on the same plot?
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 ```{r}
@@ -258,7 +343,7 @@ ggplot(data = data_red, mapping = aes(x = Fork.length..cm., y = del15N)) +
 <br>
 <br>
 
-* Make a plot that has both points colored by species, including separate colored lines for each species as well.
+* Make a plot that has points colored by species, and also separate colored lines for each species.
 
 
 <br>
@@ -463,10 +548,19 @@ ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) +
 ```
 
 
-This looks pretty fancy to me.
+This looks pretty fancy to me. What would happen if we swapped the order of the `geom_violin()` and `geom_boxplot()` lines? Try it out.
 
 <br>
 <br>
+<br>
+<br>
+
+What you should see is that the order of geoms matters. Sequential geoms are plotted on top of the precious ones, and you need to consider this when making plots. Note that if you have multiple layers, there are ways to use semi-transparent colors.
+
+<br>
+<br>
+
+
 
 A couple final things:
 
@@ -499,7 +593,7 @@ or
 ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
   geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
   geom_boxplot(width=0.1)+
-  labs(x = "Species", y = "delta 15 N") +
+  labs(x = NULL, y = "delta 15 N") + # Get rid of the x label, sometimes the categories are self explanatory
   theme_classic() +
   theme(legend.position="none")
 ```
