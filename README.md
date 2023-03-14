@@ -61,7 +61,7 @@ If you already have experience in R and are comfortable with creating and manipu
 
 ## Week 4
 
-- [ggplot continued, loops](Module_4/ggplot_contd_programming.html)
+- [ggplot continued, loops & functions](Module_4/ggplot_contd_programming.html)
 
 
 

@@ -13,7 +13,7 @@
 
 <meta name="date" content="2023-03-22" />
 
-<title>ggplot continued, loops</title>
+<title>ggplot continued, loops &amp; functions</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,7 +350,8 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">ggplot continued, loops</h1>
+<h1 class="title toc-ignore">ggplot continued, loops &amp;
+functions</h1>
 <h4 class="author">Sean Harrington</h4>
 <h4 class="date">2023-03-22</h4>
 
@@ -712,6 +713,207 @@ override some of the parameters set by the one that is run first.</li>
 many other types of plots that you can create, as well. If you want to
 get an idea for some of the plotting diversity available, check out the
 the <a href="https://r-graph-gallery.com/">R graph gallery</a>.</p>
+<p><br> <br></p>
+</div>
+<div id="saving-plots" class="section level2">
+<h2>Saving plots</h2>
+<p>R allows us to easily export plots using a couple simple lines of
+code. We glossed over this last time, so we’ll cover it here again.</p>
+<p>RStudio also has options to export and save plots from the “Plots”
+window - <strong>DON’T SAVE PLOTS THAT WAY!</strong> These will be lower
+resolution and sometimes get stretched in weird ways.</p>
+<p>The standard way to save a plot in R is to open a plotting device,
+run your plotting code which will write to the open file connection,
+then close the plotting device. Here is plotting to a pdf:</p>
+<pre class="r"><code>pdf(file = &quot;violin.pdf&quot;, width = 7, height = 4) # create and open the pdf plotting device
+
+# Make the plot
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  labs(x = NULL, y = &quot;delta 15 N&quot;) + # Get rid of the x label, sometimes the categories are self explanatory
+  theme_classic() +
+  theme(legend.position=&quot;none&quot;)
+
+dev.off() # close the pdf plotting device</code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<p>If you forget to run <code>dev.off()</code>, all subsequent plots
+will continue to go to the plotting device, and you won’t be able to
+view the pdf because it won’t be “finished”.</p>
+<p><br></p>
+<p>ggplot also allows you to save a plot in an object, so you don’t need
+to put the entire plotting call inside the <code>pdf()</code> and
+<code>dev.off()</code> lines. Here we’ll do this and then also save .png
+and .tif files:</p>
+<pre class="r"><code># Make the plot
+to_plot &lt;- ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  labs(x = NULL, y = &quot;delta 15 N&quot;) +
+  theme_classic() +
+  theme(legend.position=&quot;none&quot;)
+
+
+# Make a pdf
+pdf(file = &quot;violin2.pdf&quot;, width = 7, height = 4)
+to_plot
+dev.off() </code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<pre class="r"><code># make a png
+png(file = &quot;violin3.png&quot;, width=600, height=350) # width and height are in pixels for png
+to_plot
+dev.off()</code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<pre class="r"><code># make a .tiff
+tiff(file=&quot;violin4.tiff&quot;, width = 7, height = 4, units=&quot;in&quot;, res=100)
+to_plot
+dev.off()</code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<ul>
+<li>Note that you need to add the file extensions (e.g., .pdf, .png) to
+your files if you want them.</li>
+</ul>
+<p>I like to use pdf format because it’s vector based, and so has
+effectively infinite resolution. I typically write pdf figures out from
+R and then directly use these as the figures I submit to journals with
+my manuscripts.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="loops-functions" class="section level1">
+<h1>Loops &amp; functions</h1>
+<p>If we have any time left, we’ll wrap up by very quickly going over
+loops and functions. We could easily spend several sessions on these
+topics, the idea is just to introduce the concepts. There are many good
+resources online to explore these further.</p>
+<p>The point of both functions and loops is to reduce the amount of code
+that you use for repetitive tasks.</p>
+<p><br></p>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<p>Functions are used for when you need to repeat the same operation
+multiple times.</p>
+<p>For example, let’s say we wanted to get the mean fork length of each
+species of fish in our dataset. (We did something just like this using
+<code>group_by()</code> and <code>summarise()</code> in week 3, but
+we’ll pretend that those don’t exist or that we don’t want to use
+them)</p>
+<p>We can of course do this with a bunch of copying and pasting:</p>
+<pre class="r"><code>coho_mlen &lt;- mean(all_data[all_data$Species == &quot;Coho&quot;, &quot;Fork.length..cm.&quot;])
+stickle_mlen &lt;- mean(all_data[all_data$Species == &quot;Three spine stickleback&quot;, &quot;Fork.length..cm.&quot;])
+chum_mlen &lt;- mean(all_data[all_data$Species == &quot;Chum&quot;, &quot;Fork.length..cm.&quot;])</code></pre>
+<p>But that’s tedious enough that I don’t even want to complete that
+example. In copying and pasting that, the code we run each time is
+identical but with a single input changed each time. This is a good sign
+that we should write a function:</p>
+<pre class="r"><code>mean_of_spec &lt;- function(x){
+  mean(all_data[all_data$Species == x, &quot;Fork.length..cm.&quot;])
+}</code></pre>
+<p>All functions have at least 3 key pieces:</p>
+<ol style="list-style-type: decimal">
+<li>A name: here I’m naming the function
+<code>mean_of_spec()</code></li>
+<li>Arguments: the input and options to a function. Here we have a
+single argument <code>x</code>. With more arguments, it can start to
+make sense to give them more informative names.</li>
+<li>Body: the body of the function is the code with <code>{}</code> that
+will run on the inputs.</li>
+</ol>
+<ul>
+<li>An important note about this function: this is not a generalizable
+function - it requires that the all_data object exists in exactly the
+way that we’ve prepared it. This is fine for our very specific use case,
+but it is not best practice in the general case.</li>
+</ul>
+<p><br></p>
+<p>We can run this function now instead of typing out all that code:</p>
+<pre class="r"><code>coho_mlen &lt;- mean_of_spec(&quot;Coho&quot;)
+stickle_mlen &lt;- mean_of_spec(&quot;Three spine stickleback&quot;)
+chum_mlen &lt;- mean_of_spec(&quot;Chum&quot;)</code></pre>
+<p><br></p>
+<p>This is certainly better, but we’re still manually going through and
+running the function each time. We can easily get a list of all the
+unique species and then use a loop to run our function over this list
+instead of doing each one by hand.</p>
+<p><br> <br></p>
+</div>
+<div id="loops" class="section level2">
+<h2>Loops</h2>
+<p>Loops let us iterate the same set of code over multiple inputs. There
+are two types of loops: for loops and while loops. We’ll only go over
+for loops, as they are more commonly used in data analysis and
+processing.</p>
+<p>We’ll start with an example of getting the mean lengths for all of
+our species, then we’ll iterate over that to get the mean length for
+each:</p>
+<pre class="r"><code>all_spec &lt;- unique(all_data$Species) # what we want to iterate over
+
+mean_lens &lt;- vector(length = length(all_spec)) # An object that we&#39;ll put the output into
+for(i in seq_along(all_spec)){ # set up the sequence to iterate over
+  # for each i in the sequence, do:
+  mean_lens[[i]] &lt;- mean_of_spec(all_spec[[i]])
+}
+
+# add some names on and then look at the output
+names(mean_lens) &lt;- all_spec
+mean_lens</code></pre>
+<pre><code>##                    Coho                    Chum            Dolly varden 
+##                6.436170                3.750000                9.323469 
+##                    Pink      coastrange sculpin               Steelhead 
+##                3.193333                8.356140                8.562500 
+## Three spine stickleback 
+##                5.287879</code></pre>
+<p>Loops have three essential parts:</p>
+<ol style="list-style-type: decimal">
+<li>Output: you need to pre-create the object that will house the output
+of your loop. If you create it within the loop, each iteration of the
+loop will overwrite the previous iteration’s object. You can do some
+fancy things like overwrite an existing object or create blank objects
+of zero length that you add onto with each iteration.</li>
+<li>The sequence. This is the part in the <code>for()</code>. Most
+commonly, you’ll use a numeric sequence, and in each iteration,
+<code>i</code> will be an object that holds the number of the current
+iteration. There are variations to this, though, <code>i</code> is
+arbitrary, and you can name this something more infomative, use j, etc.
+You also don’t need to use a numeric sequence.</li>
+<li>The body of the loop. This is the code to be executed at each
+iteration. The simplest way to run the body is to use <code>i</code> to
+index whatever object you want to iterate over and also to index the
+output object. There are much more complicated ways of doing this,
+too.</li>
+</ol>
+<ul>
+<li>We used <code>seq_along(all_spec)</code> to generate our sequence as
+a list of numbers from 1 to length of <code>all_spec</code>. This is
+similar to <code>1:length(all_spec)</code>, but if <code>all_spec</code>
+somehow accidentally became an empty vector of length zero,
+<code>seq_along(all_spec)</code> will return an empty vector, wheras
+<code>1:length(all_spec)</code> will yield <code>1 0</code>, which is
+undesirable. Accidentally creating empty vectors when scripting is more
+common than you might think, and it is good to account for this
+possibility.</li>
+</ul>
+<p><br></p>
+<p>There are a lot of nuances of loops, functions, etc. that we don’t
+have time to cover. A couple things to be aware of:</p>
+<ul>
+<li>R has a set of <code>apply()</code>, <code>sapply()</code>,
+<code>lapply()</code>, etc. functions that have loop-like behavior.
+There are also Tidyverse functions that can do loop-like things.</li>
+<li><code>if{}</code> statements can allow your functions or loops to do
+certain things only if certain conditions are met, and otherwise do
+something else.</li>
+<li>Loops do not only need to be run on numeric vectors as the sequence.
+This is often the easiest way to index both the input and outputs, but
+character vectors can also be used.</li>
+</ul>
+<p>The <a href="https://r4ds.had.co.nz/index.html"><strong>R for Data
+Science</strong> book</a> is a good place to look for a more thorough
+introduction to writing functions and loops in R.</p>
 <p><br> <br></p>
 <p><a href="https://wyoibc.github.io/r4grads/">Home</a></p>
 <p><br> <br></p>
