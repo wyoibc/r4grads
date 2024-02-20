@@ -6,19 +6,21 @@ title: r4grads - Data Analysis in R
 Part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical Researchers)
 </center>
 
-### Instructor
+### Instructors
 [Sean Harrington](mailto:sharrin2@uwyo.edu)
+
+[Owen Funk](mailto:ofunk@uwyo.edu)
 
 <br>
 
 ## Class Information
 
-The class will meet in Agriculture Building Room 316 between 9AM and 12PM on following dates:
+The class will meet in Classroom Building 103  9AM-12PM on following dates:
 
-- February 22
-- March 1 
-- March 8
-- March 22
+- February 28
+- March 6
+- March 20
+- March 27
 
 <br>
 <br>
@@ -26,11 +28,15 @@ The class will meet in Agriculture Building Room 316 between 9AM and 12PM on fol
 
 ## Prep:
 
-Download and install the **latest versions** of R and RStudio if using your own laptop
+**Students will need to bring their own laptops to each session**. If you do not have a suitable laptop that you can use, please contact us **before class** to borrow a laptop.
 
-- R can be downloaded from [r-project.org](https://r-project.org). 
+Download and install the **latest versions** of R and RStudio if using your own laptop. If you already have R and RStudio installed, but you installed them a while ago, you should update both.
 
-- RStudio can be obtained from [rstudio.com/products/rstudio/](https://rstudio.com/products/rstudio/)
+- R can be downloaded from [r-project.org](https://ftp.osuosl.org/pub/cran/)
+
+- RStudio can be obtained from [https://posit.co/downloads/](https://posit.co/downloads/)
+
+
 
 
 <br>
@@ -41,27 +47,27 @@ Download and install the **latest versions** of R and RStudio if using your own 
 
 This session will introduce the basics of R and RStudio.
 
-If you already have experience in R and are comfortable with creating and manipulating objects, applying functions, and using RStudio, you may skip this session. *If you are not familiar with R, it is essential that you attend this session!* We will assume basic proficiency with R in all subsequent classes, without time to catch people up.
+If you already have experience in R and are comfortable with creating and manipulating objects, applying functions, and using RStudio, you may skip this session. **If you are not familiar with R, it is essential that you attend this session!** We will assume basic proficiency with R in all subsequent classes, without time to catch people up.
 
 
 <br>
 
 ## Week 2
 
-- [Data manipulation](Module_2/R_Data_manip.html)
+- UNDER DEVELOPMENT - data manipulation and plotting
 
 <br>
 
 ## Week 3
 
-- [Tidyverse and data visualization](Module_3/Tidyverse_and_viz.html)
+- UNDER DEVELOPMENT
 
 <br>
 
 
 ## Week 4
 
-- [ggplot continued, loops & functions](Module_4/ggplot_contd_programming.html)
+- UNDER DEVELOPMENT
 
 
 
