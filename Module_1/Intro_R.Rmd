@@ -79,7 +79,7 @@ In your script, anything that you type after `#` will be treated as a comment, m
 
 This is a single script from the Github repository for one of my manuscripts on kingsnake population genetics. This script does a lot of things in a large loop over multiple datasets, and would be pretty hard to figure out without lots of comments. Readability is particularly important here because this is publicly available code that accompanies the manuscript so that others can replicate my analyses if they choose.
 
-* Note that while you'll probably most often want to interact with an R script in RStudio, an R script is just a plain text file, and can be opened with any editor that works with these files (e.g., bbedit, notepad++, etc.). Do not use word processors like Miscrosoft Word to look at or edit a script, though. On top of not displayign scripts well, these programs can easily change characters in a script into characters that looks similar but that are not interpreted the same by R (e.g., ` and '). 
+* Note that while you'll probably most often want to interact with an R script in RStudio, an R script is just a plain text file, and can be opened with any editor that works with these files (e.g., bbedit, notepad++, etc.). Do not use word processors like Miscrosoft Word to look at or edit a script, though. On top of not displaying scripts well, these programs can easily change characters in a script into characters that looks similar but that are not interpreted the same by R (e.g., ` and '). 
 
 <br>
 

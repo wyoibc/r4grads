@@ -464,7 +464,7 @@ choose.</p>
 R script in RStudio, an R script is just a plain text file, and can be
 opened with any editor that works with these files (e.g., bbedit,
 notepad++, etc.). Do not use word processors like Miscrosoft Word to
-look at or edit a script, though. On top of not displayign scripts well,
+look at or edit a script, though. On top of not displaying scripts well,
 these programs can easily change characters in a script into characters
 that looks similar but that are not interpreted the same by R (e.g., `
 and ’).</li>
@@ -854,23 +854,15 @@ CRAN that contains functions that allow us to install packages from
 Bioconductor:</p>
 <pre class="r"><code>install.packages(&quot;BiocManager&quot;) # install BiocManager from CRAN</code></pre>
 <pre class="r"><code>BiocManager::install(&quot;DESeq2&quot;) # install DESeq2 from Bioconductor</code></pre>
-<pre><code>## Bioconductor version 3.15 (BiocManager 1.30.19), R 4.2.2 (2022-10-31)</code></pre>
-<pre><code>## Warning: package(s) not installed when version(s) same as or greater than current; use
-##   `force = TRUE` to re-install: &#39;DESeq2&#39;</code></pre>
-<pre><code>## Old packages: &#39;adegraphics&#39;, &#39;adespatial&#39;, &#39;admisc&#39;, &#39;ape&#39;, &#39;aplot&#39;,
-##   &#39;betapart&#39;, &#39;BiocManager&#39;, &#39;bookdown&#39;, &#39;broom&#39;, &#39;cachem&#39;, &#39;classInt&#39;,
-##   &#39;conquer&#39;, &#39;data.table&#39;, &#39;dbplyr&#39;, &#39;DDD&#39;, &#39;deeptime&#39;, &#39;deSolve&#39;, &#39;dtplyr&#39;,
-##   &#39;emmeans&#39;, &#39;fastmap&#39;, &#39;fBasics&#39;, &#39;Formula&#39;, &#39;future&#39;, &#39;gapminder&#39;, &#39;gdtools&#39;,
-##   &#39;GenSA&#39;, &#39;geojsonio&#39;, &#39;geometries&#39;, &#39;ggsci&#39;, &#39;gh&#39;, &#39;haven&#39;, &#39;Hmisc&#39;,
-##   &#39;httpuv&#39;, &#39;httr&#39;, &#39;igraph&#39;, &#39;ipred&#39;, &#39;lava&#39;, &#39;leaflet&#39;, &#39;lme4&#39;, &#39;magick&#39;,
-##   &#39;MASS&#39;, &#39;memisc&#39;, &#39;mgcv&#39;, &#39;multcomp&#39;, &#39;mvMORPH&#39;, &#39;mvnfast&#39;, &#39;openssl&#39;,
-##   &#39;osmdata&#39;, &#39;ows4R&#39;, &#39;packrat&#39;, &#39;pegas&#39;, &#39;phytools&#39;, &#39;posterior&#39;, &#39;raster&#39;,
-##   &#39;RcppArmadillo&#39;, &#39;RcppNumerical&#39;, &#39;RcppParallel&#39;, &#39;recipes&#39;, &#39;rgdal&#39;,
-##   &#39;rgeos&#39;, &#39;rlang&#39;, &#39;RSQLite&#39;, &#39;rstantools&#39;, &#39;scatterplot3d&#39;, &#39;sets&#39;, &#39;sf&#39;,
-##   &#39;sfheaders&#39;, &#39;spatstat.data&#39;, &#39;spatstat.explore&#39;, &#39;spatstat.geom&#39;,
-##   &#39;spatstat.linnet&#39;, &#39;spatstat.model&#39;, &#39;spatstat.random&#39;, &#39;spatstat.sparse&#39;,
-##   &#39;spatstat.utils&#39;, &#39;spData&#39;, &#39;spdep&#39;, &#39;spocc&#39;, &#39;styler&#39;, &#39;survival&#39;, &#39;terra&#39;,
-##   &#39;testthat&#39;, &#39;tibble&#39;, &#39;tidyterra&#39;, &#39;triebeard&#39;, &#39;VGAM&#39;, &#39;windex&#39;, &#39;xts&#39;</code></pre>
+<pre><code>## Bioconductor version 3.18 (BiocManager 1.30.22), R 4.3.2 (2023-10-31)</code></pre>
+<pre><code>## Installing package(s) &#39;BiocVersion&#39;, &#39;DESeq2&#39;</code></pre>
+<pre><code>## also installing the dependencies &#39;bitops&#39;, &#39;formatR&#39;, &#39;RCurl&#39;, &#39;GenomeInfoDbData&#39;, &#39;zlibbioc&#39;, &#39;abind&#39;, &#39;SparseArray&#39;, &#39;lambda.r&#39;, &#39;futile.options&#39;, &#39;GenomeInfoDb&#39;, &#39;XVector&#39;, &#39;S4Arrays&#39;, &#39;DelayedArray&#39;, &#39;futile.logger&#39;, &#39;snow&#39;, &#39;BH&#39;, &#39;S4Vectors&#39;, &#39;IRanges&#39;, &#39;GenomicRanges&#39;, &#39;SummarizedExperiment&#39;, &#39;BiocGenerics&#39;, &#39;Biobase&#39;, &#39;BiocParallel&#39;, &#39;matrixStats&#39;, &#39;locfit&#39;, &#39;MatrixGenerics&#39;</code></pre>
+<pre><code>## 
+## The downloaded binary packages are in
+##  /var/folders/78/52tyys2d4vd1ljvg_ytfvfr40000gn/T//RtmpOJYIjV/downloaded_packages</code></pre>
+<pre><code>## installing the source package &#39;GenomeInfoDbData&#39;</code></pre>
+<pre><code>## Old packages: &#39;boot&#39;, &#39;callr&#39;, &#39;cluster&#39;, &#39;foreign&#39;, &#39;lattice&#39;, &#39;MASS&#39;,
+##   &#39;Matrix&#39;, &#39;mgcv&#39;, &#39;nlme&#39;, &#39;rpart&#39;, &#39;survival&#39;, &#39;usethis&#39;</code></pre>
 <ul>
 <li>Here, we used the double colon after <code>BiocManager</code> to
 tell R to use a function from that package without loading the whole
