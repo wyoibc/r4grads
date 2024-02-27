@@ -691,20 +691,91 @@ with no risk of accidentally overwriting or editing the raw data. If all
 of your R commands are saved in a script, then you will end up with your
 untouched raw data, the manipulated data, and a full record of the
 manipulations.</p>
-<p><br> <br></p>
-</div>
-<div id="further-filtering-and-subsetting-examples" class="section level3">
-<h3>Further filtering and subsetting examples</h3>
+<p><br></p>
 <p>Read that .csv file back into R just to demonstrate that we have
 successfully written out the data.</p>
 <pre class="r"><code>all_data &lt;- read.csv(&quot;fish_data_merged.csv&quot;)</code></pre>
-<p>For some analyses, we might want to analyze a single species of fish
-at a time.</p>
-<p><strong>Make an object called <code>coho_data</code> that contains
-the rows of <code>all_data</code> for only Coho
-observations.</strong></p>
+<p><br> <br></p>
+</div>
+<div id="filtering-and-subsetting-data" class="section level3">
+<h3>Filtering and subsetting data</h3>
+<p>There are many times when you will want to analyze certain rows or
+columns of a dataset, or select only certain values from a dataset. R
+makes this very easy to do, particularly with functions from the <a href="https://www.tidyverse.org/">Tidyverse</a> set of R packages, which
+all share some general principles in their architecture. I won’t go into
+the details of the Tidyverse philosphy, as it’s very well documented and
+you can read all about it at the link.</p>
+<p><br></p>
+<p>To start, you’ll need to make sure you have the Tidyverse packages
+installed and then loaded:</p>
+<pre class="r"><code>install.packages(&quot;tidyverse&quot;)</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<p><br></p>
+<p>Before we actually start doing anything, there’s an important issue
+to point out in this loading message. The conflicts show that there are
+functions in <code>dplyr</code> and the base R <code>stats</code>
+packages that share the same function names. Whenever this happens, the
+function from the most recently loaded package will mask the other
+function. If you load <code>dplyr</code> last and then run
+<code>filter()</code>, what you’ll get is the function from
+<code>dplyr</code>. Alternately, if you load <code>stats</code> last,
+you’ll get the <code>filter()</code> function from that package.</p>
+<p>This is important to keep track of. Especially if you write a script
+and then edit it to load up a package at the the top of a script. You
+can always call a function from a specific package by using the notation
+<code>package::function()</code>. The double colons tell R to explicitly
+use a function from the stated package.</p>
+<p><br></p>
+<p>We probably expect that different species will have different values
+and relationships among variables, so let’s filter our dataset down to
+just Coho.</p>
+<p>We can filter data using the <code>filter()</code> function:</p>
+<pre class="r"><code>coho_data &lt;- filter(all_data, Species == &quot;Coho&quot;)
+coho_data</code></pre>
+<p>Filter works by taking a dataframe as input, then filtering that down
+to only the rows where some condition is met in a given column. In the
+above command, we have filtered to only rows of the
+<code>all_data</code> object where the <code>Species</code> column is
+equal to (denoted by <code>==</code> in R because <code>=</code> is used
+for other things) <code>&quot;Coho&quot;</code>.</p>
+<p>You can use <code>==</code>, not equal <code>!=</code>, greater or
+less than <code>&gt;</code> or <code>&lt;</code>, and other conditions
+in filter. You can also link together conditions using
+<code>&amp;</code> to specify that both conditions must be met or
+<code>|</code> to specify that either condition must be met.</p>
+<p>How do you think that we would filter out dataset to only large Coho
+with fork lengths greater than 10 cm?</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-<br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<pre class="r"><code>big_coho &lt;- filter(all_data, Species == &quot;Coho&quot; &amp; Fork.length..cm. &gt; 10)
+big_coho</code></pre>
+<p><br></p>
+<p>What if we want to get a dataset that has all of the rows for Coho
+and Steelhead?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<pre class="r"><code>coho_steel &lt;- filter(all_data, Species == &quot;Coho&quot; | Species == &quot;Steelhead&quot;)
+coho_steel</code></pre>
+<p>Here, even though we want Coho AND Steelhead, we need to tell
+<code>filter()</code> to keep rows where <code>Species == &quot;Coho&quot;</code>
+OR (<code>|</code>) <code>Species == &quot;Steelhead&quot;</code>.</p>
+<p><br> <br></p>
+</div>
+<div id="got-here---need-to-put-in-plotting" class="section level3">
+<h3>Got HERE - need to put in plotting</h3>
+<p>Note that you can achieve all of the same ends without Tidyverse
+functions using R’s basic indexing, e.g., you could alternately get only
+Coho rows by running:</p>
 <pre class="r"><code>coho_data &lt;- all_data[all_data$Species == &quot;Coho&quot;,]
 head(coho_data, n=4)</code></pre>
 <pre><code>##   X Fish.code Species Site     Date Weight..g. Fork.length..cm. del13C
@@ -717,36 +788,6 @@ head(coho_data, n=4)</code></pre>
 ## 2       0.11  13.04         0.16
 ## 3       0.11  14.08         0.13
 ## 4       0.09  14.01         0.11</code></pre>
-<p><br></p>
-<p>We could simultaneously select out a single species and only the
-<code>Fish.code</code> and <code>Fork.length..cm.</code> columns.</p>
-<pre class="r"><code>coho_length &lt;- all_data[all_data$Species == &quot;Coho&quot;, c(&quot;Fish.code&quot;, &quot;Fork.length..cm.&quot;)]
-head(coho_length, n=4)</code></pre>
-<pre><code>##   Fish.code Fork.length..cm.
-## 1       C01             10.2
-## 2       C02              7.9
-## 3       C03              8.9
-## 4       C04              9.8</code></pre>
-<p>We can select two or more species at once in a couple different
-ways:</p>
-<pre class="r"><code>cs_data &lt;- all_data[all_data$Species %in% c(&quot;Coho&quot;, &quot;Steelhead&quot;),]
-
-cs_data</code></pre>
-<p><br></p>
-<p>Or using more complex pattern matching:</p>
-<pre class="r"><code>cs_data1 &lt;- all_data[all_data$Species == &quot;Coho&quot; | all_data$Species == &quot;Steelhead&quot;,]
-
-cs_data1</code></pre>
-<p>where the pipe <code>|</code> indicates that we want to match the
-first condition or the second condition.</p>
-<p><br></p>
-<p>We can also use <code>&amp;</code> to get only rows that satisfy two
-or more conditions. E.g., we can find the Coho that are smaller than 10
-g:</p>
-<pre class="r"><code>coho_small &lt;- all_data[all_data$Species == &quot;Coho&quot; &amp; all_data$Weight..g. &lt; 10,]
-
-coho_small</code></pre>
-<p><br> <br></p>
 </div>
 <div id="transforming-data" class="section level3">
 <h3>Transforming data</h3>

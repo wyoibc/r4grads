@@ -408,9 +408,6 @@ Then we can easily read this cleaned and merged data into R or another program a
 Also note that by writing a new file from R, we can read in the raw data, edit/filter it as we like, and then write the output to a new file with no risk of accidentally overwriting or editing the raw data. If all of your R commands are saved in a script, then you will end up with your untouched raw data, the manipulated data, and a full record of the manipulations.
 
 <br>
-<br>
-
-### Further filtering and subsetting examples
 
 Read that .csv file back into R just to demonstrate that we have successfully written out the data.
 
@@ -419,81 +416,148 @@ Read that .csv file back into R just to demonstrate that we have successfully wr
 all_data <- read.csv("fish_data_merged.csv")
 ```
 
-For some analyses, we might want to analyze a single species of fish at a time.
-
-**Make an object called `coho_data` that contains the rows of `all_data` for only Coho observations.**
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 
+### Filtering and subsetting data
+
+There are many times when you will want to analyze certain rows or columns of a dataset, or select only certain values from a dataset. R makes this very easy to do, particularly with functions from the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. I won't go into the details of the Tidyverse philosphy, as it's very well documented and you can read all about it at the link.
+
+
+<br>
+
+To start, you'll need to make sure you have the Tidyverse packages installed and then loaded:
+
+```{r eval = FALSE}
+install.packages("tidyverse")
+```
+```{r}
+library(tidyverse)
+```
+
+<br>
+
+Before we actually start doing anything, there's an important issue to point out in this loading message. The conflicts show that there are functions in `dplyr` and the base R `stats` packages that share the same function names. Whenever this happens, the function from the most recently loaded package will mask the other function. If you load `dplyr` last and then run `filter()`, what you'll get is the function from `dplyr`. Alternately, if you load `stats` last, you'll get the `filter()` function from that package.
+
+This is important to keep track of. Especially if you write a script and then edit it to load up a package at the the top of a script. You can always call a function from a specific package by using the notation `package::function()`. The double colons tell R to explicitly use a function from the stated package.
+
+<br>
+
+
+We probably expect that different species will have different values and relationships among variables, so let's filter our dataset down to just Coho.
+
+
+We can filter data using the `filter()` function:
+
+```{r, results = FALSE}
+coho_data <- filter(all_data, Species == "Coho")
+coho_data
+```
+
+
+Filter works by taking a dataframe as input, then filtering that down to only the rows where some condition is met in a given column. In the above command, we have filtered to only rows of the `all_data` object where the `Species` column is equal to (denoted by `==` in R because `=` is used for other things) `"Coho"`.
+
+You can use `==`, not equal `!=`, greater or less than `>` or `<`, and other conditions in filter. You can also link together conditions using `&` to specify that both conditions must be met or `|` to specify that either condition must be met.
+
+
+How do you think that we would filter out dataset to only large Coho with fork lengths greater than 10 cm?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r, results = FALSE}
+big_coho <- filter(all_data, Species == "Coho" & Fork.length..cm. > 10)
+big_coho
+```
+
+<br>
+
+What if we want to get a dataset that has all of the rows for Coho and Steelhead?
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r, results = FALSE}
+coho_steel <- filter(all_data, Species == "Coho" | Species == "Steelhead")
+coho_steel
+```
+
+Here, even though we want Coho AND Steelhead, we need to tell `filter()` to keep rows where `Species == "Coho"` OR (`|`) `Species == "Steelhead"`.
+
+
+<br>
+<br>
+
+
+
+
+### Got HERE - need to put in plotting
+
+
+
+
+
+
+
+
+Note that you can achieve all of the same ends without Tidyverse functions using R's basic indexing, e.g., you could alternately get only Coho rows by running:
 
 ```{r}
 coho_data <- all_data[all_data$Species == "Coho",]
 head(coho_data, n=4)
 ```
 
-<br>
-
-We could simultaneously select out a single species and only the `Fish.code` and `Fork.length..cm.` columns.
-
-```{r}
-coho_length <- all_data[all_data$Species == "Coho", c("Fish.code", "Fork.length..cm.")]
-head(coho_length, n=4)
-```
-
-We can select two or more species at once in a couple different ways:
-
-```{r, results = FALSE}
-cs_data <- all_data[all_data$Species %in% c("Coho", "Steelhead"),]
-
-cs_data
-```
-
-<br>
-
-Or using more complex pattern matching:
-
-```{r, results = FALSE}
-cs_data1 <- all_data[all_data$Species == "Coho" | all_data$Species == "Steelhead",]
-
-cs_data1
-```
-
-where the pipe `|` indicates that we want to match the first condition or the second condition.
-
-<br>
-
-We can also use `&` to get only rows that satisfy two or more conditions. E.g., we can find the Coho that are smaller than 10 g:
-
-```{r, results = FALSE}
-coho_small <- all_data[all_data$Species == "Coho" & all_data$Weight..g. < 10,]
-
-coho_small
-```
-
-<br>
-<br>
 
 
 ### Transforming data
