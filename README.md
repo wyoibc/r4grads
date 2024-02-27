@@ -15,7 +15,7 @@ Part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical Researcher
 
 ## Class Information
 
-The class will meet in Classroom Building 103  9AM-12PM on following dates:
+The class will meet in Classroom Building 103 from 10-11:50 am on following dates:
 
 - February 28
 - March 6

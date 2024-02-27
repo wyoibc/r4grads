@@ -1,0 +1,414 @@
+﻿Fish code,Species,Site,Date,Weight (g),Fork length (cm)
+C01,Coho,RK17,11/10/92,13.2,10.2
+C02,Coho,RK17,11/10/92,5.8,7.9
+C03,Coho,RT02,11/18/92,8.6,8.9
+C04,Coho,RT02,11/18/92,11.8,9.8
+C05,Coho,RT02,11/18/92,5,7.7
+C06,Coho,RT02,11/18/92,5.3,8.1
+C07,Coho,RK17,11/9/92,1.4,4.8
+C08,Coho,RK17,11/9/92,1,4.6
+C09,Coho,RK13,11/13/92,2.6,5.9
+C100,Coho,RK09,6/29/93,3.6,6.9
+C101,Coho,RK09,6/29/93,3.1,6.5
+C102,Coho,RK09,6/29/93,3.6,6.6
+C103,Coho,RK09,6/29/93,3.4,6.6
+C104,Coho,RK09,6/29/93,2.5,6.2
+C105,Coho,RK09,6/29/93,1.8,5.3
+C106,COHO,RK07,5/19/93,7.3,9.6
+C107,Coho,RK07,5/19/93,4.3,8.2
+C108,Coho,RK07,5/19/93,4.6,8
+C109,Coho,RT19,6/19/93,0.3,3.7
+C11,Coho,RK17,11/11/92,9.2,8.9
+C110,Coho,RT19,6/19/93,0.2,3.3
+C111,Coho,BP01R,5/15/93,0.3,3.2
+C112,Coho,BP01R,5/16/93,0.2,3.6
+C113,Coho,BP01R,5/16/93,0.2,3.8
+C114,Coho,RP02,5/25/93,3.1,7.3
+C115,Coho,RP02,5/25/93,3.9,8.8
+C116,Coho,RW04,6/13/93,0.5,4.6
+C117,Coho,RT03,5/19/93,8.9,10.2
+C118,Coho,RT03,5/19/93,3.3,7.5
+C119,Coho,BP01R,5/17/93,4.5,8.8
+C12,Coho,RK17,11/11/92,2,5.7
+C120,Coho,BP01R,5/17/93,2,6.8
+C121,Coho,RP06BP,5/27/93,0.2,3.3
+C122,Coho,RP06BP,5/27/93,4.7,8.1
+C123,Coho,RP06BP,5/27/93,2,6.6
+C124,Coho,RP06BP,5/27/93,1.5,5.6
+C125,Coho,BP01BP,5/15/93,3.5,8.4
+C126,Coho,BP01BP,5/15/93,3.3,7.6
+C127,Coho,RT02R,5/16/93,4.8,9.1
+C128,Coho,RT02R,5/16/93,7.9,10.8
+C129,Coho,RP06BP,11/12/93,6.2,8.6
+C130,Coho,RP06BP,11/12/93,1,4.3
+C131,Coho,RP06BP,11/12/93,2.7,6.6
+C132,Coho,RT02R,11/8/93,0.6,4
+C133,Coho,RP03BP,11/12/93,14.8,11
+C134,Coho,RP03BP,11/12/93,14.2,11.4
+C135,COHO,RP03BP,11/12/93,2.6,6.6
+C136,Coho,RP03BP,11/12/93,1.8,5.7
+C137,Coho,RK14,11/6/93,5.8,8.2
+C138,Coho,RK14,11/6/93,3.9,7.3
+C139,Coho,RK14,11/6/93,1.9,5.9
+C14,Coho,RK13,11/14/92,1.8,5.2
+C140,Coho,RK11,11/4/93,0.8,4.5
+C141,Coho,RK11,11/4/93,0.5,3.9
+C142,Coho,RK11,11/4/93,0.6,4.1
+C143,Coho,RT02-BP,11/7/93,18.5,11.8
+C144,COHO,RT02-BP,11/7/93,14.2,10.8
+C145,Coho,RT02-BP,11/7/93,3.3,7.1
+C146,Coho,RT02-BP,11/7/93,4.7,7.8
+C147,Coho,RT02-BP,11/7/93,2.3,6.1
+C148,Coho,RP06,11/12/93,4.5,7.6
+C149,Coho,RP06,11/12/93,7.1,8.8
+C15,Coho,RK13,11/14/92,4.5,7.1
+C150,Coho,RP06,11/12/93,1.4,5.1
+C151,Coho,RP06,11/12/93,1.4,5.3
+C152,Coho,RT02-R,11/7/93,6.3,8
+C153,Coho,RT02-R,11/7/93,5.9,8.1
+C154,Coho,RT02-R,11/7/93,0.9,4.7
+C155,Coho,RT02-R,11/7/93,1.2,5
+C156,Coho,RK14,11/6/93,1.4,5.4
+C157,Coho,RT03,4/8/93,1.6,5.7
+C158,Coho,RT03,4/8/93,1.2,5.4
+C159,Coho,RT03,4/21/93,1.5,6.1
+C16,Coho,RK13,11/14/92,4,6.7
+C160,Coho,RT02,4/19/93,11.6,10.7
+C161,Coho,RT02,4/19/93,6.1,8.9
+C162,Coho,RT02,4/19/93,5.1,8.6
+C163,Coho,RT02,4/19/93,2.2,6.7
+C164,Coho,RT02,4/19/93,1.5,6.7
+C165,Coho,BP02-R,4/19/93,0.2,3.3
+C166,Coho,BP02-R,4/19/93,0.8,4.6
+C167,Coho,BP02-R,4/19/93,1.9,5.7
+C168,Coho,BP02-R,4/19/93,1.9,5.7
+C169,COHO,RK02,4/19/93,3.2,6.8
+C17,Coho,RK13,11/12/92,7.2,7.9
+C170,Coho,RK02,4/19/93,1.8,5.8
+C171,Coho,RK02,4/19/93,1,5.2
+C172,Coho,RT03,4/20/93,0.8,4.7
+C173,Coho,RP06,4/9/93,3.7,7.4
+C174,Coho,RP06,4/9/93,1.2,5.2
+C175,Coho,RT03,4/8/93,3.4,6.8
+C176,Coho,RK32,10/27/93,2.1,5.8
+C177,Coho,RK09,10/24/93,0.5,3.6
+C178,Coho,RK32,10/26/93,1.4,5
+C179,Coho,RK32,10/26/93,0.6,3.7
+C18,Coho,RK13,11/12/92,1,4.5
+C181,Coho,RK32,10/26/93,1.7,5.4
+C182,Coho,RK32,10/26/93,2.4,5.7
+C183,Coho,RK32,10/26/93,2.2,5.7
+C184,Coho,RK32,10/25/93,8.1,9.2
+C185,Coho,RK32,10/25/93,4.5,7.2
+C186,Coho,RK32,10/25/93,0.9,4.4
+C187,Coho,RK32,10/25/93,1,4.5
+C188,Coho,BP04,10/23/93,8.1,8.8
+C189,Coho,BP04,10/23/93,10.2,9.5
+C19,Coho,RT16,11/17/92,11,9.6
+C190,Coho,BP04,10/23/93,1.1,4.3
+C191,Coho,BP04,10/23/93,0.7,4.1
+C192,Coho,RK09,10/22/93,0.8,3.9
+C193,Coho,RK09,10/22/93,1.2,4.6
+C194,Coho,RK09,10/22/93,0.7,4.4
+C195,Coho,BP04,10/24/93,1.8,5.6
+C196,Coho,RK09,10/25/93,0.7,3.9
+C20,Coho,RT16,11/17/92,1.1,4.6
+C21,Coho,RK06,11/9/92,3.6,7.8
+C22,COHO,RK06,11/9/92,1.1,4.6
+C23,Coho,RK06,11/10/92,1.3,4.8
+C24,Coho,RK06,11/10/92,1.7,5.6
+C25,Coho,RK06,11/10/92,1,4.4
+C26,Coho,RK06,11/10/92,1.6,5.5
+C27,Coho,RK06,11/10/92,1,4.3
+C28,Coho,RK06,11/10/92,1.2,4.7
+C29,Coho,RK06,11/10/92,1.3,4.9
+C30,Coho,RK04,11/1/92,1.6,5.3
+C31,Coho,RK04,11/1/92,1.4,4.9
+C32,Coho,BA,8/7/92,12.8,9.8
+C33,Coho,BA,8/7/92,7,8.6
+C34,Coho,BA,8/7/92,3.6,6.8
+C36,Coho,RT03,11/17/92,11.8,10
+C37,Coho,RK05,6/13/92,0.5,4.1
+C38,Coho,RK05,6/13/92,0.7,4.7
+C39,Coho,RK11,6/21/92,2.2,5.7
+C40,Coho,RK11,6/22/92,2,6.4
+C41,Coho,RK11,6/22/92,3.6,6.9
+C42,Coho,RK11,6/22/92,2.2,6.4
+C43,Coho,RK05,6/12/92,0.4,3.8
+C44,Coho,RK05,6/12/92,1.3,5.5
+C45,Coho,RK05,6/12/92,2,5.8
+C47,Coho,RK05,6/12/92,1.5,5.5
+C49,Coho,RK17,6/29/92,2.4,6
+C50,Coho,RK17,6/29/92,3.7,7
+C51,Coho,RK17,6/29/92,2.7,6.3
+C52,Coho,RK17,6/29/92,2.5,7.4
+C53,COHO,RK17,6/29/92,3,6.7
+C54,Coho,RK16,6/21/92,2.7,6.4
+C55,Coho,RK16,6/21/92,1.6,5.7
+C56,Coho,RT03,6/23/92,2.3,6.4
+C57,Coho,RT03,6/23/92,1.8,5.7
+C58,Coho,RT03,6/23/92,4.1,7.6
+C59,Coho,RT03,6/23/92,2.9,6.8
+C60,Coho,RT03,6/23/92,3.2,6.7
+C61,Coho,RT12,7/1/92,2,5.7
+C62,Coho,RT12,7/1/92,8.6,9.1
+C63,Coho,RT12,7/1/92,1.6,5.4
+C64,Coho,RT12,7/1/92,4.3,7.3
+C65,Coho,RT02,6/18/92,3.1,6.7
+C66,Coho,RT02,6/18/92,2.6,6.3
+C68,Coho,RT02,6/18/92,2.4,6.6
+C69,Coho,RT02,6/18/92,2.5,6.4
+C70,Coho,RT02,6/18/92,6.1,8.5
+C71,Coho,RT02,6/18/92,3.9,7.4
+C72,Coho,RP02,4/7/93,2.9,6.8
+C73,Coho,RP02,4/7/93,2,5.9
+C74,Coho,BP02,3/30/93,3.7,7.2
+C75,Coho,BP02,3/30/93,1.4,5.2
+C76,Coho,BP02,3/30/93,1.1,5
+C77,Coho,RK14,4/4/93,17.4,11.5
+C78,Coho,RK14,4/4/93,5.2,8.2
+C79,Coho,RK14,4/4/93,2.2,6
+C80,Coho,RT02R,4/20/93,2.6,6.4
+C81,Coho,RT02R,4/20/93,4.8,7.8
+C82,Coho,RT02R,4/20/93,2.6,6.2
+C83,Coho,RW04,6/12/93,3,7
+C84,Coho,RW04,6/12/93,2.3,6.8
+C85,Coho,RW04,6/12/93,2.8,6.7
+C86,Coho,RW04,6/12/93,2.1,6
+C87,Coho,RW04,6/12/93,1.2,5.3
+C88,Coho,RT19,6/17/93,0.2,3.4
+C89,Coho,RT19,6/17/93,1.5,5.7
+C90,Coho,RT19,6/17/93,3.8,7.3
+C91,Coho,RK09,6/27/93,0.2,3.3
+C92,Coho,RK09,6/27/93,0.7,4.5
+C93,Coho,RK09,6/27/93,2.8,7
+C94,Coho,RK09,6/27/93,3.8,7.3
+C95,Coho,RK09,6/27/93,0.3,3.5
+C96,Coho,RK09,6/27/93,4.9,8.6
+C97,Coho,RK09,6/27/93,0.2,3.3
+C98,Coho,RK09,6/29/93,5.3,7.9
+C99,Coho,RK09,6/29/93,1,4.9
+Ch01,Chum,RT02R,4/20/93,0.3,3.5
+Ch02,Chum,RT02R,4/20/93,0.4,3.7
+Ch03,Chum,RT02R,4/20/93,0.4,4.1
+Ch04,Chum,RT02R,4/20/93,0.4,3.8
+CH05,Chum,BP01R,5/15/93,0.3,3.8
+CH06,Chum,BP01R,5/16/93,0.3,3.6
+CH07,Chum,BP01R,5/16/93,0.2,3.6
+CH08,Chum,RK11,11/4/93,0.3,3.5
+CH09,Chum,BP02-R,4/19/93,0.3,3.8
+CH10,Chum,BP02-R,4/19/93,0.3,4.1
+D01,Dolly varden,RK17,11/9/92,11.2,9.6
+D02,Dolly varden,RK17,11/9/92,1.2,5.2
+D03,Dolly varden,RK13,11/12/92,2.9,6.6
+D04,Dolly varden,RK13,11/12/92,6.4,8.1
+D05,Dolly varden,RT16,11/17/92,2.2,6.2
+D06,Dolly varden,RT16,11/17/92,1.9,6.6
+D07,Dolly varden,RK17,11/11/92,1.2,4.9
+D08,Dolly varden,RK06,11/9/92,18.3,11.8
+D09,Dolly varden,RK06,11/9/92,12.3,10.2
+D10,Dolly varden,BA,8/7/92,7.4,8.5
+D100,Dolly,RK09,10/22/93,4.8,8.2
+D11,Dolly varden,BA,8/7/92,4.4,7.8
+D12,Dolly varden,BA,8/7/92,9.6,9.7
+D13,Dolly varden,RK11,6/21/92,7,9.4
+D14,Dolly varden,RK11,6/21/92,12.7,10.6
+D15,Dolly varden,RK11,6/21/92,2.4,6.5
+D16,Dolly varden,RK05,6/12/92,16.5,11.6
+D17,Dolly varden,RK17,6/29/92,6.6,8.7
+D18,Dolly varden,RK17,6/29/92,7.7,9.3
+D19,Dolly varden,RK17,6/29/92,3.3,7.5
+D20,Dolly varden,RK16,6/21/92,8.6,9.6
+D21,Dolly varden,RK16,6/21/92,6.8,8.6
+D22,Dolly varden,RK16,6/21/92,1.4,5.6
+D23,Dolly varden,RK16,6/21/92,2,6.1
+D24,Dolly varden,RT03,6/23/92,7.5,8.9
+D25,Dolly varden,RT03,6/23/92,9.3,9.7
+D26,Dolly varden,RT03,6/23/92,21,12.3
+D27,Dolly varden,RT12,7/1/92,14.6,11.4
+D28,Dolly varden,RT12,7/1/92,11.2,10.8
+D29,Dolly varden,RT12,7/1/92,4.7,7.9
+D30,Dolly varden,RT12,7/1/92,3,7
+D31,Dolly varden,RT02,6/18/92,6.6,8.9
+D32,Dolly varden,RP02,4/7/93,5.2,8.4
+D33,Dolly varden,RP02,4/7/93,1.6,5.8
+D34,Dolly varden,RP02,4/7/93,19.9,13.1
+D35,Dolly varden,RP02,4/7/93,13.2,11.1
+D36,Dolly varden,BP02,3/30/93,6.7,9.2
+D37,Dolly varden,BP02,3/30/93,6.2,8.6
+D38,Dolly varden,RW04,6/12/93,2.6,6.8
+D39,Dolly varden,RW04,6/12/93,9.9,10.2
+D40,Dolly varden,RW04,6/12/93,32.7,15.5
+D41,Dolly varden,RT19,6/17/93,7.9,9.6
+D42,Dolly varden,RT19,6/17/93,9.6,10.3
+D43,Dolly varden,RK09,6/27/93,21.9,13.5
+D44,Dolly varden,RK09,6/27/93,13.6,12
+D46,Dolly varden,RK09,6/27/93,7.3,8.9
+D47,Dolly varden,RK09,6/27/93,5.7,9.2
+D48,Dolly varden,RK09,6/28/93,6.4,9.1
+D49,Dolly varden,RK09,7/8/93,69.3,18
+D50,Dolly varden,RK09,7/8/93,52.7,16.9
+D51,Dolly varden,RK09,6/29/93,3.5,6.9
+D52,Dolly varden,RK09,6/29/93,4.7,7.9
+D53,Dolly varden,RK07,5/19/93,4.7,9.1
+D54,Dolly varden,RK07,5/19/93,1.8,7.5
+D55,Dolly varden,RP02,5/27/93,0.8,5.4
+D56,Dolly varden,RP02,5/25/93,6.1,8.8
+D57,Dolly varden,RP02,5/25/93,4.1,8.2
+D58,Dolly varden,RK03,7/6/93,30.3,15.2
+D59,Dolly varden,RT03,5/19/93,9.3,11.1
+D60,Dolly varden,RP06BP,5/27/93,9.3,9.7
+D61,Dolly varden,RP06BP,5/27/93,2.9,7.2
+D62,Dolly varden,RP06BP,5/27/93,3.1,7.3
+D63,Dolly varden,BP01BP,5/15/93,12.2,11.3
+D64,Dolly varden,BP01BP,5/15/93,9.9,11.2
+D65,Dolly varden,BP01BP,5/15/93,8,10.3
+D66,Dolly varden,BP01BP,5/15/93,3.6,8
+D67,Dolly varden,RT03,5/20/93,12.1,11.6
+D68,Dolly varden,RP06BP,5/28/93,6.7,8.9
+D69,Dolly varden,RT02R,5/16/93,18.9,13.8
+D70,Dolly varden,RT02R,5/16/93,12.7,12.2
+D71,Dolly varden,RP06BP,11/12/93,7.6,9.3
+D72,Dolly varden,RP06BP,11/12/93,1,4.4
+D73,Dolly varden,RP06BP,11/12/93,1.2,5.1
+D74,Dolly varden,RP06BP,11/12/93,9.3,9.9
+D75,Dolly varden,RP06R,11/14/93,9.3,9.5
+D76,Dolly varden,RP06R,11/14/93,13,10.3
+D77,Dolly varden,RK14,11/6/93,1.2,5.2
+D78,Dolly varden,RK14,11/6/93,1.3,5.3
+D79,Dolly varden,RK14,11/6/93,31.9,14.6
+D80,Dolly varden,RK14,11/6/93,10.6,10
+D81,Dolly varden,RK14,11/7/93,1.6,6.1
+D82,Dolly varden,RT02-BP,11/7/93,12,11
+D83,Dolly varden,RT02-BP,11/7/93,6.3,9
+D84,Dolly varden,RP06,11/12/93,8.4,9.6
+D85,Dolly varden,RP06,11/12/93,13.1,11.1
+D86,Dolly varden,RT02-R,11/7/93,14.2,10.5
+D87,Dolly varden,RT02-R,11/7/93,7.9,9.1
+D88,Dolly varden,RT02-R,11/7/93,3,7.1
+D89,Dolly varden,RT03,4/21/93,6.9,9.4
+D90,Dolly varden,RK02,4/20/93,18.3,12.9
+D91,Dolly varden,RT02,4/19/93,7.5,9.2
+D92,Dolly varden,RT02,4/19/93,2.1,6.5
+D93,Dolly varden,RP06,4/9/93,11.1,11.1
+D94,Dolly varden,RP06,4/9/93,2.7,7.4
+D95,Dolly varden,RP06,4/9/93,1.2,5.7
+D96,Dolly varden,RK32,10/25/93,2.4,6.4
+D97,Dolly varden,RK32,10/25/93,2.1,6
+D98,Dolly varden,BP04,10/23/93,19,11.5
+D99,Dolly varden,BP04,10/23/93,28.2,14.2
+P01,Pink,RT02R,4/20/93,0.2,3.3
+P02,Pink,RT02R,4/20/93,0.2,3.3
+P03,Pink,RT02R,4/20/93,0.2,3.1
+P04,Pink,RT02R,4/20/93,0.2,3.2
+P05,Pink,RP02,4/8/93,0.1,3.1
+P06,Pink,RT19,5/28/93,0.2,3.2
+P07,Pink,RT19,5/28/93,0.1,3
+P08,Pink,RP02,5/27/93,0.1,3.2
+P09,Pink,RP02,5/25/93,0.1,3
+P10,Pink,RP06BP,5/27/93,0.2,3.4
+P11,Pink,RP06BP,5/27/93,0.2,3.3
+P12,Pink,?,?,0.1,3.2
+P13,Pink,RP06,5/29/93,0.1,3.3
+P14,Pink,RK09,3/31/93,0.1,3.2
+P15,Pink,RK09,3/31/93,0.1,3.1
+S01,coastrange sculpin,RK17,11/10/92,15.1,9.5
+S02,coastrange sculpin,RK06,11/9/92,0.9,4.4
+S03,coastrange sculpin,RK04,11/1/92,17.4,10.2
+S04,coastrange sculpin,RK05,14-Jun,2.4,6.4
+S05,coastrange sculpin,RK05,6/12/92,9.4,9.2
+S06,coastrange sculpin,RK17,6/29/92,10.4,9.2
+S07,coastrange sculpin,RK16,6/21/92,8.6,9.2
+S08,coastrange sculpin,RK16,6/21/92,9.6,9.4
+S09,coastrange sculpin,RT03,6/23/92,9.7,9.2
+S10,coastrange sculpin,RT03,6/23/92,11.8,10
+S11,coastrange sculpin,RT12,7/1/92,11.1,9.4
+S12,coastrange sculpin,RT12,7/1/92,3.1,6.6
+S13,coastrange sculpin,RT12,7/1/92,7.5,9.1
+S14,coastrange sculpin,RT02,6/18/92,5.6,8.6
+S15,coastrange sculpin,RT02,6/18/92,6.8,9
+S16,coastrange sculpin,RT02,6/18/92,4.7,8
+S17,coastrange sculpin,RK14,4/6/93,4.4,7.3
+S18,coastrange sculpin,RK14,4/6/93,10.8,9.1
+S19,coastrange sculpin,RK14,4/4/93,7,8.8
+S20,coastrange sculpin,RT02R,4/20/93,3.7,6.7
+S21,coastrange sculpin,RW04,6/12/93,5.4,8.5
+S22,coastrange sculpin,RW04,6/12/93,6.8,8.9
+S23,coastrange sculpin,RW04,6/12/93,3.1,7.5
+S24,coastrange sculpin,RW04,6/12/93,8.9,9.3
+S25,coastrange sculpin,RW04,6/12/93,8.9,9.4
+S26,coastrange sculpin,RT19,6/17/93,8.3,8.8
+S27,coastrange sculpin,RT19,6/17/93,10.9,10.3
+S28,coastrange sculpin,RK09,6/27/93,14.5,10.1
+S29,coastrange sculpin,RK09,6/28/93,4.9,7.2
+S30,coastrange sculpin,RK09,6/28/93,3,6.7
+S31,coastrange sculpin,RT02R,5/17/93,1.6,6.3
+S32,coastrange sculpin,RK07,5/21/93,4,6.9
+S33,coastrange sculpin,RK07,5/21/93,9.8,9.1
+S34,coastrange sculpin,RT03,5/19/93,4.7,8.4
+S35,coastrange sculpin,RT03,5/19/93,4.8,8.6
+S36,coastrange sculpin,RT02R,5/18/93,2.6,6.8
+S37,coastrange sculpin,RK14,11/6/93,11.2,9.7
+S38,coastrange sculpin,RK14,11/6/93,11.8,9.3
+S39,coastrange sculpin,RK14,11/6/93,10.3,9.1
+S40,coastrange sculpin,RP06,11/12/93,2.6,6.2
+S41,coastrange sculpin,RP06,11/12/93,1.4,5.5
+S42,coastrange sculpin,RP08,11/14/93,8.1,8.4
+S43,coastrange sculpin,RP08,11/14/93,4.4,9.6
+S44,coastrange sculpin,RP08,11/14/93,9,8.6
+S45,coastrange sculpin,RT02-R,11/7/93,8.3,9
+S46,coastrange sculpin,RT02-R,11/7/93,4.3,7.7
+S47,coastrange sculpin,RK02,4/21/93,5.6,8.1
+S48,coastrange sculpin,RT02-R,4/21/93,6.2,8.2
+S49,coastrange sculpin,RT03,4/9/93,3.7,7.5
+S50,coastrange sculpin,RT03,4/22/93,8.5,9.1
+S51,coastrange sculpin,RK02,4/19/93,0.7,4.4
+S52,coastrange sculpin,RT03,4/20/93,5.3,7.7
+S53,coastrange sculpin,RK32,10/25/93,14.9,9.1
+S54,coastrange sculpin,RK32,10/25/93,9.2,8.7
+S55,coastrange sculpin,RK32,10/25/93,5.6,7.7
+S56,coastrange sculpin,RK09,10/22/93,15,9.6
+S57,coastrange sculpin,RK09,10/22/93,6.3,7.8
+S58,coastrange sculpin,RK09,10/22/93,3.7,7.6
+Sh01,Steelhead,RK14,4/4/93,12.1,10.4
+SH02,Steelhead,RW04,6/12/93,11.3,10.8
+SH03,Steelhesd,RW04,6/12/93,9.5,10.2
+SH04,Steelhead,RT19,6/17/93,2.9,7.5
+SH05,Steelhead,RT19,6/17/93,2.4,6.6
+SH06,Steelhead,RK09,6/27/93,17,11.8
+SH07,Steelhead,RT02R,11/9/93,2,5.6
+SH09,Steelhead,RK14,11/6/93,1.1,5.6
+ST01,Three spine stickleback,RT02,11/18/92,0.9,4.9
+ST02,Three spine stickleback,RT02,11/18/92,1.5,5.8
+ST03,Three spine stickleback,RT02,11/18/92,0.8,4.5
+ST04,Three spine stickleback,RK04,11/2/92,2.7,6.3
+ST05,Three spine stickleback,RT12,7/1/92,2.2,6.2
+ST06,Three spine stickleback,RT02,6/18/92,1.7,5.6
+ST07,Three spine stickleback,RT02,6/18/92,1.2,5.6
+ST08,Three spine stickleback,RT02,6/18/92,1.4,6.2
+ST09,Three spine stickleback,RT02,6/18/92,1.2,5.5
+ST10,Three spine stickleback,RT02,6/18/92,1.5,6
+ST11,Three spine stickleback,RT02,6/18/92,1,5.1
+ST12,Three spine stickleback,RT02,6/18/92,1.6,6.1
+ST13,Three spine stickleback,RT02,6/18/92,0.9,4.8
+ST14,Three spine stickleback,BP02,3/30/93,1.2,5.5
+ST15,Three spine stickleback,BP02,3/30/93,1.4,5.4
+ST16,Three spine stickleback,BP01BP,5/15/93,1,5.5
+ST17,Three spine stickleback,BP01BP,5/15/93,1.1,5
+ST18,Three spine stickleback,RT03,5/21/93,1,5.1
+ST19,Three spine stickleback,RT02BP,5/18/93,1.2,5.1
+ST20,Three spine stickleback,RT02BP,5/18/93,2.4,6.2
+ST21,Three spine stickleback,RT02R,5/16/93,2.3,6.6
+ST22,Three spine stickleback,RT02R,5/16/93,1.5,5.6
+ST23,Three spine stickleback,RT02-BP,11/7/93,1,4.8
+ST24,Three spine stickleback,RT02-BP,11/7/93,1.9,4.8
+ST25,Three spine stickleback,RT02,4/5/93,0.7,4.9
+ST26,Three spine stickleback,RT02-BP,4/20/93,0.5,3.9
+ST27,Three spine stickleback,RT02-BP,4/20/93,0.4,3.6
+ST28,Three spine stickleback,RT02,4/19/93,1.4,5.4
+ST29,Three spine stickleback,RT02,4/19/93,1,5.1
+ST30,Three spine stickleback,BP02-R,4/19/93,0.3,3.2
+ST31,Three spine stickleback,BP04,10/23/93,1.4,5.4
+ST32,Three spine stickleback,BP04,10/23/93,0.8,4.4
+ST33,Three spine stickleback,RK09,10/22/93,0.9,4.6
+ST34,Three spine stickleback,RK09,10/25/93,1.8,5.4
