@@ -26,7 +26,7 @@ In its most basic implementation, R is a command line program and looks like thi
 
 ![R console](R_command_line.png){#id .class width=80% height=80%}\
 
-This means that you only type commands into R, there is no point and click functionality. However, we will be using RStudio, which is an integrated development environment (IDE) which is a much more friendly way to interface with R and does include some limited ability to point and click. 
+This means that you only type commands into R, there is no point and click functionality. However, we will be using RStudio. RStudio is an integrated development environment (IDE) which is a much more friendly way to interface with R and does include some limited ability to point and click. 
 
 Coding can be tricky to learn at first. Things like specifying how to make a plot by typing out lines of code can seem cumbersome and slower than clicking some buttons in Excel, but there are major advantages to coding a task, even if you could accomplish it using some other interface that you can interactively click your way through. One of the biggest advantages is that you can save all of your code in a script, which we'll talk about more below.
 
@@ -347,7 +347,7 @@ Most of the time, you won't be creating objects from scratch like we've done her
 
 <br>
 
-Let's take the `year` dataframe and write that out to a csv file. csv, or comma separate values files, are a simple type of spreadsheet that can be easily read into R and other programming languages. It is one of of the standard formats to keep data in for this reason.
+Let's take the `year` dataframe and write that out to a csv file. csv, or comma separated values files, are a simple type of spreadsheet that can be easily read into R and other programming languages. It is one of of the standard formats to keep data in for this reason.
 
 Before writing this file, we first need to tell R what the working directory is - this is where R will write files or look for files that you are trying to read in. The alternative to setting the working directory is to specify the full file path each time, but this gets cumbersome if you're reading and writing lots of files from the same place.
 
@@ -444,7 +444,7 @@ library(adegenet)
 
 * Note that when installing a package, you need to put the package name in quotes `"adegenet"`, but that once it has been installed, you do not need to use quotes in the `library()` function, because now R knows what `adegenet` means.
 
-Once `adegenet` os loaded we can look at the help menu to find information about the package and the functions it contains:
+Once `adegenet` is loaded we can look at the help menu to find information about the package and the functions it contains:
 
 ```{r}
 ?adegenet
@@ -452,7 +452,7 @@ Once `adegenet` os loaded we can look at the help menu to find information about
 
 <br>
 
-Another common place for packages to be hosted is Github (also where this tutorial is hosted). In many cases, even packages that are hosted on CRAN have their development code hosted on Github, and in such cases, you can often download a "development version" of the pacakge that is more recent than the CRAN version, sometimes containing bug fixes that haven't yet made it into the CRAN version (although sometimes also including new bigs that haven't been found and fixed yet).
+Another common place for packages to be hosted is Github (also where this tutorial is hosted). In many cases, even packages that are hosted on CRAN have their development code hosted on Github, and in such cases, you can often download a "development version" of the pacakge that is more recent than the CRAN version, sometimes containing bug fixes that haven't yet made it into the CRAN version (although sometimes also including new bugs that haven't been found and fixed yet).
 
 
 To install packages from Github, you first need to install the `devtools` package from CRAN and load it up:
@@ -504,6 +504,8 @@ Sometimes this documentation is really good, sometimes it's not so good or doesn
 Getting good at coding isn't about learning every function you'll ever need and being to write a giant script to process your data without ever looking anything up -- it's more about learning enough to know what questions to ask and how to interpret answers you'll find on the internet or in documentaion. I look at documentation all the time while coding, even for functions I use frequently.
 
 Sometimes, you can search things like "LEA package tutorial" and find good documentation for an entire package like [this](https://www.bioconductor.org/packages/devel/bioc/vignettes/LEA/inst/doc/LEA.pdf). Other times, you might have a much more specific question about a particular function and want to search something like "set background color in histogram R", which might take you to a stackoverflow page like [this](https://stackoverflow.com/questions/7236958/change-background-color-of-r-plot). Stackoverflow is a common place where questions and answers to specific problems get posted. Understanding the answers can require a bit of knowledge, though.
+
+Chatgpt and related AI platforms have recently emerged as great tools to troubleshoot or help write code. We'll talk more about how to structure Chatgpt requests for code in a later session. For now, know that it's very powerful and can write fairly complex code if your request is specific and detailed enought. However, if it doesn't know exactly how to do something, it can also entirely make up functions or mess up syntax. That means that you will still need to know enough to be able to test your code and recognize and troubleshoot any erros that you encounter.
 
 <br>
 
