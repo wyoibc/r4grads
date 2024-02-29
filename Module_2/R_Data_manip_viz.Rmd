@@ -419,6 +419,17 @@ all_data <- read.csv("fish_data_merged.csv")
 <br>
 <br>
 
+### Plotting some data
+
+One of the best thigns about R is its ability to make an amazingly flexible array of plots. This is useful for exploring your data and also for making high-quality figures that you can put into your publications. I have made nearly all of the figures in my published papers in R. 
+
+Let's take a first stab 
+
+
+
+
+<br>
+
 ### Filtering and subsetting data
 
 There are many times when you will want to analyze certain rows or columns of a dataset, or select only certain values from a dataset. R makes this very easy to do, particularly with functions from the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. I won't go into the details of the Tidyverse philosphy, as it's very well documented and you can read all about it at the link.
