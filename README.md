@@ -56,7 +56,6 @@ If you already have experience in R and are comfortable with creating and manipu
 
 - [Data manipulation & plotting](Module_2/R_Data_manip_viz.html)
 
-UNDER DEVELOPMENT - data manipulation and plotting
 
 <br>
 

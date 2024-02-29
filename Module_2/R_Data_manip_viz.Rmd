@@ -18,7 +18,7 @@ knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
 <br>
 <br>
 
-In this tutorial, we will explore some basic data manipulation and visualization in R. Occassionally, datasets start out perfectly formatted with no missing data, outliers, etc., but more often, you'll need to do some kind of filtering, subsetting, and/or merging of data files. Plotting your data is helpful not only for publication and presentation, but also for identifying potential issues in your data.
+In this tutorial, we will explore some basic data manipulation and visualization in R. Occassionally, datasets start out perfectly formatted with no missing data, outliers, etc., More often, you'll need to do some kind of filtering, subsetting, and/or merging of data files. Plotting your data is helpful not only for publication and presentation, but also for identifying potential issues in your data.
 
 <br>
 
@@ -371,18 +371,12 @@ iso$Fish.code[which(!iso$Fish.code %in% body$Fish.code)]
 ```
 
 
-We can see that we have a total of 9 samples that are present in one of the datasets, but not the other. We can identify which fish are in both datasets:
+<br>
 
-```{r, results = FALSE}
-in_both <- intersect(iso$Fish.code, body$Fish.code)
-
-in_both
-```
-
-Then we can use that to subset both of the datasets down to only these shared samples, both in the same row order. We could R's object indexing and the `match()` function to get the overlapping samples in each object and combine them, but this is somewhat tedious to do.
+We can see that we have a total of 9 samples that are present in one of the datasets, but not the other. We could use some fancy R indexing and the `match()` function to subset both of the datasets down to only these shared samples in the same row order, but this is somewhat tedious to do.
 
 
-Instead, there is an R function we can use that will do all of this behind the scenes: `merge()`:
+Instead, there is an R function we can use that will do all of that for us: `merge()`:
 
 ```{r}
 all_data <- merge(body, iso)
@@ -391,7 +385,7 @@ dim(all_data)
 ```
 
 
-Knowing how R objects are structured and how to extract specific elements from objects using brackets and `$` is useful, but there ar functions that will simplify most common data manipulations.
+Knowing how R objects are structured and how to extract specific elements from objects using brackets and `$` is useful, but there are functions that will simplify most common data manipulations, and we'll explore these shortly.
 
 <br>
 
@@ -419,25 +413,18 @@ all_data <- read.csv("fish_data_merged.csv")
 <br>
 <br>
 
-### Plotting some data
-
-One of the best thigns about R is its ability to make an amazingly flexible array of plots. This is useful for exploring your data and also for making high-quality figures that you can put into your publications. I have made nearly all of the figures in my published papers in R. 
-
-Let's take a first stab 
-
-
-
+# Plotting with ggplot2
 
 <br>
 
-### Filtering and subsetting data
+One of the best things about R is its ability to make pretty much any type of plot you'd like. This is useful for exploring your data and also for making high-quality figures that you can put into your publications. I have made nearly all of the figures in my published papers in R.
 
-There are many times when you will want to analyze certain rows or columns of a dataset, or select only certain values from a dataset. R makes this very easy to do, particularly with functions from the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. I won't go into the details of the Tidyverse philosphy, as it's very well documented and you can read all about it at the link.
-
+You can do a lot of plotting with R's base functions, e.g., using the `plot()`
+function, but you get much better control and flexibility using the `ggplot2` package. If you get familiar with the general style of `ggplot`, you'll pretty quickly start to notice that many figures in research papers are made with this package.
 
 <br>
 
-To start, you'll need to make sure you have the Tidyverse packages installed and then loaded:
+`ggplot2` is part of the Tidyverse set of packages, so we can install and then load it using:
 
 ```{r eval = FALSE}
 install.packages("tidyverse")
@@ -448,15 +435,176 @@ library(tidyverse)
 
 <br>
 
-Before we actually start doing anything, there's an important issue to point out in this loading message. The conflicts show that there are functions in `dplyr` and the base R `stats` packages that share the same function names. Whenever this happens, the function from the most recently loaded package will mask the other function. If you load `dplyr` last and then run `filter()`, what you'll get is the function from `dplyr`. Alternately, if you load `stats` last, you'll get the `filter()` function from that package.
+Before we actually get started, there's an important issue to point out in this loading message. The conflicts show that there are functions in `dplyr` and the base R `stats` packages that share the same function names. Whenever this happens, the function from the most recently loaded package will mask the other function. If you load `dplyr` last and then run `filter()`, what you'll get is the function from `dplyr`. Alternately, if you load `stats` last, you'll get the `filter()` function from that package.
 
 This is important to keep track of. Especially if you write a script and then edit it to load up a package at the the top of a script. You can always call a function from a specific package by using the notation `package::function()`. The double colons tell R to explicitly use a function from the stated package.
 
 <br>
 
 
-We probably expect that different species will have different values and relationships among variables, so let's filter our dataset down to just Coho.
 
+
+
+You can also specifically install and/or load ggplot2 by itself using:
+
+```{r eval = FALSE}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+
+
+
+<br>
+<br>
+
+
+### ggplot syntax
+
+`ggplot` makes some very nice figures, but it has a unique syntax that can take a little while to learn. We'll make a quick plot, then explain what's going on here:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.))
+```
+
+<br>
+
+All calls to `ggplot()` are composed of at least two pieces. The first simply specifies the object that contains the data. All of the data for the plot should be in a single object, with different variables in different columns and each row specifying a single observation of a data (this is part of the general "Tidy" data philosophy).
+
+The basic `ggplot()` call without adding in a `geom` function will just render a blank plot, since you haven't told it what kind of plot to make with the data - this is unlike the base R `plot()` function we used above, which will try to guess what type of plot you want based on the nature of the data.
+
+```{r, fig.show = 'hide'}
+ggplot(data = all_data) # this makes an empty plot
+```
+
+<br>
+
+In the full call:
+
+```{r, fig.show = 'hide'}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.))
+```
+
+The `geom_point()` function tells `ggplot` to plot out the data as points. Within this function, the `mapping` argument specifies how the data are mapped to the visualization. The mapping is specified using the `aes()` (aesthetic) function. Here we specify only which variable is x and which is y, but there are other things we can specify as well.
+
+* Multiple `geom` functions can be combined into a single plot, and the `mapping` argument can be specified independently in each, or can be specified globally within the `ggplot()` function call.
+
+
+<br>
+
+### Aesthetic mappings 
+
+We've so far plotted out two variables, but we can add information about additional variables by passing additional arguments to `aes()`. For example, we can change the shape the points by species:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g., shape = Species))
+```
+
+* Note the warning that we can only assign up to 6 shapes to variables, and see that three spine stickleback has been left out because of this. 
+
+<br>
+
+Instead we can change the color by species:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g., color = Species))
+```
+
+<br>
+
+We can also scale the size of the points by some variable using the `size` argument in `aes()`. Try modifying the above plot so that the points are sized by `del15N`.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(
+    x = Fork.length..cm., 
+    y = Weight..g., 
+    color = Species,
+    size = del15N))
+```
+
+This is a very busy plot at this point, and for me, all points are too large to be interpretable, so let's add a function that controls the range of point sizes:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(
+    x = Fork.length..cm., 
+    y = Weight..g., 
+    color = Species,
+    size = del15N)) +
+  scale_size(range = c(0.1, 2))
+```
+
+This is a little better, but still is clearly not the best way to display these data. Just because you *can* plot things in a certain way, doesn't mean you *should* plot them that way.
+
+
+<br>
+
+If we want to change the color (or size, shape, etc.) of all points, rather than according to a variable, we can do this by pulling that aesthetic outside of the `aes()` function and setting it manually:
+
+```{r}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.), color = "blue")
+```
+
+
+
+
+<br>
+<br>
+<br>
+
+
+
+
+# Filtering and subsetting data
+
+<br>
+
+There are many times when you will want to analyze certain rows or columns of a dataset, or select only certain values from a dataset. R makes this very easy to do, particularly with functions from the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. I won't go into the details of the Tidyverse philosphy, as it's very well documented and you can read all about it at the link.
+
+
+For example, we might want to analyze and plot of just a single species of fish at a time. Let's filter our dataset down to just Coho.
+
+<br>
 
 We can filter data using the `filter()` function:
 
@@ -470,6 +618,7 @@ Filter works by taking a dataframe as input, then filtering that down to only th
 
 You can use `==`, not equal `!=`, greater or less than `>` or `<`, and other conditions in filter. You can also link together conditions using `&` to specify that both conditions must be met or `|` to specify that either condition must be met.
 
+<br>
 
 How do you think that we would filter out dataset to only large Coho with fork lengths greater than 10 cm?
 
@@ -551,17 +700,6 @@ Here, even though we want Coho AND Steelhead, we need to tell `filter()` to keep
 <br>
 
 
-
-
-### Got HERE - need to put in plotting
-
-
-
-
-
-
-
-
 Note that you can achieve all of the same ends without Tidyverse functions using R's basic indexing, e.g., you could alternately get only Coho rows by running:
 
 ```{r}
@@ -571,59 +709,14 @@ head(coho_data, n=4)
 
 
 
-### Transforming data
-
-R makes it very easy to transform or otherwise convert data. Operations can be applied across entire vectors or columns of dataframes easily. We can easily log-transform our body size data:
-
-
-```{r}
-log_weight <- log(all_data$Weight..g.)
-```
-
-**Take this object that contains the logged weights and make a new object called `data_w_log` that contains `all_data` with `log_weight` as an added column. **
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 
 
-```{r}
-data_w_log <- cbind(all_data, log_weight)
-```
+Now that we have a `coho_data` object, make a plot for this species that has `Fork.length..cm.` on the x axis with `del15N` on the y axis, and points sized by `Weight..g.`. Change the color of the points to a color of your preference.
 
 
 
-
-### Handling NAs (not applicable/empty data)
-
-R treats NA (not applicable) data differently than other types of data. For this reason, we need special tools if we want to remove NA. To demonstrate this, let's first introduce some NAs into our data. 
-
-
-**Convert all values of "Fork.length..cm." less than 5 to NA.** You should be able to figure this out by looking at when we used indexing to replace species misspellings and when we subsetted by values of `Weight..g.`.
-
 <br>
 <br>
 <br>
@@ -645,43 +738,27 @@ R treats NA (not applicable) data differently than other types of data. For this
 <br>
 <br>
 <br>
-
-
-```{r, results = FALSE}
-all_data$Fork.length..cm.[all_data$Fork.length..cm. < 5] <- NA
-
-all_data$Fork.length..cm.
-```
-
 <br>
 <br>
-
-If we try to check if values are NA the same way that we've evaluated things so far, it won't work:
-
-```{r, results = FALSE}
-all_data$Fork.length..cm.==NA
-```
-
-And in fact, if you're using RStudio and put the above line in a script, it will flag that line and mousing over the exclamation mark will tell you to use `is.na()`. Let's try that instead:
-
-```{r, results = FALSE}
-is.na(all_data$Fork.length..cm.)
-```
-
 <br>
-
-This looks like what we'd expect, and we can use this to filter out NAs in this row. Note that many functions can include NA values, so completely removing NA data may not always be desirable. It will depend heavily on your specific dataset.
+<br>
+<br>
 
 ```{r}
-data_noNA <- all_data[!is.na(all_data$Fork.length..cm.),]
+ggplot(data = coho_data) + 
+  geom_point(mapping = aes(
+    x = Fork.length..cm., 
+    y = del15N, 
+    size = Weight..g.),
+    color = "hotpink") +
+  scale_size(range = c(0.1, 2))
 ```
 
-Notice the `!` in the above line that lets us keep everything that is *not* NA. Now if we check if we have any NAs in the `Fork.length..cm.` of this new object, we should not get any:
 
-```{r}
-which(is.na(data_noNA$Fork.length..cm.))
-```
 
+<br>
+
+There is a lot more customization we can do, and we can create many other types of plots. We'll explore more plotting options in the next sessions.
 
 <br>
 <br>
@@ -690,3 +767,6 @@ which(is.na(data_noNA$Fork.length..cm.))
 
 <br>
 <br>
+
+
+
