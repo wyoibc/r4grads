@@ -479,7 +479,7 @@ ggplot(data = filter(all_data, Species != "Pink"), mapping = aes(x = Fork.length
 <br>
 <br>
 
-### Plots by discrete variables
+### Plots of discrete variables
 
 We've made a bunch of scatter and line plots, let's explore a few ways to plot out discrete variables.
 
