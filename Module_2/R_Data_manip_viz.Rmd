@@ -445,11 +445,11 @@ This is important to keep track of. Especially if you write a script and then ed
 
 
 
-You can also specifically install and/or load ggplot2 by itself using:
+You can also specifically install and/or load ggplot2 by itself using the following if you uncomment it. I've commented it here because if you try to install `ggplot2` on its own right now, it will restart R and we'll need to re-run everything we've done so far.
 
 ```{r eval = FALSE}
-install.packages("ggplot2")
-library(ggplot2)
+# install.packages("ggplot2")
+# library(ggplot2)
 ```
 
 
