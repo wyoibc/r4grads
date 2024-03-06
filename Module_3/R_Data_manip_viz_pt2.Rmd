@@ -1,0 +1,773 @@
+---
+title: "R data manipulation and plotting pt. 2"
+author: "Sean Harrington & Owen Funk"
+date: "2024-03-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
+
+```
+
+<br>
+
+[Home](https://wyoibc.github.io/r4grads/)
+
+<br>
+<br>
+
+Today we will continue with data manipulation and plotting that we started last session.
+
+
+<br>
+
+## Set up:
+
+If you don't have the data from last time handy, or have forgotten where you put it, use the instructions from the the [week 2 session](https://wyoibc.github.io/r4grads/Module_2/R_Data_manip_viz.html) to re-download it. Then set your working directory to where the data are:
+
+* **Remember that this file path will almost definitely be different for you!**
+
+```{r, eval = FALSE}
+setwd("~/r4grads/Fish_data/Modified/")
+```
+
+We'll need our `all_data` object again. If you have your `"fish_data_merged.csv"` file that we wrote out last time, you can read in:
+
+```{r}
+all_data <- read.csv("fish_data_merged.csv")
+```
+
+<br>
+<br>
+
+If you've lost track of this file, we can create it again:
+
+* **If you have the "fish_data_merged.csv" file and were able to run the line above, you do not need to run these lines!**
+
+```{r}
+# read in each of the data files
+body <- read.csv("Fish_body_size.csv")
+iso <- read.csv("Fish_isotopes.csv")
+# Make all of the subsitutions that we made last time
+body$Species <- gsub("Steelhesd", "Steelhead", body$Species)
+body$Species <- gsub("COHO", "Coho", body$Species)
+body$Species <- gsub("^Dolly$", "Dolly varden", body$Species)
+# Merge the data
+all_data <- merge(body, iso)
+```
+
+<br>
+
+We also need to load up the tidyverse set of packages:
+
+```{r}
+library(tidyverse)
+```
+<br>
+
+
+# Filtering and subsetting data
+
+<br>
+
+There are many times when you will want to analyze certain rows or columns of a dataset, or select only certain values from a dataset. R makes this very easy to do, particularly with functions from the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. I won't go into the details of the Tidyverse philosphy, as it's very well documented and you can read all about it at the link.
+
+
+For example, we might want to analyze and plot of just a single species of fish at a time. Let's filter our dataset down to just Coho.
+
+<br>
+
+We can filter data using the `filter()` function from the `dplyr` package:
+
+```{r, results = FALSE}
+coho_data <- filter(all_data, Species == "Coho")
+coho_data
+```
+
+
+Filter works by taking a dataframe as input, then filtering that down to only the rows where some condition is met in a given column. In the above command, we have filtered to only rows of the `all_data` object where the `Species` column is equal to (denoted by `==` in R because `=` is used for other things) `"Coho"`.
+
+You can use equal `==`, not equal `!=`, greater or less than `>` or `<`, and other conditions in filter. You can also link together conditions using `&` to specify that both conditions must be met or `|` to specify that either condition must be met.
+
+<br>
+
+How do you think that we would filter out dataset to only large Coho with fork lengths greater than 10 cm?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r, results = FALSE}
+big_coho <- filter(all_data, Species == "Coho" & Fork.length..cm. > 10)
+big_coho
+```
+
+<br>
+
+What if we want to get a dataset that has all of the rows for Coho and Steelhead?
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r, results = FALSE}
+coho_steel <- filter(all_data, Species == "Coho" | Species == "Steelhead")
+coho_steel
+```
+
+Here, even though we want Coho AND Steelhead, we need to tell `filter()` to keep rows where `Species == "Coho"` OR (`|`) `Species == "Steelhead"`.
+
+
+<br>
+<br>
+
+
+Note that you can achieve all of the same ends without Tidyverse functions using R's basic indexing, e.g., you could alternately get only Coho rows by running:
+
+```{r}
+coho_data <- all_data[all_data$Species == "Coho",]
+head(coho_data, n=4)
+```
+<br>
+
+If we want to select only certain columns from a dataframe, we can use the `select()` function from `dplyr`, e.g.,:
+
+
+```{r}
+some_coho_rows <- select(coho_data, Fish.code, Weight..g., Fork.length..cm.)
+head(some_coho_rows)
+```
+<br>
+<br>
+
+
+From the `coho_data` object, make a plot for this species that has `Fork.length..cm.` on the x axis with `del15N` on the y axis, and points sized by `Weight..g.`. Change the color of the points to a color of your preference.
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```{r}
+ggplot(data = coho_data) + 
+  geom_point(mapping = aes(
+    x = Fork.length..cm., 
+    y = del15N, 
+    size = Weight..g.),
+    color = "hotpink") +
+  scale_size(range = c(0.1, 2))
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+Let's plot this out as a smoothed line to see how that looks
+
+```{r}
+ggplot(data = coho_data) + 
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N), color = "hotpink")
+```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Faceted plotting
+
+
+This is cool, but what if we want individual plots for all species? We could manually code each species or make a loop to plot each species, but `ggplot` makes it really easy to create multiple plots at once in a single, larger plot:
+
+
+```{r, warning = FALSE}
+ggplot(data = all_data) + 
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N), color = "hotpink") +
+  facet_wrap(~ Species)
+```
+
+<br>
+
+Let's ignore the warnings for now and just look at the plots.
+
+What's the problem here? How would you go about fixing it? Remember that we can look at the help for a function to see available options: `?facet_wrap()`
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+By default, when making a faceted plot, `ggplot` fixes the x and y axes to the same bounds across all plots. Sometimes this is desired, other times it is not. Here we want to allow both x and y axes to change freely across plot.
+
+If you look at the `scales` argument in the documentation for `facet_wrap()`, this looks like what we want.
+
+If that hadn’t been helpful, we can always google something like "ggplot facets different axes". I get [this](https://stackoverflow.com/questions/21937127/different-axis-limits-per-facet-in-ggplot2) as the top result, and it also indicates that we need to set the scales argument to `"free"`.
+
+<br>
+
+```{r}
+ggplot(data = all_data) + 
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N), color = "hotpink") +
+  facet_wrap(~ Species, scales = "free")
+```
+
+This looks much better, but we still have a lot of warnings.
+
+
+* **Warnings vs. errors**: An error in R means that something has gone wrong such that the function could not be successfully executed. Warnings are *potentially* less severe. It means that some potetentially undesirable behavior has occurred, but that the function is still able to run and return output. However, a warning could very well mean that your function has returned bad results, and you should always investigate what caused a warning and if the output is acceptable or not.
+
+
+We are getting warnings because because at least one of our species has very few samples, which causes issues for the smoothing algorithm that draws the line and computes confidence intervals. 
+
+<br>
+
+To be able to tell which species has only a few points, it might be useful to add the points into these plots along with the lines. How would you simultaneously plot both?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r, warning = FALSE}
+ggplot(data = all_data) + 
+  geom_point(mapping = aes(x = Fork.length..cm., y = del15N), color = "black") +
+  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N), color = "hotpink") +
+  facet_wrap(~ Species, scales = "free")
+```
+
+<br>
+<br>
+
+* The order of geoms matters for wether points or lines will be plotted on top of the other.
+
+We have some duplicated code because we've specified the asesthetic mapping twice. We can move this up into the main `ggplot` function, which will globally set these mappings. You can always override them for specific geoms in the geom function call:
+
+```{r, eval = FALSE}
+ggplot(data = all_data, mapping = aes(x = Fork.length..cm., y = del15N)) + 
+  geom_point(color = "black") +
+  geom_smooth(color = "hotpink") +
+  facet_wrap(~ Species, scales = "free")
+```
+
+<br>
+<br>
+<br>
+
+It looks like the species "Pink" has the fewest observations, which is probably what causes that erratic line. 
+
+Use `filter()` to remove "Pink" from the `all_data` object and create a `no_pink` object. If you're not sure how to start this, look at how we filtered previously and the list of equality operators that are available to us. 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r}
+no_pink <- filter(all_data, Species != "Pink") # Note the != for "not equal to"
+unique(no_pink$Species)
+```
+
+Looks good. Let's plot this just like above using this filtered object:
+
+<br>
+
+```{r}
+ggplot(data = no_pink, mapping = aes(x = Fork.length..cm., y = del15N)) + 
+  geom_point(color = "black") +
+  geom_smooth(color = "hotpink") +
+  facet_wrap(~ Species, scales = "free")
+```
+
+<br>
+
+No warnings and better plots!
+
+<br>
+
+We can alternately filter the data within the `ggplot()` function if we don't want to create a new object beforehand:
+
+
+
+```{r, eval = FALSE}
+ggplot(data = filter(all_data, Species != "Pink"), mapping = aes(x = Fork.length..cm., y = del15N)) + 
+  geom_point(color = "black") +
+  geom_smooth(color = "hotpink") +
+  facet_wrap(~ Species, scales = "free")
+```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Plots by discrete variables
+
+We've made a bunch of scatter and line plots, let's explore a few ways to plot out discrete variables.
+
+<br>
+
+We can make just a scatterplot, but it's really not very informative.
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_point()
+```
+
+
+<br>
+<br>
+
+We can make a boxplot instead:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_boxplot()
+```
+
+This tells us a lot more information. We can also do things like swap the x and y coordinates:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_boxplot() +
+  coord_flip()
+```
+
+Or fill the boxes with colors by species:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N, fill = Species)) + 
+  geom_boxplot() +
+  theme(legend.position="none")
+```
+
+* What does `theme(legend.position="none")` in the above code do? What happens if we remove it?
+
+<br>
+<br>
+<br>
+<br>
+
+There are lots of other things we could do with boxplots, but we'll move on. My favorite way of visualizing distributions for discrete variables is using violin plots:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE)
+```
+
+
+This is fine, but not great. Change this plot so that the violins are filled with different colors for each species. Also get rid of any legend that shows up. 
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N, fill = Species)) + 
+  geom_violin(trim=FALSE) +
+  theme(legend.position="none")
+```
+
+<br>
+
+If we want to, we can add boxplots within the violins. This is similar to adding both `geom_smooth` and `geom_point` to the plots above. Try making a violin plot with boxplots inside. 
+
+Make the violins filled by different colors for each species, but keep the boxplots unfilled. As a hint, the argument `width` controls the width of boxplots.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  theme(legend.position="none")
+```
+
+
+This looks pretty fancy to me. What would happen if we swapped the order of the `geom_violin()` and `geom_boxplot()` lines? Try it out.
+
+<br>
+<br>
+<br>
+<br>
+
+What you should see is that the order of geoms matters. Sequential geoms are plotted on top of the precious ones, and you need to consider this when making plots. Note that if you have multiple layers, there are ways to use semi-transparent colors.
+
+<br>
+<br>
+
+
+
+A couple final things:
+
+We can change the axis labels and add a plot title if we want:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  theme(legend.position="none") +
+  labs(title="Fish nitrogen isotopes", x = "Species", y = "delta 15 N")
+```
+
+And/or we can change the theme of the background:
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  labs(x = "Species", y = "delta 15 N") +
+  theme_minimal() +
+  theme(legend.position="none")
+```
+
+* Note that we had to move `theme(legend.position="none")` to after `theme_minimal()` because whichever comes last will override some of the parameters set by the one that is run first.
+
+or 
+
+```{r}
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  labs(x = NULL, y = "delta 15 N") + # Get rid of the x label, sometimes the categories are self explanatory
+  theme_classic() +
+  theme(legend.position="none")
+```
+
+
+<br>
+<br>
+<br>
+<br>
+
+You customize each of these plots almost endlesslessly, and there are many other types of plots that you can create, as well. If you want to get an idea for some of the plotting diversity available, check out the the [R graph gallery](https://r-graph-gallery.com/).
+
+
+<br>
+<br>
+
+## Saving plots
+
+R allows us to easily export plots using a couple simple lines of code. We glossed over this last time, so we'll cover it here again.
+
+RStudio also has options to export and save plots from the "Plots" window - **DON'T SAVE PLOTS THAT WAY!** These will be lower resolution and sometimes get stretched in weird ways.
+
+
+The standard way to save a plot in R is to open a plotting device, run your plotting code which will write to the open file connection, then close the plotting device. Here is plotting to a pdf:
+
+```{r}
+pdf(file = "violin.pdf", width = 7, height = 4) # create and open the pdf plotting device
+
+# Make the plot
+ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  labs(x = NULL, y = "delta 15 N") + # Get rid of the x label, sometimes the categories are self explanatory
+  theme_classic() +
+  theme(legend.position="none")
+
+dev.off() # close the pdf plotting device
+```
+
+If you forget to run `dev.off()`, all subsequent plots will continue to go to the plotting device, and you won't be able to view the pdf because it won't be "finished".
+
+
+<br>
+
+ggplot also allows you to save a plot in an object, so you don't need to put the entire plotting call inside the `pdf()` and `dev.off()` lines. Here we'll do this and then also save .png and .tif files:
+
+
+```{r}
+# Make the plot
+to_plot <- ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+  geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
+  geom_boxplot(width=0.1)+
+  labs(x = NULL, y = "delta 15 N") +
+  theme_classic() +
+  theme(legend.position="none")
+
+
+# Make a pdf
+pdf(file = "violin2.pdf", width = 7, height = 4)
+to_plot
+dev.off() 
+
+
+# make a png
+png(file = "violin3.png", width=600, height=350) # width and height are in pixels for png
+to_plot
+dev.off()
+
+# make a .tiff
+tiff(file="violin4.tiff", width = 7, height = 4, units="in", res=100)
+to_plot
+dev.off()
+
+```
+
+* Note that you need to add the file extensions (e.g., .pdf, .png) to your files if you want them.
+
+I like to use pdf format because it's vector based, and so has effectively infinite resolution. I typically write pdf figures out from R and then directly use these as the figures I submit to journals with my manuscripts.
+
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+[Home](https://wyoibc.github.io/r4grads/)
+
+<br>
+<br>
+
+
+

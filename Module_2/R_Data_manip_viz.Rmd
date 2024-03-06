@@ -1,5 +1,5 @@
 ---
-title: "R data manipulation"
+title: "R data manipulation and plotting"
 author: "Sean Harrington & Owen Funk"
 date: "2024-03-06"
 output: html_document
@@ -8,7 +8,6 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
-
 ```
 
 <br>
@@ -46,7 +45,7 @@ Before we can work with the data, we need to download it. Go to the Github repos
 Start by setting our working directory. If you set things up exactly as I did, then this path will work for you. If not, then you'll need to edit this path:
 
 ```{r, eval = FALSE}
-setwd("~/r4grads/Fish_data/Modified/")
+setwd("~/r4grads-master/Fish_data/Modified/")
 ```
 
 **Again, make sure this points to the correct path for you, not my path.**
@@ -591,175 +590,6 @@ ggplot(data = all_data) +
 <br>
 <br>
 <br>
-
-
-
-
-# Filtering and subsetting data
-
-<br>
-
-There are many times when you will want to analyze certain rows or columns of a dataset, or select only certain values from a dataset. R makes this very easy to do, particularly with functions from the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. I won't go into the details of the Tidyverse philosphy, as it's very well documented and you can read all about it at the link.
-
-
-For example, we might want to analyze and plot of just a single species of fish at a time. Let's filter our dataset down to just Coho.
-
-<br>
-
-We can filter data using the `filter()` function:
-
-```{r, results = FALSE}
-coho_data <- filter(all_data, Species == "Coho")
-coho_data
-```
-
-
-Filter works by taking a dataframe as input, then filtering that down to only the rows where some condition is met in a given column. In the above command, we have filtered to only rows of the `all_data` object where the `Species` column is equal to (denoted by `==` in R because `=` is used for other things) `"Coho"`.
-
-You can use `==`, not equal `!=`, greater or less than `>` or `<`, and other conditions in filter. You can also link together conditions using `&` to specify that both conditions must be met or `|` to specify that either condition must be met.
-
-<br>
-
-How do you think that we would filter out dataset to only large Coho with fork lengths greater than 10 cm?
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-```{r, results = FALSE}
-big_coho <- filter(all_data, Species == "Coho" & Fork.length..cm. > 10)
-big_coho
-```
-
-<br>
-
-What if we want to get a dataset that has all of the rows for Coho and Steelhead?
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-```{r, results = FALSE}
-coho_steel <- filter(all_data, Species == "Coho" | Species == "Steelhead")
-coho_steel
-```
-
-Here, even though we want Coho AND Steelhead, we need to tell `filter()` to keep rows where `Species == "Coho"` OR (`|`) `Species == "Steelhead"`.
-
-
-<br>
-<br>
-
-
-Note that you can achieve all of the same ends without Tidyverse functions using R's basic indexing, e.g., you could alternately get only Coho rows by running:
-
-```{r}
-coho_data <- all_data[all_data$Species == "Coho",]
-head(coho_data, n=4)
-```
-
-
-
-<br>
-<br>
-
-
-Now that we have a `coho_data` object, make a plot for this species that has `Fork.length..cm.` on the x axis with `del15N` on the y axis, and points sized by `Weight..g.`. Change the color of the points to a color of your preference.
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-```{r}
-ggplot(data = coho_data) + 
-  geom_point(mapping = aes(
-    x = Fork.length..cm., 
-    y = del15N, 
-    size = Weight..g.),
-    color = "hotpink") +
-  scale_size(range = c(0.1, 2))
-```
-
-
-
-<br>
-
-There is a lot more customization we can do, and we can create many other types of plots. We'll explore more plotting options in the next sessions.
-
 <br>
 <br>
 

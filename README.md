@@ -61,14 +61,14 @@ If you already have experience in R and are comfortable with creating and manipu
 
 ## Week 3
 
-- STILL UNDER DEVELOPMENT
+- [Data manipulation & plotting pt. 2](Module_3/R_Data_manip_viz_pt2.html)
 
 <br>
 
 
 ## Week 4
 
-- UNDER DEVELOPMENT
+- [UNDER DEVELOPMENT](Module_4/R_week_4.html)
 
 
 
