@@ -26,7 +26,7 @@ knitr::opts_knit$set(root.dir = "~/Documents/r4grads/")
 
 Large Language Model chatbots like chatGPT and google Gemini are increasingly avalible and sophisticated. They can do any number of tasks, inlcuding help with coding projects and data analysis. Lets explore a couple ways these tools can be helpful for adding feature to our plots from last week.
 <br>
-First let's reload the fish data. Make sure you set your working directory with setwd() like wAlso lets library tidyverse so we have all those functions as well. 
+First let's reload the fish data. Make sure you set your working directory with setwd() like we did before. Also lets library tidyverse so we have all those functions as well. 
 
 ```{r, eval = FALSE}
 # Make sure you set this to your personal working directory with the fish data!
@@ -195,7 +195,7 @@ This time chatGPT suggests using the grep function. This is a command line tool 
 <br>
 ```{r}
 # Filter for genotype and temperature
-gene_counts_cleaned <- gene_counts[, grep("N2_16C|WH171_16C", names(gene_counts))]
+gene_counts_cleaned <- gene_counts[, grep("N2_16C|BP175_16C", names(gene_counts))]
 colnames(gene_counts_cleaned)
 # Run DESeq2
 
@@ -206,7 +206,7 @@ Great, looks like we have just 6 samples now, 3 of N2 and 3 of WH171. Lets do th
 <br>
 ```{r}
 # Filter for genotype and temperature
-meta_data_cleaned <- filter(meta_data, geno == 'N2' & temp == '16C' | geno =='WH171' & temp =='16C')
+meta_data_cleaned <- filter(meta_data, geno == 'N2' & temp == '16C' | geno =='BP175' & temp =='16C')
 meta_data_cleaned
 # Run DESeq2
 
