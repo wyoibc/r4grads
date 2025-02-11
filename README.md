@@ -7,20 +7,21 @@ Part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical Researcher
 </center>
 
 ### Instructors
+
 [Sean Harrington](mailto:sharrin2@uwyo.edu)
 
-[Owen Funk](mailto:ofunk@uwyo.edu)
+[Erin Bentley](mailto:ebentley@uwyo.edu)
 
 <br>
 
 ## Class Information
 
-The class will meet in Classroom Building 103 from 10-11:50 am on following dates:
+The class will meet in Classroom Building 209 from 10-11:50 am on following dates:
 
-- February 28
-- March 6
-- March 20
-- March 27
+- February 19
+- March 5
+- March 12
+- March 26
 
 <br>
 <br>
@@ -51,6 +52,17 @@ If you already have experience in R and are comfortable with creating and manipu
 
 
 <br>
+<br>
+
+# All tutorials below here are under active development and subject to change
+
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
 
 ## Week 2
 
@@ -68,7 +80,7 @@ If you already have experience in R and are comfortable with creating and manipu
 
 ## Week 4
 
-- [UNDER DEVELOPMENT](Module_4/R_week_4.html)
+- [Using AI for coding](Module_4/R_week_4.html)
 
 
 

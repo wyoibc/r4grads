@@ -8,43 +8,57 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="avenir-white.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
 <h1 class="title">r4grads - Data Analysis in R</h1>
 </header>
 <center>
-Part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical Researchers)
+Part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical
+Researchers)
 </center>
 <h3 id="instructors">Instructors</h3>
 <p><a href="mailto:sharrin2@uwyo.edu">Sean Harrington</a></p>
-<p><a href="mailto:ofunk@uwyo.edu">Owen Funk</a></p>
+<p><a href="mailto:ebentley@uwyo.edu">Erin Bentley</a></p>
 <p><br></p>
 <h2 id="class-information">Class Information</h2>
-<p>The class will meet in Classroom Building 103 from 10-11:50 am on following dates:</p>
+<p>The class will meet in Classroom Building 209 from 10-11:50 am on
+following dates:</p>
 <ul>
-<li>February 28</li>
-<li>March 6</li>
-<li>March 20</li>
-<li>March 27</li>
+<li>February 19</li>
+<li>March 5</li>
+<li>March 12</li>
+<li>March 26</li>
 </ul>
 <p><br> <br></p>
 <h2 id="prep">Prep:</h2>
-<p><strong>Students will need to bring their own laptops to each session</strong>. If you do not have a suitable laptop that you can use, please contact us <strong>before class</strong> to borrow a laptop.</p>
-<p>Download and install the <strong>latest versions</strong> of R and RStudio if using your own laptop. If you already have R and RStudio installed, but you installed them a while ago, you should update both.</p>
+<p><strong>Students will need to bring their own laptops to each
+session</strong>. If you do not have a suitable laptop that you can use,
+please contact us <strong>before class</strong> to borrow a laptop.</p>
+<p>Download and install the <strong>latest versions</strong> of R and
+RStudio if using your own laptop. If you already have R and RStudio
+installed, but you installed them a while ago, you should update
+both.</p>
 <ul>
-<li><p>R can be downloaded from <a href="https://ftp.osuosl.org/pub/cran/">r-project.org</a></p></li>
-<li><p>RStudio can be obtained from <a href="https://posit.co/downloads/">https://posit.co/downloads/</a></p></li>
+<li><p>R can be downloaded from <a
+href="https://ftp.osuosl.org/pub/cran/">r-project.org</a></p></li>
+<li><p>RStudio can be obtained from <a
+href="https://posit.co/downloads/">https://posit.co/downloads/</a></p></li>
 </ul>
 <p><br></p>
 <h2 id="week-1">Week 1</h2>
@@ -52,25 +66,40 @@ Part of MOLB5700 (Beyond the Bench: Fundamental Skills for Biomedical Researcher
 <li><a href="Module_1/Intro_R.html">Essential R skills</a></li>
 </ul>
 <p>This session will introduce the basics of R and RStudio.</p>
-<p>If you already have experience in R and are comfortable with creating and manipulating objects, applying functions, and using RStudio, you may skip this session. <strong>If you are not familiar with R, it is essential that you attend this session!</strong> We will assume basic proficiency with R in all subsequent classes, without time to catch people up.</p>
+<p>If you already have experience in R and are comfortable with creating
+and manipulating objects, applying functions, and using RStudio, you may
+skip this session. <strong>If you are not familiar with R, it is
+essential that you attend this session!</strong> We will assume basic
+proficiency with R in all subsequent classes, without time to catch
+people up.</p>
+<p><br> <br></p>
+<h1
+id="all-tutorials-below-here-are-under-active-development-and-subject-to-change">All
+tutorials below here are under active development and subject to
+change</h1>
+<p><br> <br> <br> <br></p>
 <p><br></p>
 <h2 id="week-2">Week 2</h2>
 <ul>
-<li><a href="Module_2/R_Data_manip_viz.html">Data manipulation &amp; plotting</a></li>
+<li><a href="Module_2/R_Data_manip_viz.html">Data manipulation &amp;
+plotting</a></li>
 </ul>
 <p><br></p>
 <h2 id="week-3">Week 3</h2>
 <ul>
-<li><a href="Module_3/R_Data_manip_viz_pt2.html">Data manipulation &amp; plotting pt. 2</a></li>
+<li><a href="Module_3/R_Data_manip_viz_pt2.html">Data manipulation &amp;
+plotting pt. 2</a></li>
 </ul>
 <p><br></p>
 <h2 id="week-4">Week 4</h2>
 <ul>
-<li><a href="Module_4/R_Data_project_planning_and_chatGPT.html">Project planning and using chatGPT</a></li>
+<li><a href="Module_4/R_week_4.html">Using AI for coding</a></li>
 </ul>
 <p><br> <br> <br></p>
-<p>Website link: <a href="https://wyoibc.github.io/r4grads/">https://wyoibc.github.io/r4grads/</a></p>
-<p>Github repo: <a href="https://github.com/wyoibc/r4grads">https://github.com/wyoibc/r4grads</a></p>
+<p>Website link: <a
+href="https://wyoibc.github.io/r4grads/">https://wyoibc.github.io/r4grads/</a></p>
+<p>Github repo: <a
+href="https://github.com/wyoibc/r4grads">https://github.com/wyoibc/r4grads</a></p>
 <p><br><br><br><br> <br><br><br><br></p>
 </body>
 </html>

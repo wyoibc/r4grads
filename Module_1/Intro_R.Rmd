@@ -1,7 +1,7 @@
 ---
 title: "Intro to R & Rstudio"
 author: "Sean Harrington"
-date: "2024-02-28"
+date: "2025-02-19"
 output: html_document
 ---
 
@@ -28,7 +28,7 @@ In its most basic implementation, R is a command line program and looks like thi
 
 This means that you only type commands into R, there is no point and click functionality. However, we will be using RStudio. RStudio is an integrated development environment (IDE) which is a much more friendly way to interface with R and does include some limited ability to point and click. 
 
-Coding can be tricky to learn at first. Things like specifying how to make a plot by typing out lines of code can seem cumbersome and slower than clicking some buttons in Excel, but there are major advantages to coding a task, even if you could accomplish it using some other interface that you can interactively click your way through. One of the biggest advantages is that you can save all of your code in a script, which we'll talk about more below.
+Coding can be tricky to learn at first. Things like specifying how to make a plot by typing out lines of code can seem cumbersome and slower than clicking some buttons in Excel, but there are major advantages to coding a task, even if you could accomplish it using some other interface that you can interactively click your way through. One of the biggest advantages is that you can save all of your code in a script and then re-execute it at any time, which we'll talk about more below.
 
 <br>
 
@@ -45,7 +45,7 @@ Note that I've changed the color of my interface and I think I changed the orien
 
 <br>
 
-The pane on the left is the R console that actually runs R code. We can type code straight into the console on the line with the `>` and hit `enter` to run a line. Let's try that quick, type the following into the console and run it:
+The pane on the left is the R console that actually runs R code. We can type code straight into the console on the line with the `>` and hit `enter` to run a line. Let's try that quickly: type the following into the console and run it:
 
 ```{r}
 3+3
@@ -61,9 +61,11 @@ We could entirely interact with R in this way, but that defeats the purpose of u
 
 ## Starting an R script
 
-While you *could* type all of your code directly into the console in RStudio, I **HIGHLY** recommend that you put all of your code into a script whenever you code in R (and any other languages). A script is just a text file that contains commands for R (or another language). When you put all of your commands into an R script and save it, you keep a permanent record of what you did. This helps you remember what you did; lets you replicate what you did or slightly tweak what you did if you need to redo it, make small changes, or run the same operations on a different dataset; and allows you to share your code with others so that others can replicate your science.
+While you *could* type all of your code directly into the console in RStudio, lines of code that you type into the console quickly disappear and there is no good record of what code you ran before, nor is there any good way to modify old code code for new purposes.
 
-If you haven't done much coding before, you'll be surprised just how fast you can forget everything you did, and even more importantly, why you did it. Well commented scripts avoid (or at least massively mitigate) this problem.
+I **HIGHLY** recommend that you put all of your code into a script whenever you code in R (and any other languages). A script is just a text file that contains commands for R (or another language). When you put all of your commands into an R script and save it, you keep a permanent record of what you did. This helps you remember what you did; lets you replicate what you did or slightly tweak what you did if you need to redo it, make small changes, or run the same operations on a different dataset; and allows you to share your code with others so that others can replicate your science.
+
+If you haven't done much coding before, you'll be surprised just how fast you can forget everything you did, and even more importantly, why you did it. Well commented scripts avoid (or at least massively mitigate) this problem. I pretty much only type commands directly into the console if I'm running quick checks or getting help. Anything that I actually do to process or plot data goes into the script.
 
 To create a new R script, click on the little `+` button in the top right of RStudio and click on `R script`:
 
@@ -71,7 +73,7 @@ To create a new R script, click on the little `+` button in the top right of RSt
 
 <br>
 
-This will open a new window with an empty R script. You can type all of your code into here. Once you type a line of code, you can run it by hitting `command + return` if you are on a Mac or `ctrl + return` if you are on Windows while your cursor is anywhere in that line. You can also highlight entire blocks of code or portions of a single line and run the selected code the exact same way.
+This will open a new window with an empty R script. You can type all of your code into here. Once you type a line of code, you can run it by hitting `command return` if you are on a Mac or `ctrl return` if you are on Windows while your cursor is anywhere in that line. You can also highlight entire blocks of code or portions of a single line and run the selected code the exact same way.
 
 To save your R script, go up to `file` in the menu bar (possibly at the top of your screen, above your RStudio window) and select `save as`.
 
@@ -85,7 +87,7 @@ This is a single script from the Github repository for one of my manuscripts on 
 
 ## Basic math
 
-About the simplest way to use R is as a fancy calculator. In your script, type the following, then use `command + enter` or `ctrl + enter` to execute the line from the script in the R console:
+About the simplest way to use R is as a fancy calculator. In your script, type the following, then use `command enter` or `ctrl enter` to execute the line from the script in the R console:
 
 ```{r}
 3+7
@@ -119,7 +121,7 @@ If we want to take the logarithm of a number we can use the `log()` function.
 log(10)
 ```
 
-Note that the default base of the `log()` function is *e* for the natural log. If we want to change that and get the log using base 10 instead, we can specify that as another argument in the function -- arguments are the inputs and options for a function, and many functions have many possible arguments. In most cases, any arguments that are not explicitly specified by the user will be set to some default.
+Note that the default base of the `log()` function is *e* for the natural log. If we want to change that and get the log using base 10 instead, we can specify that as another **argument** in the function -- arguments are the inputs and options for a function, and many functions have many possible arguments. In most cases, any arguments that are not explicitly specified by the user will be set to some default.
 
 If we want to see the arguments for `log()` or get other help and information about the function, we can run:
 
@@ -213,13 +215,13 @@ These aren't very informative object names - you usually want to strike a balanc
 
 ## Types of objects
 
-We aren't restricted to objects that contain only a single value: some objects contain vast amounts of data.
+We aren't restricted to objects that contain only a single value: some objects contain large amounts of data.
 
 <br>
 
 #### 1. Vectors:
 
-Vectors are just a series of values - these can be numbers, characters, TRUE/FALSE, whatecer. An important part of vectors is that hey have a sinlge dimension: they do not have columns and rows, they are just a series of values.
+Vectors are just a series of values - these can be numbers, characters, TRUE/FALSE, whatever. An important part of vectors is that hey have a single dimension: they do not have columns and rows, they are just a series of values.
 
 ```{r}
 months <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
@@ -281,11 +283,16 @@ monthsC <- c(January, "February", "March", "April", "May", "June",
 
 Text without quotes is assumed to be the name of any object in R (except in special cases, like TRUE/FALSE). So R assumes that you're trying to reference an object called `January`, but this object does not exist, causing an error.
 
+
+Vectors are common in R for single data types or simple operations or as inputs and outputs of functions, but most of the time when you're working with data you'll want to store multiple types of data together, including with some kind of identifier.
+
+
+
 <br>
 
 #### 2. Dataframes
 
-Dataframes are table-like 2-dimenensional sets of data. They have rows and columns, and the columns can contain different types of data (e.g., numeric, character) -- don't worry about what this means too much right now, we'll talk more about data types next session.
+Dataframes are table-like 2-dimensional sets of data. They have rows and columns, and the columns can contain different types of data (e.g., numeric, character) -- don't worry about what this means too much right now, we'll talk more about data types next session.
 
 Here, we can combine two of our vectors into a dataframe:
 
@@ -294,6 +301,9 @@ year <- data.frame(months, monthsC)
 
 year
 ```
+
+
+Dataframes are one of the most common and most useful object types because of the combination of versatility and ease of use.
 
 <br>
 
@@ -310,6 +320,7 @@ M
 
 
 We can add row names, column names etc, but we'll save that for later.
+
 
 <br>
 
@@ -331,6 +342,9 @@ But they can also contain vectors, matrices, dataframes, and even other lists al
 list2 <- list(list1, M, monthsC, 745, "GREEN")
 list2
 ```
+
+
+The upside and downside to lists is that they can contain anything and have no set structure. You can store all kinds of different information in a list, but storing too many different kinds of data within a list can make them a real pain to decipher.
 
 
 
@@ -405,7 +419,7 @@ years3 <- read.csv("/Users/harrington/r4grads/Module_1/year.csv") # This works
 
 <br>
 
-Another common format to store biological data is in tab delimited, rather than comma delimited (comma separated), files. This just means that tabs sparate columns. Let's quickly write and then read back in a tab delimited file:
+Another common format to store biological data is in tab delimited, rather than comma delimited (comma separated), files. This just means that tabs separate columns. Let's quickly write and then read back in a tab delimited file:
 
 ```{r}
 write.table(year, file = "year.tsv", sep = "\t") # write out the tab delimited file
@@ -429,13 +443,13 @@ However, one of the biggest advantages of R is that anyone can write an R functi
 
 Packages can be made available on a few different repositories that host the code and allow people to easliy download them. The most common repository is CRAN ("The Comprehensive R Archive Network").
 
-To install a package from CRAN, you can use `install.packages()`. For example if we want to install the package `adegenet`, which has a lot of population genetics functions, we can use:
+To install a package from CRAN, you can use the function `install.packages()`. For example if we want to install the package `adegenet`, which has a lot of population genetics functions, we can use:
 
 ```{r eval = FALSE}
 install.packages("adegenet")
 ```
 
-To actually use any of the functions in `adegenet`, we need to now load up the package, even once installed, it is not loaded by default:
+To actually use any of the functions in `adegenet`, we need to now load up the package. Even once installed, it is not loaded by default:
 
 ```{r}
 library(adegenet)
@@ -443,6 +457,7 @@ library(adegenet)
 
 
 * Note that when installing a package, you need to put the package name in quotes `"adegenet"`, but that once it has been installed, you do not need to use quotes in the `library()` function, because now R knows what `adegenet` means.
+
 
 Once `adegenet` is loaded we can look at the help menu to find information about the package and the functions it contains:
 
@@ -452,7 +467,7 @@ Once `adegenet` is loaded we can look at the help menu to find information about
 
 <br>
 
-Another common place for packages to be hosted is Github (also where this tutorial is hosted). In many cases, even packages that are hosted on CRAN have their development code hosted on Github, and in such cases, you can often download a "development version" of the pacakge that is more recent than the CRAN version, sometimes containing bug fixes that haven't yet made it into the CRAN version (although sometimes also including new bugs that haven't been found and fixed yet).
+Another common place for packages to be hosted is Github (also where this tutorial is hosted). In many cases, even packages that are hosted on CRAN have their development code hosted on Github, and in such cases, you can often download a "development version" of the package that is more recent than the CRAN version, sometimes containing bug fixes that haven't yet made it into the CRAN version (although sometimes also including new bugs that haven't been found and fixed yet).
 
 
 To install packages from Github, you first need to install the `devtools` package from CRAN and load it up:
@@ -473,7 +488,7 @@ install_github("liamrevell/phytools") # this is the development version of phyto
 
 <br>
 
-Bioconductor is the third repository that is commonly used in biology, which contains a number of bioinformatic and genomic oriented packages. Like installing from Github, we need to install a package from CRAN that contains functions that allow us to install packages from Bioconductor:
+Bioconductor is another repository that is commonly used in biology, and contains a number of bioinformatic and genomic oriented packages. Like installing from Github, we need to install a package from CRAN that contains functions that allow us to install packages from Bioconductor:
 
 ```{r eval = FALSE}
 install.packages("BiocManager") # install BiocManager from CRAN
@@ -499,13 +514,13 @@ There are a few options for getting help with R. The first is to use the `?` to 
 
 <br>
 
-Sometimes this documentation is really good, sometimes it's not so good or doesn't contain enough information. If this doesn't tell you enough, then it's generally time to turn to Google or your buddy who's been coding in R longer than you have.
+Sometimes this documentation is really good, sometimes it's not so good or doesn't contain enough information. If this doesn't tell you enough, then it's generally time to turn to Google, your favorite AI, or your buddy who's been coding in R longer than you have.
 
-Getting good at coding isn't about learning every function you'll ever need and being to write a giant script to process your data without ever looking anything up -- it's more about learning enough to know what questions to ask and how to interpret answers you'll find on the internet or in documentaion. I look at documentation all the time while coding, even for functions I use frequently.
+Getting good at coding isn't about learning every function you'll ever need and being to write a giant script to process your data without ever looking anything up -- it's more about learning enough to know what questions to ask and how to interpret answers you'll find on the internet or in documentation. I look at documentation all the time while coding, even for functions I use frequently.
 
 Sometimes, you can search things like "LEA package tutorial" and find good documentation for an entire package like [this](https://www.bioconductor.org/packages/devel/bioc/vignettes/LEA/inst/doc/LEA.pdf). Other times, you might have a much more specific question about a particular function and want to search something like "set background color in histogram R", which might take you to a stackoverflow page like [this](https://stackoverflow.com/questions/7236958/change-background-color-of-r-plot). Stackoverflow is a common place where questions and answers to specific problems get posted. Understanding the answers can require a bit of knowledge, though.
 
-Chatgpt and related AI platforms have recently emerged as great tools to troubleshoot or help write code. We'll talk more about how to structure Chatgpt requests for code in a later session. For now, know that it's very powerful and can write fairly complex code if your request is specific and detailed enought. However, if it doesn't know exactly how to do something, it can also entirely make up functions or mess up syntax. That means that you will still need to know enough to be able to test your code and recognize and troubleshoot any erros that you encounter.
+Chatgpt and related AI platforms have emerged as great tools to troubleshoot or help write code. We'll talk more about how to structure Chatgpt requests for code in a later session. For now, know that it's very powerful and can write fairly complex code if your request is specific and detailed enough. **However, if it doesn't know exactly how to do something, it can also entirely make up functions or mess up syntax**. That means that you will still need to know enough to be able to test your code and recognize and troubleshoot any errors that you encounter.
 
 <br>
 
