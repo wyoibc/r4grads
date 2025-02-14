@@ -1,0 +1,308 @@
+,Lizard.ID.,Species,Site,Date,Elevation..m.,Treatment,tail_length_mm.,PO2,Sex,Gravid,Ctmax,mass,elevation,svl,gape,pant,heatrate,log_svl,log_mass,Species2,oxytreat
+1,15,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),71,41.16,F,Y,41.01,15,904,67,34.55,36.53,0.486315789,4.204692619,2.708050201,S. occidentalis,Hypoxia
+2,16,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),102,41.16,F,Y,38.93,13,904,69,35.75,NA,0.383615819,4.234106505,2.564949357,S. occidentalis,Hypoxia
+3,17,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),109,41.16,M,N/A,40.3,13.5,904,65,36.82,39.46,0.470689655,4.17438727,2.602689685,S. occidentalis,Hypoxia
+4,18,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),93,41.16,F,Y,41.23,13,904,70,37.44,38.36,0.585714286,4.248495242,2.564949357,S. occidentalis,Hypoxia
+5,19,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),87,41.16,F,Y,38.26,13,904,70,34.58,36.14,0.334463277,4.248495242,2.564949357,S. occidentalis,Hypoxia
+6,27,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),126,41.16,M,N/A,38.58,19,904,73,32.47,34.19,0.591503268,4.290459441,2.944438979,S. occidentalis,Hypoxia
+7,28,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),110,41.16,M,N/A,39.79,15,904,70,35.52,35.85,0.554787234,4.248495242,2.708050201,S. occidentalis,Hypoxia
+8,29,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),103,41.16,F,N ,38.91,15,904,68,36.25,NA,0.410429448,4.219507705,2.708050201,S. occidentalis,Hypoxia
+9,30,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),110,41.16,F,Y,38.6,15.5,904,67,35.56,NA,0.453932584,4.204692619,2.740840024,S. occidentalis,Hypoxia
+10,31,S. occidentalis,Hospital Flats (HF),7/10/15,904,hypoxia (6%),13.4,41.16,M,N/A,37.55,24.5,904,74,NA,NA,0.369518717,4.304065093,3.198673118,S. occidentalis,Hypoxia
+11,38,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,hypoxia (6%),104,38.58,F,Y,38.33,12,1474,70,NA,NA,0.485380117,4.248495242,2.48490665,S. occidentalis,Hypoxia
+12,39,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,hypoxia (6%),123,38.58,M,N/A,38.15,20,1474,78,36.43,37.8,0.510429448,4.356708827,2.995732274,S. occidentalis,Hypoxia
+13,40,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,hypoxia (6%),101,38.58,F,Y,36.59,10.5,1474,64,31.31,34.55,0.389634146,4.158883083,2.351375257,S. occidentalis,Hypoxia
+14,41,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,hypoxia (6%),103,38.58,F,Y,37.65,11,1474,66,33.4,34.45,0.508387097,4.189654742,2.397895273,S. occidentalis,Hypoxia
+15,42,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,hypoxia (6%),104,38.58,M,N/A,36.96,12.5,1474,66,33.48,35.16,0.415286624,4.189654742,2.525728644,S. occidentalis,Hypoxia
+16,43,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,hypoxia (6%),86,38.58,F,Y,33.35,9,1474,63,31.89,32.36,0.318803419,4.143134726,2.197224577,S. occidentalis,Hypoxia
+17,69,S. occidentalis,Poison Creek (PC),7/12/15,2103,hypoxia (6%),73,35.82,M,N/A,35.53,5,2103,52,NA,NA,0.6375,3.951243719,1.609437912,S. occidentalis,Hypoxia
+18,71,S. occidentalis,Poison Creek (PC),7/12/15,2103,hypoxia (6%),94,35.82,F,N ,33.35,14.5,2103,83,NA,NA,0.368181818,4.418840608,2.674148649,S. occidentalis,Hypoxia
+19,72,S. occidentalis,Poison Creek (PC),7/12/15,2103,hypoxia (6%),119,35.82,F,Y,34.22,18,2103,73,30.48,NA,0.471774194,4.290459441,2.890371758,S. occidentalis,Hypoxia
+20,73,S. occidentalis,Poison Creek (PC),7/12/15,2103,hypoxia (6%),96,35.82,M,N/A,31.01,8.9,2103,89,29.87,NA,0.277477477,4.48863637,2.186051277,S. occidentalis,Hypoxia
+21,79,S. occidentalis,Poison Creek (PC),7/12/15,2103,hypoxia (6%),45,35.82,M,,32.85,19,2103,81,NA,NA,0.334722222,4.394449155,2.944438979,S. occidentalis,Hypoxia
+22,81,S. occidentalis,Poison Creek (PC),7/12/15,2103,hypoxia (6%),100,35.82,F,Y,36.37,10,2103,65,32.08,NA,0.398611111,4.17438727,2.302585093,S. occidentalis,Hypoxia
+23,8,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),75,144.06,F,N ,40.54,10.5,904,65,34.05,NA,0.508119658,4.17438727,2.351375257,S. occidentalis,Normoxia
+24,9,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),104,144.06,F,N ,42.68,16.5,904,74,33.85,41.21,0.594605809,4.304065093,2.803360381,S. occidentalis,Normoxia
+25,10,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),121,144.06,M,N/A,40.5,12,904,75,39.83,39.83,0.520960699,4.317488114,2.48490665,S. occidentalis,Normoxia
+26,11,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),105,144.06,F,Y,43.72,16,904,66,39.08,39.08,0.621238938,4.189654742,2.772588722,S. occidentalis,Normoxia
+27,12,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),107,144.06,M,N/A,42.73,13,904,68,36.08,39.83,0.577092511,4.219507705,2.564949357,S. occidentalis,Normoxia
+28,13,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),105,144.06,F,N ,42.28,10.5,904,69,38.6,40.4,0.607389163,4.234106505,2.351375257,S. occidentalis,Normoxia
+29,20,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),82,144.06,M,N/A,41.57,25.5,904,87,37.95,37.95,0.512301587,4.465908119,3.238678452,S. occidentalis,Normoxia
+30,21,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),102,144.06,F,Y,43.96,14,904,71,36.7,41.69,0.635930736,4.262679877,2.63905733,S. occidentalis,Normoxia
+31,22,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),98,144.06,F,N,43.5,15,904,71,37.6,37.6,0.625339367,4.262679877,2.708050201,S. occidentalis,Normoxia
+32,23,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),136,144.06,M,N/A,42.95,18,904,75,40.67,40.67,0.535930736,4.317488114,2.890371758,S. occidentalis,Normoxia
+33,24,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),99,144.06,M,N/A,40.98,15.5,904,74,35.34,38.16,0.557487923,4.304065093,2.740840024,S. occidentalis,Normoxia
+34,25,S. occidentalis,Hospital Flats (HF),7/10/15,904,normoxia (21%),116,144.06,M,N/A,41.18,14,904,72,38.66,38.66,0.446747967,4.276666119,2.63905733,S. occidentalis,Normoxia
+35,32,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),38,135.03,F,Y,43.57,8,1474,57,NA,NA,0.633898305,4.043051268,2.079441542,S. occidentalis,Normoxia
+36,33,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),114,135.03,M,N/A,44.49,17.5,1474,67,32.75,43.14,0.707327586,4.204692619,2.862200881,S. occidentalis,Normoxia
+37,34,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),82,135.03,F,Y,41.86,9,1474,59,33.79,35.19,0.573417722,4.077537444,2.197224577,S. occidentalis,Normoxia
+38,35,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),99,135.03,F,N,43.13,9,1474,60,34.5,38.98,0.614718615,4.094344562,2.197224577,S. occidentalis,Normoxia
+39,36,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),90,135.03,F,Y,43.06,12,1474,71,39.75,39.75,0.655092593,4.262679877,2.48490665,S. occidentalis,Normoxia
+40,37,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),104,135.03,F,N,42.79,11,1474,71,40.56,40.56,0.603265306,4.262679877,2.397895273,S. occidentalis,Normoxia
+41,44,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),104,135.03,F,Y,41.53,12,1474,72,41.29,41.29,0.571428571,4.276666119,2.48490665,S. occidentalis,Normoxia
+42,45,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),103,135.03,M,N/A,40.86,11.5,1474,66,38.48,38.84,0.581632653,4.189654742,2.442347035,S. occidentalis,Normoxia
+43,46,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),55,135.03,F,N,41.19,14.5,1474,76,NA,NA,0.497807018,4.33073334,2.674148649,S. occidentalis,Normoxia
+44,47,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),25,135.03,F,Y,42.12,6,1474,56,40.07,40.07,0.633170732,4.025351691,1.791759469,S. occidentalis,Normoxia
+45,48,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),108,135.03,M,N/A,43.89,12,1474,69,38.8,38.8,0.656734694,4.234106505,2.48490665,S. occidentalis,Normoxia
+46,49,S. occidentalis,Kern River Trailhead (KRT),7/11/15,1474,normoxia (21%),110,135.03,M,N/A,43.29,16,1474,69,37.21,37.21,0.540084388,4.234106505,2.772588722,S. occidentalis,Normoxia
+47,58,S. occidentalis,Poison Creek (PC),7/12/15,2103,normoxia (21%),117,125.37,F,Y,42.86,16.5,2103,81,40.05,40.05,0.722488038,4.394449155,2.803360381,S. occidentalis,Normoxia
+48,65,S. occidentalis,Poison Creek (PC),7/12/15,2103,normoxia (21%),120,125.37,F,Y,43.73,18,2103,82,34.17,36.29,0.711637931,4.406719247,2.890371758,S. occidentalis,Normoxia
+49,66,S. occidentalis,Poison Creek (PC),7/12/15,2103,normoxia (21%),73,125.37,M,N/A,43.34,7.5,2103,59,36.62,36.62,0.729716981,4.077537444,2.014903021,S. occidentalis,Normoxia
+50,67,S. occidentalis,Poison Creek (PC),7/12/15,2103,normoxia (21%),72,125.37,M,N/A,41.99,8,2103,62,36.78,39.05,0.565502183,4.127134385,2.079441542,S. occidentalis,Normoxia
+51,70,S. occidentalis,Poison Creek (PC),7/12/15,2103,normoxia (21%),94,125.37,M,N/A,42.06,9.5,2103,65,38.8,38.8,0.525777778,4.17438727,2.251291799,S. occidentalis,Normoxia
+52,50,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),88,35.82,M,N/A,39.05,8,2103,58,NA,NA,0.41047619,4.060443011,2.079441542,S. graciosus,Hypoxia
+53,51,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),57,35.82,F,Y,41.75,5.5,2103,50,34.74,34.76,0.685853659,3.912023005,1.704748092,S. graciosus,Hypoxia
+54,52,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),86,35.82,M,N/A,35.91,7,2103,57,33.77,35.6,0.374594595,4.043051268,1.945910149,S. graciosus,Hypoxia
+55,53,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),58,35.82,F,Y,33.29,6,2103,57,31.75,32.36,0.340140845,4.043051268,1.791759469,S. graciosus,Hypoxia
+56,54,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),73,35.82,F,Y,38.66,7.5,2103,59,NA,NA,0.512269939,4.077537444,2.014903021,S. graciosus,Hypoxia
+57,64,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),72,35.82,M,N/A,36.47,8.5,2103,62,31.93,32.34,0.593670886,4.127134385,2.140066163,S. graciosus,Hypoxia
+58,68,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),71,35.82,M,N/A,36.02,7.5,2103,58,34.94,35.53,0.552083333,4.060443011,2.014903021,S. graciosus,Hypoxia
+59,74,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),76,35.82,F,N ,40.58,6,2103,58,NA,NA,0.564971751,4.060443011,1.791759469,S. graciosus,Hypoxia
+60,75,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),64,35.82,F,Y,36.76,4.5,2103,53,NA,NA,0.538461538,3.970291914,1.504077397,S. graciosus,Hypoxia
+61,76,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),64,35.82,M,,37.26,7,2103,56,NA,NA,0.348587571,4.025351691,1.945910149,S. graciosus,Hypoxia
+62,78,S. graciosus,Poison Creek (PC),7/12/15,2103,hypoxia (6%),63,35.82,M,,36.39,7.5,2103,59,NA,NA,0.425316456,4.077537444,2.014903021,S. graciosus,Hypoxia
+63,88,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),52,33.48,F,N ,35.75,7.5,2682,60,NA,NA,0.606790123,4.094344562,2.014903021,S. graciosus,Hypoxia
+64,89,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),72,33.48,F,N ,33.34,8,2682,61,30.09,30.5,0.399166667,4.110873864,2.079441542,S. graciosus,Hypoxia
+65,90,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),37,33.48,F,Y,37.27,5.5,2682,54,NA,NA,0.602362205,3.988984047,1.704748092,S. graciosus,Hypoxia
+66,91,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),81,33.48,M,N/A,36.23,7.4,2682,59,NA,NA,0.556115108,4.077537444,2.00148,S. graciosus,Hypoxia
+67,92,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),64,33.48,M,N/A,34.05,8.5,2682,61,NA,NA,0.294444444,4.110873864,2.140066163,S. graciosus,Hypoxia
+68,93,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),70,33.48,M,N/A,35.06,7,2682,59,NA,NA,0.489411765,4.077537444,1.945910149,S. graciosus,Hypoxia
+69,100,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),41,33.48,M,N/A,32.21,5.5,2682,56,NA,NA,0.310714286,4.025351691,1.704748092,S. graciosus,Hypoxia
+70,101,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),65,33.48,F,N ,37.2,4,2682,51,NA,NA,0.795890411,3.931825633,1.386294361,S. graciosus,Hypoxia
+71,102,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),65,33.48,M,N/A,33.8,8.5,2682,59,NA,NA,0.554716981,4.077537444,2.140066163,S. graciosus,Hypoxia
+72,103,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),54,33.48,M,N/A,33.76,8,2682,58,29.72,31.06,0.378632479,4.060443011,2.079441542,S. graciosus,Hypoxia
+73,104,S. graciosus,Round Meadow (RM),7/13/15,2682,hypoxia (6%),64,33.48,M,N/A,32.84,7.5,2682,57,29.48,NA,0.458878505,4.043051268,2.014903021,S. graciosus,Hypoxia
+74,2,S. graciosus,Poison Creek (PC),7/9/15,2103,normoxia (21%),55,125.37,F,Y,42.87,7,2103,55,39.16,39.16,0.498689956,4.007333185,1.945910149,S. graciosus,Normoxia
+75,3,S. graciosus,Poison Creek (PC),7/9/15,2103,normoxia (21%),80,125.37,M,N/A,40.57,8.5,2103,55,38.13,38.13,0.328151261,4.007333185,2.140066163,S. graciosus,Normoxia
+76,4,S. graciosus,Poison Creek (PC),7/9/15,2103,normoxia (21%),75,125.37,M,N/A,43.64,6.5,2103,55,38.77,38.93,0.575565611,4.007333185,1.871802177,S. graciosus,Normoxia
+77,5,S. graciosus,Poison Creek (PC),7/9/15,2103,normoxia (21%),70,125.37,M,N/A,42.68,9,2103,60,40.96,40.96,0.461206897,4.094344562,2.197224577,S. graciosus,Normoxia
+78,6,S. graciosus,Poison Creek (PC),7/9/15,2103,normoxia (21%),70,125.37,F,N ,39.64,6,2103,55,37.19,37.33,0.426612903,4.007333185,1.791759469,S. graciosus,Normoxia
+79,7,S. graciosus,Poison Creek (PC),7/9/15,2103,normoxia (21%),70,125.37,F,N ,42.45,7,2103,50,38.39,38.39,0.562549801,3.912023005,1.945910149,S. graciosus,Normoxia
+80,56,S. graciosus,Poison Creek (PC),7/12/15,2103,normoxia (21%),78,125.37,F,N,44.55,6,2103,58,32.15,36.04,0.649583333,4.060443011,1.791759469,S. graciosus,Normoxia
+81,59,S. graciosus,Poison Creek (PC),7/12/15,2103,normoxia (21%),22,125.37,F,Y,43.9,6.5,2103,57,33.2,33.84,0.628063241,4.043051268,1.871802177,S. graciosus,Normoxia
+82,60,S. graciosus,Poison Creek (PC),7/12/15,2103,normoxia (21%),68,125.37,M,N/A,40.75,4.5,2103,48,35.8,35.8,0.74125,3.871201011,1.504077397,S. graciosus,Normoxia
+83,61,S. graciosus,Poison Creek (PC),7/12/15,2103,normoxia (21%),76,125.37,F,Y,42.92,6.5,2103,56,36.92,36.92,0.654054054,4.025351691,1.871802177,S. graciosus,Normoxia
+84,82,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),62,117.18,F,N ,42.17,5,2682,52,36.79,36.79,0.608583691,3.951243719,1.609437912,S. graciosus,Normoxia
+85,83,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),63,117.18,F,Y,41.12,5.5,2682,51,37.18,38.57,0.684269663,3.931825633,1.704748092,S. graciosus,Normoxia
+86,84,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),62,117.18,F,N ,43.15,8,2682,55,40.75,40.75,0.568,4.007333185,2.079441542,S. graciosus,Normoxia
+87,85,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),55,117.18,F,N ,42.97,6.5,2682,61,34.74,35.44,0.618333333,4.110873864,1.871802177,S. graciosus,Normoxia
+88,86,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),69,117.18,F,N ,42.34,6,2682,57,34.31,36.89,0.48,4.043051268,1.791759469,S. graciosus,Normoxia
+89,94,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),68,117.18,F,Y,39.82,6,2682,55,NA,NA,0.489189189,4.007333185,1.791759469,S. graciosus,Normoxia
+90,95,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),68,117.18,F,Y,42.31,7.5,2682,57,34.94,37.78,0.789583333,4.043051268,2.014903021,S. graciosus,Normoxia
+91,96,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),78,117.18,M,N/A,40.54,7.5,2682,56,34.54,38.93,0.673096447,4.025351691,2.014903021,S. graciosus,Normoxia
+92,97,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),67,117.18,M,N/A,41.78,7.5,2682,57,33.89,33.89,0.592021277,4.043051268,2.014903021,S. graciosus,Normoxia
+93,98,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),77,117.18,M,N/A,43.13,6,2682,54,36.7,37.07,0.680454545,3.988984047,1.791759469,S. graciosus,Normoxia
+94,99,S. graciosus,Round Meadow (RM),7/13/15,2682,normoxia (21%),66,117.18,F,Y,42.37,5,2682,53,36.35,36.35,0.617741935,3.970291914,1.609437912,S. graciosus,Normoxia
+95,32,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),70,125.37,F,Y,43.93,6,2100,54,36.31,36.31,0.64806867,3.988984047,1.791759469,S. graciosus,Normoxia
+96,33,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),74,125.37,F,Y,42.24,6.5,2100,53,32.24,35.18,0.533195021,3.970291914,1.871802177,S. graciosus,Normoxia
+97,34,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),77,125.37,M,N/A,42.8,8,2100,57,37.79,37.79,0.583690987,4.043051268,2.079441542,S. graciosus,Normoxia
+98,35,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),67,125.37,F,Y,43.37,5,2100,53,33.97,34.76,0.627192982,3.970291914,1.609437912,S. graciosus,Normoxia
+99,36,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),63,125.37,M,N/A,43.92,8,2100,61,39.53,39.53,0.631924883,4.110873864,2.079441542,S. graciosus,Normoxia
+100,37,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),68,125.37,M,N/A,37.13,8.5,2100,60,32.57,32.57,0.343378995,4.094344562,2.140066163,S. graciosus,Normoxia
+101,38,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),75,125.37,F,Y,40.03,7,2100,58,33.51,39.72,0.491826923,4.060443011,1.945910149,S. graciosus,Normoxia
+102,39,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),76,125.37,M,Y,44.56,6.5,2100,56,37.04,37.04,0.606779661,4.025351691,1.871802177,S. graciosus,Normoxia
+103,40,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),27,125.37,F,Y,41.32,7,2100,61,38.77,38.77,0.645930233,4.110873864,1.945910149,S. graciosus,Normoxia
+104,41,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),73,125.37,M,Y,43.72,7.5,2100,58,35.1,35.1,0.546218487,4.060443011,2.014903021,S. graciosus,Normoxia
+105,42,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),74,125.37,F,Y,43,7,2100,57,41.65,41.65,0.57535545,4.043051268,1.945910149,S. graciosus,Normoxia
+106,43,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),83,125.37,M,N/A,35.93,8.5,2100,61,NA,NA,0.35617284,4.110873864,2.140066163,S. graciosus,Normoxia
+107,44,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),79,125.37,F,Y,42.89,8,2100,57,35.97,39.4,0.53605948,4.043051268,2.079441542,S. graciosus,Normoxia
+108,45,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),50,125.37,M,N/A,45.8,7.5,2100,56,37.43,37.43,0.628846154,4.025351691,2.014903021,S. graciosus,Normoxia
+109,46,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),60,125.37,F,N ,44.29,5.5,2100,53,36.15,36.15,0.758373206,3.970291914,1.704748092,S. graciosus,Normoxia
+110,47,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),56,125.37,M,N/A,43.07,7.5,2100,58,35.58,36.11,0.704545455,4.060443011,2.014903021,S. graciosus,Normoxia
+111,48,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),65,125.37,M,N/A,43.39,9.5,2100,62,35.29,37.55,0.588702929,4.127134385,2.251291799,S. graciosus,Normoxia
+112,49,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),29,125.37,F,Y,42.12,6,2100,58,34.69,36.29,0.641826923,4.060443011,1.791759469,S. graciosus,Normoxia
+113,50,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),42,125.37,M,Y,44.53,7,2100,58,36.94,36.94,0.501831069,4.060443011,1.945910149,S. graciosus,Normoxia
+114,51,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),78,125.37,F,Y,44.35,7.5,2100,60,37.81,37.81,0.559504644,4.094344562,2.014903021,S. graciosus,Normoxia
+115,52,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),79,125.37,M,N/A,42.93,9.5,2100,60,38.22,38.22,0.659771863,4.094344562,2.251291799,S. graciosus,Normoxia
+116,53,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),74,125.37,M,N/A,42.71,9,2100,61,39.7,39.7,0.514786674,4.110873864,2.197224577,S. graciosus,Normoxia
+117,54,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),58,125.37,F,Y,43.98,6.5,2100,60,36.54,42.51,0.66815331,4.094344562,1.871802177,S. graciosus,Normoxia
+118,55,S. graciosus,Poison Creek,7/16/16,2100,normoxia (21%),51,125.37,F,Y,42.71,6.5,2100,58,32.7,38.22,0.372322609,4.060443011,1.871802177,S. graciosus,Normoxia
+119,56,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),56,117.18,F,Y,40.33,6,2682,61,32.62,32.62,0.670056497,4.110873864,1.791759469,S. graciosus,Normoxia
+120,57,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),84,117.18,M,N/A,40.3,7,2682,56,34.41,39.46,0.671597633,4.025351691,1.945910149,S. graciosus,Normoxia
+121,58,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),75,117.18,F,Y,41.9,7.5,2682,53,35.66,35.66,0.560962567,3.970291914,2.014903021,S. graciosus,Normoxia
+122,59,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),85,117.18,M,N/A,41.93,7.5,2682,53,35.93,35.93,0.477941176,3.970291914,2.014903021,S. graciosus,Normoxia
+123,60,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),67,117.18,F,Y,38.43,6,2682,53,NA,NA,0.437234043,3.970291914,1.791759469,S. graciosus,Normoxia
+124,61,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),86,117.18,M,N/A,41.43,9,2682,53,39.06,39.06,0.454676259,3.970291914,2.197224577,S. graciosus,Normoxia
+125,62,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),69,117.18,F,Y,40.2,7.5,2682,56,35.49,35.61,0.641269841,4.025351691,2.014903021,S. graciosus,Normoxia
+126,63,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),77,117.18,F,Y,42.15,8.5,2682,60,34.69,34.69,0.789772727,4.094344562,2.140066163,S. graciosus,Normoxia
+127,64,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),68,117.18,M,N/A,43.27,6,2682,52,35.49,35.84,0.542570281,3.951243719,1.791759469,S. graciosus,Normoxia
+128,65,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),85,117.18,M,N/A,43.86,8,2682,56,36.08,37.73,0.643842365,4.025351691,2.079441542,S. graciosus,Normoxia
+129,66,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),64,117.18,F,Y,41.27,8,2682,58,34.48,35.35,0.635545024,4.060443011,2.079441542,S. graciosus,Normoxia
+130,67,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),81,117.18,F,Y,43.56,7,2682,58,40.11,40.11,0.696059113,4.060443011,1.945910149,S. graciosus,Normoxia
+131,68,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),89,117.18,M,N/A,43.76,7,2682,54,37.76,39.1,0.459607843,3.988984047,1.945910149,S. graciosus,Normoxia
+132,69,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),65,117.18,M,N/A,44.41,8,2682,55,37.06,37.06,0.587159533,4.007333185,2.079441542,S. graciosus,Normoxia
+133,70,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),79,117.18,F,N ,44.45,5,2682,51,38.24,38.24,0.629166667,3.931825633,1.609437912,S. graciosus,Normoxia
+134,71,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),74,117.18,M,N/A,43.95,9.5,2682,58,37.1,37.37,0.63287037,4.060443011,2.251291799,S. graciosus,Normoxia
+135,72,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),64,117.18,M,N/A,44.8,7,2682,57,32.57,32.57,0.500595238,4.043051268,1.945910149,S. graciosus,Normoxia
+136,73,S. graciosus,Round Meadow,7/17/16,2682,normoxia (21%),65,117.18,F,Y,43.81,5.5,2682,53,34.25,34.25,0.645258621,3.970291914,1.704748092,S. graciosus,Normoxia
+137,120,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),81,160,M,N/A,42.18,12,0,71,36.26,41.9,0.495703125,4.262679877,2.48490665,S. occidentalis,Normoxia
+138,133,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),64,160,F,?,41.32,11.5,0,69,36.8,40.93,0.670857143,4.234106505,2.442347035,S. occidentalis,Normoxia
+139,181,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),85,160,F,?,44.32,9,0,63,39.27,39.27,0.501090909,4.143134726,2.197224577,S. occidentalis,Normoxia
+140,229,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),95,160,F,?,43.81,13.5,0,67,41.86,41.86,0.640243902,4.204692619,2.602689685,S. occidentalis,Normoxia
+141,230,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),90,160,F,?,41.92,12.5,0,66,39.77,39.77,0.637234043,4.189654742,2.525728644,S. occidentalis,Normoxia
+142,231,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),66,160,F,?,44.93,14,0,72,35.18,35.62,0.712711864,4.276666119,2.63905733,S. occidentalis,Normoxia
+143,232,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),101,160,M,N/A,42.63,15,0,70,40.93,40.93,0.633632287,4.248495242,2.708050201,S. occidentalis,Normoxia
+144,233,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),90,160,M,N/A,42.17,15.5,0,70,NA,NA,0.436956522,4.248495242,2.740840024,S. occidentalis,Normoxia
+145,234,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),95,160,M,N/A,38.05,13,0,68,35.56,35.82,0.577707006,4.219507705,2.564949357,S. occidentalis,Normoxia
+146,236,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),85,160,M,N/A,42.17,18.5,0,75,39.09,39.09,0.601486989,4.317488114,2.917770732,S. occidentalis,Normoxia
+147,237,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),99,160,M,N/A,35.76,14,0,67,NA,NA,0.463681592,4.204692619,2.63905733,S. occidentalis,Normoxia
+148,238,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),91,160,M,N/A,40.27,16.5,0,70,NA,NA,0.58553719,4.248495242,2.803360381,S. occidentalis,Normoxia
+149,240,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),98,160,M,N/A,41.53,14,0,71,37.29,39.88,0.541702128,4.262679877,2.63905733,S. occidentalis,Normoxia
+150,241,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),81,160,M,N/A,39.31,9,0,65,38.25,38.55,0.617088608,4.17438727,2.197224577,S. occidentalis,Normoxia
+151,242,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),91,160,M,N/A,40.4,12,0,66,NA,NA,0.522509225,4.189654742,2.48490665,S. occidentalis,Normoxia
+152,243,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),94,160,M,N/A,42.98,11.5,0,66,41.48,41.6,0.614644351,4.189654742,2.442347035,S. occidentalis,Normoxia
+153,251,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),98,160,M,N/A,41.15,16.5,0,70,38.45,NA,0.562698413,4.248495242,2.803360381,S. occidentalis,Normoxia
+154,253,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),99,160,M,N/A,39.57,14,0,72,38.22,38.22,0.576804124,4.276666119,2.63905733,S. occidentalis,Normoxia
+155,255,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),89,160,M,N/A,40.04,16.5,0,73,34.86,34.86,0.502857143,4.290459441,2.803360381,S. occidentalis,Normoxia
+156,265,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),84,160,M,N/A,43.43,10,0,59,39.76,39.76,0.552767528,4.077537444,2.302585093,S. occidentalis,Normoxia
+157,735,S. occidentalis,Poly Canyon/Logging Club,spring 2016,0,normoxia (21%),104,160,M,N/A,43.04,15,0,71,41,42.13,0.476678445,4.262679877,2.708050201,S. occidentalis,Normoxia
+158,210,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,hypoxia (6%),90,45.6,F,N ,37.36,11.5,0,66,34.42,36.07,0.506296296,4.189654742,2.442347035,S. occidentalis,Hypoxia
+159,200,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),51,45.6,M,N/A,33.07,14.5,0,75,30.59,30.78,0.664135021,4.317488114,2.674148649,S. occidentalis,Hypoxia
+160,199,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),93,45.6,F,Y,33.25,12,0,74,NA,NA,0.525680934,4.304065093,2.48490665,S. occidentalis,Hypoxia
+161,198,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,hypoxia (6%),100,45.6,M,N/A,36.36,13,0,65,NA,35.31,0.609677419,4.17438727,2.564949357,S. occidentalis,Hypoxia
+162,197,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),98,45.6,M,N/A,31.48,13,0,73,NA,NA,0.603781513,4.290459441,2.564949357,S. occidentalis,Hypoxia
+163,196,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),86,45.6,F,Y,40.06,10,0,65,35.99,36.2,0.580084746,4.17438727,2.302585093,S. occidentalis,Hypoxia
+164,175,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,hypoxia (6%),83,45.6,F,N ,34.46,9,0,65,NA,NA,0.633043478,4.17438727,2.197224577,S. occidentalis,Hypoxia
+165,174,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),74,45.6,F,Y,34.43,12,0,73,NA,33.59,0.547330961,4.290459441,2.48490665,S. occidentalis,Hypoxia
+166,173,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),88,45.6,M,N/A,36.36,13.5,0,72,31.68,NA,0.530890052,4.276666119,2.602689685,S. occidentalis,Hypoxia
+167,172,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),105,45.6,M,N/A,34.87,15,0,71,29.68,29.82,0.567605634,4.262679877,2.708050201,S. occidentalis,Hypoxia
+168,171,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),86,45.6,F,N,34.08,11,0,64,NA,NA,0.456457565,4.158883083,2.397895273,S. occidentalis,Hypoxia
+169,170,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),80,45.6,F,Y,41.31,7.5,0,63,NA,33.85,0.678455285,4.143134726,2.014903021,S. occidentalis,Hypoxia
+170,169,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),85,45.6,M,N/A,35.44,9,0,62,28.2,30.29,0.622119816,4.127134385,2.197224577,S. occidentalis,Hypoxia
+171,168,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),59,45.6,F,Y,36,10.5,0,71,29.92,34.05,0.58,4.262679877,2.351375257,S. occidentalis,Hypoxia
+172,167,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),70,45.6,F,Y,34.6,10.5,0,70,NA,33.92,0.560852713,4.248495242,2.351375257,S. occidentalis,Hypoxia
+173,166,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),97,45.6,M,N/A,31.43,11.5,0,69,NA,NA,0.512544803,4.234106505,2.442347035,S. occidentalis,Hypoxia
+174,165,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),100,45.6,M,N/A,33.2,12,0,69,NA,NA,0.585,4.234106505,2.48490665,S. occidentalis,Hypoxia
+175,164,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),49,45.6,F,Y,32.02,11.5,0,69,NA,NA,0.631696429,4.234106505,2.442347035,S. occidentalis,Hypoxia
+176,163,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),96,45.6,M,N/A,36.53,10,0,62,NA,33.01,0.588516746,4.127134385,2.302585093,S. occidentalis,Hypoxia
+177,162,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),101,45.6,M,N/A,35.1,12.5,0,68,31.54,NA,0.613004484,4.219507705,2.525728644,S. occidentalis,Hypoxia
+178,161,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,hypoxia (6%),95,45.6,F,Y,30.54,12.5,0,68,30.05,NA,0.338095238,4.219507705,2.525728644,S. occidentalis,Hypoxia
+179,160,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),76,45.6,M,N/A,35.15,9.5,0,67,33.11,33.7,0.455504587,4.204692619,2.251291799,S. occidentalis,Hypoxia
+180,158,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,hypoxia (6%),75,45.6,M,N/A,39.31,7.5,0,57,NA,NA,0.611403509,4.043051268,2.014903021,S. occidentalis,Hypoxia
+181,157,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,hypoxia (6%),66,45.6,F,N ,32.98,9,0,67,NA,NA,0.608032129,4.204692619,2.197224577,S. occidentalis,Hypoxia
+182,156,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,hypoxia (6%),70,45.6,M,N/A,36.39,10,0,66,NA,34.79,0.516828479,4.189654742,2.302585093,S. occidentalis,Hypoxia
+183,209,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),74,160,F,N ,43.86,9.5,0,62,34.12,41.61,0.449537037,4.127134385,2.251291799,S. occidentalis,Normoxia
+184,208,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),56,160,F,N ,39.08,9,0,62,35.54,39.53,0.651320755,4.127134385,2.197224577,S. occidentalis,Normoxia
+185,207,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),98,160,M,N/A,39.19,9,0,59,33.69,NA,0.522330097,4.077537444,2.197224577,S. occidentalis,Normoxia
+186,206,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),62,160,F,N ,43.53,8.5,0,57,35.69,39.2,0.3772,4.043051268,2.140066163,S. occidentalis,Normoxia
+187,190,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),84,160,M,N/A,36.8,13.5,0,66,NA,36.38,0.20173913,4.189654742,2.602689685,S. occidentalis,Normoxia
+188,189,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),100,160,M,N/A,40.48,9,0,65,37.41,37.41,0.486896552,4.17438727,2.197224577,S. occidentalis,Normoxia
+189,188,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,normoxia (21%),66,160,M,N/A,40.59,13.5,0,76,32.86,37.18,0.389312977,4.33073334,2.602689685,S. occidentalis,Normoxia
+190,187,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,normoxia (21%),94,160,F,Y,37.06,13,0,74,NA,NA,0.475352113,4.304065093,2.564949357,S. occidentalis,Normoxia
+191,186,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,normoxia (21%),53,160,M,N/A,43.57,14,0,70,40.01,42.37,0.369298246,4.248495242,2.63905733,S. occidentalis,Normoxia
+192,180,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),92,160,F,N,41.84,10.5,0,70,39.3,39.3,0.470588235,4.248495242,2.351375257,S. occidentalis,Normoxia
+193,179,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),75,160,M,N/A,43.35,10.5,0,65,33.93,33.93,0.595151515,4.17438727,2.351375257,S. occidentalis,Normoxia
+194,178,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,normoxia (21%),98,160,M,N/A,41.81,12,0,65,37.78,37.78,0.748214286,4.17438727,2.48490665,S. occidentalis,Normoxia
+195,177,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),90,160,F,N ,40.33,12,0,70,34.54,39.52,0.365789474,4.248495242,2.48490665,S. occidentalis,Normoxia
+196,176,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,normoxia (21%),74,160,M,N/A,38.33,14.5,0,69,32.87,34,0.391666667,4.234106505,2.674148649,S. occidentalis,Normoxia
+197,150,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),92,160,M,N/A,39.19,11,0,68,31,31.61,0.325581395,4.219507705,2.397895273,S. occidentalis,Normoxia
+198,149,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),101,160,M,N/A,42.88,12.5,0,65,33.67,40.31,0.580582524,4.17438727,2.525728644,S. occidentalis,Normoxia
+199,148,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,normoxia (21%),52,160,M,N/A,42.67,12.5,0,68,34.06,34.73,0.610344828,4.219507705,2.525728644,S. occidentalis,Normoxia
+200,147,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),87,160,F,Y,43.06,8.5,0,64,36.48,37.38,0.285714286,4.158883083,2.140066163,S. occidentalis,Normoxia
+201,146,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),88,160,F,N ,41.07,10.5,0,64,32.45,38.56,0.285714286,4.158883083,2.351375257,S. occidentalis,Normoxia
+202,140,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,normoxia (21%),61,160,M,N/A,42.99,11,0,63,36.09,36.31,0.433333333,4.143134726,2.397895273,S. occidentalis,Normoxia
+203,139,S. occidentalis,Poly Canyon/Logging Club,7/28/15,0,normoxia (21%),98,160,M,N/A,40.03,13.5,0,68,31.05,32.14,0.27804878,4.219507705,2.602689685,S. occidentalis,Normoxia
+204,138,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),69,160,F,Y,40.46,13.5,0,68,39.12,39.12,0.365217391,4.219507705,2.602689685,S. occidentalis,Normoxia
+205,137,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),87,160,F,Y,39.43,9,0,63,33.99,34.63,0.380813953,4.143134726,2.197224577,S. occidentalis,Normoxia
+206,136,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),78,160,F,N ,44.01,12,0,68,38.47,39.17,0.485,4.219507705,2.48490665,S. occidentalis,Normoxia
+207,130,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),96,160,M,N/A,43.91,15,0,67,36.99,36.99,0.59025641,4.204692619,2.708050201,S. occidentalis,Normoxia
+208,129,S. occidentalis,Poly Canyon/Logging Club,7/31/15,0,normoxia (21%),83,160,F,N,39.18,8.5,0,63,32.03,32.03,NA,4.143134726,2.140066163,S. occidentalis,Normoxia
+209,128,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),91,160,F,N ,41.28,11,0,63,31.55,40.73,0.46,4.143134726,2.397895273,S. occidentalis,Normoxia
+210,127,S. occidentalis,Poly Canyon/Logging Club,7/27/15,0,normoxia (21%),90,160,M,N/A,42.17,10,0,62,NA,37.64,0.440229885,4.127134385,2.302585093,S. occidentalis,Normoxia
+211,126,S. occidentalis,Poly Canyon/Logging Club,8/3/15,0,normoxia (21%),101,160,M,N/A,43.24,11,0,66,41.32,41.32,0.394413408,4.189654742,2.397895273,S. occidentalis,Normoxia
+212,179,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),93,160,F,Y,42.19,10.5,0,70,42.76,43.06,0.590987124,4.248495242,2.351375257,S. occidentalis,Normoxia
+213,346,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),95,160,M,N/A,42.95,10.5,0,68,33.41,33.41,0.640384615,4.219507705,2.351375257,S. occidentalis,Normoxia
+214,347,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),88,160,F,Y,38.91,11.5,0,64,NA,NA,0.554644809,4.158883083,2.442347035,S. occidentalis,Normoxia
+215,348,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),80,160,F,Y,44.1,11.5,0,63,36.3,36.3,0.602766798,4.143134726,2.442347035,S. occidentalis,Normoxia
+216,349,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),99,160,M,N/A,39.11,12,0,66,NA,NA,0.418560606,4.189654742,2.48490665,S. occidentalis,Normoxia
+217,350,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),98,160,F,N,41.86,10,0,65,36.57,38.3,0.625,4.17438727,2.302585093,S. occidentalis,Normoxia
+218,352,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),55,160,M,N/A,42.19,13,0,68,35.09,35.09,0.602631579,4.219507705,2.564949357,S. occidentalis,Normoxia
+219,353,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),50,160,F,?,42.1,9.5,0,63,NA,38.05,0.507539683,4.143134726,2.251291799,S. occidentalis,Normoxia
+220,354,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),85,160,F,Y,41.68,9,0,65,NA,30.48,0.52962963,4.17438727,2.197224577,S. occidentalis,Normoxia
+221,381,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),105,160,M,N/A,41.05,13,0,71,NA,37.68,0.521428571,4.262679877,2.564949357,S. occidentalis,Normoxia
+222,426,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),50,160,M,N/A,40.15,8.5,0,60,NA,36.53,0.570833333,4.094344562,2.140066163,S. occidentalis,Normoxia
+223,427,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),86,160,F,Y,45.63,10,0,64,37.21,37.78,0.702232143,4.158883083,2.302585093,S. occidentalis,Normoxia
+224,428,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),67,160,F,Y,43.98,11,0,68,31.78,32.34,0.539754098,4.219507705,2.397895273,S. occidentalis,Normoxia
+225,429,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),85,160,M,N/A,44.15,12,0,68,NA,43.48,0.51697417,4.219507705,2.48490665,S. occidentalis,Normoxia
+226,430,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),70,160,M,N/A,42.82,10.5,0,65,35.44,35.65,0.457664234,4.17438727,2.351375257,S. occidentalis,Normoxia
+227,431,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),82,160,F,Y,34.27,9.5,0,68,NA,NA,0.433333333,4.219507705,2.251291799,S. occidentalis,Normoxia
+228,432,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),90,160,M,N/A,42.43,11,0,68,36.78,36.78,0.645145631,4.219507705,2.397895273,S. occidentalis,Normoxia
+229,434,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),59,160,M,N/A,42.65,10,0,66,38.31,39.21,0.577433628,4.189654742,2.302585093,S. occidentalis,Normoxia
+230,435,S. occidentalis,Poly Canyon/Logging Club,summer 2016,0,normoxia (21%),95,160,F,Y,40.89,12.5,0,69,NA,NA,0.585714286,4.234106505,2.525728644,S. occidentalis,Normoxia
+231,10,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),65,40,F,Y,36.45,20,1646,79,33.84,33.84,0.478813559,4.369447852,2.995732274,S. jarroviii,Hypoxia
+232,17,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),115,40,M,N/A,29.13,20.5,1646,83,NA,NA,0.093939394,4.418840608,3.020424886,S. jarroviii,Hypoxia
+233,18,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),112,40,M,N/A,32.65,21,1646,78,30.27,31.27,0.301923077,4.356708827,3.044522438,S. jarroviii,Hypoxia
+234,23,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),12,40,F,?,30.27,15,1646,76,28.97,28.97,0.131818182,4.33073334,2.708050201,S. jarroviii,Hypoxia
+235,24,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),79,40,F,N ,31.81,15,1646,73,31.39,31.39,0.256097561,4.290459441,2.708050201,S. jarroviii,Hypoxia
+236,28,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),74,40,F,N/A,33.32,5.5,1646,53,31.37,31.37,0.460638298,3.970291914,1.704748092,S. jarroviii,Hypoxia
+237,30,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),18,40,F,N/A,32.59,5,1646,51,31.91,NA,0.474285714,3.931825633,1.609437912,S. jarroviii,Hypoxia
+238,32,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),44,40,M,N/A,34.44,5.5,1646,52,32.28,NA,0.51375,3.951243719,1.704748092,S. jarroviii,Hypoxia
+239,38,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),70,40,F,N/A,31.77,4,1646,50,NA,NA,0.285185185,3.912023005,1.386294361,S. jarroviii,Hypoxia
+240,43,S. jarrovii,SWRS,8/2/16,1646,hypoxia (6.4%),65,40,F,N/A,32.27,4.5,1646,48,NA,NA,0.467307692,3.871201011,1.504077397,S. jarroviii,Hypoxia
+241,49,S. jarrovii,SWRS,8/3/16,1646,hypoxia (6.4%),105,40,M,N/A,29.41,14,1646,73,NA,NA,0.118181818,4.290459441,2.63905733,S. jarroviii,Hypoxia
+242,51,S. jarrovii,SWRS,8/3/16,1646,hypoxia (6.4%),80,40,M,N/A,31.63,13,1646,70,30.03,31.19,0.308139535,4.248495242,2.564949357,S. jarroviii,Hypoxia
+243,52,S. jarrovii,SWRS,8/3/16,1646,hypoxia (6.4%),98,40,F,N ,31.44,12,1646,63,29.67,31.13,0.293333333,4.143134726,2.48490665,S. jarroviii,Hypoxia
+244,55,S. jarrovii,SWRS,8/3/16,1646,hypoxia (6.4%),94,40,F,Y,30.96,10.5,1646,63,28.72,NA,0.518681319,4.143134726,2.351375257,S. jarroviii,Hypoxia
+245,57,S. jarrovii,SWRS,8/3/16,1646,hypoxia (6.4%),30,40,F,N ,29.5,15,1646,78,NA,NA,0.202380952,4.356708827,2.708050201,S. jarroviii,Hypoxia
+246,59,S. jarrovii,SWRS,8/3/16,1646,hypoxia (6.4%),55,40,F,N ,28.27,16,1646,73,28.29,NA,NA,4.290459441,2.772588722,S. jarroviii,Hypoxia
+247,60,S. jarrovii,SWRS,8/3/16,1646,hypoxia (6.4%),103,40,M,N/A,29.12,14.5,1646,69,NA,NA,NA,4.234106505,2.674148649,S. jarroviii,Hypoxia
+248,74,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),81,40,M,N/A,30.12,8.5,1646,62,29.87,NA,0.093220339,4.127134385,2.140066163,S. jarroviii,Hypoxia
+249,75,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),91,40,M,N/A,28.9,10.5,1646,65,NA,NA,NA,4.17438727,2.351375257,S. jarroviii,Hypoxia
+250,76,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),92,40,M,N/A,28.99,22,1646,82,NA,NA,0.013043478,4.406719247,3.091042453,S. jarroviii,Hypoxia
+251,77,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),71,40,M,N/A,29.32,18,1646,78,NA,NA,NA,4.356708827,2.890371758,S. jarroviii,Hypoxia
+252,81,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),19,40,M,N/A,29.08,15,1646,74,NA,NA,NA,4.304065093,2.708050201,S. jarroviii,Hypoxia
+253,82,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),71,40,F,N ,28.97,14,1646,71,NA,NA,0.037837838,4.262679877,2.63905733,S. jarroviii,Hypoxia
+254,83,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),82,40,F,N ,29.24,8.5,1646,61,NA,NA,0.110204082,4.110873864,2.140066163,S. jarroviii,Hypoxia
+255,86,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),102,40,M,N/A,29.29,17,1646,77,28.97,NA,0.210526316,4.343805422,2.833213344,S. jarroviii,Hypoxia
+256,93,S. jarrovii,SWRS,8/4/16,1646,hypoxia (6.4%),103,40,M,N/A,29.78,25,1646,87,NA,NA,0.169767442,4.465908119,3.218875825,S. jarroviii,Hypoxia
+257,2,S. jarrovii,SWRS,8/1/16,1646,normoxia (21%),76,131.25,F,Y,38.01,5.5,1646,53,33.26,37.08,0.410204082,3.970291914,1.704748092,S. jarroviii,Normoxia
+258,12,S. jarrovii,SWRS,8/1/16,1646,normoxia (21%),76,131.25,F,N ,42.08,5.5,1646,53,32.86,38.77,0.497584541,3.970291914,1.704748092,S. jarroviii,Normoxia
+259,20,S. jarrovii,SWRS,8/1/16,1646,normoxia (21%),76,131.25,M,N/A,42.34,6,1646,51,31.83,34.51,0.550505051,3.931825633,1.791759469,S. jarroviii,Normoxia
+260,25,S. jarrovii,SWRS,8/2/16,1646,normoxia (21%),67,131.25,F,N/A,37.93,4.5,1646,48,33.53,33.53,0.546715328,3.871201011,1.504077397,S. jarroviii,Normoxia
+261,45,S. jarrovii,SWRS,8/2/16,1646,normoxia (21%),107,131.25,F,N/A,37.32,3.5,1646,45,29.37,35.88,0.62826087,3.80666249,1.252762968,S. jarroviii,Normoxia
+262,46,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),74,131.25,F,N ,37.37,10,1646,63,31.56,32.31,0.463870968,4.143134726,2.302585093,S. jarroviii,Normoxia
+263,47,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),102,131.25,M,N/A,30.82,14.5,1646,75,28.77,28.77,0.178571429,4.317488114,2.674148649,S. jarroviii,Normoxia
+264,48,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),67,131.25,M,N/A,37.52,12,1646,65,32.93,33.34,0.462758621,4.17438727,2.48490665,S. jarroviii,Normoxia
+265,50,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),97,131.25,M,N/A,33.23,14,1646,68,29.46,29.53,0.318897638,4.219507705,2.63905733,S. jarroviii,Normoxia
+266,53,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),85,131.25,F,N ,37.24,9,1646,70,31.3,33.56,0.559722222,4.248495242,2.197224577,S. jarroviii,Normoxia
+267,61,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),87,131.25,F,N ,33,15.5,1646,73,32.14,32.83,0.272881356,4.290459441,2.740840024,S. jarroviii,Normoxia
+268,62,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),93,131.25,M,N/A,30.32,12,1646,68,29.18,29.65,0.205633803,4.219507705,2.48490665,S. jarroviii,Normoxia
+269,63,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),98,131.25,M,N/A,32.81,11,1646,68,NA,NA,0.451685393,4.219507705,2.397895273,S. jarroviii,Normoxia
+270,64,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),105,131.25,M,N/A,38.73,15.5,1646,75,32.67,32.67,0.625641026,4.317488114,2.740840024,S. jarroviii,Normoxia
+271,65,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),82,131.25,M,N/A,32.71,7,1646,60,NA,NA,0.250549451,4.094344562,1.945910149,S. jarroviii,Normoxia
+272,66,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),120,131.25,M,N/A,29.34,23,1646,91,29.07,NA,0.1375,4.510859507,3.135494216,S. jarroviii,Normoxia
+273,68,S. jarrovii,SWRS,8/3/16,1646,normoxia (21%),65,131.25,F,N,37.01,3,1646,46,30.33,33.19,0.629807692,3.828641396,1.098612289,S. jarroviii,Normoxia
+274,69,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),94,131.25,M,N/A,32.76,12.5,1646,71,29.66,32.6,0.315789474,4.262679877,2.525728644,S. jarroviii,Normoxia
+275,70,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),82,131.25,F,N ,34.18,19.5,1646,77,32.79,32.92,0.3912,4.343805422,2.970414466,S. jarroviii,Normoxia
+276,71,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),101,131.25,M,N/A,34.44,12.5,1646,64,31.48,33.45,0.403472222,4.158883083,2.525728644,S. jarroviii,Normoxia
+277,72,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),73,131.25,F,N ,37.73,10,1646,64,33.4,33.4,0.567973856,4.158883083,2.302585093,S. jarroviii,Normoxia
+278,73,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),83,131.25,F,N ,36.17,10,1646,63,30.82,30.82,0.444897959,4.143134726,2.302585093,S. jarroviii,Normoxia
+279,78,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),91,131.25,M,N/A,28.78,14,1646,72,NA,NA,0,4.276666119,2.63905733,S. jarroviii,Normoxia
+280,79,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),112,131.25,M,N/A,33.58,21.5,1646,79,29.44,33.1,0.390082645,4.369447852,3.068052935,S. jarroviii,Normoxia
+281,80,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),98,131.25,M,N/A,33.59,14,1646,72,NA,NA,0.375,4.276666119,2.63905733,S. jarroviii,Normoxia
+282,91,S. jarrovii,SWRS,8/4/16,1646,normoxia (21%),65,131.25,M,N/A,40.24,4,1646,50,36.95,36.95,0.742038217,3.912023005,1.386294361,S. jarroviii,Normoxia
+283,11,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),72,40,M,N/A,32.27,5.5,1646,51,NA,NA,0.203846154,3.931825633,1.704748092,S. virgatus,Hypoxia
+284,13,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),82,40,F,Y,40.03,7.5,1646,61,NA,NA,0.742491269,4.110873864,2.014903021,S. virgatus,Hypoxia
+285,14,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),72,40,M,N/A,34.9,6,1646,54,NA,NA,0.453451327,3.988984047,1.791759469,S. virgatus,Hypoxia
+286,15,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),28,40,F,N ,30.65,8,1646,64,NA,NA,0.115620438,4.158883083,2.079441542,S. virgatus,Hypoxia
+287,16,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),51,40,F,N ,36.53,5.5,1646,54,34.31,34.31,0.542354533,3.988984047,1.704748092,S. virgatus,Hypoxia
+288,19,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),27,40,M,N/A,35.29,5.5,1646,51,32.85,NA,0.459720457,3.931825633,1.704748092,S. virgatus,Hypoxia
+289,26,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),74,40,F,N/A,34.83,5.5,1646,51,NA,NA,0.767213115,3.931825633,1.704748092,S. virgatus,Hypoxia
+290,29,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),34,40,M,N/A,34.9,5.5,1646,48,32.97,NA,0.581651376,3.871201011,1.704748092,S. virgatus,Hypoxia
+291,31,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),73,40,F,N/A,32.23,8,1646,55,NA,NA,0.364473684,4.007333185,2.079441542,S. virgatus,Hypoxia
+292,33,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),70,40,F,N/A,30.54,7,1646,59,NA,NA,0.214084507,4.077537444,1.945910149,S. virgatus,Hypoxia
+293,34,S. virgatus,SWRS,8/2/16,1646,hypoxia (6.4%),70,40,F,N/A,28.92,7,1646,55,NA,NA,NA,4.007333185,1.945910149,S. virgatus,Hypoxia
+294,54,S. virgatus,SWRS,8/3/16,1646,hypoxia (6.4%),65,40,F,Y,31.67,6.5,1646,50,30.68,30.68,0.236363636,3.912023005,1.871802177,S. virgatus,Hypoxia
+295,56,S. virgatus,SWRS,8/3/16,1646,hypoxia (6.4%),65,40,F,Y,30.69,8,1646,56,NA,NA,0.218867925,4.025351691,2.079441542,S. virgatus,Hypoxia
+296,58,S. virgatus,SWRS,8/3/16,1646,hypoxia (6.4%),68,40,M,N/A,31.34,6,1646,50,NA,NA,0.210638298,3.912023005,1.791759469,S. virgatus,Hypoxia
+297,4,S. virgatus,SWRS,8/1/16,1646,normoxia (21%),78,131.25,F,Y,38.9,7,1646,62,37.01,37.01,0.409459459,4.127134385,1.945910149,S. virgatus,Normoxia
+298,5,S. virgatus,SWRS,8/1/16,1646,normoxia (21%),68,131.25,F,Y,40.96,6.5,1646,55,35.47,35.47,0.307638889,4.007333185,1.871802177,S. virgatus,Normoxia
+299,7,S. virgatus,SWRS,8/1/16,1646,normoxia (21%),42,131.25,F,Y,41.74,7,1646,55,34.28,34.28,0.658791209,4.007333185,1.945910149,S. virgatus,Normoxia
+300,8,S. virgatus,SWRS,8/1/16,1646,normoxia (21%),47,131.25,M,N/A,42.01,5.5,1646,50,35.02,37.12,0.529166667,3.912023005,1.704748092,S. virgatus,Normoxia
+301,9,S. virgatus,SWRS,8/1/16,1646,normoxia (21%),83,131.25,F,Y,40,6.5,1646,60,32.91,33.02,0.427118644,4.094344562,1.871802177,S. virgatus,Normoxia
+302,27,S. virgatus,SWRS,8/2/16,1646,normoxia (21%),48,131.25,M,N/A,37.68,4.5,1646,50,NA,NA,0.446987952,3.912023005,1.504077397,S. virgatus,Normoxia
+303,35,S. virgatus,SWRS,8/2/16,1646,normoxia (21%),117,131.25,F,N/A,33.74,5.5,1646,53,NA,NA,0.471153846,3.970291914,1.704748092,S. virgatus,Normoxia
+304,36,S. virgatus,SWRS,8/2/16,1646,normoxia (21%),101,131.25,F,N/A,39.2,5.5,1646,52,34.27,34.27,0.519745223,3.951243719,1.704748092,S. virgatus,Normoxia
+305,67,S. virgatus,SWRS,8/3/16,1646,normoxia (21%),60,131.25,M,N/A,34.21,4,1646,48,NA,NA,0.497468354,3.871201011,1.386294361,S. virgatus,Normoxia
+306,84,S. virgatus,SWRS,8/4/16,1646,normoxia (21%),14,131.25,M,N/A,33.6,4,1646,45,NA,NA,0.303603604,3.80666249,1.386294361,S. virgatus,Normoxia
+307,94,S. virgatus,SWRS,8/4/16,1646,normoxia (21%),70,131.25,F,N,37.77,8,1646,58,32.89,32.89,0.57012987,4.060443011,2.079441542,S. virgatus,Normoxia

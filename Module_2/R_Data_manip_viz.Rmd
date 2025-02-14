@@ -1,13 +1,13 @@
 ---
 title: "R data manipulation and plotting"
-author: "Sean Harrington & Owen Funk"
-date: "2024-03-06"
+author: "Sean Harrington & Erin Bentley"
+date: "2025-03-05"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
+knitr::opts_knit$set(root.dir = "~/r4grads/lizard_data/")
 ```
 
 <br>
@@ -17,17 +17,21 @@ knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
 <br>
 <br>
 
-In this tutorial, we will explore some basic data manipulation and visualization in R. Occassionally, datasets start out perfectly formatted with no missing data, outliers, etc., More often, you'll need to do some kind of filtering, subsetting, and/or merging of data files. Plotting your data is helpful not only for publication and presentation, but also for identifying potential issues in your data.
+In this tutorial, we will explore some basic data manipulation and visualization in R. Occassionally, datasets start out perfectly formatted with no missing data, outliers, etc. More often, you'll need to do some kind of filtering, subsetting, and/or merging of data files. Plotting your data is helpful not only for publication and presentation, but also for identifying potential issues in your data.
 
 <br>
 
-I **highly** recommend writing all of your code in an R script and commenting it liberally. Even for relatively simple operations, if you need to repeat them or slightly tweak them, it's much easier to simply open up your script and re-run it or edit it than to re-type everything into R. Even more importantly, it ensures that there is a record of exactly what you did. If you haven't already dealt with trying to remember how you handled data when you come back it to after a couple weeks or even just a few days, you'll probably be surprised by just how quickly you can forget what you were doing and why.
+I **highly** recommend writing all of your code in an R script and commenting it liberally. Even for relatively simple operations, if you need to repeat them or slightly tweak them, it's much easier to simply open up your script and re-run it or edit it than to re-type everything into R. Even more importantly, it ensures that there is a record of exactly what you did. If you haven't already dealt with trying to remember how you handled data when you come back to it to after a couple weeks or even just a few days, you'll probably be surprised by just how quickly you can forget what you were doing and why.
 
 How to open a script is detailed in the intro to R tutorial.
 
 <br>
 
 * When there are large spaces in this tutorial, this indicates places where you should try to figure out how to code something. If you keep scrolling down, you'll find the solution, but you'll get a lot more out of it if you make a solid attempt to solve the problems yourself first.
+
+
+Today we'll explore some data on thermal physiology taken from this paper: [Body size impacts critical thermal maximum measurements in lizards](https://onlinelibrary.wiley.com/doi/full/10.1002/jez.2410).
+
 
 <br>
 <br>
@@ -45,18 +49,22 @@ Before we can work with the data, we need to download it. Go to the Github repos
 Start by setting our working directory. If you set things up exactly as I did, then this path will work for you. If not, then you'll need to edit this path:
 
 ```{r, eval = FALSE}
-setwd("~/r4grads-master/Fish_data/Modified/")
+setwd("~/r4grads-master/lizard_data/")
 ```
 
 **Again, make sure this points to the correct path for you, not my path.**
 
 <br>
 
-Then read in the data. Here, we have the data in two separate csv files for different data pertaining to some fish. One file is body size data with some information about sampling and the species, and the other file contains stable isotope data.
+The data are all in this directory, as is a pdf of the paper that these data accompany. "scelop_body_exp1.csv" is the actual data file for the paper, which is very nicely formatted. For illustrative purposes, I have split this into two files ("lizard_data.csv" and "physio_data.csv"), reduced the dataset, and introduced intentional errors that we will track down and fix. 
+
+
+We'll start by reading in those two files. One file contains information about which species each lizard belongs to, it's size (snout-vent length or SVL), the elevation each lizard was at, and a unique ID number for each lizard -- we'll read this in as `sample_data`. The other file contains lizard IDs and a physiological measurement of the maximum temperature at which a lizard can maintain normal physiological function called the critical thermal maximum or CTmax.
+
 
 ```{r}
-body <- read.csv("Fish_body_size.csv")
-iso <- read.csv("Fish_isotopes.csv")
+sample_data <- read.csv("lizard_data.csv")
+physio_data <- read.csv("physio_data.csv")
 ```
 
 * If you get an error here, your working directory is probably not set correctly.
