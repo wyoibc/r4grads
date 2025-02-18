@@ -40,7 +40,7 @@ Today we'll explore some data on thermal physiology taken from this paper: [Body
 
 <br>
 
-Before we can work with the data, we need to download it. Go to the Github repository for this workshop: [https://github.com/wyoibc/r4grads](https://github.com/wyoibc/r4grads) and click on the green `Code` button, then on the `Download ZIP` button. (You can alternately clone the repo if you're familiar with git). You can also download the individual files from [here](https://github.com/wyoibc/r4grads/tree/master/Fish_data/Modified) if you know how to do that.
+Before we can work with the data, we need to download it. Go to the Github repository for this workshop: [https://github.com/wyoibc/r4grads](https://github.com/wyoibc/r4grads) and click on the green `Code` button, then on the `Download ZIP` button. (You can alternately clone the repo if you're familiar with git). You can also download the individual files from [here](https://github.com/wyoibc/r4grads/tree/master/lizard_data) if you know how to do that.
 
 ![download zip](download_zip.png){#id .class width=50% height=50%}\
 
@@ -76,20 +76,20 @@ Let's take a quick look at the top few rows of each dataset.
 
 
 ```{r}
-head(body) # Check the top or head of a dataset
-head(iso) # if you're not familiar, anything after '#' is a comment and not interpreted by R, it's there just as your own notes on what you're doing. Use them.
+head(sample_data) # Check the top or head of a dataset
+head(physio_data) # if you're not familiar, anything after '#' is a comment and not interpreted by R, it's there just as your own notes on what you're doing. Use them.
 ```
 <br>
 We can also look at the bottom few rows.
 ```{r}
-tail(body)
+tail(sample_data)
 ```
 <br>
 See how many rows and columns are in each dataframe:
 
 ```{r}
-dim(body) # get the dimensions of 'body' dataset
-dim(iso) # get the dimensions of the 'iso' dataset
+dim(sample_data) # get the dimensions of 'body' dataset
+dim(physio_data) # get the dimensions of the 'iso' dataset
 ```
 
 <br>
@@ -97,9 +97,9 @@ dim(iso) # get the dimensions of the 'iso' dataset
 Let's take a look at what species are included and how many samples we have of each species.
 
 ```{r}
-unique(body$Species)
+unique(sample_data$Species)
 
-summary(as.factor(body$Species))
+summary(as.factor(sample_data$Species))
 ```
 
 
@@ -126,7 +126,7 @@ summary(as.factor(body$Species))
 
 ### Fixing spelling
 
-Looking at either of those last outputs, you should notice that we have some misspellings. In some cases, "Coho" was written in all capital letters, and because R is case sensitive (as are most other coding languages), these are interpreted as different species. We also have "Dolly Varden" abbreviated down to just "Dolly" in one case, and a misspelling of "Steelhead" as "Steelhesd". We will want to correct these before we move forward with any further data processing.
+Looking at either of those last outputs, you should notice that we have some misspellings. In some cases, "S. occidentalis" has a capital "O" as "S. Occidentalis" and because R is case sensitive (as are most other coding languages), these are interpreted as different species. We also have "S. graciosus" abbreviated down to just "graciosus" in two cases, and a misspelling of "S. occidentalis" as "S. occidentlis" (missing an "a" towards the end). We will want to correct these errors before we move forward with any further data processing.
 
 <br>
 
@@ -138,32 +138,32 @@ Let's build this out:
 
 <br>
 
-We'll start by identifying which elements of the "Species" column of `body` contains `"COHO"`
+We'll start by identifying which elements of the "Species" column of `sample_data` contains `"S. Occidentalis"`
 
 ```{r, results = FALSE}
-body$Species=="COHO"
+sample_data$Species=="S. Occidentalis"
 ```
 <br>
 
-You should see a long list of TRUE/FALSE values corresponding to whether each element is (TRUE) or is not (FALSE) "COHO". We can then use this to select out only the TRUE elements of `body$Species`:
+You should see a long list of TRUE/FALSE values corresponding to whether each element is (TRUE) or is not (FALSE) "S. Occidentalis". We can then use this to select out only the TRUE elements of `sample_data$Species`:
 
 ```{r, results = FALSE}
-body$Species[body$Species=="COHO"]
+sample_data$Species[sample_data$Species=="S. Occidentalis"]
 ```
 
 <br>
 <br>
 
-And finally, using that indexing to identify the incorrect entries, we can replace them with "Coho":
+And finally, using that indexing to identify the incorrect entries, we can replace them with "S. occidentalis":
 ```{r}
-body$Species[body$Species=="COHO"] <- "Coho" # replace all instances of COHO with Coho
+sample_data$Species[sample_data$Species=="S. Occidentalis"] <- "S. occidentalis" # replace all instances of S. Occidentalis with S. occidentalis
 ```
 
 <br>
 <br>
 <br>
 
-But there are also much faster ways to do this. The function `gsub()` performs pattern matching and replacement. One of the most essential skills in R is learning how to use new functions. If you already know what function you want to use, you can `?` before a function to get the built-in help documentation. Try it out: 
+But there are also faster ways to do this. The function `gsub()` performs pattern matching and replacement, similar to using conrtol or command F in a Word document. One of the most essential skills in R is learning how to use new functions. If you already know what function you want to use, you can `?` before a function to get the built-in help documentation. Try it out: 
 
 ```{r}
 ?gsub()
@@ -176,10 +176,11 @@ But there are also much faster ways to do this. The function `gsub()` performs p
 <br>
 
 As is the case for many functions, `gsub()` has several options that are set to defaults that we won't worry about, we only really care about the first few options here most of the time. 
+
 <br>
 <br>
 
-**From looking at this help menu, how would we would replace occurrences of "Steelhesd" with "Steelhead" in `body$Species`?**
+**From looking at this help menu, how would we would replace occurrences of "S. occidentlis" with "S. occidentalis" in `sample_data$Species`?**
 
 
 <br>
@@ -217,10 +218,10 @@ As is the case for many functions, `gsub()` has several options that are set to 
 
 
 ```{r}
-body$Species <- gsub("Steelhesd", "Steelhead", body$Species)
+sample_data$Species <- gsub("S. occidentlis", "S. occidentalis", sample_data$Species)
 ```
 
-What if we want to replace "Dolly" with "Dolly varden"? Try it out.
+What if we want to replace "graciosus" with "S. graciosus"? Try it out.
 
 <br>
 <br>
@@ -243,14 +244,14 @@ What if we want to replace "Dolly" with "Dolly varden"? Try it out.
 I'm guessing that you used something like:
 
 ```{r}
-body$Species <- gsub("Dolly", "Dolly varden", body$Species)
+sample_data$Species <- gsub("graciosus", "S. graciosus", sample_data$Species)
 ```
 
 Take another look at the data and let's see if we've cleaned up the species names
 
 ```{r}
-unique(body$Species)
-summary(as.factor(body$Species))
+unique(sample_data$Species)
+summary(as.factor(sample_data$Species))
 ```
 
 <br>
@@ -274,19 +275,20 @@ summary(as.factor(body$Species))
 
 
 
-What you should notice is that we replaced ALL instances of "Dolly" with "Dolly varden", so what was previously "Dolly varden" is now "Dolly varden varden". What we should have done was the following:
+What you should notice is that we replaced ALL instances of "graciosus" with "S. graciosus", so what was previously "S. graciosus" is now "S. S. graciosus". What we should have done was the following:
 
 ```{r}
-body$Species <- gsub("^Dolly$", "Dolly varden", body$Species)
+sample_data$Species <- gsub("^graciosus$", "S. graciosus", sample_data$Species)
 ```
 
 <br>
 
-In the above, the `^` indicates the start of a string and the `$` indicates the end of string of a string, indicating that only want to replace Dolly when the D is the start of a string and the y is the end. We could go back to the start, read the data back in from scratch and run the above line, but let's fix "Dolly varden varden" in the existing object now.
+In the above, the `^` indicates the start of a string and the `$` indicates the end of string of a string, indicating that only want to replace "graciosus" when the "g" is the start of a string and the "s" is the end. We could go back to the start, read the data back in from scratch and run the above line, but let's fix "S. S. graciosus" in the existing object now.
+
 <br>
 <br>
 
-**Try out turning "Dolly varden varden" back into "Dolly varden**
+**Try changing "S. S. graciosus" back into "S. graciosus"**
 
 
 <br>
@@ -313,11 +315,11 @@ In the above, the `^` indicates the start of a string and the `$` indicates the 
 
 There are a few options for doing this:
 ```{r}
-body$Species <- gsub("^Dolly varden varden$", "Dolly varden", body$Species)
+sample_data$Species <- gsub("^S. S. graciosus$", "S. graciosus", sample_data$Species)
 # OR
-body$Species <- gsub("varden varden", "varden", body$Species)
+sample_data$Species <- gsub("S. S.", "S. ", sample_data$Species) # you would need to check that there isn't supposed to be an S. S. anywhere else in your data before using this one
 # OR
-body$Species[body$Species=="Dolly varden varden"] <- "Dolly varden"
+sample_data$Species[sample_data$Species=="S. S. graciosus"] <- "S. graciosus"
 ```
 
 
@@ -325,8 +327,8 @@ body$Species[body$Species=="Dolly varden varden"] <- "Dolly varden"
 If we take a look at the data again, we should see that these errors have been corrected:
 
 ```{r}
-unique(body$Species)
-summary(as.factor(body$Species))
+unique(sample_data$Species)
+summary(as.factor(sample_data$Species))
 ```
 
 <br>
@@ -334,7 +336,7 @@ summary(as.factor(body$Species))
 We should also know how many species we sampled, and we can check how many are in this dataset:
 
 ```{r}
-length(unique(body$Species))
+length(unique(sample_data$Species))
 ```
 
 <br>
@@ -357,49 +359,53 @@ You'll notice that they have different numbers of rows, indicating that at least
 
 <br>
 
-We can check for `Fish.code` elements that are in the body size data but not the isotope data:
+We can check for `Lizard.ID` elements that are in the `sample_data` but not the `physio_data`:
 
 ```{r}
-which(!body$Fish.code %in% iso$Fish.code)
+which(!sample_data$Lizard.ID %in% physio_data$Lizard.ID)
 ```
 
-the `%in%` operator checks for occurrences of the preceding object in the following object, and returns a vector of TRUE/FALSE. The `!` at the beginning reverses TRUE/FALSE, so that TRUE instead corresponds to elements of `body$Fish.code` that are NOT in `iso$Fish.code`, and the `which()` gives us the numeric indices of the elements of the TRUE/FALSE vector that are true. The result is that the numbers this spits out are the indices of `body$Fish.code` that are NOT in `iso$Fish.code`.
+the `%in%` operator checks for occurrences of the preceding object in the following object, and returns a vector of TRUE/FALSE. The `!` at the beginning reverses TRUE/FALSE, so that TRUE instead corresponds to elements of `sample_data$Lizard.ID` that are NOT in `physio_data$Lizard.ID`, and the `which()` gives us the numeric indexes of the elements of the TRUE/FALSE vector that are true. The result is that the numbers this spits out are the indices of `sample_data$Lizard.ID` that are NOT in `physio_data$Lizard.ID`.
 
-We can use this as an index to get the actual values of `body$Fish.code` that are not shared by `iso$Fish.code`:
+We can use this as an index to get the actual values of `sample_data$Lizard.ID` that are not shared by `physio_data$Lizard.ID`:
 
 ```{r}
-body$Fish.code[which(!body$Fish.code %in% iso$Fish.code)]
+sample_data$Lizard.ID[which(!sample_data$Lizard.ID %in% physio_data$Lizard.ID)]
 ```
 
-and we can run the same check in reverse order to see values of `iso$Fish.code` not in `body$Fish.code`:
+and we can run the same check in reverse order to see values of `physio_data$Lizard.ID` not in `sample_data$Lizard.ID`:
 
 ```{r}
-iso$Fish.code[which(!iso$Fish.code %in% body$Fish.code)]
+physio_data$Lizard.ID[which(!physio_data$Lizard.ID %in% sample_data$Lizard.ID)]
 ```
 
 
 <br>
 
-We can see that we have a total of 9 samples that are present in one of the datasets, but not the other. We could use some fancy R indexing and the `match()` function to subset both of the datasets down to only these shared samples in the same row order, but this is somewhat tedious to do.
+We can see that we have several samples that are present in one of the datasets, but not the other. We could use some fancy R indexing and the `match()` function to subset both of the datasets down to only these shared samples in the same row order, but this is somewhat tedious to do.
 
 
-Instead, there is an R function we can use that will do all of that for us: `merge()`:
+Instead, there is an R function we can use that will do all of that for us: `merge()`. By default, it will merge the datasets based on the column that they share, here `Lizard.ID`. Try it out: 
 
 ```{r}
-all_data <- merge(body, iso)
+all_data <- merge(sample_data, physio_data)
 head(all_data)
 dim(all_data)
 ```
 
 
+- If you don't have identically named columns in your 2 datasets that you are merging, you can specify which columns to merge by using the `by.x` and `by.y` arguments.
+
 Knowing how R objects are structured and how to extract specific elements from objects using brackets and `$` is useful, but there are functions that will simplify most common data manipulations, and we'll explore these shortly.
+
+
 
 <br>
 
 Before we move on, let's write our merged `all_data` object to a csv file:
 
 ```{r}
-write.csv(all_data, "fish_data_merged.csv")
+write.csv(all_data, "lizard_data_merged.csv")
 ```
 
 
@@ -414,7 +420,7 @@ Read that .csv file back into R just to demonstrate that we have successfully wr
 
 
 ```{r}
-all_data <- read.csv("fish_data_merged.csv")
+all_data <- read.csv("lizard_data_merged.csv")
 ```
 
 <br>
@@ -444,12 +450,9 @@ library(tidyverse)
 
 Before we actually get started, there's an important issue to point out in this loading message. The conflicts show that there are functions in `dplyr` and the base R `stats` packages that share the same function names. Whenever this happens, the function from the most recently loaded package will mask the other function. If you load `dplyr` last and then run `filter()`, what you'll get is the function from `dplyr`. Alternately, if you load `stats` last, you'll get the `filter()` function from that package.
 
-This is important to keep track of. Especially if you write a script and then edit it to load up a package at the the top of a script. You can always call a function from a specific package by using the notation `package::function()`. The double colons tell R to explicitly use a function from the stated package.
+This is important to keep track of. Especially if you write a script and then edit it to load a package at the the top of a script. You can always call a function from a specific package by using the notation `package::function()`. The double colons tell R to explicitly use a function from the stated package.
 
 <br>
-
-
-
 
 
 You can also specifically install and/or load ggplot2 by itself using the following if you uncomment it. I've commented it here because if you try to install `ggplot2` on its own right now, it will restart R and we'll need to re-run everything we've done so far.
@@ -468,18 +471,18 @@ You can also specifically install and/or load ggplot2 by itself using the follow
 
 ### ggplot syntax
 
-`ggplot` makes some very nice figures, but it has a unique syntax that can take a little while to learn. We'll make a quick plot, then explain what's going on here:
+`ggplot2` makes some very nice figures, but it has a unique syntax that can take a little while to learn. We'll make a quick plot, then explain what's going on here:
 
 ```{r}
 ggplot(data = all_data) + 
-  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.))
+  geom_point(mapping = aes(x = svl, y = Ctmax))
 ```
 
 <br>
 
-All calls to `ggplot()` are composed of at least two pieces. The first simply specifies the object that contains the data. All of the data for the plot should be in a single object, with different variables in different columns and each row specifying a single observation of a data (this is part of the general "Tidy" data philosophy).
+All calls to `ggplot()` are composed of at least two pieces. The first simply specifies the object that contains the data. All of the data for the plot should be in a single object, with different variables in different columns and each row specifying a single observation of a data point (this is part of the general "Tidy" data philosophy).
 
-The basic `ggplot()` call without adding in a `geom` function will just render a blank plot, since you haven't told it what kind of plot to make with the data - this is unlike the base R `plot()` function we used above, which will try to guess what type of plot you want based on the nature of the data.
+The basic `ggplot()` call without adding in a `geom` function will just render a blank plot, since you haven't told it what kind of plot to make with the data - this is unlike the base R `plot()` function, which will try to guess what type of plot you want based on the nature of the data.
 
 ```{r, fig.show = 'hide'}
 ggplot(data = all_data) # this makes an empty plot
@@ -491,7 +494,7 @@ In the full call:
 
 ```{r, fig.show = 'hide'}
 ggplot(data = all_data) + 
-  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.))
+  geom_point(mapping = aes(x = svl, y = Ctmax))
 ```
 
 The `geom_point()` function tells `ggplot` to plot out the data as points. Within this function, the `mapping` argument specifies how the data are mapped to the visualization. The mapping is specified using the `aes()` (aesthetic) function. Here we specify only which variable is x and which is y, but there are other things we can specify as well.
@@ -507,23 +510,22 @@ We've so far plotted out two variables, but we can add information about additio
 
 ```{r}
 ggplot(data = all_data) + 
-  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g., shape = Species))
+  geom_point(mapping = aes(x = svl, y = Ctmax, shape = Species))
 ```
 
-* Note the warning that we can only assign up to 6 shapes to variables, and see that three spine stickleback has been left out because of this. 
 
 <br>
 
-Instead we can change the color by species:
+We can alternately color the points by species:
 
 ```{r}
 ggplot(data = all_data) + 
-  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g., color = Species))
+  geom_point(mapping = aes(x = svl, y = Ctmax, color = Species))
 ```
 
 <br>
 
-We can also scale the size of the points by some variable using the `size` argument in `aes()`. Try modifying the above plot so that the points are sized by `del15N`.
+We can also scale the size of the points by some variable using the `size` argument in `aes()`. Try modifying the above plot so that the points are sized by `Elevation..m.`.
 
 <br>
 <br>
@@ -562,10 +564,10 @@ We can also scale the size of the points by some variable using the `size` argum
 ```{r}
 ggplot(data = all_data) + 
   geom_point(mapping = aes(
-    x = Fork.length..cm., 
-    y = Weight..g., 
+    x = svl, 
+    y = Ctmax, 
     color = Species,
-    size = del15N))
+    size = Elevation..m.))
 ```
 
 This is a very busy plot at this point, and for me, all points are too large to be interpretable, so let's add a function that controls the range of point sizes:
@@ -573,10 +575,10 @@ This is a very busy plot at this point, and for me, all points are too large to 
 ```{r}
 ggplot(data = all_data) + 
   geom_point(mapping = aes(
-    x = Fork.length..cm., 
-    y = Weight..g., 
+    x = svl, 
+    y = Ctmax, 
     color = Species,
-    size = del15N)) +
+    size = Elevation..m.))+
   scale_size(range = c(0.1, 2))
 ```
 
@@ -589,7 +591,7 @@ If we want to change the color (or size, shape, etc.) of all points, rather than
 
 ```{r}
 ggplot(data = all_data) + 
-  geom_point(mapping = aes(x = Fork.length..cm., y = Weight..g.), color = "blue")
+  geom_point(mapping = aes(x = svl, y = Ctmax), color = "blue")
 ```
 
 
