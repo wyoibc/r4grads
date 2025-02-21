@@ -51,16 +51,6 @@ This session will introduce the basics of R and RStudio.
 If you already have experience in R and are comfortable with creating and manipulating objects, applying functions, and using RStudio, you may skip this session. **If you are not familiar with R, it is essential that you attend this session!** We will assume basic proficiency with R in all subsequent classes, without time to catch people up.
 
 
-<br>
-<br>
-
-# All tutorials below here are under active development and subject to change
-
-<br>
-<br>
-<br>
-<br>
-
 
 <br>
 
@@ -75,7 +65,18 @@ If you already have experience in R and are comfortable with creating and manipu
 
 - [Data manipulation & plotting pt. 2](Module_3/R_Data_manip_viz_pt2.html)
 
+
 <br>
+<br>
+<br>
+
+# All tutorials below here are under active development and subject to major change
+
+<br>
+<br>
+<br>
+<br>
+
 
 
 ## Week 4

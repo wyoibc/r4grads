@@ -1,13 +1,13 @@
 ---
 title: "R data manipulation and plotting pt. 2"
-author: "Sean Harrington & Owen Funk"
-date: "2024-03-20"
+author: "Sean Harrington & Erin Bentley"
+date: "2025-03-12"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "~/r4grads/Fish_data/Modified/")
+knitr::opts_knit$set(root.dir = "~/r4grads/lizard_data/")
 
 ```
 
@@ -30,13 +30,13 @@ If you don't have the data from last time handy, or have forgotten where you put
 * **Remember that this file path will almost definitely be different for you!**
 
 ```{r, eval = FALSE}
-setwd("~/r4grads/Fish_data/Modified/")
+setwd("~/r4grads/lizard_data/")
 ```
 
-We'll need our `all_data` object again. If you have your `"fish_data_merged.csv"` file that we wrote out last time, you can read in:
+We'll need our `all_data` object again. If you have your `"lizard_data_merged.csv"` file that we wrote out last time, you can read in:
 
 ```{r}
-all_data <- read.csv("fish_data_merged.csv")
+all_data <- read.csv("lizard_data_merged.csv")
 ```
 
 <br>
@@ -44,18 +44,18 @@ all_data <- read.csv("fish_data_merged.csv")
 
 If you've lost track of this file, we can create it again:
 
-* **If you have the "fish_data_merged.csv" file and were able to run the line above, you do not need to run these lines!**
+* **If you have the "lizard_data_merged.csv" file and were able to run the line above, you do not need to run these lines!**
 
 ```{r}
 # read in each of the data files
-body <- read.csv("Fish_body_size.csv")
-iso <- read.csv("Fish_isotopes.csv")
-# Make all of the subsitutions that we made last time
-body$Species <- gsub("Steelhesd", "Steelhead", body$Species)
-body$Species <- gsub("COHO", "Coho", body$Species)
-body$Species <- gsub("^Dolly$", "Dolly varden", body$Species)
+sample_data <- read.csv("lizard_data.csv")
+physio_data <- read.csv("physio_data.csv")
+# Make all of the substitutions that we made last time
+sample_data$Species <- gsub("S. Occidentalis", "S. occidentalis", sample_data$Species)
+sample_data$Species <- gsub("S. occidentlis", "S. occidentalis", sample_data$Species)
+sample_data$Species <- gsub("^graciosus$", "S. graciosus", sample_data$Species)
 # Merge the data
-all_data <- merge(body, iso)
+all_data <- merge(sample_data, physio_data)
 ```
 
 <br>
@@ -72,28 +72,28 @@ library(tidyverse)
 
 <br>
 
-There are many times when you will want to analyze certain rows or columns of a dataset, or select only certain values from a dataset. R makes this very easy to do, particularly with functions from the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. I won't go into the details of the Tidyverse philosphy, as it's very well documented and you can read all about it at the link.
+There are many times when you will want to analyze certain rows or columns of a dataset, or select only certain values from a dataset. R makes this very easy to do, particularly with functions from the [Tidyverse](https://www.tidyverse.org/) set of R packages, which all share some general principles in their architecture. I won't go into the details of the Tidyverse philosophy, as it's very well documented and you can read about it at the link.
 
 
-For example, we might want to analyze and plot of just a single species of fish at a time. Let's filter our dataset down to just Coho.
+For example, we might want to analyze and plot of just a single species of lizard at a time. Let's filter our dataset down to just *S. occidentalis*.
 
 <br>
 
 We can filter data using the `filter()` function from the `dplyr` package:
 
 ```{r, results = FALSE}
-coho_data <- filter(all_data, Species == "Coho")
-coho_data
+occ_data <- filter(all_data, Species == "S. occidentalis")
+occ_data
 ```
 
 
-Filter works by taking a dataframe as input, then filtering that down to only the rows where some condition is met in a given column. In the above command, we have filtered to only rows of the `all_data` object where the `Species` column is equal to (denoted by `==` in R because `=` is used for other things) `"Coho"`.
+Filter works by taking a dataframe as input, then filtering that down to only the rows where some condition is met in a given column. In the above command, we have filtered to only rows of the `all_data` object where the `Species` column is equal to (denoted by `==` in R because `=` is used for other things) `"S. occidentalis"`.
 
 You can use equal `==`, not equal `!=`, greater or less than `>` or `<`, and other conditions in filter. You can also link together conditions using `&` to specify that both conditions must be met or `|` to specify that either condition must be met.
 
 <br>
 
-How do you think that we would filter out dataset to only large Coho with fork lengths greater than 10 cm?
+How do you think that we would filter out dataset to only large *S. occidentalis* with SVL lengths greater than 65 mm?
 
 <br>
 <br>
@@ -124,13 +124,13 @@ How do you think that we would filter out dataset to only large Coho with fork l
 
 
 ```{r, results = FALSE}
-big_coho <- filter(all_data, Species == "Coho" & Fork.length..cm. > 10)
-big_coho
+big_occ <- filter(all_data, Species == "S. occidentalis" & svl > 65)
+big_occ
 ```
 
 <br>
 
-What if we want to get a dataset that has all of the rows for Coho and Steelhead?
+What if we want to get a dataset that has all of the rows for *S. jarrovii* and *S. occidentalis*?
 
 
 <br>
@@ -162,11 +162,11 @@ What if we want to get a dataset that has all of the rows for Coho and Steelhead
 
 
 ```{r, results = FALSE}
-coho_steel <- filter(all_data, Species == "Coho" | Species == "Steelhead")
-coho_steel
+jar_occ <- filter(all_data, Species == "S. jarrovii" | Species == "S. occidentalis")
+jar_occ
 ```
 
-Here, even though we want Coho AND Steelhead, we need to tell `filter()` to keep rows where `Species == "Coho"` OR (`|`) `Species == "Steelhead"`.
+Here, even though we want *S. jarrovii* AND *S. occidentalis*, we need to tell `filter()` to keep rows where `Species == "S. jarrovii"` OR (`|`) `Species == "S. occidentalis"`.
 
 
 <br>
@@ -176,8 +176,8 @@ Here, even though we want Coho AND Steelhead, we need to tell `filter()` to keep
 Note that you can achieve all of the same ends without Tidyverse functions using R's basic indexing, e.g., you could alternately get only Coho rows by running:
 
 ```{r}
-coho_data <- all_data[all_data$Species == "Coho",]
-head(coho_data, n=4)
+occ_data <- all_data[all_data$Species == "S. occidentalis",]
+head(occ_data, n=4)
 ```
 <br>
 
@@ -185,14 +185,14 @@ If we want to select only certain columns from a dataframe, we can use the `sele
 
 
 ```{r}
-some_coho_rows <- select(coho_data, Fish.code, Weight..g., Fork.length..cm.)
-head(some_coho_rows)
+some_occ_cols <- select(occ_data, Lizard.ID., svl, Ctmax)
+head(some_occ_cols)
 ```
 <br>
 <br>
 
 
-From the `coho_data` object, make a plot for this species that has `Fork.length..cm.` on the x axis with `del15N` on the y axis, and points sized by `Weight..g.`. Change the color of the points to a color of your preference.
+From the `occ_data` object, make a plot for this species that has `svl` on the x axis with `Ctmax` on the y axis, and points sized by `Elevation..m.`. Change the color of the points to a color of your preference.
 
 
 
@@ -230,11 +230,11 @@ From the `coho_data` object, make a plot for this species that has `Fork.length.
 <br>
 
 ```{r}
-ggplot(data = coho_data) + 
+ggplot(data = occ_data) + 
   geom_point(mapping = aes(
-    x = Fork.length..cm., 
-    y = del15N, 
-    size = Weight..g.),
+    x = svl, 
+    y = Ctmax, 
+    size = Elevation..m.),
     color = "hotpink") +
   scale_size(range = c(0.1, 2))
 ```
@@ -251,8 +251,8 @@ ggplot(data = coho_data) +
 Let's plot this out as a smoothed line to see how that looks
 
 ```{r}
-ggplot(data = coho_data) + 
-  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N), color = "hotpink")
+ggplot(data = occ_data) + 
+  geom_smooth(mapping = aes(x = svl, y = Ctmax), color = "hotpink")
 ```
 
 
@@ -272,7 +272,7 @@ This is cool, but what if we want individual plots for all species? We could man
 
 ```{r, warning = FALSE}
 ggplot(data = all_data) + 
-  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N), color = "hotpink") +
+  geom_smooth(mapping = aes(x = svl, y = Ctmax), color = "hotpink") +
   facet_wrap(~ Species)
 ```
 
@@ -280,7 +280,7 @@ ggplot(data = all_data) +
 
 Let's ignore the warnings for now and just look at the plots.
 
-What's the problem here? How would you go about fixing it? Remember that we can look at the help for a function to see available options: `?facet_wrap()`
+What's prpblems do you see here? How would you go about fixing it? Remember that we can look at the help for a function to see available options: `?facet_wrap()`
 
 <br>
 <br>
@@ -316,24 +316,26 @@ What's the problem here? How would you go about fixing it? Remember that we can 
 <br>
 
 
-By default, when making a faceted plot, `ggplot` fixes the x and y axes to the same bounds across all plots. Sometimes this is desired, other times it is not. Here we want to allow both x and y axes to change freely across plot.
+By default, when making a faceted plot, `ggplot` fixes the x and y axes to the same bounds across all plots. Sometimes this is desired, other times it is not. For these data, it probably is best to keep the same scales when presenting the data so that the relationships between the sizes of different lizard species are clear, but for exploration, it's useful to allow different x and y scales so we can better see what's going on.
+
+So let's test out changing the x and y axes across the plots.
 
 If you look at the `scales` argument in the documentation for `facet_wrap()`, this looks like what we want.
 
-If that hadn’t been helpful, we can always google something like "ggplot facets different axes". I get [this](https://stackoverflow.com/questions/21937127/different-axis-limits-per-facet-in-ggplot2) as the top result, and it also indicates that we need to set the scales argument to `"free"`.
+If that hadn’t been helpful, we can always google something like "ggplot facets different axes". I get [this](https://stackoverflow.com/questions/21937127/different-axis-limits-per-facet-in-ggplot2) as one of the top results, and it also indicates that we need to set the scales argument to `"free"`.
 
 <br>
 
 ```{r}
 ggplot(data = all_data) + 
-  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N), color = "hotpink") +
+  geom_smooth(mapping = aes(x = svl, y = Ctmax), color = "hotpink") +
   facet_wrap(~ Species, scales = "free")
 ```
 
 This looks much better, but we still have a lot of warnings.
 
 
-* **Warnings vs. errors**: An error in R means that something has gone wrong such that the function could not be successfully executed. Warnings are *potentially* less severe. It means that some potetentially undesirable behavior has occurred, but that the function is still able to run and return output. However, a warning could very well mean that your function has returned bad results, and you should always investigate what caused a warning and if the output is acceptable or not.
+* **Warnings vs. errors**: An error in R means that something has gone wrong such that the function could not be successfully executed. Warnings are *potentially* less severe. It means that some potentially undesirable behavior has occurred, but that the function is still able to run and return output. However, a warning could very well mean that your function has returned bad results, and you should always investigate what caused a warning and if the output is acceptable or not.
 
 
 We are getting warnings because because at least one of our species has very few samples, which causes issues for the smoothing algorithm that draws the line and computes confidence intervals. 
@@ -378,20 +380,20 @@ To be able to tell which species has only a few points, it might be useful to ad
 
 ```{r, warning = FALSE}
 ggplot(data = all_data) + 
-  geom_point(mapping = aes(x = Fork.length..cm., y = del15N), color = "black") +
-  geom_smooth(mapping = aes(x = Fork.length..cm., y = del15N), color = "hotpink") +
+  geom_point(mapping = aes(x = svl, y = Ctmax), color = "black") +
+  geom_smooth(mapping = aes(x = svl, y = Ctmax), color = "hotpink") +
   facet_wrap(~ Species, scales = "free")
 ```
 
 <br>
 <br>
 
-* The order of geoms matters for wether points or lines will be plotted on top of the other.
+* The order of geoms matters for whether points or lines will be plotted on top of the other.
 
-We have some duplicated code because we've specified the asesthetic mapping twice. We can move this up into the main `ggplot` function, which will globally set these mappings. You can always override them for specific geoms in the geom function call:
+We have some duplicated code because we've specified the aesthetic mapping twice. We can move this up into the main `ggplot` function, which will globally set these mappings. You can always override them for specific geoms in the geom function call:
 
 ```{r, eval = FALSE}
-ggplot(data = all_data, mapping = aes(x = Fork.length..cm., y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = svl, y = Ctmax)) + 
   geom_point(color = "black") +
   geom_smooth(color = "hotpink") +
   facet_wrap(~ Species, scales = "free")
@@ -401,9 +403,9 @@ ggplot(data = all_data, mapping = aes(x = Fork.length..cm., y = del15N)) +
 <br>
 <br>
 
-It looks like the species "Pink" has the fewest observations, which is probably what causes that erratic line. 
+It looks like the species *S. virgatus* has the fewest observations, which is probably what causes those warnings and the line with no confidence interval around it. 
 
-Use `filter()` to remove "Pink" from the `all_data` object and create a `no_pink` object. If you're not sure how to start this, look at how we filtered previously and the list of equality operators that are available to us. 
+Use `filter()` to remove *S. virgatus* from the `all_data` object and create a `no_virg` object. If you're not sure how to start this, look at how we filtered previously and the list of equality operators that are available to us. 
 
 <br>
 <br>
@@ -440,8 +442,8 @@ Use `filter()` to remove "Pink" from the `all_data` object and create a `no_pink
 
 
 ```{r}
-no_pink <- filter(all_data, Species != "Pink") # Note the != for "not equal to"
-unique(no_pink$Species)
+no_virg <- filter(all_data, Species != "S. virgatus") # Note the != for "not equal to"
+unique(no_virg$Species)
 ```
 
 Looks good. Let's plot this just like above using this filtered object:
@@ -449,7 +451,7 @@ Looks good. Let's plot this just like above using this filtered object:
 <br>
 
 ```{r}
-ggplot(data = no_pink, mapping = aes(x = Fork.length..cm., y = del15N)) + 
+ggplot(data = no_virg, mapping = aes(x = svl, y = Ctmax)) + 
   geom_point(color = "black") +
   geom_smooth(color = "hotpink") +
   facet_wrap(~ Species, scales = "free")
@@ -466,11 +468,12 @@ We can alternately filter the data within the `ggplot()` function if we don't wa
 
 
 ```{r, eval = FALSE}
-ggplot(data = filter(all_data, Species != "Pink"), mapping = aes(x = Fork.length..cm., y = del15N)) + 
+ggplot(data = filter(all_data, Species != "S. virgatus"), mapping = aes(x = svl, y = Ctmax)) + 
   geom_point(color = "black") +
   geom_smooth(color = "hotpink") +
   facet_wrap(~ Species, scales = "free")
 ```
+
 
 
 <br>
@@ -488,7 +491,7 @@ We've made a bunch of scatter and line plots, let's explore a few ways to plot o
 We can make just a scatterplot, but it's really not very informative.
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_point()
 ```
 
@@ -499,14 +502,14 @@ ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) +
 We can make a boxplot instead:
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_boxplot()
 ```
 
-This tells us a lot more information. We can also do things like swap the x and y coordinates:
+This tells us a lot more information about how Ctmax varies across these speceis. We can also do things like swap the x and y coordinates:
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_boxplot() +
   coord_flip()
 ```
@@ -514,7 +517,7 @@ ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) +
 Or fill the boxes with colors by species:
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N, fill = Species)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax, fill = Species)) + 
   geom_boxplot() +
   theme(legend.position="none")
 ```
@@ -529,7 +532,7 @@ ggplot(data = all_data, mapping = aes(x = Species, y = del15N, fill = Species)) 
 There are lots of other things we could do with boxplots, but we'll move on. My favorite way of visualizing distributions for discrete variables is using violin plots:
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_violin(trim=FALSE)
 ```
 
@@ -573,7 +576,7 @@ This is fine, but not great. Change this plot so that the violins are filled wit
 
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N, fill = Species)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = svl, fill = Species)) + 
   geom_violin(trim=FALSE) +
   theme(legend.position="none")
 ```
@@ -618,7 +621,7 @@ Make the violins filled by different colors for each species, but keep the boxpl
 <br>
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
   geom_boxplot(width=0.1)+
   theme(legend.position="none")
@@ -631,8 +634,22 @@ This looks pretty fancy to me. What would happen if we swapped the order of the 
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-What you should see is that the order of geoms matters. Sequential geoms are plotted on top of the precious ones, and you need to consider this when making plots. Note that if you have multiple layers, there are ways to use semi-transparent colors.
+
+
+What you should see is that the order of geoms matters. Sequential geoms are plotted on top of the previous ones, and you need to consider this when making plots. If needed, there are ways to make colors semi-transparent.
 
 <br>
 <br>
@@ -644,20 +661,20 @@ A couple final things:
 We can change the axis labels and add a plot title if we want:
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
   geom_boxplot(width=0.1)+
   theme(legend.position="none") +
-  labs(title="Fish nitrogen isotopes", x = "Species", y = "delta 15 N")
+  labs(title="Lizard Thermal Maxima", x = "Species", y = "CTmax")
 ```
 
 And/or we can change the theme of the background:
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
   geom_boxplot(width=0.1)+
-  labs(x = "Species", y = "delta 15 N") +
+  labs(x = "Species", y = "CTmax") +
   theme_minimal() +
   theme(legend.position="none")
 ```
@@ -667,10 +684,10 @@ ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) +
 or 
 
 ```{r}
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
   geom_boxplot(width=0.1)+
-  labs(x = NULL, y = "delta 15 N") + # Get rid of the x label, sometimes the categories are self explanatory
+  labs(x = NULL, y = "CTmax") + # Get rid of the x label, sometimes the categories are self explanatory
   theme_classic() +
   theme(legend.position="none")
 ```
@@ -681,7 +698,7 @@ ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) +
 <br>
 <br>
 
-You customize each of these plots almost endlesslessly, and there are many other types of plots that you can create, as well. If you want to get an idea for some of the plotting diversity available, check out the the [R graph gallery](https://r-graph-gallery.com/).
+You can customize each of these plots almost endlessly, and there are many other types of plots that you can create, as well. If you want to get an idea for some of the plotting diversity available, check out the the [R graph gallery](https://r-graph-gallery.com/).
 
 
 <br>
@@ -700,10 +717,10 @@ The standard way to save a plot in R is to open a plotting device, run your plot
 pdf(file = "violin.pdf", width = 7, height = 4) # create and open the pdf plotting device
 
 # Make the plot
-ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
   geom_boxplot(width=0.1)+
-  labs(x = NULL, y = "delta 15 N") + # Get rid of the x label, sometimes the categories are self explanatory
+  labs(x = NULL, y = "CTmax") + # Get rid of the x label, sometimes the categories are self explanatory
   theme_classic() +
   theme(legend.position="none")
 
@@ -720,10 +737,10 @@ ggplot also allows you to save a plot in an object, so you don't need to put the
 
 ```{r}
 # Make the plot
-to_plot <- ggplot(data = all_data, mapping = aes(x = Species, y = del15N)) + 
+to_plot <- ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) + 
   geom_violin(trim=FALSE, mapping = aes(fill = Species)) +
   geom_boxplot(width=0.1)+
-  labs(x = NULL, y = "delta 15 N") +
+  labs(x = NULL, y = "CTmax") + # Get rid of the x label, sometimes the categories are self explanatory
   theme_classic() +
   theme(legend.position="none")
 

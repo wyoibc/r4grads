@@ -56,10 +56,12 @@ setwd("~/r4grads-master/lizard_data/")
 
 <br>
 
-The data are all in this directory, as is a pdf of the paper that these data accompany. "scelop_body_exp1.csv" is the actual data file for the paper, which is very nicely formatted. For illustrative purposes, I have split this into two files ("lizard_data.csv" and "physio_data.csv"), reduced the dataset, and introduced intentional errors that we will track down and fix. 
+The data are all in this directory, as is a pdf of the paper that these data are from. "scelop_body_exp1.csv" is the actual data file for the paper, which is very nicely formatted. For illustrative purposes, I have split this into two files ("lizard_data.csv" and "physio_data.csv"), reduced the dataset, and introduced intentional errors that we will track down and fix.
 
 
 We'll start by reading in those two files. One file contains information about which species each lizard belongs to, it's size (snout-vent length or SVL), the elevation each lizard was at, and a unique ID number for each lizard -- we'll read this in as `sample_data`. The other file contains lizard IDs and a physiological measurement of the maximum temperature at which a lizard can maintain normal physiological function called the critical thermal maximum or CTmax.
+
+One of the main purposes of this paper was to investigate how CTmax changes with body size (SVL) in four species of spiny lizards of the genus *Sceloporus*, and we'll explore these relationships aas we plot and manipulate the data.
 
 
 ```{r}
