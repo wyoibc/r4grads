@@ -347,6 +347,10 @@ ggplot(data = all_data, mapping = aes(x = Species, y = Ctmax)) +
 
 We can fix those lines, and we also need to fix the ordering of the lines. If you look back at your Tukey test summary, you'll see that we're not showing the correct significance values for the comparisons - S. virgatus-S. jarrovii  should be significant but doesn't show on the plot and S. occidentalis-S. graciosus  should not be significant. **When coding with chatGPT you always need to be careful that you're getting out what you expect.** It is easy to get things that look right at first glance but that misrepresent your data.
 
+<br>
+<br>
+<br>
+
 I asked a few more queries, and the closest I was able to get was this:
 
 
@@ -734,7 +738,7 @@ ggplot(volcano_data, aes(x = log2FoldChange, y = -log10(padj), color = ifelse(lo
 <br>
 
 ## Data exploration on your own
-To finish, I want to to try and design and write some very simple projects yourself. You can use the fish data from before, you can use my RNAseq data, or you can use the example datasets provided by dplyr. dplyr is loaded when we load tidyverse, and comes with a couple of small dataframes. One of these is called "starwars" lets take a look at this dataframe:
+To finish, I want to to try and design and write some very simple projects yourself. You can use the lizard data from before, you can use my RNAseq data, or you can use the example datasets provided by dplyr. dplyr is loaded when we load tidyverse, and comes with a couple of small dataframes. One of these is called "starwars" lets take a look at this dataframe:
 
 <br>
 

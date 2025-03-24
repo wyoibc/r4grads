@@ -173,7 +173,7 @@ Here, even though we want *S. jarrovii* AND *S. occidentalis*, we need to tell `
 <br>
 
 
-Note that you can achieve all of the same ends without Tidyverse functions using R's basic indexing, e.g., you could alternately get only Coho rows by running:
+Note that you can achieve all of the same ends without Tidyverse functions using R's basic indexing, e.g., you could alternately get only S. occidentalis rows by running:
 
 ```{r}
 occ_data <- all_data[all_data$Species == "S. occidentalis",]
