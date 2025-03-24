@@ -67,16 +67,6 @@ If you already have experience in R and are comfortable with creating and manipu
 
 
 <br>
-<br>
-<br>
-
-# All tutorials below here are under active development and subject to major change
-
-<br>
-<br>
-<br>
-<br>
-
 
 
 ## Week 4
