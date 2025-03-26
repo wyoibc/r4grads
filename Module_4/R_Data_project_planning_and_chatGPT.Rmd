@@ -1,5 +1,5 @@
 ---
-title: "R data manipulation and plotting pt. 2"
+title: "Using AI for coding & project planning"
 author: "Sean Harrington, Erin Bentley, & Owen Funk"
 date: "2025-03-26"
 output: html_document
