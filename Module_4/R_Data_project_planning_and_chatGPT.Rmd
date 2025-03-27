@@ -37,6 +37,11 @@ First let's reload the lizard data. Make sure you set your working directory lik
 setwd("~/r4grads/lizard_data/")
 ```
 
+We'll need our `all_data` object again. If you have your `"lizard_data_merged.csv"` file that we wrote out last time, you can read in:
+
+```{r}
+all_data <- read.csv("lizard_data_merged.csv")
+```
 
 <br>
 <br>
